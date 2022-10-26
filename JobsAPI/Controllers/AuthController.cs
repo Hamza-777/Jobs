@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobsAPI.Controllers
 {
@@ -24,7 +25,7 @@ namespace JobsAPI.Controllers
             db = _db;
         }
         [HttpPost("login")]
-        public IActionResult Login([FromBody] Login user)
+        public async  Task<IActionResult> Login([FromBody] Login user)
         {
             if (user is null)
             {
@@ -34,21 +35,22 @@ namespace JobsAPI.Controllers
             long mobNum;
             if(long.TryParse(user.UserData,out mobNum))
             {
-                 result = db.Users.Where(x => x.MobileNumber == mobNum && x.Password == user.Password).SingleOrDefault();
+                 result = await db.Users.Where(x => x.MobileNumber == mobNum && x.Password == user.Password).SingleOrDefaultAsync();
             }
             else if(Regex.IsMatch(user.UserData, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
             {
-                result = db.Users.Where(x => x.EmailId ==user.UserData  && x.Password == user.Password).SingleOrDefault();
+                result = await db.Users.Where(x => x.EmailId ==user.UserData  && x.Password == user.Password).SingleOrDefaultAsync();
             }
             else
             {
-                result = db.Users.Where(x => x.UserName == user.UserData && x.Password == user.Password).SingleOrDefault();
+                result = await db.Users.Where(x => x.UserName == user.UserData && x.Password == user.Password).SingleOrDefaultAsync();
             }
             if (result!=null)
             {
                 var claims = new[]
                 {
-                    new Claim("FullName",result.FullName)
+                    new Claim("FullName",result.FullName),
+                    new Claim("Role",result.Role)
                 };
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -60,7 +62,7 @@ namespace JobsAPI.Controllers
                     signingCredentials: signinCredentials
                 );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new AuthenticatedResponse { Token = tokenString });
+                return Ok(tokenString/*new AuthenticatedResponse { Token = tokenString }*/);
             }
             return Unauthorized();
         }
