@@ -26,5 +26,7 @@ namespace JobsAPI.Models
         public string? RecruiterDescription { get; set; }//recruiter
 
         public string Role { get; set; } //Either Admin,Recruiter,Applicant
+
+        public ICollection<Blog> Blogs { get; set; } // For Applicants
     }
 }
