@@ -25,6 +25,7 @@ namespace JobsAPI.Models
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
         public DbSet<user> Users { get; set; }
-        public DbSet<Job> Job { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 }
