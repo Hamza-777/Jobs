@@ -11,10 +11,9 @@ import { AuthenticatedResponse } from '../_interfaces/authenticatedresponse.mode
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  invalidLogin: boolean;
+  invalidLogin!: boolean;
   credentials: LoginModel = {userdata:'', password:''};
   constructor(private router: Router,private http:HttpClient) {
-    this.invalidLogin =true;
    }
   ngOnInit(): void {
     

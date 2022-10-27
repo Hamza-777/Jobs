@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -30,6 +31,7 @@ export function tokenGetter() {
       }
     })
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers:[AuthGuard],
 })
 export class AppModule { }
