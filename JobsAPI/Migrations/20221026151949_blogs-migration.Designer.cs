@@ -4,6 +4,7 @@ using JobsAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobsAPI.Migrations
 {
     [DbContext(typeof(userDbContext))]
-    partial class userDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221026151949_blogs-migration")]
+    partial class blogsmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,7 @@ namespace JobsAPI.Migrations
 
                     b.Property<string>("BlogCategory")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BlogContent")
                         .IsRequired()
@@ -52,8 +53,7 @@ namespace JobsAPI.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Company")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
@@ -62,7 +62,7 @@ namespace JobsAPI.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Blog");
                 });
 
             modelBuilder.Entity("JobsAPI.Models.Job", b =>
@@ -105,7 +105,7 @@ namespace JobsAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Job");
                 });
 
             modelBuilder.Entity("JobsAPI.Models.user", b =>
