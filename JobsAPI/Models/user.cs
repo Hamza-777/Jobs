@@ -13,7 +13,7 @@ namespace JobsAPI.Models
         public string Password { get; set; }
         public long MobileNumber { get; set; }
 
-        public string PhotographLink { get; set; }
+        public string? PhotographLink { get; set; }
         public string? ResumeLink { get; set; }//applicant
 
         public bool? WorkStatus { get; set; }//applicant
@@ -27,6 +27,6 @@ namespace JobsAPI.Models
 
         public string Role { get; set; } //Either Admin,Recruiter,Applicant
 
-        public ICollection<Blog> Blogs { get; set; } // For Applicants
+        public ICollection<Blog>? Blogs { get; set; } // For Applicants
     }
 }
