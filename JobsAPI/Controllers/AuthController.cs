@@ -50,6 +50,7 @@ namespace JobsAPI.Controllers
                 var claims = new[]
                 {
                     new Claim("FullName",result.FullName),
+                    new Claim(ClaimTypes.Role,result.Role),
                     new Claim("Role",result.Role)
                 };
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
@@ -62,7 +63,7 @@ namespace JobsAPI.Controllers
                     signingCredentials: signinCredentials
                 );
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(tokenString/*new AuthenticatedResponse { Token = tokenString }*/);
+                return Ok(new AuthenticatedResponse { Token = tokenString });
             }
             return Unauthorized();
         }
