@@ -25,6 +25,7 @@ namespace JobsAPI.Controllers
             db = _db;
         }
         [HttpPost("login")]
+        
         public async  Task<IActionResult> Login([FromBody] Login user)
         {
             if (user is null)
