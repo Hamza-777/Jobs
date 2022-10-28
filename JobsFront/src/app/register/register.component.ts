@@ -11,23 +11,7 @@ import { RegisterResponse } from '../_interfaces/registerresponse.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  credentials: RegisterModel = {FullName :'',
-  UserName :'',
-  Bio :'',
-  EmailId :'',
-  Password :'',
-  MobileNumber : 0,
-  PhotographLink :'',
-  ResumeLink :'',
-  WorkStatus :false,
-  CurrentSalary : 0,
-  ExpectedSalary :0,
-  CurrentLocation :'',
-  PreferredLocation :'',
-  CompanyName :'',
-  RecruiterDescription :'',
-  Role :''
-  }
+  credentials: RegisterModel = {} as RegisterModel
   constructor(private router: Router,private http:HttpClient) {}
 
   ngOnInit(): void {
