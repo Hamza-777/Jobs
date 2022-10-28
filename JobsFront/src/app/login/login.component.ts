@@ -12,7 +12,7 @@ import { AuthenticatedResponse } from '../_interfaces/authenticatedresponse.mode
 })
 export class LoginComponent implements OnInit {
   invalidLogin!: boolean;
-  credentials: LoginModel = {userdata:'', password:''};
+  credentials: LoginModel = {userdata!:'', password:''};
   constructor(private router: Router,private http:HttpClient) {
    }
   ngOnInit(): void {
