@@ -88,16 +88,31 @@ namespace JobsAPI.Controllers
         {
             if (user == null)
             {
-                return BadRequest();
+                return BadRequest("All fields are blank");
             }
             if (ModelState.IsValid)
             {
-                user.Salt=hm.GenerateSalt();
-                user.Password =Convert.ToBase64String(hm.GetHash(user.Password,user.Salt));
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-            }
-            return Ok();
+                if (db.Users.Any(x => x.UserName == user.UserName))
+                {
+                    return BadRequest("Username is already present");
+                }
+                else if(db.Users.Any(x=>x.EmailId == user.EmailId))
+                {
+                    return BadRequest("EmailID is already present");
+                }
+                else if(db.Users.Any(x => x.MobileNumber== user.MobileNumber))
+                {
+                    return BadRequest("Mobile Number is already present");
+                }
+                else
+                {
+                    user.Salt = hm.GenerateSalt();
+                    user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
+                    db.Users.Add(user);
+                    await db.SaveChangesAsync();
+                }
+            }  
+            return Ok("Registration is Successfull !!!");
         }
     }
 }

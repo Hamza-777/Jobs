@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace JobsAPI.Models
 {
+    
     public class user
     {
         [Key]
@@ -9,10 +11,12 @@ namespace JobsAPI.Models
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string? Bio { get; set; }//applicant
+        
         public string EmailId { get; set; }
         public string Password { get; set; }
 
-        public string? Salt { get; set; }    
+        public string? Salt { get; set; }
+        
         public long MobileNumber { get; set; }
 
         public string? PhotographLink { get; set; }
