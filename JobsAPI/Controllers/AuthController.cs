@@ -37,7 +37,6 @@ namespace JobsAPI.Controllers
             }
             user result=null;
             long mobNum;
-            bool checkPassword;
             if(long.TryParse(user.UserData,out mobNum))
             {
                 
@@ -130,7 +129,7 @@ namespace JobsAPI.Controllers
                     await db.SaveChangesAsync();
                 }
             }  
-            return Ok("Registration is Successfull !!!");
+            return Ok();
         }
     }
 }

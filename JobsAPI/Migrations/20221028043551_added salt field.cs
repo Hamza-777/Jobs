@@ -8,15 +8,15 @@ namespace JobsAPI.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Salt",
-                table: "Users",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-        //    migrationBuilder.AddColumn<string>("Salt", "Users", "varchar(255)",
-        //unicode: false, maxLength: 255, nullable: true);
+            //migrationBuilder.AlterColumn<string>(
+            //    name: "Salt",
+            //    table: "Users",
+            //    type: "nvarchar(max)",
+            //    nullable: true,
+            //    oldClrType: typeof(string),
+            //    oldType: "nvarchar(max)");
+            migrationBuilder.AddColumn<string>("Salt", "Users", "varchar(255)",
+        unicode: false, maxLength: 255, nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
