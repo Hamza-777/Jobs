@@ -11,6 +11,8 @@ namespace JobsAPI.Models
         public string? Bio { get; set; }//applicant
         public string EmailId { get; set; }
         public string Password { get; set; }
+
+        public string? Salt { get; set; }    
         public long MobileNumber { get; set; }
 
         public string? PhotographLink { get; set; }
@@ -27,6 +29,7 @@ namespace JobsAPI.Models
 
         public string Role { get; set; } //Either Admin,Recruiter,Applicant
 
+        
         public ICollection<Blog>? Blogs { get; set; } // For Applicants
     }
 }

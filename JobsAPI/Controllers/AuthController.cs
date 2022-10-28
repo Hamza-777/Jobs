@@ -9,7 +9,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
-
+using JobsAPI.Hashing;
 namespace JobsAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -19,10 +19,12 @@ namespace JobsAPI.Controllers
         private readonly userDbContext db;
        
         private IConfiguration configuration;
-        public AuthController(IConfiguration iConfig, userDbContext _db)
+        private HashMethods hm;
+        public AuthController(IConfiguration iConfig, userDbContext _db,HashMethods _hm)
         {
             configuration = iConfig;
             db = _db;
+            hm = _hm;
         }
         [HttpPost("login")]
         public async  Task<IActionResult> Login([FromBody] Login user)
@@ -33,17 +35,31 @@ namespace JobsAPI.Controllers
             }
             user result=null;
             long mobNum;
+            bool checkPassword;
             if(long.TryParse(user.UserData,out mobNum))
             {
-                 result = await db.Users.Where(x => x.MobileNumber == mobNum && x.Password == user.Password).SingleOrDefaultAsync();
+                
+                 result = await db.Users.Where(x => x.MobileNumber == mobNum ).SingleOrDefaultAsync();
+                if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
+                {
+                    result = null;
+                }
             }
             else if(Regex.IsMatch(user.UserData, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
             {
-                result = await db.Users.Where(x => x.EmailId ==user.UserData  && x.Password == user.Password).SingleOrDefaultAsync();
+                result = await db.Users.Where(x => x.EmailId ==user.UserData ).SingleOrDefaultAsync();
+                if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
+                {
+                    result = null;
+                }
             }
             else
             {
-                result = await db.Users.Where(x => x.UserName == user.UserData && x.Password == user.Password).SingleOrDefaultAsync();
+                result = await db.Users.Where(x => x.UserName == user.UserData).SingleOrDefaultAsync();
+                if(!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
+                {
+                    result = null;
+                }
             }
             if (result!=null)
             {
@@ -76,6 +92,8 @@ namespace JobsAPI.Controllers
             }
             if (ModelState.IsValid)
             {
+                user.Salt=hm.GenerateSalt();
+                user.Password =Convert.ToBase64String(hm.GetHash(user.Password,user.Salt));
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
             }
