@@ -11,6 +11,7 @@ import { RegisterResponse } from '../_interfaces/registerresponse.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  error!: any;
   credentials: RegisterModel = {} as RegisterModel
   constructor(private router: Router,private http:HttpClient) {}
 
@@ -26,7 +27,13 @@ export class RegisterComponent implements OnInit {
           console.log(response);
           this.router.navigate(["/login"]);
         },
-        error: (err: HttpErrorResponse) => console.log(err) 
+        error: (err: HttpErrorResponse) => {
+        console.log(err) ;
+        if(err.error.title!=null)
+          this.error=err.error.title;
+        else
+          this.error = err.error;
+        }
       })
     }
   }

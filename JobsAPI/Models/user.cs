@@ -20,7 +20,7 @@ namespace JobsAPI.Models
         public string Password { get; set; }
 
         public string? Salt { get; set; }
-        [Required,MaxLength(10)]
+        [Required]
         public long MobileNumber { get; set; }
         public string? PhotographLink { get; set; }
         public string? ResumeLink { get; set; }//applicant
