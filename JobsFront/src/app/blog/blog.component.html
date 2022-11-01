@@ -1,4 +1,4 @@
 <div class="blog-container">
-    <h3>{{blog.blogTitle}}</h3>
+    <h3><a [routerLink]="['/blog', blog.blogId]">{{blog.blogTitle}}</a></h3>
     <p>{{blog.blogDescription}}</p>
 </div>

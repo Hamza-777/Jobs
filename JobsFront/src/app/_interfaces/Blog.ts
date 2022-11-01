@@ -1,4 +1,5 @@
 export interface Blog {
+  blogId: number;
   blogTitle: string;
   blogDescription: string;
   blogContent: string;

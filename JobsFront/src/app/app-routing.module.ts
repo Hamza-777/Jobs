@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { ViewBlogComponent } from './view-blog/view-blog.component';
 const routes: Routes = [
 {path:'login',
 component : LoginComponent},
@@ -20,6 +21,10 @@ component : RegisterComponent },
 {
   path: 'blogs',
   component: BlogsComponent
+},
+{
+  path: 'blog/:blogId',
+  component: ViewBlogComponent
 }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

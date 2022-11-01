@@ -9,7 +9,7 @@ import { Blog } from '../_interfaces/Blog';
   styleUrls: ['./create-blog.component.css']
 })
 export class CreateBlogComponent implements OnInit {
-  blog: Blog;
+  blog: any;
   blogs: Blog[];
   data: any;
   error!: any;

@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { ViewBlogComponent } from './view-blog/view-blog.component';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -24,6 +25,7 @@ export function tokenGetter() {
     BlogComponent,
     BlogsComponent,
     CreateBlogComponent,
+    ViewBlogComponent,
   ],
   imports: [
     BrowserModule,

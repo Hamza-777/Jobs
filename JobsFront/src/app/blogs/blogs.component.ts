@@ -8,20 +8,10 @@ import { Blog } from '../_interfaces/Blog';
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  blog: Blog;
   blogs: Blog[];
   error!: any;
 
   constructor(private http: HttpClient) {
-    this.blog = {
-      blogTitle: '',
-      blogDescription: '',
-      blogContent: '',
-      blogTags: '',
-      blogCategory: '',
-      company: '',
-      userId: 1,
-    };
     this.blogs = [];
    }
 
