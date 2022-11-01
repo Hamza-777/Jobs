@@ -1,3 +1,4 @@
 <div *ngFor="let blog of blogs">
-    {{ blog | json }}
+    <app-blog [blog]="blog">
+    </app-blog>
 </div>
