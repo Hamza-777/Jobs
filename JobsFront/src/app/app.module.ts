@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { CourseComponent } from './course/course.component';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -18,6 +19,7 @@ export function tokenGetter() {
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,
