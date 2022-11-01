@@ -11,7 +11,6 @@ import { Blog } from '../_interfaces/Blog';
 export class BlogsComponent implements OnInit {
   blog: Blog;
   blogs: Blog[];
-  data: any;
   error!: any;
 
   constructor(private http: HttpClient) {
@@ -28,15 +27,14 @@ export class BlogsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getBlogs();
   }
 
-  createBlog = ( form: NgForm) => {
-    if (form.valid) {
-      this.http.post<any>("https://localhost:7067/api/blogs", this.blog, {
-        headers: new HttpHeaders({ "Content-Type": "application/json"})
-      })
+  getBlogs = () => {
+      this.http.get<Blog[]>("https://localhost:7067/api/blogs")
       .subscribe({
-        next: (response: any) => {
+        next: (response: Blog[]) => {
+          this.blogs = response;
           console.log(response);
         },
         error: (err: HttpErrorResponse) => {
@@ -47,7 +45,6 @@ export class BlogsComponent implements OnInit {
           this.error = err.error;
         }
       })
-    }
   }
 
 }

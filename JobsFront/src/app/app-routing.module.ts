@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 const routes: Routes = [
 {path:'login',
 component : LoginComponent},
@@ -12,6 +13,10 @@ component : LoginComponent},
 component : HomeComponent ,canActivate:[AuthGuard]},
 {path:'register',
 component : RegisterComponent },
+{
+  path: 'createblogs',
+  component: CreateBlogComponent
+},
 {
   path: 'blogs',
   component: BlogsComponent
