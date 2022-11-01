@@ -1,0 +1,18 @@
+export interface RegisterModel {
+          FullName :string,
+          UserName :string,
+          Bio :string,
+          EmailId :string,
+          Password :string,
+          MobileNumber : number,
+          PhotographLink :string,
+          ResumeLink :string,
+          WorkStatus :boolean,
+          CurrentSalary : number,
+          ExpectedSalary :number,
+          CurrentLocation :string,
+          PreferredLocation :string,
+          CompanyName :string,
+          RecruiterDescription :string,
+          Role :string,
+  }

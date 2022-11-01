@@ -1,0 +1,84 @@
+<div class="container">
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <h2 class="form-signin-heading">Register</h2>
+      <div class="text-danger">{{error}}</div>
+        <br/>
+        <label for="FullName" class="sr-only">FullName</label>
+        <input type="text" id="FullName" name="FullName " [(ngModel)]="credentials.FullName" 
+          class="form-control" placeholder="FullName" required>
+        <br/>
+        <label for="username" class="sr-only">UserName</label>
+        <input type="text" id="UserName" name="UserName " [(ngModel)]="credentials.UserName" 
+          class="form-control" placeholder="UserName" required>
+        <br/>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="credentials.Password" 
+          class="form-control" placeholder="Password" required>
+        <br/>
+        <label for="EmailId" class="sr-only">EmailId</label>
+        <input type="text" id="EmailId" name="EmailId" [(ngModel)]="credentials.EmailId" 
+          class="form-control" placeholder="EmailId" required>
+        <br/>
+        <label for="MobileNumber" class="sr-only">MobileNumber</label>
+        <input type="text" id="MobileNumber" name="MobileNumber" [(ngModel)]="credentials.MobileNumber" 
+          class="form-control" placeholder="MobileNumber" required>
+        <br/>
+        <label for="PhotographLink" class="sr-only">PhotographLink</label>
+        <input type="text" id="PhotographLink" name="PhotographLink" [(ngModel)]="credentials.PhotographLink" 
+          class="form-control" placeholder="PhotographLink">
+        <br/>
+        Role<label for="Role" class="sr-only">Role</label>
+        <select [(ngModel)]="credentials.Role" name="Role" class="form-control" placeholder="Role" required>
+            <option>Applicant</option>
+            <option>Recruiter</option>
+            <option>Admin</option>
+        </select>
+        <br/>
+        <div *ngIf="credentials.Role=='Admin'||credentials.Role==''"></div>
+        <div name="Applicant" *ngIf="credentials.Role=='Applicant'">
+        <label for="Bio" class="sr-only">Bio</label>
+        <input type="text" id="Bio" name="Bio" [(ngModel)]="credentials.Bio" 
+          class="form-control" placeholder="Bio" required>
+        <br/>
+        <label for="ResumeLink" class="sr-only">ResumeLink</label>
+        <input type="text" id="ResumeLink" name="ResumeLink" [(ngModel)]="credentials.ResumeLink" 
+          class="form-control" placeholder="ResumeLink">
+        <br/>
+        <div class="form-group form-check">
+            Are You Experienced???
+            <input type="checkbox" class="form-check-input"  id="WorkStatus" name="WorkStatus" [(ngModel)]="credentials.WorkStatus" 
+            class="form-control" placeholder="Are You Experienced???" required>
+        </div>
+        <br/>
+        <div name="Experienced"  *ngIf="credentials.WorkStatus==true">
+        <label for="CurrentSalary" class="sr-only">CurrentSalary</label>
+        <input type="text" id="CurrentSalary " name="CurrentSalary " [(ngModel)]="credentials.CurrentSalary" 
+          class="form-control" placeholder="CurrentSalary" required>
+        <br/>
+        </div>
+        <label for="ExpectedSalary" class="sr-only">ExpectedSalary</label>
+        <input type="text" id="ExpectedSalary" name="ExpectedSalary" [(ngModel)]="credentials.ExpectedSalary" 
+          class="form-control" placeholder="ExpectedSalary" required>
+        <br/>
+        <label for="CurrentLocation" class="sr-only">CurrentLocation</label>
+        <input type="text" id="CurrentLocation" name="CurrentLocation" [(ngModel)]="credentials.CurrentLocation " 
+          class="form-control" placeholder="CurrentLocation" required>
+        <br/>
+        <label for="PreferredLocation" class="sr-only">PreferredLocation</label>
+        <input type="text" id="PreferredLocation" name="PreferredLocation" [(ngModel)]="credentials.PreferredLocation" 
+          class="form-control" placeholder="PreferredLocation" required>
+        <br/>
+        </div>
+        <div name="Recruiter" *ngIf="credentials.Role=='Recruiter'">
+        <label for="CompanyName" class="sr-only">CompanyName</label>
+        <input type="text" id="CompanyName" name="CompanyName" [(ngModel)]="credentials.CompanyName" 
+          class="form-control" placeholder="CompanyName" required>
+        <br/>
+        <label for="RecruiterDescription" class="sr-only">Description</label>
+        <input type="text" id="RecruiterDescription" name="RecruiterDescription" [(ngModel)]="credentials.RecruiterDescription" 
+          class="form-control" placeholder="Description" required>
+        <br/>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+    </form>
+  </div>

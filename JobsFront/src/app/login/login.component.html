@@ -1,5 +1,5 @@
-<div class="container">
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+  <div class="form-group">
       <h2 class="form-signin-heading">Login</h2>
         <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
         <br/>
@@ -12,5 +12,6 @@
           class="form-control" placeholder="Password" required>
         <br/>
         <button class="btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.valid">Log in</button>
-    </form>
-  </div>
+      </div>
+      </form>
+    <a routerLink="/register">Register</a>
