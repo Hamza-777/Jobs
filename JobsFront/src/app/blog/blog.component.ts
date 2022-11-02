@@ -30,6 +30,10 @@ export class BlogComponent implements OnInit {
         this.error = err.error;
       }
     })
-}
+  }
+
+  storeId = (id: any) => {
+    localStorage.setItem("editId", id);
+  }
 
 }

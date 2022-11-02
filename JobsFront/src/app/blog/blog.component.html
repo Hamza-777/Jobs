@@ -2,4 +2,5 @@
     <h3><a [routerLink]="['/blog', blog.blogId]">{{blog.blogTitle}}</a></h3>
     <p>{{blog.blogDescription}}</p>
     <button (click)="deleteBlog(blog.blogId)">Delete</button>
+    <button><a routerLink="/createblogs" (click)="storeId(blog.blogId)">Edit</a></button>
 </div>
