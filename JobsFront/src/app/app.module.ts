@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+
+
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -17,7 +19,9 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent,
+    RegisterComponent
+
+    
   ],
   imports: [
     BrowserModule,
