@@ -1,7 +1,8 @@
 <div class="container">
     <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
       <h2 class="form-signin-heading">Register</h2>
-      <div class="text-danger">{{error}}</div>
+      <div class="text-success">{{data}}</div>
+      <div class="text-danger">{{error|json}}</div>
         <br/>
         <label for="FullName" class="sr-only">FullName</label>
         <input type="text" id="FullName" name="FullName " [(ngModel)]="credentials.FullName" 
@@ -79,6 +80,11 @@
           class="form-control" placeholder="Description" required>
         <br/>
         </div>
-        <button class="btn btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+        <button class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)">Verify Email</button>
+        <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
+          class="form-control" placeholder="Enter OTP" required >
+          <button type="button" class="btn btn-lg btn-primary" (click)="checkotp(otp)">Submit OTP</button>
+        <br/>
+          <button type="button" class="btn  btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
     </form>
   </div>
