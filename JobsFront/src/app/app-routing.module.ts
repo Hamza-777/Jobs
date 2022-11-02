@@ -4,13 +4,16 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 const routes: Routes = [
 {path:'login',
 component : LoginComponent},
 {path:'',
 component : HomeComponent ,canActivate:[AuthGuard]},
 {path:'register',
-component : RegisterComponent }];
+component : RegisterComponent },
+{path:'forgotpwd',
+component : ForgotpwdComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

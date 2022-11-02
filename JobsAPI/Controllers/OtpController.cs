@@ -17,7 +17,7 @@ namespace JobsAPI.Controllers
         private readonly userDbContext db;
 
         private IConfiguration configuration;
-        public OtpController(IConfiguration iConfig, userDbContext _db, HashMethods _hm)
+        public OtpController(IConfiguration iConfig, userDbContext _db)
         {
             configuration = iConfig;
             db = _db;
@@ -30,7 +30,7 @@ namespace JobsAPI.Controllers
             await db.SaveChangesAsync();
             return Ok(invalidotps.ToJson());
         }
-        [HttpGet("checkotp")]
+        [HttpGet("checkotp/{value}")]
         public async Task<ActionResult<string>> CheckOTP(string value)
         {
             Otp otp = await db.Otps.Where(x => x.value == value).SingleOrDefaultAsync();
@@ -53,7 +53,7 @@ namespace JobsAPI.Controllers
             return BadRequest("Otp Invalid");
         }
 
-        [HttpPost("sendemail")]
+        [HttpPost("sendemail/{toemail}/{fullname}")]
         public async Task<IActionResult> SendEmail(string toemail, string fullname)
         {
             Random rnd = new Random();

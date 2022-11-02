@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 
 
 export function tokenGetter() { 
@@ -19,7 +20,8 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotpwdComponent
 
     
   ],
