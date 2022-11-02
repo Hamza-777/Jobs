@@ -14,7 +14,7 @@ export class CreateBlogComponent implements OnInit {
   blogs: Blog[];
   error!: any;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.blog = {
       blogTitle: '',
       blogDescription: '',
@@ -91,8 +91,6 @@ export class CreateBlogComponent implements OnInit {
         }
       })
     }
-
     localStorage.removeItem("editId");
   }
-
 }
