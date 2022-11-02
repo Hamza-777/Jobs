@@ -1,4 +1,5 @@
 <div class="blog-container">
     <h3><a [routerLink]="['/blog', blog.blogId]">{{blog.blogTitle}}</a></h3>
     <p>{{blog.blogDescription}}</p>
+    <button (click)="deleteBlog(blog.blogId)">Delete</button>
 </div>
