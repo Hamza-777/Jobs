@@ -1,10 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { async, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { asyncScheduler } from 'rxjs';
-import { RegisterModel } from '../_interfaces/register.model';
-import { RegisterResponse } from '../_interfaces/registerresponse.model';
 
 @Component({
   selector: 'app-forgotpwd',
@@ -23,23 +19,6 @@ export class ForgotpwdComponent implements OnInit {
   data!:string;
   error!: any;
 
-  checkotp(otp:string)
-  {
-    this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
-      next: (response: any) => {
-        this.data="OTP Verified";
-
-      console.log(this.data);
-      },
-      error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error=err.error.title;
-      else
-        this.error = err.error;
-      }
-  })
-}
 generateotp(email: string,fname:string) 
 {
 this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,  {
@@ -83,31 +62,33 @@ getuserbyusername (username:string)
 };
 
 update(password:string,otp:string) {
-    this.checkotp(otp);
-    console.log(this.data);
-    if(this.data=="OTP Verified"){
-      this.user.Password=password;
-      this.user.Salt = null;
-      console.log(this.user.Password);
-    this.http.put<RegisterResponse>("https://localhost:7067/api/Auth/updatepassword/"+this.user.UserId, this.user, {
-      headers: new HttpHeaders({ "Content-Type": "application/json"})
-    })
-    .subscribe({
-      next:  (response: RegisterResponse) => {
-        console.log(response);
-        this.router.navigate(["/login"]);
-      },
-      error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error=err.error;
-      else
-        this.error = err.error.errors
-        console.log(this.error);
-      }
-    })
-    }
+    this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
+      next: (response: any) => {
+        this.data="OTP Verified";
+        console.log(response)
+        console.log("status",this.data);        
+        console.log(this.user);
+        this.http.put<any>("https://localhost:7067/api/Auth/updatepassword/"+this.user.userID, {...this.user,password:password}, {
+          headers: new HttpHeaders({ "Content-Type": "application/json"})
+        })
+        .subscribe({
+          next:  (response: any) => {
+            console.log(response);
+            this.router.navigate(["/login"]);
+          },
+          error: (err: HttpErrorResponse) => {
+          console.log(err) ;
+          if(err.error.title!=null)
+            this.error=err.error;
+          else
+            this.error = err.error.errors
+            console.log(this.error);
+          }
+        })
+        }
+        
+      
+      })
     
-  
-  }
+      }
 }

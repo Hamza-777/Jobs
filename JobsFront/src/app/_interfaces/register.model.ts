@@ -1,5 +1,5 @@
 export interface RegisterModel {
-          UserId:number,
+          UserID:number,
           FullName :string,
           UserName :string,
           Bio :string,
