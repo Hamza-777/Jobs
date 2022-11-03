@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <h1 class="mb-3">Courses</h1>
+    <table class="table" *ngIf="courses && courses.length > 0">
+        <thead>
+            <tr>
+                <th>Course Id</th>
+                <th>Course Name</th>
+                <th>Course Category</th>
+                <th>Course Description</th>
+                <th>Course Author</th>
+                <th>Course Amount</th>
+            </tr>
+        </thead>
+    <!-- <h1>{{courses|json}}</h1> -->
+
+
+        <tbody>
+            <tr *ngFor="let course of courses">
+                
+                <td>{{course.courseId}}</td>
+            
+                <td>{{course.courseName}}</td>
+                <td>{{course.courseCategory}}</td>
+                <td>{{course.courseDescription}}</td>
+                <td>{{course.courseAuthor}}</td>
+                <td>{{course.courseAmount}}</td>
+                <td><a [routerLink]="['/course-crud','edit',course.courseId]"> View </a></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <p *ngIf="!courses || courses.length<=0">No Courses found at this time</p>
+</div>

@@ -10,6 +10,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { CourseComponent } from './course/course.component';
+import { AddCourseComponent } from './course-crud/add-course/add-course.component';
+import { CourseListComponent } from './course-crud/course-list/course-list.component';
+import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -20,12 +23,17 @@ export function tokenGetter() {
     HomeComponent,
     RegisterComponent,
     CourseComponent,
+    AddCourseComponent,
+    CourseListComponent,
+    EditCourseComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

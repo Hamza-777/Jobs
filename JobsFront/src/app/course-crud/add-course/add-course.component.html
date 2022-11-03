@@ -1,0 +1,52 @@
+
+
+<div class="container my-5">
+    <h1 class="mb-3">Add a New Course</h1>
+    
+    <div class="row">
+        <div class=""col-6>
+          <form #form="ngForm" (ngSubmit)="addCourse()">
+            
+              
+              <div class="mb-3">
+
+                <label for="courseName" class="form-label">Course Name</label>
+                <input type="text" class="form-control" id="courseName" name="courseName" 
+                [(ngModel)] = "addCourseRequest.courseName">
+              </div>
+
+              <div class="mb-3">
+                <label for="courseCategory" class="form-label">Course Category</label>
+                <input type="text" class="form-control" id="courseCategory" name="courseCategory" 
+                [(ngModel)] = "addCourseRequest.courseCategory">
+              </div>
+
+              <div class="mb-3">
+                <label for="courseDescription" class="form-label">Course Description</label>
+                <input type="text" class="form-control" id="courseDescription" name="courseDescription" 
+                [(ngModel)] = "addCourseRequest.courseDescription">
+              </div>
+
+              <div class="mb-3">
+                <label for="courseAuthor" class="form-label">Course Author</label>
+                <input type="text" class="form-control" id="courseAuthor" name="courseAuthor" 
+                [(ngModel)] = "addCourseRequest.courseAuthor">
+              </div>
+              
+              
+            
+            <div class="mb-3">
+              <label for="courseAmount" class="form-label">CourseAmount</label>
+              <input type="currency" class="form-control" id="courseAmount" name="courseAmount" 
+              [(ngModel)] = "addCourseRequest.courseAmount">
+            </div>
+              
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+    </div>
+
+
+    
+</div>
