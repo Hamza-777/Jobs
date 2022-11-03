@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AppRoutingModule } from './app-routing.module';
-import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +13,7 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ViewBlogComponent } from './view-blog/view-blog.component';
+
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -33,7 +33,6 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    LMarkdownEditorModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
