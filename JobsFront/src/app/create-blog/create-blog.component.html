@@ -73,3 +73,5 @@
   </div>
   
   {{blog.blogContent | markdown}}
+
+  <div [innerHtml]="blog.blogContent | markdown" ></div>

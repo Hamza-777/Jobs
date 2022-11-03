@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../_interfaces/Blog';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-blog',
@@ -10,8 +11,11 @@ import { Blog } from '../_interfaces/Blog';
 export class BlogComponent implements OnInit {
   @Input() blog!: Blog;
   error!: any;
+  currentUser: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.currentUser = jwt_decode(localStorage.getItem("jwt")!);
+  }
 
   ngOnInit(): void {
   }

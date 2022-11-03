@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Blog } from '../_interfaces/Blog';
-import { marked } from 'marked';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-create-blog',
@@ -14,6 +14,8 @@ export class CreateBlogComponent implements OnInit {
   blog: any;
   blogs: Blog[];
   error!: any;
+  currentUser: any;
+  author: any;
 
   constructor(private http: HttpClient) {
     this.blog = {
@@ -27,6 +29,8 @@ export class CreateBlogComponent implements OnInit {
     };
     this.blogs = [];
     this.editId = localStorage.getItem("editId") !== null || undefined ? localStorage.getItem("editId") : '';
+
+    this.currentUser = jwt_decode(localStorage.getItem("jwt")!);
   }
 
   ngOnInit(): void {
@@ -56,7 +60,7 @@ export class CreateBlogComponent implements OnInit {
 
   createBlog = ( form: NgForm) => {
     if (form.valid) {
-      this.http.post<any>("https://localhost:7067/api/blogs", this.blog, {
+      this.http.post<any>("https://localhost:7067/api/blogs", {...this.blog, userId: this.currentUser.UserID}, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
@@ -76,7 +80,7 @@ export class CreateBlogComponent implements OnInit {
 
   editBlog = ( form: NgForm) => {
     if (form.valid) {
-      this.http.put<any>(`https://localhost:7067/api/blogs/${this.editId}`, {blogId: this.editId, ...this.blog}, {
+      this.http.put<any>(`https://localhost:7067/api/blogs/${this.editId}`, {...this.blog, blogId: this.editId, userId: this.currentUser.UserID}, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({

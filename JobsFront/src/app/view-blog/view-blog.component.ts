@@ -23,7 +23,7 @@ export class ViewBlogComponent implements OnInit {
       blogTags: '',
       blogCategory: '',
       company: '',
-      userId: 1,
+      userID: 1,
     };
     this.activatedrouter.paramMap.subscribe(params => { 
       this.id = Number(params.get('blogId')); 
