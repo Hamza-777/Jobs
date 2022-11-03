@@ -13,6 +13,7 @@ export class GlobalerrorhandlerService {
     if(error_response.error.title!=null) //API Validation gives title
       this.errormsg = JSON.stringify(this.errormsg["errors"])
       this.errormsg = this.errormsg.replace(/[{""}]|/g,"")
+      this.errormsg = this.errormsg.replace(",","<br>")
       console.error("An error occured:",this.errormsg);
       return this.errormsg;
   }

@@ -2,7 +2,9 @@
     <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
       <h2 class="form-signin-heading">Register</h2>
       <div class="text-success">{{data}}</div>
-      <div class="text-danger">{{error}}</div>
+      <div class="text-danger">
+        <span [innerHTML]="error"></span>
+      </div>
         <br/>
         <label for="FullName" class="sr-only">FullName</label>
         <input type="text" id="FullName" name="FullName " [(ngModel)]="credentials.FullName" 
