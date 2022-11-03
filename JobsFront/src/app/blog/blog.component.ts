@@ -29,7 +29,7 @@ export class BlogComponent implements OnInit {
       error: (err: HttpErrorResponse) => {
       console.log(err) ;
       if(err.error.title!=null)
-        this.error=err.error.title;
+        this.error = err.error.title;
       else
         this.error = err.error;
       }
