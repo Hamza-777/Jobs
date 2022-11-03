@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobsAPI.Migrations
 {
     [DbContext(typeof(userDbContext))]
-    [Migration("20221103110124_jobs-1")]
+    [Migration("20221103175043_jobs-1")]
     partial class jobs1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -109,16 +109,10 @@ namespace JobsAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("category")
+                    b.Property<int>("categoryid")
                         .HasColumnType("int");
 
-                    b.Property<int>("categoryTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("city")
-                        .HasColumnType("int");
-
-                    b.Property<int>("cityTypeId")
+                    b.Property<int>("cityid")
                         .HasColumnType("int");
 
                     b.Property<string>("company")
@@ -131,8 +125,7 @@ namespace JobsAPI.Migrations
 
                     b.Property<string>("description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("location")
                         .IsRequired()
@@ -148,28 +141,25 @@ namespace JobsAPI.Migrations
                     b.Property<decimal>("salary_min")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("state")
-                        .HasColumnType("int");
-
-                    b.Property<int>("stateTypeId")
+                    b.Property<int>("stateid")
                         .HasColumnType("int");
 
                     b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("userTypeUserID")
+                    b.Property<int>("userid")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("categoryTypeId");
+                    b.HasIndex("categoryid");
 
-                    b.HasIndex("cityTypeId");
+                    b.HasIndex("cityid");
 
-                    b.HasIndex("stateTypeId");
+                    b.HasIndex("stateid");
 
-                    b.HasIndex("userTypeUserID");
+                    b.HasIndex("userid");
 
                     b.ToTable("Jobs");
                 });
@@ -281,35 +271,37 @@ namespace JobsAPI.Migrations
 
             modelBuilder.Entity("JobsAPI.Models.Job", b =>
                 {
-                    b.HasOne("JobsAPI.Models.Category", "categoryType")
+                    b.HasOne("JobsAPI.Models.Category", "category")
                         .WithMany()
-                        .HasForeignKey("categoryTypeId")
+                        .HasForeignKey("categoryid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobsAPI.Models.City", "cityType")
+                    b.HasOne("JobsAPI.Models.City", "city")
                         .WithMany()
-                        .HasForeignKey("cityTypeId")
+                        .HasForeignKey("cityid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobsAPI.Models.State", "stateType")
+                    b.HasOne("JobsAPI.Models.State", "state")
                         .WithMany()
-                        .HasForeignKey("stateTypeId")
+                        .HasForeignKey("stateid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobsAPI.Models.user", "userType")
+                    b.HasOne("JobsAPI.Models.user", "user")
                         .WithMany()
-                        .HasForeignKey("userTypeUserID");
+                        .HasForeignKey("userid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("categoryType");
+                    b.Navigation("category");
 
-                    b.Navigation("cityType");
+                    b.Navigation("city");
 
-                    b.Navigation("stateType");
+                    b.Navigation("state");
 
-                    b.Navigation("userType");
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("JobsAPI.Models.user", b =>

@@ -107,7 +107,7 @@ namespace JobsAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     redirect_url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     salary_max = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     location = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -115,40 +115,38 @@ namespace JobsAPI.Migrations
                     salary_min = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     company = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     created = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    stateTypeId = table.Column<int>(type: "int", nullable: false),
-                    state = table.Column<int>(type: "int", nullable: false),
-                    cityTypeId = table.Column<int>(type: "int", nullable: false),
-                    city = table.Column<int>(type: "int", nullable: false),
-                    categoryTypeId = table.Column<int>(type: "int", nullable: false),
-                    category = table.Column<int>(type: "int", nullable: false),
-                    userTypeUserID = table.Column<int>(type: "int", nullable: true)
+                    stateid = table.Column<int>(type: "int", nullable: false),
+                    cityid = table.Column<int>(type: "int", nullable: false),
+                    categoryid = table.Column<int>(type: "int", nullable: false),
+                    userid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Jobs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Jobs_Categories_categoryTypeId",
-                        column: x => x.categoryTypeId,
+                        name: "FK_Jobs_Categories_categoryid",
+                        column: x => x.categoryid,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Jobs_Cities_cityTypeId",
-                        column: x => x.cityTypeId,
+                        name: "FK_Jobs_Cities_cityid",
+                        column: x => x.cityid,
                         principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Jobs_States_stateTypeId",
-                        column: x => x.stateTypeId,
+                        name: "FK_Jobs_States_stateid",
+                        column: x => x.stateid,
                         principalTable: "States",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Jobs_Users_userTypeUserID",
-                        column: x => x.userTypeUserID,
+                        name: "FK_Jobs_Users_userid",
+                        column: x => x.userid,
                         principalTable: "Users",
-                        principalColumn: "UserID");
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -157,24 +155,24 @@ namespace JobsAPI.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_categoryTypeId",
+                name: "IX_Jobs_categoryid",
                 table: "Jobs",
-                column: "categoryTypeId");
+                column: "categoryid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_cityTypeId",
+                name: "IX_Jobs_cityid",
                 table: "Jobs",
-                column: "cityTypeId");
+                column: "cityid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_stateTypeId",
+                name: "IX_Jobs_stateid",
                 table: "Jobs",
-                column: "stateTypeId");
+                column: "stateid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jobs_userTypeUserID",
+                name: "IX_Jobs_userid",
                 table: "Jobs",
-                column: "userTypeUserID");
+                column: "userid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

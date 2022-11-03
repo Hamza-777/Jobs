@@ -146,7 +146,7 @@ namespace JobsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("userTypeUserID")
+                    b.Property<int?>("userid")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -157,7 +157,7 @@ namespace JobsAPI.Migrations
 
                     b.HasIndex("stateid");
 
-                    b.HasIndex("userTypeUserID");
+                    b.HasIndex("userid");
 
                     b.ToTable("Jobs");
                 });
@@ -287,9 +287,9 @@ namespace JobsAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobsAPI.Models.user", "userType")
+                    b.HasOne("JobsAPI.Models.user", "user")
                         .WithMany()
-                        .HasForeignKey("userTypeUserID");
+                        .HasForeignKey("userid");
 
                     b.Navigation("category");
 
@@ -297,7 +297,7 @@ namespace JobsAPI.Migrations
 
                     b.Navigation("state");
 
-                    b.Navigation("userType");
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("JobsAPI.Models.user", b =>
