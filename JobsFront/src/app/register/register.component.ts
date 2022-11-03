@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, UrlSerializer } from '@angular/router';
+import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
 import { RegisterResponse } from '../_interfaces/registerresponse.model';
 @Component({
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit
   data!:string;
   error!: any;
   credentials: RegisterModel = {} as RegisterModel
-  constructor(private router: Router,private http:HttpClient) {}
+  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) {}
   checkotp(otp:string)
   {
     this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
@@ -65,12 +66,7 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
           this.router.navigate(["/login"]);
         },
         error: (err: HttpErrorResponse) => {
-        console.log(err) ;
-        if(err.error.title!=null)
-          this.error=err.error;
-        else
-          this.error = err.error.errors
-          console.log(this.error);
+          this.error = this.handlerservice.handleError(err);
         }
       })
     }

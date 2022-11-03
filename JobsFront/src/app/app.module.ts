@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from "@auth0/angular-jwt";
@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
+import { GlobalerrorhandlerService } from './globalerrorhandler.service';
 
 
 export function tokenGetter() { 
@@ -21,9 +22,7 @@ export function tokenGetter() {
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    ForgotpwdComponent
-
-    
+    ForgotpwdComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +39,9 @@ export function tokenGetter() {
     })
   ],
   bootstrap: [AppComponent],
-  providers:[AuthGuard],
+  providers:[
+  AuthGuard,
+  {provide:ErrorHandler,useClass: GlobalerrorhandlerService},
+  ],
 })
 export class AppModule { }
