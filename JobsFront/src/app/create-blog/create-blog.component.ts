@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Blog } from '../_interfaces/Blog';
+import { marked } from 'marked';
 
 @Component({
   selector: 'app-create-blog',
