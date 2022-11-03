@@ -107,10 +107,10 @@ namespace JobsAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("category")
+                    b.Property<int>("categoryid")
                         .HasColumnType("int");
 
-                    b.Property<int>("city")
+                    b.Property<int>("cityid")
                         .HasColumnType("int");
 
                     b.Property<string>("company")
@@ -123,8 +123,7 @@ namespace JobsAPI.Migrations
 
                     b.Property<string>("description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("location")
                         .IsRequired()
@@ -140,17 +139,25 @@ namespace JobsAPI.Migrations
                     b.Property<decimal>("salary_min")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("state")
+                    b.Property<int>("stateid")
                         .HasColumnType("int");
 
                     b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("userType")
+                    b.Property<int?>("userTypeUserID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("categoryid");
+
+                    b.HasIndex("cityid");
+
+                    b.HasIndex("stateid");
+
+                    b.HasIndex("userTypeUserID");
 
                     b.ToTable("Jobs");
                 });
@@ -258,6 +265,39 @@ namespace JobsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("JobsAPI.Models.Job", b =>
+                {
+                    b.HasOne("JobsAPI.Models.Category", "category")
+                        .WithMany()
+                        .HasForeignKey("categoryid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobsAPI.Models.City", "city")
+                        .WithMany()
+                        .HasForeignKey("cityid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobsAPI.Models.State", "state")
+                        .WithMany()
+                        .HasForeignKey("stateid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobsAPI.Models.user", "userType")
+                        .WithMany()
+                        .HasForeignKey("userTypeUserID");
+
+                    b.Navigation("category");
+
+                    b.Navigation("city");
+
+                    b.Navigation("state");
+
+                    b.Navigation("userType");
                 });
 
             modelBuilder.Entity("JobsAPI.Models.user", b =>

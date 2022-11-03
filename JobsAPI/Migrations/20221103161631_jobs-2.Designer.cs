@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobsAPI.Migrations
 {
     [DbContext(typeof(userDbContext))]
-    [Migration("20221103110742_jobs-2")]
+    [Migration("20221103161631_jobs-2")]
     partial class jobs2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -109,16 +109,10 @@ namespace JobsAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("category")
+                    b.Property<int>("categoryid")
                         .HasColumnType("int");
 
-                    b.Property<int?>("categoryTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("city")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("cityTypeId")
+                    b.Property<int>("cityid")
                         .HasColumnType("int");
 
                     b.Property<string>("company")
@@ -148,10 +142,7 @@ namespace JobsAPI.Migrations
                     b.Property<decimal>("salary_min")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("state")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("stateTypeId")
+                    b.Property<int>("stateid")
                         .HasColumnType("int");
 
                     b.Property<string>("title")
@@ -163,11 +154,11 @@ namespace JobsAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("categoryTypeId");
+                    b.HasIndex("categoryid");
 
-                    b.HasIndex("cityTypeId");
+                    b.HasIndex("cityid");
 
-                    b.HasIndex("stateTypeId");
+                    b.HasIndex("stateid");
 
                     b.HasIndex("userTypeUserID");
 
@@ -281,27 +272,33 @@ namespace JobsAPI.Migrations
 
             modelBuilder.Entity("JobsAPI.Models.Job", b =>
                 {
-                    b.HasOne("JobsAPI.Models.Category", "categoryType")
+                    b.HasOne("JobsAPI.Models.Category", "category")
                         .WithMany()
-                        .HasForeignKey("categoryTypeId");
+                        .HasForeignKey("categoryid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("JobsAPI.Models.City", "cityType")
+                    b.HasOne("JobsAPI.Models.City", "city")
                         .WithMany()
-                        .HasForeignKey("cityTypeId");
+                        .HasForeignKey("cityid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("JobsAPI.Models.State", "stateType")
+                    b.HasOne("JobsAPI.Models.State", "state")
                         .WithMany()
-                        .HasForeignKey("stateTypeId");
+                        .HasForeignKey("stateid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("JobsAPI.Models.user", "userType")
                         .WithMany()
                         .HasForeignKey("userTypeUserID");
 
-                    b.Navigation("categoryType");
+                    b.Navigation("category");
 
-                    b.Navigation("cityType");
+                    b.Navigation("city");
 
-                    b.Navigation("stateType");
+                    b.Navigation("state");
 
                     b.Navigation("userType");
                 });

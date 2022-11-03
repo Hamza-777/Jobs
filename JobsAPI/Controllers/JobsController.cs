@@ -19,19 +19,19 @@ namespace JobsAPI.Controllers
         {
             _context = context;
         }
-
         // GET: api/Jobs
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
         {
-            return await _context.Jobs.ToListAsync();
+            return await _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city).ToListAsync();
         }
 
         // GET: api/Jobs/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Job>> GetJob(int id)
         {
-            var job = await _context.Jobs.FindAsync(id);
+            var job = await _context.Jobs.Include(p => p.category).
+                Include(p => p.state).Include(p => p.city).FirstOrDefaultAsync(p => p.Id==id);
 
             if (job == null)
             {
