@@ -131,5 +131,28 @@ namespace JobsAPI.Controllers
             }  
             return Ok();
         }
+        [HttpGet("{username}")]
+        public async Task<ActionResult<user>> GetbyUsername(string username)
+        {
+            var person = await db.Users.Where(x => x.UserName == username).SingleOrDefaultAsync();
+
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return person;
+        }
+
+        [HttpPut("updatepassword/{userid}")]
+        public async Task<ActionResult> UpdatePassword(int userid,[FromBody] user user)
+        {
+            user.Salt = hm.GenerateSalt();
+            user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
+            db.Users.Update(user);
+            await db.SaveChangesAsync();
+            return Ok();
+        }
+
     }
 }

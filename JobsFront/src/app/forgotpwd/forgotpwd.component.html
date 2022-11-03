@@ -1,1 +1,19 @@
-<p>forgotpwd works!</p>
+
+<form #UpdateForm="ngForm" >
+    <label for="username" class="sr-only">UserName</label>
+        <input type="text" id="UserName" name="UserName " [(ngModel)]="credentials.UserName" 
+          class="form-control" placeholder="UserName" required>
+    <br/>
+    
+    <button class="btn btn-lg btn-primary" (click)="getuserbyusername(credentials.UserName)">Generate OTP</button>
+    <div *ngIf="user">
+    <label for="password" class="sr-only">New Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="credentials.Password" 
+          class="form-control" placeholder="New Password" required>
+    <br/>
+        <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
+          class="form-control" placeholder="Enter OTP" required >
+          <button type="submit" class="btn btn-lg btn-primary" (click)="update(credentials.password,otp)">Submit</button>
+    <br/>
+    </div>
+</form>
