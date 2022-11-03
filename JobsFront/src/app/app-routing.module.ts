@@ -16,7 +16,7 @@ component : HomeComponent ,canActivate:[AuthGuard]},
 component : RegisterComponent },
 {
   path: 'createblogs',
-  component: CreateBlogComponent
+  component: CreateBlogComponent ,canActivate:[AuthGuard]
 },
 {
   path: 'blogs',
