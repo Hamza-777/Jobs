@@ -13,6 +13,7 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ViewBlogComponent } from './view-blog/view-blog.component';
+import { JobsComponent } from './jobs/jobs.component';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -26,6 +27,7 @@ export function tokenGetter() {
     BlogsComponent,
     CreateBlogComponent,
     ViewBlogComponent,
+    JobsComponent,
   ],
   imports: [
     BrowserModule,
