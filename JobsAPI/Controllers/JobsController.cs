@@ -21,9 +21,37 @@ namespace JobsAPI.Controllers
         }
         // GET: api/Jobs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string? sort, int? catid)
         {
-            return await _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city).ToListAsync();
+            IQueryable<Job> jobsList = _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city);
+            
+            jobsList = SortBySalary(sort, jobsList);
+            return await jobsList.ToListAsync();
+        }
+
+        // sorting by salary 
+        private static IQueryable<Job> SortBySalary(string? sort, IQueryable<Job> jobsList)
+        {
+            if (sort != null)
+            {
+                switch (sort)
+                {
+                    case "salaryAsc":
+                        jobsList = jobsList.OrderBy(p => p.salary_max);
+                        break;
+
+                    case "salaryDsc":
+                        jobsList = jobsList.OrderByDescending(p => p.salary_max);
+                        break;
+                }
+            }
+
+            return jobsList;
+        }
+
+        private Task<List<Job>> jobData()
+        {
+            return _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city).ToListAsync();
         }
 
         // GET: api/Jobs/5
