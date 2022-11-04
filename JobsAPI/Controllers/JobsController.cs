@@ -21,19 +21,33 @@ namespace JobsAPI.Controllers
         }
         // GET: api/Jobs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string? sort, int? catid)
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string? sort, int? categoryId, int? cityId, int? stateId)
         {
             IQueryable<Job> jobsList = _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city);
-            
-            jobsList = SortBySalary(sort, jobsList);
+            if(categoryId != null || cityId != null || stateId != null)
+            {
+                jobsList = FilterJobs(categoryId, cityId, stateId, jobsList);
+            }
+            if (sort != null)
+            {
+                jobsList = SortBySalary(sort, jobsList);
+            }
             return await jobsList.ToListAsync();
+        }
+
+        // Filter by city, state, role
+        private static IQueryable<Job> FilterJobs(int? catid, int? citid, int? staid, IQueryable<Job> jobsList)
+        {
+            jobsList = jobsList.Where(p => (!catid.HasValue || p.categoryid == catid) &&
+                            (!staid.HasValue || p.stateid == staid) &&
+                             (!citid.HasValue || p.cityid == citid));
+            return jobsList;
         }
 
         // sorting by salary 
         private static IQueryable<Job> SortBySalary(string? sort, IQueryable<Job> jobsList)
         {
-            if (sort != null)
-            {
+            
                 switch (sort)
                 {
                     case "salaryAsc":
@@ -44,7 +58,7 @@ namespace JobsAPI.Controllers
                         jobsList = jobsList.OrderByDescending(p => p.salary_max);
                         break;
                 }
-            }
+            
 
             return jobsList;
         }
