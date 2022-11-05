@@ -14,6 +14,7 @@ import { GlobalerrorhandlerService } from './globalerrorhandler.service';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { ShowusersComponent } from './showusers/showusers.component';
 import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
+import { RegisteradminComponent } from './registeradmin/registeradmin.component';
 
 
 export function tokenGetter() { 
@@ -29,6 +30,7 @@ export function tokenGetter() {
     UpdateuserComponent,
     ShowusersComponent,
     ShowuserbyidComponent,
+    RegisteradminComponent,
   ],
   imports: [
     BrowserModule,

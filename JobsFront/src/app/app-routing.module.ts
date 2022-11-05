@@ -8,6 +8,7 @@ import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { ShowusersComponent } from './showusers/showusers.component';
 import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
+import { RegisteradminComponent } from './registeradmin/registeradmin.component';
 const routes: Routes = [
 {path:'login',
 component : LoginComponent},
@@ -22,8 +23,9 @@ component : UpdateuserComponent },
 {path:'showusers',
 component : ShowusersComponent },
 {path:'showuserbyid/:id',
-component : ShowuserbyidComponent }];
-
+component : ShowuserbyidComponent },
+{path:'registeradmin',
+component : RegisteradminComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

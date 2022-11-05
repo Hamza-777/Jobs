@@ -20,7 +20,7 @@ export class ShowusersComponent implements OnInit {
   }
 
   getusers(){
-    this.http.get<any>("https://localhost:7067/api/Auth/getusers").subscribe({
+    this.http.get<any>("https://localhost:7067/api/Admin/getusers").subscribe({
       next:(response:any)=>{
         this.users=response;
         console.log(this.users);
@@ -33,7 +33,7 @@ export class ShowusersComponent implements OnInit {
 
 
   deleteuser(id:number){
-    this.http.delete<any>("https://localhost:7067/api/Auth/deleteuser/"+id).subscribe({
+    this.http.delete<any>("https://localhost:7067/api/Admin/deleteuser/"+id).subscribe({
       next:(response:any)=>{
         this.data="Deleted Successfully!!!!!"
         console.log(this.data);

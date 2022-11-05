@@ -1,0 +1,41 @@
+<div class="container">
+    <form #registeradminForm="ngForm">
+      <h2 class="form-signin-heading">Register</h2>
+      <div class="text-success">{{data}}</div>
+      <div class="text-danger">
+        <span [innerHTML]="error"></span>
+      </div>
+        <br/>
+        <label for="FullName" class="sr-only">FullName</label>
+        <input type="text" id="FullName" name="FullName " [(ngModel)]="credentials.FullName" 
+          class="form-control" placeholder="FullName" required>
+        <br/>
+        <label for="username" class="sr-only">UserName</label>
+        <input type="text" id="UserName" name="UserName " [(ngModel)]="credentials.UserName" 
+          class="form-control" placeholder="UserName" required>
+        <br/>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="credentials.Password" 
+          class="form-control" placeholder="Password" required>
+        <br/>
+        <label for="EmailId" class="sr-only">EmailId</label>
+        <input type="text" id="EmailId" name="EmailId" [(ngModel)]="credentials.EmailId" 
+          class="form-control" placeholder="EmailId" required>
+        <br/>
+        <label for="MobileNumber" class="sr-only">MobileNumber</label>
+        <input type="text" id="MobileNumber" name="MobileNumber" [(ngModel)]="credentials.MobileNumber" 
+          class="form-control" placeholder="MobileNumber" required>
+        <br/>
+        <label for="PhotographLink" class="sr-only">PhotographLink</label>
+        <input type="text" id="PhotographLink" name="PhotographLink" [(ngModel)]="credentials.PhotographLink" 
+          class="form-control" placeholder="PhotographLink">
+        <br/>
+        <button type = "button" class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)">Verify Email</button>
+        <div *ngIf="data=='OTP Generated'">
+        <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
+          class="form-control" placeholder="Enter OTP" required >
+          <button type="submit" class="btn btn-lg btn-primary" (click)="checkotp(otp)">Submit OTP</button>
+        <br/>
+      </div>
+    </form>
+  </div>

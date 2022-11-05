@@ -34,6 +34,22 @@ export class HomeComponent implements OnInit {
     return false;
     }
   }
+  isAdmin = (): boolean => {
+    if(this.isUserAuthenticated())
+    {
+    const token: string =localStorage.getItem("jwt")!;
+    const tokeninfo:any = jwt_decode(token);
+    console.log(tokeninfo);
+    if(tokeninfo.Role == "Admin")
+    {
+    return true;
+    }
+    else{
+    return false;
+    }
+  }
+  return false;
+  }
 
   logOut = () => {
     localStorage.removeItem("jwt");

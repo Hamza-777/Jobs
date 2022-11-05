@@ -25,7 +25,7 @@ export class ShowuserbyidComponent implements OnInit {
   }
 
   getuserbyid(){
-    this.http.get<any>("https://localhost:7067/api/Auth/getuserbyid/"+this.id).subscribe({
+    this.http.get<any>("https://localhost:7067/api/Admin/getuserbyid/"+this.id).subscribe({
       next:(response:any)=>{
         this.user=response;
         console.log(this.user);
