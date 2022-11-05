@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 import { GlobalerrorhandlerService } from './globalerrorhandler.service';
+import { UpdateuserComponent } from './updateuser/updateuser.component';
 
 
 export function tokenGetter() { 
@@ -23,6 +24,7 @@ export function tokenGetter() {
     HomeComponent,
     RegisterComponent,
     ForgotpwdComponent,
+    UpdateuserComponent,
   ],
   imports: [
     BrowserModule,

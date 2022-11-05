@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private http:HttpClient) { }
   token_authorize_test()
   {
+    //Get-JWT Token again
     const token: string =localStorage.getItem("jwt")!;
     console.log(token);
     const tokeninfo:any = jwt_decode(token);

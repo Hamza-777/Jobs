@@ -1,5 +1,5 @@
 <div class="container">
-    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+    <form #registerForm="ngForm">
       <h2 class="form-signin-heading">Register</h2>
       <div class="text-success">{{data}}</div>
       <div class="text-danger">
@@ -50,7 +50,7 @@
         <div class="form-group form-check">
             Are You Experienced???
             <input type="checkbox" class="form-check-input"  id="WorkStatus" name="WorkStatus" [(ngModel)]="credentials.WorkStatus" 
-            class="form-control" placeholder="Are You Experienced???" required>
+            class="form-control" placeholder="Are You Experienced???">
         </div>
         <br/>
         <div name="Experienced"  *ngIf="credentials.WorkStatus==true">
@@ -82,11 +82,12 @@
           class="form-control" placeholder="Description" required>
         <br/>
         </div>
-        <button class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)">Verify Email</button>
+        <button type = "button" class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)">Verify Email</button>
+        <div *ngIf="data=='OTP Generated'">
         <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
           class="form-control" placeholder="Enter OTP" required >
-          <button type="button" class="btn btn-lg btn-primary" (click)="checkotp(otp)">Submit OTP</button>
+          <button type="submit" class="btn btn-lg btn-primary" (click)="checkotp(otp)">Submit OTP</button>
         <br/>
-          <button type="button" class="btn  btn-lg btn-primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+      </div>
     </form>
   </div>

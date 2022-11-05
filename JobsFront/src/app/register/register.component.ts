@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, UrlSerializer } from '@angular/router';
 import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
@@ -15,14 +15,19 @@ export class RegisterComponent implements OnInit
   otp!:string;
   data!:string;
   error!: any;
+  @ViewChild('registerForm') form!: NgForm;
   credentials: RegisterModel = {} as RegisterModel
-  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) {}
+  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) 
+  {
+    this.credentials.WorkStatus = false;
+  }
   checkotp(otp:string)
   {
     this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
       next: (response: any) => {
         this.data="OTP Verified";
       console.log(this.data);
+      this.register(this.form);
       },
       error: (err: HttpErrorResponse) => {
       console.log(err) ;

@@ -59,7 +59,7 @@ getuserbyusername (username:string)
       }
   })
 
-};
+}
 
 update(password:string,otp:string) {
     this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
