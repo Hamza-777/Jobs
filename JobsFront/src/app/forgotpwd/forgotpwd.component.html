@@ -2,7 +2,7 @@
 <form #UpdateForm="ngForm" (ngSubmit)="update(credentials.Password,otp)">
   <h2 class="form-signin-heading">Forgot Password</h2>
   <div class="text-success">{{data}}</div>
-  <div class="text-danger">{{error|json}}</div>
+  <div class="text-danger"><span [innerHTML]="error"></span></div>
     <label for="username" class="sr-only">UserName</label>
         <input type="text" id="UserName" name="UserName " [(ngModel)]="credentials.UserName" 
           class="form-control" placeholder="UserName" required>

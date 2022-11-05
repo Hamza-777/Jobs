@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
 
 @Component({
   selector: 'app-forgotpwd',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ForgotpwdComponent implements OnInit {
 
-  constructor(private router:Router,private http:HttpClient) { }
+  constructor(private router:Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) { }
   credentials: any = {UserName:'', Password:''};
   user!: any;
   
@@ -30,11 +31,7 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
     console.log(this.data);
   },
   error: (err: HttpErrorResponse) => {
-  console.log(err) ;
-  if(err.error.title!=null)
-    this.error=err.error.title;
-  else
-    this.error = err.error;
+    this.error = this.handlerservice.handleError(err);
   }
 })
 }
@@ -51,11 +48,7 @@ getuserbyusername (username:string)
       }
       },
       error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error=err.error.title;
-      else
-        this.error = err.error;
+        this.error = this.handlerservice.handleError(err);
       }
   })
 
@@ -77,12 +70,7 @@ update(password:string,otp:string) {
             this.router.navigate(["/login"]);
           },
           error: (err: HttpErrorResponse) => {
-          console.log(err) ;
-          if(err.error.title!=null)
-            this.error=err.error;
-          else
-            this.error = err.error.errors
-            console.log(this.error);
+            this.error = this.handlerservice.handleError(err);
           }
         })
         }

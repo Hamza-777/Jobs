@@ -30,11 +30,7 @@ export class RegisterComponent implements OnInit
       this.register(this.form);
       },
       error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error=err.error.title;
-      else
-        this.error = err.error;
+        this.error = this.handlerservice.handleError(err);
       }
   })
 }
@@ -48,13 +44,7 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
     this.data="OTP Generated";
     console.log(this.data);
   },
-  error: (err: HttpErrorResponse) => {
-  console.log(err) ;
-  if(err.error.title!=null)
-    this.error=err.error.title;
-  else
-    this.error = err.error;
-  }
+  error: (err: HttpErrorResponse) => {this.error = this.handlerservice.handleError(err);}
 })
 
 }

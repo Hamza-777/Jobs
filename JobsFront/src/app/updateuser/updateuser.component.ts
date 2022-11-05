@@ -22,22 +22,9 @@ export class UpdateuserComponent implements OnInit {
 
   }
 
-  initialize_token()
-  {
-    const token: string =localStorage.getItem("jwt")!;
-    console.log(token);
-    const tokeninfo:any = jwt_decode(token);
-    console.log(tokeninfo);
-    this.user = tokeninfo;
-    if(this.user.WorkStatus == "True")
-      this.user.WorkStatus = true;
-    else
-      this.user.WorkStatus = false;
-    this.currentUser = tokeninfo
-  }
+
   ngOnInit(): void 
   {
-    //this.initialize_token();
     const token: string =localStorage.getItem("jwt")!;
     console.log(token);
     const tokeninfo:any = jwt_decode(token);
@@ -52,11 +39,7 @@ export class UpdateuserComponent implements OnInit {
       console.log(this.user);
       },
       error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error=err.error.title;
-      else
-        this.error = err.error;
+        this.error = this.handlerservice.handleError(err);
       }
   })
 
