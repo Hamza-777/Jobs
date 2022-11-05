@@ -25,13 +25,13 @@
               Dropdown
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item menu-item" href="login">Technology</a></li>
+              <li><a class="dropdown-item menu-item" href="viewcourses/business-analysis">Technology</a></li>
               <li><a class="dropdown-item menu-item" href="#">Business & Management</a></li>
               <li><a class="dropdown-item menu-item" href="login">Finance Management</a></li>
-              <li><a class="dropdown-item menu-item" href="login">Marketing & Communication</a></li>
+              <!-- <li><a class="dropdown-item menu-item" href="login">Marketing & Communication</a></li>
               <li><a class="dropdown-item menu-item" href="login">Law & Security</a></li>
               <li><a class="dropdown-item menu-item" href="login">Quality Management</a></li>
-              <li><a class="dropdown-item menu-item" href="login">Recruitment & Staffing</a></li>
+              <li><a class="dropdown-item menu-item" href="login">Recruitment & Staffing</a></li> -->
               <!-- <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item menu-item " href="#">Something else here</a></li> -->
             </ul>
@@ -76,8 +76,8 @@
         <section id="header" class="jumbotron text-center">
             <h1 class="display-3">Technology Courses</h1>
             <p class="lead">Get the proper guidance for modern Technologies</p>
-            <a href="" class="btn btn-primary">Click</a>
-            <a href="" class="btn btn-secondary">Click</a>
+            <!-- <a href="" class="btn btn-primary">Click</a>
+            <a href="" class="btn btn-secondary">Click</a> -->
         </section>
          
         <section id="gallery">
@@ -90,6 +90,10 @@
                <h5 class="card-title">Machine Learning</h5>
                <p class="card-text">This machine learning course will provide you the fundamentals of how companies like Google, Amazon, and even Udemy utilize machine learning and artificial intelligence (AI) to glean meaning and insights from massive data sets. Glassdoor and Indeed both report that the average salary for a data scientist is $120,000. This is the standard, not the exception.</p>
               <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              
+              <a [routerLink]="['/course-user','goto-course','Machine Learning']"> Goto Course </a>
+              
+
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>
@@ -136,8 +140,8 @@
         <section id="header" class="jumbotron text-center">
             <h1 class="display-3">Business & Management Courses</h1>
             <p class="lead">Get the proper guidance for Business education</p>
-            <a href="" class="btn btn-primary">Click</a>
-            <a href="" class="btn btn-secondary">Click</a>
+            <!-- <a href="" class="btn btn-primary">Click</a> -->
+            <!-- <a href="" class="btn btn-secondary">Click</a> -->
         </section>
          
         <section id="gallery">
@@ -153,7 +157,7 @@
                 Our courses focus on how analysis is performed in the real world, and they're full of examples, case studies and lessons learned from actual Business Analysts on the job.
                 
                 This is a perfect first course in any business analysis curriculum.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <a href="viewcourses/business-analysis" class="btn btn-outline-success btn-sm">Go to Course</a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>
@@ -196,8 +200,8 @@
         <section id="header" class="jumbotron text-center">
             <h1 class="display-3">Finance Management Courses</h1>
             <p class="lead">Get the proper guidance for Finance education</p>
-            <a href="" class="btn btn-primary">Click</a>
-            <a href="" class="btn btn-secondary">Click</a>
+            <!-- <a href="" class="btn btn-primary">Click</a> -->
+            <!-- <a href="" class="btn btn-secondary">Click</a> -->
         </section>
          
         <section id="gallery">

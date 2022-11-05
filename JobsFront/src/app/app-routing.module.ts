@@ -8,7 +8,8 @@ import { CourseComponent } from './course/course.component';
 import { AddCourseComponent } from './course-crud/add-course/add-course.component';
 import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
 import { CourseListComponent } from './course-crud/course-list/course-list.component';
-
+import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
+import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
 
 const routes: Routes = [
 {
@@ -30,6 +31,14 @@ const routes: Routes = [
 {
   path:'course-crud/edit/:courseId',
   component:EditCourseComponent
+},
+{
+  path:'course-user/goto-course/:courseName',
+  component:GotoCourseComponent
+},
+{
+  path:'course-user/listout-courses',
+  component:ListoutCoursesComponent
 },
 {
   path:'',

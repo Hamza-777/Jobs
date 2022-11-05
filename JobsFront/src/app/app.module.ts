@@ -13,6 +13,8 @@ import { CourseComponent } from './course/course.component';
 import { AddCourseComponent } from './course-crud/add-course/add-course.component';
 import { CourseListComponent } from './course-crud/course-list/course-list.component';
 import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
+import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
+import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -26,6 +28,8 @@ export function tokenGetter() {
     AddCourseComponent,
     CourseListComponent,
     EditCourseComponent,
+    GotoCourseComponent,
+    ListoutCoursesComponent,
   ],
   imports: [
     BrowserModule,

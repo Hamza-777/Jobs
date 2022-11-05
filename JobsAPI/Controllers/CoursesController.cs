@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobsAPI.Models;
+using System.Xml.Linq;
 
 namespace JobsAPI.Controllers
 {
@@ -24,11 +25,19 @@ namespace JobsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
+           
             return await _context.Courses.ToListAsync();
         }
 
+
+
         // GET: api/Courses/5
-        [HttpGet("{id}")]
+
+        //[Route("{id:int}")]
+        //[HttpGet("example/{param1}/{param2:Guid}")]
+
+        [HttpGet("{id:int}")]
+        
         public async Task<ActionResult<Course>> GetCourse(int id)
         {
             var course = await _context.Courses.FindAsync(id);
@@ -40,6 +49,37 @@ namespace JobsAPI.Controllers
 
             return course;
         }
+
+        [HttpGet("name")]
+        //[HttpGet("{name:string}")]
+        public async Task<ActionResult<Course>> GetCourseByName(string name)
+        {
+            var course = await _context.Courses.FirstOrDefaultAsync(e => e.CourseName == name);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return course;
+        }
+
+        [HttpGet("CategoryName")]
+        public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategory([FromQuery]string CategoryName)
+        {
+
+            
+            //try
+            //{
+                return await _context.Courses.Where(e => e.CourseCategory == CategoryName).ToListAsync();
+            //}
+            //catch()
+            //{
+            //    return NotFound();
+            //}
+            
+        }
+
 
         // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -103,5 +143,48 @@ namespace JobsAPI.Controllers
         {
             return _context.Courses.Any(e => e.CourseId == id);
         }
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //[HttpGet("{name}")]
+        //[HttpGet("{name:string}")]
+        // async Task<ActionResult<Course>> GetCourseByName(string name)
+        //{
+        //    var course = await _context.Courses.FirstOrDefaultAsync(e => e.CourseName == name);
+
+        //    if (course == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return course;
+        //}
+
+        //[HttpGet("{CategoryName:alpha}")]
+        //public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategory(string CategoryName)
+        //{
+
+
+        //    //try
+        //    //{
+        //    return await _context.Courses.Where(e => e.CourseCategory == CategoryName).ToListAsync();
+        //    //}
+        //    //catch()
+        //    //{
+        //    //    return NotFound();
+        //    //}
+
+        //}
+
+
     }
 }

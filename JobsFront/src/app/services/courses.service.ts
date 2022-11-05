@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Course } from '../models/course.model';
 import { observable, Observable } from 'rxjs';
 import { AddCourseComponent } from '../course-crud/add-course/add-course.component';
+import {GotoCourseComponent } from '../course-user/goto-course/goto-course.component';
 
 
 @Injectable({
@@ -26,6 +27,10 @@ export class CoursesService {
 
   getCourse(courseId:number) : Observable<Course>{
     return this.http.get<Course>(this.courseApiUrl + '/api/Courses/'+courseId);
+  }
+
+  getCourseByName(courseName:string) : Observable<Course>{
+    return this.http.get<Course>(this.courseApiUrl + '/api/Courses/'+courseName);
   }
 
   updateCourse(courseId:number,updateCourseRequest:Course):
