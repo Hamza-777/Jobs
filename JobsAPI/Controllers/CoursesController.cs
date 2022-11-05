@@ -69,14 +69,9 @@ namespace JobsAPI.Controllers
         {
 
             
-            //try
-            //{
+            
                 return await _context.Courses.Where(e => e.CourseCategory == CategoryName).ToListAsync();
-            //}
-            //catch()
-            //{
-            //    return NotFound();
-            //}
+             
             
         }
 
@@ -144,47 +139,6 @@ namespace JobsAPI.Controllers
             return _context.Courses.Any(e => e.CourseId == id);
         }
 
-
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //[HttpGet("{name}")]
-        //[HttpGet("{name:string}")]
-        // async Task<ActionResult<Course>> GetCourseByName(string name)
-        //{
-        //    var course = await _context.Courses.FirstOrDefaultAsync(e => e.CourseName == name);
-
-        //    if (course == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return course;
-        //}
-
-        //[HttpGet("{CategoryName:alpha}")]
-        //public async Task<ActionResult<IEnumerable<Course>>> GetCoursesByCategory(string CategoryName)
-        //{
-
-
-        //    //try
-        //    //{
-        //    return await _context.Courses.Where(e => e.CourseCategory == CategoryName).ToListAsync();
-        //    //}
-        //    //catch()
-        //    //{
-        //    //    return NotFound();
-        //    //}
-
-        //}
-
-
     }
 }

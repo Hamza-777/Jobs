@@ -25,9 +25,9 @@
               Dropdown
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item menu-item" href="viewcourses/business-analysis">Technology</a></li>
-              <li><a class="dropdown-item menu-item" href="#">Business & Management</a></li>
-              <li><a class="dropdown-item menu-item" href="login">Finance Management</a></li>
+              <li><a class="dropdown-item menu-item" [routerLink]="['/course-user','listout-courses',courseCategories[0]]">Technology</a></li>
+              <li><a class="dropdown-item menu-item" [routerLink]="['/course-user','listout-courses',courseCategories[1]]">Business & Management</a></li>
+              <li><a class="dropdown-item menu-item" [routerLink]="['/course-user','listout-courses',courseCategories[2]]">Finance Management</a></li>
               <!-- <li><a class="dropdown-item menu-item" href="login">Marketing & Communication</a></li>
               <li><a class="dropdown-item menu-item" href="login">Law & Security</a></li>
               <li><a class="dropdown-item menu-item" href="login">Quality Management</a></li>
@@ -89,10 +89,12 @@
              <div class="card-body">
                <h5 class="card-title">Machine Learning</h5>
                <p class="card-text">This machine learning course will provide you the fundamentals of how companies like Google, Amazon, and even Udemy utilize machine learning and artificial intelligence (AI) to glean meaning and insights from massive data sets. Glassdoor and Indeed both report that the average salary for a data scientist is $120,000. This is the standard, not the exception.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
               
-              <a [routerLink]="['/course-user','goto-course','Machine Learning']"> Goto Course </a>
+              <!-- <a [routerLink]="['/course-user','goto-course','Machine Learning']"> Goto Course </a> -->
+              <!-- <a [routerLink]="['/course-crud','edit',course.courseId]"> View </a> -->
               
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[6]]"> Goto Course </a>
 
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
@@ -108,7 +110,8 @@
                 Advanced modern web development with Angular, JavaScipt JS, Bootstrap, HTML CSS.
                 
                 This course will be your gateway to learn web design with blank HTML, CSS, and JavaScript files with a step-by-step approach.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[7]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
              </div>
@@ -119,7 +122,8 @@
              <div class="card-body">
                <h5 class="card-title">Software Development</h5>
                <p class="card-text">Software Development From A to Z is an informative course that provides insights into the software development industry. It covers topics such as Object-Oriented Programming, UML, Agile, SCRUM, and Python. You’ll learn about all of these things in detail. Companies like Google and Apple, this course is definitely worth checking out!</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[8]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>
@@ -157,7 +161,8 @@
                 Our courses focus on how analysis is performed in the real world, and they're full of examples, case studies and lessons learned from actual Business Analysts on the job.
                 
                 This is a perfect first course in any business analysis curriculum.</p>
-              <a href="viewcourses/business-analysis" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="viewcourses/business-analysis" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[0]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>
@@ -168,7 +173,8 @@
              <div class="card-body">
                <h5 class="card-title">Commercial Law</h5>
                <p class="card-text">Corporate and Commercial Law is a course that helps the students know more about legal studies with a specialization in commercial and corporate legal functioning. The subject focuses on how the laws are undertaken in business and how it is used.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[1]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
              </div>
@@ -179,7 +185,8 @@
              <div class="card-body">
                <h5 class="card-title">Human Resources</h5>
                <p class="card-text">The course of Human Resource Management mainly focuses on administrative services, staff administration, and most importantly, on the hiring process. The course helps the students to study and get the knowledge and principles that are required to handle the human resources of the company.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[2]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>
@@ -213,7 +220,8 @@
              <div class="card-body">
                <h5 class="card-title">Accounts</h5>
                <p class="card-text">This course will show you the very basics of accounting.  You can complete it in about an hour.  The course includes videos of the instructor at the whiteboard.  You will complete simple quizzes to reinforce what you have learned.  This course is intended for business owners, business students, managers or anyone who wants to understand basic accounting.  It presents the information in an understandable format.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[3]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>
@@ -224,7 +232,8 @@
              <div class="card-body">
                <h5 class="card-title">Corporate</h5>
                <p class="card-text">This course is designed to develop knowledge and skills in the understanding of the general legal framework, and of specific legal areas relating to business, recognizing the need to seek further specialist legal advice where necessary. This course will allow you to obtain knowledge that you can use with great examples on application of the various Acts with in depth explanations within each topic.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[4]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
              </div>
@@ -235,7 +244,8 @@
              <div class="card-body">
                <h5 class="card-title">Tax Planning</h5>
                <p class="card-text">Proper tax planning is perhaps the most important step to the promised land of financial freedom. The strategy is simple- the more income that you generate at a tax free or a lower tax rate means the more money you get to keep. If you reinvest this money, your money works for you, generating a stream of passive income ultimately accumulating wealth.There seems to be this misconception that the wealthy are cheating the system.</p>
-              <a href="" class="btn btn-outline-success btn-sm">Go to Course</a>
+              <!-- <a href="" class="btn btn-outline-success btn-sm">Go to Course</a> -->
+              <a class="btn btn-outline-success btn-sm" [routerLink]="['/course-user','goto-course',coursess[5]]"> Goto Course </a>
                <!-- <a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a> -->
              </div>
             </div>

@@ -36,6 +36,7 @@ export class GotoCourseComponent implements OnInit {
               this.courseDetails=response;
 
               console.log(response);
+              console.log(this.courseDetails);
 
             }
           });

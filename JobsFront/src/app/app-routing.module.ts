@@ -37,7 +37,7 @@ const routes: Routes = [
   component:GotoCourseComponent
 },
 {
-  path:'course-user/listout-courses',
+  path:'course-user/listout-courses/:courseCategory',
   component:ListoutCoursesComponent
 },
 {

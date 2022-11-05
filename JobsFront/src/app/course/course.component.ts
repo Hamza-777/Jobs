@@ -11,6 +11,8 @@ export class CourseComponent implements OnInit {
   title = 'mdb-angular-ui-kit-free';
 
   items = ['Action', 'Another action', 'Something else here'];
+  coursess=["Business Analysis",'Commercial Law','Human Resources','Accounts','Corporate','Tax Planning',"Machine Learning",'Web Development','Software Development'];
+  courseCategories=['Technology','Business Management','Finance Management'];
   filteredItems = this.items;
 
   searchItems(event: any) {
@@ -18,6 +20,8 @@ export class CourseComponent implements OnInit {
 
     this.filterItems(value);
   }
+
+   
 
   filterItems(value: string) {
     const filterValue = value.toLowerCase();

@@ -5,6 +5,7 @@ import { Course } from '../models/course.model';
 import { observable, Observable } from 'rxjs';
 import { AddCourseComponent } from '../course-crud/add-course/add-course.component';
 import {GotoCourseComponent } from '../course-user/goto-course/goto-course.component';
+import { ListoutCoursesComponent } from '../course-user/listout-courses/listout-courses.component';
 
 
 @Injectable({
@@ -30,7 +31,11 @@ export class CoursesService {
   }
 
   getCourseByName(courseName:string) : Observable<Course>{
-    return this.http.get<Course>(this.courseApiUrl + '/api/Courses/'+courseName);
+    return this.http.get<Course>(this.courseApiUrl + '/api/Courses/name?name='+courseName);
+  }
+  
+  getCourseByCategory(courseCategory:string) : Observable<Course[]>{
+    return this.http.get<Course[]>(this.courseApiUrl + '/api/Courses/CategoryName?CategoryName='+courseCategory);
   }
 
   updateCourse(courseId:number,updateCourseRequest:Course):
