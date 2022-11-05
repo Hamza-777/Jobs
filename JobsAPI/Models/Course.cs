@@ -11,6 +11,8 @@ namespace JobsAPI.Models
         public string CourseDescription { get; set; }
         public string CourseAuthor { get; set; }
         public decimal CourseAmount { get; set; }
+        public string CourseImage { get; set; }
+        public string CourseVideoURL { get; set; }
 
     }
 }

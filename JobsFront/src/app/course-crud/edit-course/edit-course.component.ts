@@ -16,7 +16,9 @@ export class EditCourseComponent implements OnInit {
     courseCategory:'',
     courseDescription:'',
     courseAuthor:'',
-    courseAmount:0
+    courseAmount:0,
+    courseImage:'',
+    courseVideoURL:''
 
   };
   constructor(private route:ActivatedRoute, private courseService:CoursesService, private router:Router) { }

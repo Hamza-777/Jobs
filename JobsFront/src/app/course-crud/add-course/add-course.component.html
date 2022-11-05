@@ -40,6 +40,18 @@
               <input type="currency" class="form-control" id="courseAmount" name="courseAmount" 
               [(ngModel)] = "addCourseRequest.courseAmount">
             </div>
+
+            <div class="mb-3">
+              <label for="courseImage" class="form-label">Course Image</label>
+              <input type="text" class="form-control" id="courseImage" name="courseImage" 
+              [(ngModel)] = "addCourseRequest.courseImage">
+            </div>
+
+            <div class="mb-3">
+              <label for="courseVideoURL" class="form-label">Course Video URL</label>
+              <input type="text" class="form-control" id="courseVideoURL" name="courseVideoURL" 
+              [(ngModel)] = "addCourseRequest.courseVideoURL">
+            </div>
               
             
             <button type="submit" class="btn btn-primary">Submit</button>

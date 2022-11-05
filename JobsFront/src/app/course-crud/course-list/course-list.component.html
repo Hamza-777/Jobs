@@ -8,7 +8,9 @@
                 <th>Course Category</th>
                 <th>Course Description</th>
                 <th>Course Author</th>
-                <th>Course Amount</th>
+                <!-- <th>Course Amount</th> -->
+                <th>Course Image</th>
+                <th>Course Video URL</th>
             </tr>
         </thead>
     <!-- <h1>{{courses|json}}</h1> -->
@@ -23,7 +25,9 @@
                 <td>{{course.courseCategory}}</td>
                 <td>{{course.courseDescription}}</td>
                 <td>{{course.courseAuthor}}</td>
-                <td>{{course.courseAmount}}</td>
+                <!-- <td>{{course.courseAmount}}</td> -->
+                <td>{{course.courseImage}}</td>
+                <td>{{course.courseVideoURL}</td>
                 <td><a [routerLink]="['/course-crud','edit',course.courseId]"> View </a></td>
             </tr>
         </tbody>

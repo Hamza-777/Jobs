@@ -5,4 +5,6 @@ export interface Course{
     courseDescription : string;
     courseAuthor : string;
     courseAmount : number;
+    courseImage : string;
+    courseVideoURL : string;
 }
