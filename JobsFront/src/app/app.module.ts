@@ -12,6 +12,8 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 import { GlobalerrorhandlerService } from './globalerrorhandler.service';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
+import { ShowusersComponent } from './showusers/showusers.component';
+import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
 
 
 export function tokenGetter() { 
@@ -25,6 +27,8 @@ export function tokenGetter() {
     RegisterComponent,
     ForgotpwdComponent,
     UpdateuserComponent,
+    ShowusersComponent,
+    ShowuserbyidComponent,
   ],
   imports: [
     BrowserModule,

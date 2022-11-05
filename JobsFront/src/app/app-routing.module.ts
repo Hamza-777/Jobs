@@ -6,6 +6,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
+import { ShowusersComponent } from './showusers/showusers.component';
+import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
 const routes: Routes = [
 {path:'login',
 component : LoginComponent},
@@ -16,7 +18,11 @@ component : RegisterComponent },
 {path:'forgotpwd',
 component : ForgotpwdComponent },
 {path:'updateuser',
-component : UpdateuserComponent }];
+component : UpdateuserComponent },
+{path:'showusers',
+component : ShowusersComponent },
+{path:'showuserbyid/:id',
+component : ShowuserbyidComponent }];
 
 
 @NgModule({

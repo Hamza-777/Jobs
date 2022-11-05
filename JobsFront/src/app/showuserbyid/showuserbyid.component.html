@@ -1,0 +1,126 @@
+<div>
+
+    <h4>User Details</h4>
+    <hr />
+    <table class="table table-bordered">
+        <tr>
+        <th>
+            FullName
+        </th>
+        <td>
+            {{user.fullName}}
+        </td>
+        </tr>
+        <tr>
+        <th>
+            UserName
+        </th>
+        <td>
+            {{user.userName}}
+        </td>
+        </tr>
+        <tr>
+        <th *ngIf="user.bio">
+            Bio
+        </th>
+        <td *ngIf="user.bio">
+            {{user.bio}}
+        </td>
+        </tr>
+        <tr>
+        <th>
+           Emailid
+        </th>
+        <td>
+            {{user.emailId}}
+        </td>
+        </tr>
+        <tr>
+        <th>
+               Mobile Number
+        </th>
+        <td>
+            {{user.mobileNumber}}
+        </td>
+        <tr>
+        <th>
+            Photograph Link
+        </th>
+        <td>
+            {{user.photographLink}}
+        </td>
+        </tr>
+        <tr>
+        <th *ngIf="user.resumeLink">
+            Resume Link
+        </th>
+        <td *ngIf="user.resumeLink">
+            {{user.resumeLink}}
+        </td>
+        </tr>
+        <tr>
+            <th *ngIf="user.role=='Applicant'">
+                WorkStatus
+            </th>
+            <td *ngIf="user.role=='Applicant'">
+                {{user.workStatus?'Experienced':'Fresher'}}
+            </td>
+            </tr>
+            <tr>
+                <th *ngIf="user.currentSalary">
+                    Current Salary
+                </th>
+                <td *ngIf="user.currentSalary">
+                    {{user.currentSalary}}
+                </td>
+                </tr>
+                <tr>
+                    <th *ngIf="user.expectedSalary">
+                       Expected Salary
+                    </th>
+                    <td *ngIf="user.expectedSalary">
+                        {{user.expectedSalary}}
+                    </td>
+                    </tr>
+                    <tr>
+                        <th *ngIf="user.currentLocation">
+                          CurrentLocation
+                        </th>
+                        <td *ngIf="user.currentLocation">
+                           {{user.currentLocation}}
+                        </td>
+                        </tr>
+                        <tr>
+                            <th *ngIf="user.preferredLocation">
+                                Preferred Location
+                            </th>
+                            <td *ngIf="user.preferredLocation">
+                                {{user.preferredLocation}}
+                            </td>
+                            </tr>
+                            <tr>
+                                <th *ngIf="user.companyName">
+                                    Company Name
+                                </th>
+                                <td *ngIf="user.companyName">
+                                    {{user.companyName}}
+                                </td>
+                                </tr>
+                                <tr>
+                                    <th *ngIf="user.recruiterDescription">
+                                        Recruiter Description
+                                    </th>
+                                    <td *ngIf="user.recruiterDescription">
+                                        {{user.recruiterDescription}}
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <th *ngIf="user.role">
+                                           Role
+                                        </th>
+                                        <td *ngIf="user.role">
+                                            {{user.role}}
+                                        </td>
+                                        </tr>
+    </table>
+</div>
