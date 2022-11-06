@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit,ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-course',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+
+  @ViewChild('search',{static:true}) searchTerm:ElementRef;
 
   title = 'mdb-angular-ui-kit-free';
 
