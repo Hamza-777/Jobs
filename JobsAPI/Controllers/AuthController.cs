@@ -81,19 +81,8 @@ namespace JobsAPI.Controllers
                     new Claim("UserID",result.UserID.ToString()?? ""),
                     new Claim("FullName",result.FullName?? ""),
                     new Claim("UserName",result.UserName?? ""),
-                    new Claim("Bio",result.Bio?? ""),
                     new Claim("EmailId",result.EmailId?? ""),
-
                     new Claim("MobileNumber",result.MobileNumber.ToString()?? ""),
-                    new Claim("PhotographLink",result.PhotographLink?? ""),
-                    new Claim("ResumeLink",result.ResumeLink?? ""),
-                    new Claim("WorkStatus",result.WorkStatus.ToString()?? ""),
-                    new Claim("CurrentSalary",result.CurrentSalary.ToString()?? ""),
-                    new Claim("ExpectedSalary",result.ExpectedSalary.ToString() ?? ""),
-                    new Claim("CurrentLocation ",result.CurrentLocation?? "" ),
-                    new Claim("PreferredLocation",result.PreferredLocation?? ""),
-                    new Claim("CompanyName",result.CompanyName?? ""),
-                    new Claim("RecruiterDescription ",result.RecruiterDescription?? "" ),
                     new Claim(ClaimTypes.Role,result.Role?? ""),
                     new Claim("Role",result.Role?? "")
 

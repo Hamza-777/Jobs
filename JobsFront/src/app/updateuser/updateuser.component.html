@@ -17,7 +17,7 @@
           </div>     
             <div hidden>
               <label for="userid" class="sr-only">UserID</label>
-                <input type="number" id="userid" name="userid " [(ngModel)]="user.userID" 
+                <input type="number" id="userid" name="userid " [(ngModel)]="user.userId" 
                   class="form-control" placeholder="userid" required>
               <label for="password" class="sr-only">Password</label>
                   <input type="text" id="Password" name="Password " [(ngModel)]="user.password" 
@@ -56,9 +56,9 @@
             <input type="text" id="Bio" name="Bio" [(ngModel)]="user.bio" 
               class="form-control" placeholder="Bio" required>
             <br/>
-            <label for="ResumeLink" class="sr-only">ResumeLink</label>
-            <input type="text" id="ResumeLink" name="ResumeLink" [(ngModel)]="user.resumeLink" 
-              class="form-control" placeholder="ResumeLink">
+            <label for="LinkedInProfileLink" class="sr-only">LinkedInProfileLink</label>
+            <input type="text" id="LinkedInProfileLink" name="LinkedInProfileLink" [(ngModel)]="user.linkedInProfile" 
+              class="form-control" placeholder="LinkedInProfileLink">
             <br/>
             <div class="form-group form-check">
                 Are You Experienced???

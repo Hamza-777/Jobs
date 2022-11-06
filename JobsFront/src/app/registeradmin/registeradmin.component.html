@@ -6,7 +6,7 @@
         <span [innerHTML]="error"></span>
       </div>
       <br/>
-      <img [src] = "credentials.PhotographLink" alt = "Photograph" class= "border border-dark" width="150px" height = "150px">
+      <img [src] = "user.photographLink" alt = "Photograph" class= "border border-dark" width="150px" height = "150px">
       <br/>
       <br/>
       <div class="image-upload">
@@ -15,26 +15,26 @@
     </div> 
     <br/>
         <label for="FullName" class="sr-only">FullName</label>
-        <input type="text" id="FullName" name="FullName " [(ngModel)]="credentials.FullName" 
+        <input type="text" id="FullName" name="FullName " [(ngModel)]="user.fullName" 
           class="form-control" placeholder="FullName" required>
         <br/>
         <label for="username" class="sr-only">UserName</label>
-        <input type="text" id="UserName" name="UserName " [(ngModel)]="credentials.UserName" 
+        <input type="text" id="UserName" name="UserName " [(ngModel)]="user.userName" 
           class="form-control" placeholder="UserName" required>
         <br/>
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="credentials.Password" 
+        <input type="password" id="password" name="password" [(ngModel)]="user.password" 
           class="form-control" placeholder="Password" required>
         <br/>
         <label for="EmailId" class="sr-only">EmailId</label>
-        <input type="text" id="EmailId" name="EmailId" [(ngModel)]="credentials.EmailId" 
+        <input type="text" id="EmailId" name="EmailId" [(ngModel)]="user.emailId" 
           class="form-control" placeholder="EmailId" required>
         <br/>
         <label for="MobileNumber" class="sr-only">MobileNumber</label>
-        <input type="text" id="MobileNumber" name="MobileNumber" [(ngModel)]="credentials.MobileNumber" 
+        <input type="text" id="MobileNumber" name="MobileNumber" [(ngModel)]="user.mobileNumber" 
           class="form-control" placeholder="MobileNumber" required>
         <br/>
-        <button type = "button" class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)">Verify Email</button>
+        <button type = "button" class="btn btn-lg btn-primary" (click)="generateotp(user.emailId,user.fullName)">Verify Email</button>
         <div *ngIf="data=='OTP Generated'">
         <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
           class="form-control" placeholder="Enter OTP" required >

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
-import { RegisterResponse } from '../_interfaces/registerresponse.model';
+
 
 @Component({
   selector: 'app-registeradmin',
@@ -17,11 +17,11 @@ export class RegisteradminComponent implements OnInit {
   data!:string;
   error!: any;
   @ViewChild('registeradminForm') form!: NgForm;
-  credentials: RegisterModel = {} as RegisterModel
+  user: RegisterModel = {} as RegisterModel
   image: any;
   constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) 
   {
-    this.credentials.Role = "Admin"
+    this.user.role = "Admin"
   }
   checkotp(otp:string)
   {
@@ -60,8 +60,8 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
    fd.append('image',this.image,this.image.name)
    this.http.post('https://api.imgbb.com/1/upload?key='+environment.imagekey,fd).subscribe({
     next: (response: any) => {
-      this.credentials.PhotographLink = response['data']['display_url'];
-      console.log(this.credentials.PhotographLink);
+      this.user.photographLink = response['data']['display_url'];
+      console.log(this.user.photographLink);
     },
     error: (err: HttpErrorResponse) => {
       this.error = this.handlerservice.handleError(err);
@@ -70,11 +70,11 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
 }
   register = ( form: NgForm) => {
     if (form.valid) {
-      this.http.post<RegisterResponse>("https://localhost:7067/api/Admin/RegisterAdmin", this.credentials, {
+      this.http.post<any>("https://localhost:7067/api/Admin/RegisterAdmin", this.user, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
-        next: (response: RegisterResponse) => {
+        next: (response: any) => {
           console.log(response);
           this.router.navigate([""]);
         },

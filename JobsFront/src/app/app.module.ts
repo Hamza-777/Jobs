@@ -30,7 +30,7 @@ export function tokenGetter() {
     UpdateuserComponent,
     ShowusersComponent,
     ShowuserbyidComponent,
-    RegisteradminComponent,
+    RegisteradminComponent
   ],
   imports: [
     BrowserModule,

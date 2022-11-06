@@ -9,6 +9,7 @@ import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { ShowusersComponent } from './showusers/showusers.component';
 import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
 import { RegisteradminComponent } from './registeradmin/registeradmin.component';
+
 const routes: Routes = [
 {path:'login',
 component : LoginComponent},

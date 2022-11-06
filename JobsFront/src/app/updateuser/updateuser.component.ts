@@ -14,9 +14,8 @@ import { RegisterModel } from '../_interfaces/register.model';
 })
 export class UpdateuserComponent implements OnInit {
   error!: any;
-  user!:any
   data!:string;
-  credentials: RegisterModel = {} as RegisterModel
+  user: RegisterModel = {} as RegisterModel;
   currentUser: any;
   image: any;
   constructor(private router: Router,private http: HttpClient,private handlerservice:GlobalerrorhandlerService) 
@@ -64,7 +63,7 @@ onFileSelected(event:any)
 }
   editUser = ( form: NgForm) => {
     if (form.valid) {
-      this.http.put<any>("https://localhost:7067/api/Auth/updateuser/"+this.user.userID , this.user, {
+      this.http.put<any>("https://localhost:7067/api/Auth/updateuser/"+this.user.userId , this.user, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
