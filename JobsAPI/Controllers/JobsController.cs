@@ -21,18 +21,37 @@ namespace JobsAPI.Controllers
         }
         // GET: api/Jobs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Job>>> GetJobs(string? sort, int? categoryId, int? cityId, int? stateId)
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobs([FromQuery] JobParams jobParams)
         {
             IQueryable<Job> jobsList = _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city);
-            if(categoryId != null || cityId != null || stateId != null)
+            if(jobParams.search != null)
             {
-                jobsList = FilterJobs(categoryId, cityId, stateId, jobsList);
+                jobsList = jobsList.Where(p => p.title.ToLower().Contains(jobParams.search.ToLower()));
             }
-            if (sort != null)
+            if (jobParams.categoryId != null || jobParams.cityId != null || jobParams.stateId != null)
             {
-                jobsList = SortBySalary(sort, jobsList);
+                jobsList = FilterJobs(jobParams.categoryId, jobParams.cityId, jobParams.stateId, jobsList);
             }
+            if (jobParams.sort != null)
+            {
+                jobsList = SortBySalary(jobParams.sort, jobsList);
+            }
+            Console.WriteLine( "count before: ");
+            Console.WriteLine(jobsList.Count());
+
+            jobsList = Pagination(jobParams, jobsList);
+            Console.WriteLine("count after: ");
+            Console.WriteLine(jobsList.Count());
+
             return await jobsList.ToListAsync();
+        }
+
+        private static IQueryable<Job> Pagination(JobParams jobParams, IQueryable<Job> jobsList)
+        {
+
+            // Pagination with pagenumber and pagesize
+            jobsList = jobsList.Skip((jobParams.pageNumber - 1) * jobParams.PageSize).Take(jobParams.PageSize);
+            return jobsList;
         }
 
         // Filter by city, state, role
