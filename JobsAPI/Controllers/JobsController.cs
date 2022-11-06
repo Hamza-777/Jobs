@@ -82,10 +82,7 @@ namespace JobsAPI.Controllers
             return jobsList;
         }
 
-        private Task<List<Job>> jobData()
-        {
-            return _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city).ToListAsync();
-        }
+        
 
         // GET: api/Jobs/5
         [HttpGet("{id}")]
@@ -101,6 +98,49 @@ namespace JobsAPI.Controllers
 
             return job;
         }
+
+        // Get all cities
+        [HttpGet("city")]
+        public async Task<ActionResult<IEnumerable<City>>> GetAllCity()
+        {
+            var city= await _context.Cities.ToListAsync();
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            return city;
+        }
+
+        // get all states
+        [HttpGet("state")]
+        public async Task<ActionResult<IEnumerable<State>>> GetAllState()
+        {
+            var state = await _context.States.ToListAsync();
+
+            if (state == null)
+            {
+                return NotFound();
+            }
+
+            return state;
+        }
+
+        // get all categories
+        [HttpGet("category")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetAllCategory()
+        {
+            var category = await _context.Categories.ToListAsync();
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return category;
+        }
+
 
         // PUT: api/Jobs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
