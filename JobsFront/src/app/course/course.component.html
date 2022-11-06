@@ -37,12 +37,23 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex" style="fill:active;">
+        <!-- <form class="d-flex" style="fill:active;" #form="ngForm" (ngSubmit)="Search()">
           
-          <input style="width: 300px;" #search class="form-control me-2" type="search"  placeholder="What do you want to learn?"  aria-label="Search">
+          <input style="width: 300px;" #search="ngModel" id="search"  class="form-control me-2" type="text"  placeholder="What do you want to learn?"  aria-label="search" [ngModel]="search" [ngModelOptions]="{standalone: true}">
           <button class="btn btn-primary" type="submit">Search</button>
           
+        </form> -->
+
+        <form class="d-flex" style="fill:active;" #form="ngForm" (ngSubmit)="Search()">
+          <!-- <div class="mb-3"> -->
+
+            <!-- <label for="search" class="form-label">Search</label> -->
+            <input style="width: 300px;" type="text" class="form-control me-2" placeholder="What do you want to learn?"  aria-label="search" id="search" name="search" 
+            [(ngModel)] = "search">
+            <button type="submit" class="btn btn-primary">Search</button>
+          <!-- </div> -->
         </form>
+
       </div>
 
 
