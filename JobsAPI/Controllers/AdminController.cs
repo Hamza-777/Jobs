@@ -12,9 +12,13 @@ namespace JobsAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly userDbContext db;
-        public AdminController( userDbContext _db)
+        private IConfiguration configuration;
+        private HashMethods hm;
+        public AdminController(IConfiguration iConfig, userDbContext _db, HashMethods _hm)
         {
+            configuration = iConfig;
             db = _db;
+            hm = _hm;
 
         }
 
@@ -50,6 +54,38 @@ namespace JobsAPI.Controllers
             await db.SaveChangesAsync();
             return Ok();
 
+        }
+        [HttpPost("RegisterAdmin")]
+        public async Task<ActionResult> RegisterAdmin([FromBody] user user)
+        {
+            if (user == null)
+            {
+                return BadRequest("All fields are blank");
+            }
+            if (ModelState.IsValid)
+            {
+                if (db.Users.Any(x => x.UserName == user.UserName))
+                {
+                    return BadRequest("Username is already present");
+                }
+                else if (db.Users.Any(x => x.EmailId == user.EmailId))
+                {
+                    return BadRequest("EmailID is already present");
+                }
+                else if (db.Users.Any(x => x.MobileNumber == user.MobileNumber))
+                {
+                    return BadRequest("Mobile Number is already present");
+                }
+                else
+                {
+                    user.Salt = hm.GenerateSalt();
+                    user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
+                    user.Role = "Admin";
+                    db.Users.Add(user);
+                    await db.SaveChangesAsync();
+                }
+            }
+            return Ok();
         }
     }
 }

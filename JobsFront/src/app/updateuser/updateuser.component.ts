@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { environment } from 'src/environments/environment';
 import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
 
@@ -17,6 +18,7 @@ export class UpdateuserComponent implements OnInit {
   data!:string;
   credentials: RegisterModel = {} as RegisterModel
   currentUser: any;
+  image: any;
   constructor(private router: Router,private http: HttpClient,private handlerservice:GlobalerrorhandlerService) 
   {
 
@@ -43,6 +45,22 @@ export class UpdateuserComponent implements OnInit {
       }
   })
 
+}
+onFileSelected(event:any)
+{
+   console.log(event);
+   this.image = event.target.files[0]
+   const fd = new FormData();
+   fd.append('image',this.image,this.image.name)
+   this.http.post('https://api.imgbb.com/1/upload?key='+environment.imagekey,fd).subscribe({
+    next: (response: any) => {
+      this.user.photographLink = response['data']['display_url'];
+      console.log(this.user.photographLink);
+    },
+    error: (err: HttpErrorResponse) => {
+      this.error = this.handlerservice.handleError(err);
+    }
+  })
 }
   editUser = ( form: NgForm) => {
     if (form.valid) {

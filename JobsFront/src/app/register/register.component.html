@@ -6,6 +6,14 @@
         <span [innerHTML]="error"></span>
       </div>
         <br/>
+        <img [src] = "credentials.PhotographLink" alt = "Photograph" class= "border border-dark" width="150px" height = "150px">
+        <br/>
+        <br/>
+        <div class="image-upload">
+          Upload Photograph:
+          <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
+      </div> 
+      <br/>
         <label for="FullName" class="sr-only">FullName</label>
         <input type="text" id="FullName" name="FullName " [(ngModel)]="credentials.FullName" 
           class="form-control" placeholder="FullName" required>
@@ -26,18 +34,12 @@
         <input type="text" id="MobileNumber" name="MobileNumber" [(ngModel)]="credentials.MobileNumber" 
           class="form-control" placeholder="MobileNumber" required>
         <br/>
-        <label for="PhotographLink" class="sr-only">PhotographLink</label>
-        <input type="text" id="PhotographLink" name="PhotographLink" [(ngModel)]="credentials.PhotographLink" 
-          class="form-control" placeholder="PhotographLink">
-        <br/>
         Role<label for="Role" class="sr-only">Role</label>
         <select [(ngModel)]="credentials.Role" name="Role" class="form-control" placeholder="Role" required>
             <option>Applicant</option>
             <option>Recruiter</option>
-            <option>Admin</option>
         </select>
         <br/>
-        <div *ngIf="credentials.Role=='Admin'||credentials.Role==''"></div>
         <div name="Applicant" *ngIf="credentials.Role=='Applicant'">
         <label for="Bio" class="sr-only">Bio</label>
         <input type="text" id="Bio" name="Bio" [(ngModel)]="credentials.Bio" 
@@ -82,7 +84,7 @@
           class="form-control" placeholder="Description" required>
         <br/>
         </div>
-        <button type = "button" class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)">Verify Email</button>
+        <button type = "button" class="btn btn-lg btn-primary" (click)="generateotp(credentials.EmailId,credentials.FullName)"[disabled]="!credentials.Role">Verify Email</button>
         <div *ngIf="data=='OTP Generated'">
         <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
           class="form-control" placeholder="Enter OTP" required >

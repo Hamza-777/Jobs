@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
 import { RegisterResponse } from '../_interfaces/registerresponse.model';
@@ -17,6 +18,7 @@ export class RegisteradminComponent implements OnInit {
   error!: any;
   @ViewChild('registeradminForm') form!: NgForm;
   credentials: RegisterModel = {} as RegisterModel
+  image: any;
   constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) 
   {
     this.credentials.Role = "Admin"
@@ -50,6 +52,22 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
 }
   ngOnInit(): void {
   }
+  onFileSelected(event:any)
+{
+   console.log(event);
+   this.image = event.target.files[0]
+   const fd = new FormData();
+   fd.append('image',this.image,this.image.name)
+   this.http.post('https://api.imgbb.com/1/upload?key='+environment.imagekey,fd).subscribe({
+    next: (response: any) => {
+      this.credentials.PhotographLink = response['data']['display_url'];
+      console.log(this.credentials.PhotographLink);
+    },
+    error: (err: HttpErrorResponse) => {
+      this.error = this.handlerservice.handleError(err);
+    }
+  })
+}
   register = ( form: NgForm) => {
     if (form.valid) {
       this.http.post<RegisterResponse>("https://localhost:7067/api/Admin/RegisterAdmin", this.credentials, {

@@ -7,6 +7,14 @@
             <span [innerHTML]="error"></span>
           </div>
             <br/>
+            <br/>
+            <img [src] = "user.photographLink" alt = "{{user.photographLink}}" class= "border border-dark" width="150px" height = "150px">
+            <br/>
+            <br/>
+            <div class="image-upload">
+              Upload Photograph:
+              <input name="imageUrl" type="file" accept="image/*" (change)="onFileSelected($event)" />
+          </div>     
             <div hidden>
               <label for="userid" class="sr-only">UserID</label>
                 <input type="number" id="userid" name="userid " [(ngModel)]="user.userID" 
@@ -34,10 +42,6 @@
             <label for="MobileNumber" class="sr-only">MobileNumber</label>
             <input type="text" id="MobileNumber" name="MobileNumber" [(ngModel)]="user.mobileNumber" 
               class="form-control" placeholder="MobileNumber" required>
-            <br/>
-            <label for="PhotographLink" class="sr-only">PhotographLink</label>
-            <input type="text" id="PhotographLink" name="PhotographLink" [(ngModel)]="user.photographLink" 
-              class="form-control" placeholder="PhotographLink">
             <br/>
             Role<label for="Role" class="sr-only">Role</label>
             <select [(ngModel)]="user.role" name="Role" class="form-control" placeholder="Role" disabled>

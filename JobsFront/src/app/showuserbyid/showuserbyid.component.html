@@ -2,6 +2,9 @@
 
     <h4>User Details</h4>
     <hr />
+    <div *ngIf="user.photographLink">
+    <img [src] = "user.photographLink" alt = "Photograph" class= "border border-dark" width="150px" height = "150px">
+    </div>
     <table class="table table-bordered">
         <tr>
         <th>
@@ -43,12 +46,6 @@
             {{user.mobileNumber}}
         </td>
         <tr>
-        <th>
-            Photograph Link
-        </th>
-        <td>
-            {{user.photographLink}}
-        </td>
         </tr>
         <tr>
         <th *ngIf="user.resumeLink">
