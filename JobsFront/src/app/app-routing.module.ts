@@ -8,6 +8,7 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ViewBlogComponent } from './view-blog/view-blog.component';
 import { JobsComponent } from './jobs/jobs.component';
+import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 const routes: Routes = [
 {path:'login',component : LoginComponent},
 {path:'',component : HomeComponent ,canActivate:[AuthGuard]},
@@ -16,6 +17,7 @@ const routes: Routes = [
 {path: 'blogs',component: BlogsComponent},
 {path: 'blog/:blogId',component: ViewBlogComponent},
 {path: 'jobs',component: JobsComponent},
+{path: 'jobs/:id',component: JobsDetailsComponent},
 
 ];
 @NgModule({
