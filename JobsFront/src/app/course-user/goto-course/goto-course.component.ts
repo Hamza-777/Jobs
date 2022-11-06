@@ -22,6 +22,9 @@ export class GotoCourseComponent implements OnInit {
     courseVideoURL:''
 
   };
+
+  
+
   constructor(private route:ActivatedRoute, private courseService:CoursesService, private router:Router) { }
 
   ngOnInit(): void {
@@ -46,6 +49,8 @@ export class GotoCourseComponent implements OnInit {
         }
       }
     })
+
+
   }
 
   }
