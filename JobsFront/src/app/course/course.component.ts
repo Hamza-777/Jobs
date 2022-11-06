@@ -58,25 +58,35 @@ export class CourseComponent implements OnInit {
     
     this.courses.forEach(element => {
 
-      if(element.courseCategory.toLowerCase().startsWith(this.search.toLowerCase()) && this.flag==0){
-        this.flag=-1;
-        this.search=element.courseCategory;
+      // if(element.courseCategory.toLowerCase().startsWith(this.search.toLowerCase()) && this.flag==0){
+      //   this.flag=-1;
+      //   this.search=element.courseCategory;
         
-      }
+      // }
 
-      if(element.courseCategory.toLowerCase().endsWith(this.search.toLowerCase()) && this.flag==0){
+      // if(element.courseCategory.toLowerCase().endsWith(this.search.toLowerCase()) && this.flag==0){
+      //   this.flag=-1;
+      //   this.search=element.courseCategory;
+      // }
+
+      if(element.courseCategory.toLowerCase().includes(this.search.toLowerCase()) && this.flag==0){
         this.flag=-1;
         this.search=element.courseCategory;
       }
 
-      if(element.courseName.toLowerCase().startsWith(this.search.toLowerCase()) && this.flag==0){
-        this.flag=1;
-        this.search=element.courseName;
-      }
+      // if(element.courseName.toLowerCase().startsWith(this.search.toLowerCase()) && this.flag==0){
+      //   this.flag=1;
+      //   this.search=element.courseName;
+      // }
 
       
 
-      if(element.courseName.toLowerCase().endsWith(this.search.toLowerCase()) && this.flag==0){
+      // if(element.courseName.toLowerCase().endsWith(this.search.toLowerCase()) && this.flag==0){
+      //   this.flag=1;
+      //   this.search=element.courseName;
+      // }
+
+      if(element.courseName.toLowerCase().includes(this.search.toLowerCase()) && this.flag==0){
         this.flag=1;
         this.search=element.courseName;
       }
