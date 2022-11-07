@@ -148,6 +148,26 @@ namespace JobsAPI.Migrations
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("JobsAPI.Models.Otp", b =>
+                {
+                    b.Property<int>("Otpid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Otpid"), 1L, 1);
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Otpid");
+
+                    b.ToTable("Otps");
+                });
+
             modelBuilder.Entity("JobsAPI.Models.user", b =>
                 {
                     b.Property<int>("UserID")
@@ -184,6 +204,11 @@ namespace JobsAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("LinkedInProfile")
+                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<long>("MobileNumber")
                         .HasColumnType("bigint");
 
@@ -199,8 +224,7 @@ namespace JobsAPI.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("RecruiterDescription")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ResumeLink")
                         .HasColumnType("nvarchar(max)");

@@ -19,36 +19,44 @@ namespace JobsAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly userDbContext db;
-       
+
         private IConfiguration configuration;
         private HashMethods hm;
-        public AuthController(IConfiguration iConfig, userDbContext _db,HashMethods _hm)
+        public AuthController(IConfiguration iConfig, userDbContext _db, HashMethods _hm)
         {
             configuration = iConfig;
             db = _db;
             hm = _hm;
         }
         [HttpPost("login")]
-        public async  Task<IActionResult> Login([FromBody] Login user)
+        public async Task<IActionResult> Login([FromBody] Login user)
         {
             if (user is null)
             {
                 return BadRequest("Invalid client request");
             }
-            user result=null;
+            user result = null;
             long mobNum;
-            if(long.TryParse(user.UserData,out mobNum))
+            if (long.TryParse(user.UserData, out mobNum))
             {
-                
-                 result = await db.Users.Where(x => x.MobileNumber == mobNum ).SingleOrDefaultAsync();
+
+                result = await db.Users.Where(x => x.MobileNumber == mobNum).SingleOrDefaultAsync();
+                if (result == null)
+                {
+                    return Unauthorized();
+                }
                 if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
                 {
                     result = null;
                 }
             }
-            else if(Regex.IsMatch(user.UserData, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(user.UserData, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase))
             {
-                result = await db.Users.Where(x => x.EmailId ==user.UserData ).SingleOrDefaultAsync();
+                result = await db.Users.Where(x => x.EmailId == user.UserData).SingleOrDefaultAsync();
+                if (result == null)
+                {
+                    return Unauthorized();
+                }
                 if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
                 {
                     result = null;
@@ -57,34 +65,27 @@ namespace JobsAPI.Controllers
             else
             {
                 result = await db.Users.Where(x => x.UserName == user.UserData).SingleOrDefaultAsync();
-                if(!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
+                if (result == null)
+                {
+                    return Unauthorized();
+                }
+                if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
                 {
                     result = null;
                 }
             }
-            if (result!=null)
+            if (result != null)
             {
                 var claims = new[]
                 {
                     new Claim("UserID",result.UserID.ToString()?? ""),
                     new Claim("FullName",result.FullName?? ""),
                     new Claim("UserName",result.UserName?? ""),
-                    new Claim("Bio",result.Bio?? ""),
                     new Claim("EmailId",result.EmailId?? ""),
-                    
                     new Claim("MobileNumber",result.MobileNumber.ToString()?? ""),
-                    new Claim("PhotographLink",result.PhotographLink?? ""),
-                    new Claim("ResumeLink",result.ResumeLink?? ""),
-                    new Claim("WorkStatus",result.WorkStatus.ToString()?? ""),
-                    new Claim("CurrentSalary",result.CurrentSalary.ToString()?? ""),
-                    new Claim("ExpectedSalary",result.ExpectedSalary.ToString() ?? ""),
-                    new Claim("CurrentLocation ",result.CurrentLocation?? "" ),
-                    new Claim("PreferredLocation",result.PreferredLocation?? ""),
-                    new Claim("CompanyName",result.CompanyName?? ""),
-                    new Claim("RecruiterDescription ",result.RecruiterDescription?? "" ),
                     new Claim(ClaimTypes.Role,result.Role?? ""),
                     new Claim("Role",result.Role?? "")
-                    
+
                 };
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -113,11 +114,11 @@ namespace JobsAPI.Controllers
                 {
                     return BadRequest("Username is already present");
                 }
-                else if(db.Users.Any(x=>x.EmailId == user.EmailId))
+                else if (db.Users.Any(x => x.EmailId == user.EmailId))
                 {
                     return BadRequest("EmailID is already present");
                 }
-                else if(db.Users.Any(x => x.MobileNumber== user.MobileNumber))
+                else if (db.Users.Any(x => x.MobileNumber == user.MobileNumber))
                 {
                     return BadRequest("Mobile Number is already present");
                 }
@@ -128,7 +129,36 @@ namespace JobsAPI.Controllers
                     db.Users.Add(user);
                     await db.SaveChangesAsync();
                 }
-            }  
+            }
+            return Ok();
+        }
+        [HttpGet("{username}")]
+        public async Task<ActionResult<user>> GetbyUsername(string username)
+        {
+            var person = await db.Users.Where(x => x.UserName == username).SingleOrDefaultAsync();
+
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return person;
+        }
+
+        [HttpPut("updatepassword/{userid}")]
+        public async Task<ActionResult> UpdatePassword(int userid, [FromBody] user user)
+        {
+            user.Salt = hm.GenerateSalt();
+            user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
+            db.Users.Update(user);
+            await db.SaveChangesAsync();
+            return Ok();
+        }
+        [HttpPut("updateuser/{userid}")]
+        public async Task<ActionResult> UpdateUser(int userid, [FromBody] user user)
+        {
+            db.Users.Update(user);
+            await db.SaveChangesAsync();
             return Ok();
         }
     }
