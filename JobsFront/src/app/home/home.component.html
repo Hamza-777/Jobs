@@ -17,4 +17,7 @@
   <li *ngIf="isAdmin()"><a routerLink="/showusers">View All Users</a></li>
   <li *ngIf="isAdmin()"><a routerLink="/registeradmin">Register Admin</a></li>
   <li *ngIf="!isUserAuthenticated()"><a routerLink="/forgotpwd">Forgot Password</a></li>
+  <li *ngIf="isUserAuthenticated()"><a routerLink="/course">Courses</a></li>
+  <li *ngIf="isUserAuthenticated()"><a routerLink="/course-crud">Display Courses</a></li>
+  <li *ngIf="isUserAuthenticated()"><a routerLink="/course-crud/add">Add Course</a></li>
 </ul>

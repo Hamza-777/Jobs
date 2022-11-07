@@ -20,6 +20,12 @@ import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { ShowusersComponent } from './showusers/showusers.component';
 import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
 import { RegisteradminComponent } from './registeradmin/registeradmin.component';
+import { CourseComponent } from './course/course.component';
+import { AddCourseComponent } from './course-crud/add-course/add-course.component';
+import { CourseListComponent } from './course-crud/course-list/course-list.component';
+import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
+import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
+import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
 
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
@@ -39,13 +45,21 @@ export function tokenGetter() {
     UpdateuserComponent,
     ShowusersComponent,
     ShowuserbyidComponent,
-    RegisteradminComponent
+    RegisteradminComponent,
+    CourseComponent,
+    AddCourseComponent,
+    CourseListComponent,
+    EditCourseComponent,
+    GotoCourseComponent,
+    ListoutCoursesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

@@ -4,6 +4,7 @@ using JobsAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobsAPI.Migrations
 {
     [DbContext(typeof(userDbContext))]
-    partial class userDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221105171157_second-migration")]
+    partial class secondmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,26 +150,6 @@ namespace JobsAPI.Migrations
                     b.ToTable("Jobs");
                 });
 
-            modelBuilder.Entity("JobsAPI.Models.Otp", b =>
-                {
-                    b.Property<int>("Otpid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Otpid"), 1L, 1);
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Otpid");
-
-                    b.ToTable("Otps");
-                });
-
             modelBuilder.Entity("JobsAPI.Models.user", b =>
                 {
                     b.Property<int>("UserID")
@@ -204,11 +186,6 @@ namespace JobsAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LinkedInProfile")
-                        .HasColumnType("nvarchar(max)");
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<long>("MobileNumber")
                         .HasColumnType("bigint");
 
@@ -224,7 +201,8 @@ namespace JobsAPI.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("RecruiterDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ResumeLink")
                         .HasColumnType("nvarchar(max)");
