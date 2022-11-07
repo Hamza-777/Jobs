@@ -19,6 +19,5 @@ import { State } from "./State";
     category: Category;
     categoryid: number;
     userid: number;
-    
 }
   

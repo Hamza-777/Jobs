@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { JobsService } from '../services/jobs.service';
 import { Category } from '../_interfaces/Category';
 import { City } from '../_interfaces/City';
@@ -19,6 +19,12 @@ export class JobsComponent implements OnInit {
   cityIdSelected: number;
   stateIdSelected: number;
   categoryIdSelected: number;
+  search:string;
+  sortSelected:string;
+  sortOptions=[
+    {name: "Salary: low to high", value:"salaryAsc"},
+    {name: "Salary: high to low", value:"salaryDsc"}
+  ]
   // jobparam!: JobParams;
 
   constructor(private jobservice: JobsService) { }
@@ -32,7 +38,7 @@ export class JobsComponent implements OnInit {
 
   getJobs() {
     this.jobservice.getAllJobs(this.cityIdSelected,
-      this.categoryIdSelected, this.stateIdSelected)
+      this.categoryIdSelected, this.stateIdSelected, this.sortSelected, this.search)
       .subscribe({
         next: (jobsdata) => {
           this.jobsList = jobsdata;
@@ -58,11 +64,14 @@ export class JobsComponent implements OnInit {
     })
   }
   getCategory() {
+    debugger
     this.jobservice.getAllCategory().subscribe({
       next: (categoryData) => {
         this.categoryList = [{id:0, name:'All'}, ...categoryData];
-        console.log("category");
-        console.log(categoryData);
+    console.log("got data successfully");
+
+        // return this.categoryList;
+        
       },
       error: (errReponse) => {
         console.log(errReponse);
@@ -95,6 +104,11 @@ export class JobsComponent implements OnInit {
     this.getJobs();
   }
 
+  onSortSelected(sort:string){
+    this.sortSelected=sort;
+    this.getJobs();
+  }
+
   // remove element from list 
   private removeObjectWithId(arr, id) {
     const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
@@ -102,4 +116,15 @@ export class JobsComponent implements OnInit {
   
     return arr;
   }
+
+  onSearch(){
+    console.log(this.search);
+    this.getJobs();
+  }
+
+  onReset(){
+    this.search=undefined;
+    this.getJobs();
+  }
+
 }

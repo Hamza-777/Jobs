@@ -13,7 +13,7 @@ import { Category } from '../_interfaces/Category';
 export class JobsService {
 baseUrl="https://localhost:7067/api/Jobs";
   constructor(private http:HttpClient) { }
-getAllJobs(cityId?:number, categoryId?:number, stateId?:number){
+getAllJobs(cityId?:number, categoryId?:number, stateId?:number, sortName?:string, search?:string){
   let params= new HttpParams();
   if(categoryId){
     params= params.append('categoryId', categoryId.toString());
@@ -23,6 +23,14 @@ getAllJobs(cityId?:number, categoryId?:number, stateId?:number){
   }
   if(stateId){
     params= params.append('stateId', stateId.toString());
+  }
+  if(sortName != null){
+    params= params.append('sort', sortName);
+
+  }
+
+  if(search != null){
+    params=params.append('search', search);
   }
 
   return this.http.get<Job[]>(this.baseUrl, {observe: 'response', params}).pipe(

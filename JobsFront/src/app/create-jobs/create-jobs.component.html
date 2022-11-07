@@ -1,1 +1,58 @@
-<p>create-jobs works!</p>
+<form  #form="ngForm" (ngSubmit)="createJobs(form)">
+  <div class="form-group">
+    <label for="title">Job Title</label>
+    <input name="title" type="text" class="form-control" id="title" placeholder="Enter job Title"
+      [(ngModel)]="newjob.title">
+    {{newjob.title}}
+  </div>
+  <div class="form-group">
+    <label for="description">Job Description</label>
+    <input name="description" type="text" class="form-control" id="description" placeholder="Enter job Description"
+      [(ngModel)]="newjob.description">
+    {{newjob.description}}
+
+  </div>
+  <div class="form-group">
+    <label for="company">Company Name</label>
+    <input name="company" type="text" class="form-control" id="company" placeholder="Enter Company Name"
+      [(ngModel)]="newjob.company"  required>
+  </div>
+  <div class="form-group">
+    <label for="salary_min">Minimum Salary Offered</label>
+    <input name="salary_min" type="number" class="form-control" id="salary_min" placeholder="Minimum Salary"
+      [(ngModel)]="newjob.salary_min" required>
+  </div>
+  <div class="form-group">
+    <label for="salary_max">Maximum Salary Offered</label>
+    <input name="salary_max" type="number" class="form-control" id="salary_max" placeholder="Maximum Salary"
+      [(ngModel)]="newjob.salary_max" required>
+  </div>
+  <div *ngIf="(newjob.salary_min > newjob.salary_max)" class="text-danger"> Salary max should be greater than min </div>
+ 
+
+  <div class="form-group">
+
+    <label for="">Select Roles</label>
+
+    <select [(ngModel)]="newjob.category" [ngModelOptions]="{standalone: true}" required>
+      <option value="default">---Select---</option>
+      <option *ngFor="let role of categoryList" [ngValue]="role">{{role.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+
+    <label for="">Select City</label>
+
+    <select [(ngModel)]="newjob.city" [ngModelOptions]="{standalone: true}" required>
+      <option value="default">---Select---</option>
+      <option *ngFor="let city of cityList" [ngValue]="city">{{city.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="redirect_url">Apply now URL</label>
+    <input name="redirect_url" type="text" class="form-control" id="redirect_url" placeholder="Enter job URL"
+      [(ngModel)]="newjob.redirect_url" required>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="(newjob.salary_min > newjob.salary_max) && !form.valid">Submit</button>
+</form>

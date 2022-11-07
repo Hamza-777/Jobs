@@ -1,6 +1,21 @@
+<h2>Sort</h2>
+<h2>{{sortOptions | json}}</h2>
+<table *ngFor="let val of sortOptions">
+  <td>{{val.name}}</td>
+</table>
+<!-- <select name="Sort"  (change)="onSortSelected($event.target.value)" >
+  <option  *ngFor="let option of sortOptions" 
+  [value]="sort.value">{{option.name}}</option>
+</select> -->
 
-<!-- <input type="text" name="Role" [(ngModel)]="jobparam.search" id=""> -->
-<h2>Cities</h2>
+<div>
+  <input (keyup.enter)="onSearch()" [(ngModel)]="search" placeholder="Search">
+  <button (click)="onSearch()">Search</button>
+  <button (click)="onReset()">Reset</button>
+
+</div>
+
+<!-- <h2>Cities</h2>
 <ul>
   <li class="list-group-item" *ngFor="let item of cityList"
   [class.active]="item.id === this.cityIdSelected"
@@ -8,8 +23,13 @@
   (click)="onCitySelected(item.id)">
     {{item.name}}
   </li>
-</ul>
-<h2>State</h2>
+</ul> -->
+<app-drop-down [anylist]="categoryList"></app-drop-down>
+<app-drop-down [anylist]="cityList"></app-drop-down>
+<app-drop-down [anylist]="stateList"></app-drop-down>
+
+
+<!-- <h2>State</h2>
 <ul>
   <li class="list-group-item" *ngFor="let item of stateList" 
   [class.active]="item.id === this.stateIdSelected"
@@ -26,7 +46,7 @@
   (click)="onCategorySelected(item.id)">
     {{item.name}}
   </li>
-</ul>
+</ul> -->
 
 <!-- <p>{{jobsList[0]| json}}</p> -->
 <!-- <p>{{count}}</p> -->
