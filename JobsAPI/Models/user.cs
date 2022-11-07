@@ -23,7 +23,7 @@ namespace JobsAPI.Models
         [Required]
         public long MobileNumber { get; set; }
         public string? PhotographLink { get; set; }
-        public string? ResumeLink { get; set; }//applicant
+        public string? LinkedInProfile { get; set; }//applicant
 
         public bool? WorkStatus { get; set; }//applicant
         public double? CurrentSalary { get; set; }//applicant

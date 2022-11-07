@@ -27,5 +27,6 @@ namespace JobsAPI.Models
         public DbSet<user> Users { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Otp> Otps { get; set; }
     }
 }
