@@ -58,7 +58,7 @@ postJobs(postJobRequest:Job):Observable<Job>{
   return this.http.post<Job>(this.baseUrl,postJobRequest);
 }
 editJobs(id:number, editedJobRequest:Job){
-  return this.http.put<Job>(this.baseUrl+id, editedJobRequest);
+  return this.http.put<Job>(this.baseUrl +"/"+id, editedJobRequest);
 }
 
 }

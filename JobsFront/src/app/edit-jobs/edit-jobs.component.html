@@ -1,17 +1,15 @@
 
 <h1>Edit Job</h1>
-<!-- <form  #form="ngForm" (ngSubmit)="createJobs(form)">
+<form  #form="ngForm" (ngSubmit)="editJob(form)">
     <div class="form-group">
       <label for="title">Job Title</label>
       <input name="title" type="text" class="form-control" id="title" placeholder="Enter job Title"
         [(ngModel)]="newjob.title">
-      {{newjob.title}}
     </div>
     <div class="form-group">
       <label for="description">Job Description</label>
       <input name="description" type="text" class="form-control" id="description" placeholder="Enter job Description"
         [(ngModel)]="newjob.description">
-      {{newjob.description}}
   
     </div>
     <div class="form-group">
@@ -36,18 +34,18 @@
   
       <label for="">Select Roles</label>
   
-      <select [(ngModel)]="newjob.category" [ngModelOptions]="{standalone: true}" required>
+      <select [(ngModel)]="newjob.categoryid" [ngModelOptions]="{standalone: true}" required>
         <option value="default">---Select---</option>
-        <option *ngFor="let role of categoryList" [ngValue]="role">{{role.name}}</option>
+        <option *ngFor="let role of categoryList" [ngValue]="role.id">{{role.name}}</option>
       </select>
     </div>
     <div class="form-group">
   
       <label for="">Select City</label>
   
-      <select [(ngModel)]="newjob.city" [ngModelOptions]="{standalone: true}" required>
+      <select [(ngModel)]="newjob.cityid" [ngModelOptions]="{standalone: true}" required>
         <option value="default">---Select---</option>
-        <option *ngFor="let city of cityList" [ngValue]="city">{{city.name}}</option>
+        <option *ngFor="let city of cityList" [ngValue]="city.id">{{city.name}}</option>
       </select>
     </div>
   
@@ -56,5 +54,6 @@
       <input name="redirect_url" type="text" class="form-control" id="redirect_url" placeholder="Enter job URL"
         [(ngModel)]="newjob.redirect_url" required>
     </div>
+
     <button type="submit" class="btn btn-primary" [disabled]="(newjob.salary_min > newjob.salary_max) && !form.valid">Submit</button>
-  </form> -->
+  </form>
