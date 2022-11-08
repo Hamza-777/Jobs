@@ -151,6 +151,9 @@ namespace JobsAPI.Controllers
             {
                 return BadRequest();
             }
+            job.city = await _context.Cities.FindAsync(job.cityid);
+            job.state = await _context.States.FindAsync(job.stateid);
+            job.category = await _context.Categories.FindAsync(job.categoryid);
 
             _context.Entry(job).State = EntityState.Modified;
 
