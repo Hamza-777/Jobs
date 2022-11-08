@@ -18,6 +18,10 @@ import { EditCourseComponent } from './course-crud/edit-course/edit-course.compo
 import { CourseListComponent } from './course-crud/course-list/course-list.component';
 import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
 import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
+import { JobsComponent } from './jobs/jobs.component';
+import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
+import { CreateJobsComponent } from './create-jobs/create-jobs.component';
+import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 
 const routes: Routes = [
 {path:'login',
@@ -71,7 +75,12 @@ component : RegisteradminComponent },
 {
   path:'course-user/listout-courses/:courseCategory',
   component:ListoutCoursesComponent
-}];
+},
+
+{path: 'jobs',component: JobsComponent},
+{path: 'jobs/:id',component: JobsDetailsComponent},
+{path: 'createjobs',component: CreateJobsComponent},
+{path: 'editjobs/:id',component: EditJobsComponent}];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

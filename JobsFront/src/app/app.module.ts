@@ -26,6 +26,11 @@ import { CourseListComponent } from './course-crud/course-list/course-list.compo
 import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
 import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
 import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
+import { JobsComponent } from './jobs/jobs.component';
+import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
+import { CreateJobsComponent } from './create-jobs/create-jobs.component';
+import { DropDownComponent } from './drop-down/drop-down.component';
+import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
@@ -52,6 +57,11 @@ export function tokenGetter() {
     EditCourseComponent,
     GotoCourseComponent,
     ListoutCoursesComponent,
+    JobsComponent,
+    JobsDetailsComponent,
+    CreateJobsComponent,
+    DropDownComponent,
+    EditJobsComponent,
   ],
   imports: [
     BrowserModule,
