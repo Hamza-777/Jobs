@@ -1,0 +1,51 @@
+<div class="navbar">
+  <div class="navbar-start">
+    <h2 class="logo">JOBS</h2>
+  </div>
+  <nav class="navbar-mid">
+    <button *ngIf="isUserAuthenticated()" class="btn">
+      <a routerLink="/createblogs" class="btn-link">Create Blog</a>
+    </button>
+    <button class="btn">
+      <a routerLink="/blogs" class="btn-link">Blogs</a>
+    </button>
+    <button *ngIf="isUserAuthenticated()" class="btn">
+      <a routerLink="/updateuser" class="btn-link">Update User</a>
+    </button>
+    <button class="btn">
+      <a routerLink="/courses" class="btn-link">Courses</a>
+    </button>
+    <button class="btn">
+      <a routerLink="/jobs" class="btn-link">Jobs</a>
+    </button>
+    <button *ngIf="isUserAuthenticated()" class="btn">
+      <a routerLink="/course-crud/add" class="btn-link">Add Course</a>
+    </button>
+    <!-- <button *ngIf="!isUserAuthenticated()" class="btn">
+          <a routerLink="/forgotpwd" class="btn-link">Forgot Password</a>
+        </button> -->
+    <!-- <li *ngIf="isAdmin()"><a routerLink="/showusers">View All Users</a></li>
+          <li *ngIf="isAdmin()"><a routerLink="/registeradmin">Register Admin</a></li> -->
+  </nav>
+  <div class="navbar-end">
+    <a
+      *ngIf="!isUserAuthenticated()"
+      class="btn btn-outline"
+      routerLink="/login"
+      >Login</a
+    >
+    <a
+      *ngIf="!isUserAuthenticated()"
+      class="btn btn-solid"
+      routerLink="/register"
+      >Register</a
+    >
+    <button
+      *ngIf="isUserAuthenticated()"
+      class="btn btn-outline"
+      (click)="logOut()"
+    >
+      Log Out
+    </button>
+  </div>
+</div>

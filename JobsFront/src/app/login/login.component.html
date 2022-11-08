@@ -1,18 +1,45 @@
-<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-  <div class="form-group">
-      <h2 class="form-signin-heading">Login</h2>
-        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
-        <br/>
-        <label for="username" class="sr-only">User Name/Email/Mobile Number</label>
-        <input type="text" id="username" name="username" [(ngModel)]="credentials.userdata" 
-          class="form-control" placeholder="UserName/Email/MobileNumber" required>
-        <br/>
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="credentials.password" 
-          class="form-control" placeholder="Password" required>
-        <br/>
-        <button class="btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.valid">Log in</button>
+<section class="container" id="login-form">
+  <p class="h3" style="text-align: center">LOGIN</p>
+  <form class="form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <div class="form-group">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="credentials.userdata"
+        placeholder="UserName / Email / MobileNumber"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="credentials.password"
+        placeholder="Password"
+        required
+      />
+    </div>
+    <div class="buttons flex align-center justify-center flex-col">
+      <button class="btn btn-outline btn-submit" [disabled]="!loginForm.valid">
+        Login
+      </button>
+      <button type="button" class="btn btn-outline btn-submit">
+        <a routerLink="/forgotpwd">Forgot Password</a>
+      </button>
+      <div class="or flex align-center justify-center">
+        <hr class="hr" />
+        <p class="h5">or</p>
+        <hr class="hr" />
       </div>
-      </form>
-    <a routerLink="/register">Register</a><br/>
-    <a routerLink="/forgotpwd">Forgot Password</a>
+      <button type="button" class="btn btn-link">
+        Don't have an account? <a routerLink="/register">Create Account</a>
+      </button>
+    </div>
+  </form>
+</section>
+
+<div *ngIf="invalidLogin" class="alert alert-danger">
+  Invalid username or password.
+</div>
