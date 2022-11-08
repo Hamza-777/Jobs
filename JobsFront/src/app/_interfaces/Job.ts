@@ -1,6 +1,3 @@
-import { Category } from "./Category";
-import { City } from "./City";
-import { State } from "./State";
 
   export interface Job {
     id: number;
@@ -12,12 +9,8 @@ import { State } from "./State";
     salary_min: number;
     company: string;
     created: string;
-    // state: State;
     stateid: number;
-    // city: City;
     cityid: number;
-    // category: Category;
     categoryid: number;
-    // userid: number;
 }
   

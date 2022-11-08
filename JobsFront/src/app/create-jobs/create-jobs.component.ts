@@ -28,13 +28,10 @@ this.newjob={
   company:'',
   location:'',
   created:Date().toString(),
-  // category:{id:0, name:''},
   categoryid:0,
-  // state: {id:0, name:''},
   stateid:0,
-  // city: {id:0, name:''},
   cityid:0,
-  // userid:0
+
 }
 
    }
@@ -44,11 +41,10 @@ this.newjob={
    this.getCities();
    this.getCategory();
    this.getStates();
-   console.log(this.categoryList);
 
   }
 
-  private getStatesFromCities(cityId:number){
+  getStatesFromCities(cityId:number){
     // If pune map to maharastra
     if(cityId==4){
       this.newjob.stateid= this.stateList.find(x=>x.id==2).id;
@@ -66,6 +62,7 @@ createJobs(form:NgForm){
 
   if(form.valid)
   {
+    console.log("entered data");
     this.getStatesFromCities(this.newjob.cityid);
     this.newjob.location = this.cityList.find(x=>x.id == this.newjob.cityid).name + ", "+ 
     this.stateList.find(x=>x.id == this.newjob.stateid).name;
@@ -86,7 +83,8 @@ createJobs(form:NgForm){
     this.jobservice.getAllCity().subscribe({
       next: (cityData) => {
         this.cityList = this.removeObjectWithId(cityData, 5);
-       
+        console.log("city");
+        console.log(cityData);
       },
       error: (errReponse) => {
         console.log(errReponse);
@@ -97,6 +95,10 @@ createJobs(form:NgForm){
     this.jobservice.getAllCategory().subscribe({
       next: (categoryData) => {
         this.categoryList = categoryData;
+    console.log("got data successfully");
+
+        // return this.categoryList;
+        
       },
       error: (errReponse) => {
         console.log(errReponse);
@@ -107,6 +109,8 @@ createJobs(form:NgForm){
     this.jobservice.getAllState().subscribe({
       next: (stateData) => {
         this.stateList = this.removeObjectWithId(stateData, 5);
+        
+
       },
       error: (errReponse) => {
         console.log(errReponse);
