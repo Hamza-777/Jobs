@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Job } from '../_interfaces/Job';
 import { map, observable, Observable } from 'rxjs';
 import { JobParams } from '../_interfaces/jobParams';
@@ -56,6 +56,9 @@ getAllCategory(){
 }
 postJobs(postJobRequest:Job):Observable<Job>{
   return this.http.post<Job>(this.baseUrl,postJobRequest);
+}
+editJobs(id:number, editedJobRequest:Job){
+  return this.http.put<Job>(this.baseUrl+id, editedJobRequest);
 }
 
 }

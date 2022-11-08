@@ -20,21 +20,21 @@ export class CreateJobsComponent implements OnInit {
  stateList:State[];
   constructor(private jobservice: JobsService) {
 this.newjob={
-  id:0,
   title:'',
   description:'',
   redirect_url:'',
   salary_max:0,
   salary_min:0,
   company:'',
+  location:'',
   created:Date().toString(),
-  category:{id:0, name:''},
+  // category:{id:0, name:''},
   categoryid:0,
-  state: {id:0, name:''},
+  // state: {id:0, name:''},
   stateid:0,
-  city: {id:0, name:''},
+  // city: {id:0, name:''},
   cityid:0,
-  userid:1
+  // userid:0
 }
 
    }
@@ -48,28 +48,35 @@ this.newjob={
 
   }
 
+  getStatesFromCities(cityId:number){
+    // If pune map to maharastra
+    if(cityId==4){
+      this.newjob.stateid= this.stateList.find(x=>x.id==2).id;
+      console.log(this.newjob.state);
+    }
+    // If delhi map to delhi
+    else if( cityId == 6){
+      this.newjob.stateid = this.stateList.find(x=>x.id == 4).id;
+    }
+    else{
+      this.newjob.stateid= this.stateList.find(x=>x.id== cityId).id;
+    }
+  }
+
 createJobs(form:NgForm){
+
   if(form.valid)
   {
-    this.newjob.categoryid=this.newjob.category.id;
-    this.newjob.cityid=this.newjob.city.id;
-
-
-
-    console.log(this.newjob.category.id);
-    console.log(this.newjob.category.name);
-    console.log(this.newjob.city.id);
-    console.log(this.newjob.city.name);
-
-    // set state from city entered
-    // location state + city
-  console.log("entered create job");
-
+    console.log("entered data");
+    this.getStatesFromCities(this.newjob.cityid);
+    this.newjob.location = this.cityList.find(x=>x.id == this.newjob.cityid).name + ", "+ 
+    this.stateList.find(x=>x.id == this.newjob.stateid).name;
   this.jobservice.postJobs(this.newjob).subscribe({
     next:(response)=>{
       console.log(response);
     },
     error:(errResponse)=>{
+      
       console.log(errResponse);
     }
     
@@ -106,7 +113,7 @@ createJobs(form:NgForm){
   getStates() {
     this.jobservice.getAllState().subscribe({
       next: (stateData) => {
-        this.stateList = [this.removeObjectWithId(stateData, 5)];
+        this.stateList = this.removeObjectWithId(stateData, 5);
         
 
       },

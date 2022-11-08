@@ -10,6 +10,7 @@ import { ViewBlogComponent } from './view-blog/view-blog.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
+import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 const routes: Routes = [
 {path:'login',component : LoginComponent},
 {path:'',component : HomeComponent ,canActivate:[AuthGuard]},
@@ -20,6 +21,8 @@ const routes: Routes = [
 {path: 'jobs',component: JobsComponent},
 {path: 'jobs/:id',component: JobsDetailsComponent},
 {path: 'createjobs',component: CreateJobsComponent},
+{path: 'editjobs',component: EditJobsComponent},
+
 
 
 ];

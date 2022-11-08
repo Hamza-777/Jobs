@@ -34,18 +34,18 @@
 
     <label for="">Select Roles</label>
 
-    <select [(ngModel)]="newjob.category" [ngModelOptions]="{standalone: true}" required>
+    <select [(ngModel)]="newjob.categoryid" [ngModelOptions]="{standalone: true}" required>
       <option value="default">---Select---</option>
-      <option *ngFor="let role of categoryList" [ngValue]="role">{{role.name}}</option>
+      <option *ngFor="let role of categoryList" [ngValue]="role.id">{{role.name}}</option>
     </select>
   </div>
   <div class="form-group">
 
     <label for="">Select City</label>
 
-    <select [(ngModel)]="newjob.city" [ngModelOptions]="{standalone: true}" required>
+    <select [(ngModel)]="newjob.cityid" [ngModelOptions]="{standalone: true}" required>
       <option value="default">---Select---</option>
-      <option *ngFor="let city of cityList" [ngValue]="city">{{city.name}}</option>
+      <option *ngFor="let city of cityList" [ngValue]="city.id">{{city.name}}</option>
     </select>
   </div>
 

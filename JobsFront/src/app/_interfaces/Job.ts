@@ -12,12 +12,12 @@ import { State } from "./State";
     salary_min: number;
     company: string;
     created: string;
-    state: State;
+    // state: State;
     stateid: number;
-    city: City;
+    // city: City;
     cityid: number;
-    category: Category;
+    // category: Category;
     categoryid: number;
-    userid: number;
+    // userid: number;
 }
   

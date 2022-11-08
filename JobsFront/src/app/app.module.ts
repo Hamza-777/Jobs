@@ -17,6 +17,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
+import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -34,6 +35,7 @@ export function tokenGetter() {
     JobsDetailsComponent,
     CreateJobsComponent,
     DropDownComponent,
+    EditJobsComponent,
   ],
   imports: [
     BrowserModule,
