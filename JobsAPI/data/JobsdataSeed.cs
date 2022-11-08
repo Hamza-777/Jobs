@@ -74,6 +74,20 @@ namespace JobsAPI.data
                     await context.SaveChangesAsync();
                 }
 
+                if (!context.Courses.Any())
+                {
+                    var courseData =
+                        File.ReadAllText("./data/SeedData/courses.json");
+                    var courseList = JsonSerializer.Deserialize<List<Course>>(courseData);
+                    foreach (var item in courseList)
+                    {
+                        context.Courses.Add(item);
+                    }
+
+                    await context.SaveChangesAsync();
+
+                }
+
             }
             catch (Exception ex)
             {

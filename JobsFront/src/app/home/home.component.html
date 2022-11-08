@@ -20,4 +20,9 @@
   <li *ngIf="isUserAuthenticated()"><a routerLink="/course">Courses</a></li>
   <li *ngIf="isUserAuthenticated()"><a routerLink="/course-crud">Display Courses</a></li>
   <li *ngIf="isUserAuthenticated()"><a routerLink="/course-crud/add">Add Course</a></li>
+  <li><a routerLink="/jobs">Display Jobs</a></li>
+  <li *ngIf="isUserAuthenticated()"><a routerLink="/createjobs">Create Jobs</a></li>
+  <li *ngIf="isUserAuthenticated()"><a routerLink="/editjobs/:id">Edit Jobs</a></li>
+
+
 </ul>

@@ -7,11 +7,15 @@
 </ul>
 <button (click)="onResetSort()">Reset</button>
 
-<div>
+<!-- <div>
   <input (keyup.enter)="onSearch()" [(ngModel)]="search" placeholder="Search">
   <button (click)="onSearch()">Search</button>
   <button (click)="onReset()">Reset</button>
-</div>
+</div> -->
+
+<h2>Search by role</h2>
+<input type="text" [(ngModel)]="search" (input)="onSearch()" placeholder="Enter role">
+{{search}}
 
 <h2>Cities</h2>
 <ul>
@@ -21,7 +25,6 @@
   </li>
 </ul>
 
-
 <h2>State</h2>
 <ul>
   <li class="list-group-item" *ngFor="let item of stateList" [class.active]="item.id === this.stateIdSelected"
@@ -29,6 +32,7 @@
     {{item.name}}
   </li>
 </ul>
+
 <h2>Roles</h2>
 <ul>
   <li class="list-group-item" *ngFor="let item of categoryList" [class.active]="item.id === this.categoryIdSelected"
@@ -36,6 +40,8 @@
     {{item.name}}
   </li>
 </ul>
+
+
 <h1>jobs component</h1>
 <div class="container" *ngFor="let item of jobsList">
   <div class="card" style="width: 18rem;">
