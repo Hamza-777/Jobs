@@ -29,5 +29,11 @@ namespace JobsAPI.Models
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Otp> Otps { get; set; }
         public DbSet<Course> Courses { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<City> Cities { get; set; }
+
+        public DbSet<State> States { get; set; }
+
     }
 }
