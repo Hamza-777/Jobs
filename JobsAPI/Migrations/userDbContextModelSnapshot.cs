@@ -65,24 +65,47 @@ namespace JobsAPI.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("JobsAPI.Models.Category", b =>
+            modelBuilder.Entity("JobsAPI.Models.Course", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseId"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<decimal>("CourseAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CourseAuthor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("CourseCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Categories");
+                    b.Property<string>("CourseDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CourseImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CourseVideoURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseId");
+
+                    b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("JobsAPI.Models.City", b =>
+            modelBuilder.Entity("JobsAPI.Models.Job", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,23 +185,6 @@ namespace JobsAPI.Migrations
                     b.ToTable("Jobs");
                 });
 
-            modelBuilder.Entity("JobsAPI.Models.State", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("States");
-                });
-
             modelBuilder.Entity("JobsAPI.Models.user", b =>
                 {
                     b.Property<int>("UserID")
@@ -212,6 +218,7 @@ namespace JobsAPI.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 

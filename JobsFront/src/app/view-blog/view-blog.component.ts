@@ -23,7 +23,7 @@ export class ViewBlogComponent implements OnInit {
       blogTags: '',
       blogCategory: '',
       company: '',
-      userId: 1,
+      userID: 1,
     };
     this.activatedrouter.paramMap.subscribe(params => { 
       this.id = Number(params.get('blogId')); 
@@ -31,10 +31,10 @@ export class ViewBlogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getBlogs();
+    this.getBlog();
   }
 
-  getBlogs = () => {
+  getBlog = () => {
     this.http.get<Blog>(`https://localhost:7067/api/blogs/${this.id}`)
     .subscribe({
       next: (response: Blog) => {

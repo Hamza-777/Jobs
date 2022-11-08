@@ -6,5 +6,5 @@ export interface Blog {
   blogTags: string;
   blogCategory: string;
   company: string;
-  userId: number;
+  userID: number;
 }

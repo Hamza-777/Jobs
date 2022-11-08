@@ -1,0 +1,22 @@
+
+<form #UpdateForm="ngForm" (ngSubmit)="update(credentials.Password,otp)">
+  <h2 class="form-signin-heading">Forgot Password</h2>
+  <div class="text-success">{{data}}</div>
+  <div class="text-danger"><span [innerHTML]="error"></span></div>
+    <label for="username" class="sr-only">UserName</label>
+        <input type="text" id="UserName" name="UserName " [(ngModel)]="credentials.UserName" 
+          class="form-control" placeholder="UserName" required>
+    <br/>
+    <button class="btn btn-lg btn-primary" type="button" (click)="getuserbyusername(credentials.UserName)">Generate OTP</button>
+    <div *ngIf="user">
+      <input type="text" id="OTP" name="OTP" [(ngModel)]="otp" 
+      class="form-control" placeholder="Enter OTP" required >
+      <br/>
+    <label for="password" class="sr-only">New Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="credentials.Password" 
+          class="form-control" placeholder="New Password" required>
+    <br/>
+          <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+    <br/>
+    </div>
+</form>

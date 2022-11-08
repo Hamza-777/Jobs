@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from "@auth0/angular-jwt";
@@ -13,11 +13,25 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ViewBlogComponent } from './view-blog/view-blog.component';
+import { MarkdownPipe } from './pipes/markdown/markdown.pipe';
+import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
+import { GlobalerrorhandlerService } from './globalerrorhandler.service';
+import { UpdateuserComponent } from './updateuser/updateuser.component';
+import { ShowusersComponent } from './showusers/showusers.component';
+import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
+import { RegisteradminComponent } from './registeradmin/registeradmin.component';
+import { CourseComponent } from './course/course.component';
+import { AddCourseComponent } from './course-crud/add-course/add-course.component';
+import { CourseListComponent } from './course-crud/course-list/course-list.component';
+import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
+import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
+import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
+
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
 }
@@ -31,6 +45,18 @@ export function tokenGetter() {
     BlogsComponent,
     CreateBlogComponent,
     ViewBlogComponent,
+    MarkdownPipe,
+    ForgotpwdComponent,
+    UpdateuserComponent,
+    ShowusersComponent,
+    ShowuserbyidComponent,
+    RegisteradminComponent,
+    CourseComponent,
+    AddCourseComponent,
+    CourseListComponent,
+    EditCourseComponent,
+    GotoCourseComponent,
+    ListoutCoursesComponent,
     JobsComponent,
     JobsDetailsComponent,
     CreateJobsComponent,
@@ -42,6 +68,8 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -52,6 +80,9 @@ export function tokenGetter() {
     })
   ],
   bootstrap: [AppComponent],
-  providers:[AuthGuard],
+  providers:[
+  AuthGuard,
+  {provide:ErrorHandler,useClass: GlobalerrorhandlerService},
+  ],
 })
 export class AppModule { }

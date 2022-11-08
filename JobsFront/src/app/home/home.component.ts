@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private http:HttpClient) { }
   token_authorize_test()
   {
+    //Get-JWT Token again
     const token: string =localStorage.getItem("jwt")!;
     console.log(token);
     const tokeninfo:any = jwt_decode(token);
@@ -32,6 +33,22 @@ export class HomeComponent implements OnInit {
     else{
     return false;
     }
+  }
+  isAdmin = (): boolean => {
+    if(this.isUserAuthenticated())
+    {
+    const token: string =localStorage.getItem("jwt")!;
+    const tokeninfo:any = jwt_decode(token);
+    console.log(tokeninfo);
+    if(tokeninfo.Role == "Admin")
+    {
+    return true;
+    }
+    else{
+    return false;
+    }
+  }
+  return false;
   }
 
   logOut = () => {
