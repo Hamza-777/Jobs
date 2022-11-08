@@ -1,9 +1,0 @@
-<ul>
-    <li class="list-group-item" *ngFor="let item of anylist"
-    [class.active]="item.id === this.cityIdSelected"
-    [value]="item.id"
-    (click)="onCitySelected(item.id)">
-      {{item.name}}
-    </li>
-   
-</ul>

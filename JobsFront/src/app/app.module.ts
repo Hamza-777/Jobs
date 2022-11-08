@@ -29,7 +29,6 @@ import { ListoutCoursesComponent } from './course-user/listout-courses/listout-c
 import { JobsComponent } from './jobs/jobs.component';
 import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
-import { DropDownComponent } from './drop-down/drop-down.component';
 import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 
 export function tokenGetter() { 
@@ -60,7 +59,6 @@ export function tokenGetter() {
     JobsComponent,
     JobsDetailsComponent,
     CreateJobsComponent,
-    DropDownComponent,
     EditJobsComponent,
   ],
   imports: [
