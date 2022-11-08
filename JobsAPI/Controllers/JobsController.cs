@@ -176,8 +176,11 @@ namespace JobsAPI.Controllers
         // POST: api/Jobs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Job>> PostJob(Job job)
+        public async Task<ActionResult<Job>> PostJob([FromBody] Job job)
         {
+            job.city = await _context.Cities.FindAsync(job.cityid);
+            job.state = await _context.States.FindAsync(job.stateid);
+            job.category = await _context.Categories.FindAsync(job.categoryid);
             _context.Jobs.Add(job);
             await _context.SaveChangesAsync();
 

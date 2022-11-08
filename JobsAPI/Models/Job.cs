@@ -14,11 +14,11 @@ namespace JobsAPI.Models
         public decimal salary_min { get; set; }
         public string company { get; set; }
         public string created { get; set; }
-        public State state { get; set; }
+        public State? state { get; set; }
         public int stateid { get; set; }
-        public City city { get; set; }
+        public City? city { get; set; }
         public int cityid { get; set; }
-        public Category category { get; set; }
+        public Category? category { get; set; }
         public int categoryid { get; set; }
         public user? user { get; set; }
         public int? userid { get; set; }
