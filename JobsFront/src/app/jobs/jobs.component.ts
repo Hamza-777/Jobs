@@ -127,4 +127,9 @@ export class JobsComponent implements OnInit {
     this.getJobs();
   }
 
+  onResetSort(){
+    this.sortSelected=undefined;
+    this.getJobs();
+  }
+
 }

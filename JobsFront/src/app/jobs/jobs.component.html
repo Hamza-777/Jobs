@@ -5,6 +5,7 @@
     {{option.name}}
   </li>
 </ul>
+<button (click)="onResetSort()">Reset</button>
 
 <div>
   <input (keyup.enter)="onSearch()" [(ngModel)]="search" placeholder="Search">
