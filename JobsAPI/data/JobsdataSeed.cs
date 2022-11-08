@@ -66,6 +66,14 @@ namespace JobsAPI.data
 
                 }
 
+                if (!context.Users.Any())
+                {
+                    var adminData = File.ReadAllText("./data/SeedData/adminlogin.json");
+                    var admindetails = JsonSerializer.Deserialize<user>(adminData);
+                    context.Users.Add(admindetails);
+                    await context.SaveChangesAsync();
+                }
+
             }
             catch (Exception ex)
             {
