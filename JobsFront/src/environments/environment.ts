@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   imagekey: 'fda5e2fdb5668dbd467c1f63625b6c6e',
-  courseApiUrl:'https://localhost:7067'
+  ApiUrl:'https://localhost:7067/api/'
 };
 
 /*

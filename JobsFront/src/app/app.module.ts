@@ -15,7 +15,7 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ViewBlogComponent } from './view-blog/view-blog.component';
 import { MarkdownPipe } from './pipes/markdown/markdown.pipe';
 import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
-import { GlobalerrorhandlerService } from './globalerrorhandler.service';
+import { GlobalerrorhandlerService } from './services/error-service/globalerrorhandler.service';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { ShowusersComponent } from './showusers/showusers.component';
 import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';

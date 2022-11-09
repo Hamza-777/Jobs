@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { JobsService } from '../services/jobs.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { JobsService } from '../services/jobs-service/jobs.service';
 import { Category } from '../_interfaces/Category';
 import { City } from '../_interfaces/City';
 import { Job } from '../_interfaces/Job';
@@ -21,13 +23,14 @@ export class JobsComponent implements OnInit {
   categoryIdSelected: number;
   search:string;
   sortSelected:string;
+  error!:any;
   sortOptions=[
     {name: "Salary: low to high", value:"salaryAsc"},
     {name: "Salary: high to low", value:"salaryDsc"}
   ]
   // jobparam!: JobParams;
 
-  constructor(private jobservice: JobsService) { }
+  constructor(private jobservice: JobsService,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
     this.getJobs();
@@ -44,8 +47,8 @@ export class JobsComponent implements OnInit {
           this.jobsList = jobsdata;
           console.log(jobsdata);
         },
-        error: (errReponse) => {
-          console.log(errReponse);
+        error: (err: HttpErrorResponse) => {
+          this.error = this.handlerservice.handleError(err);
         }
       })
   }
@@ -58,8 +61,8 @@ export class JobsComponent implements OnInit {
         console.log("city");
         console.log(cityData);
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -73,8 +76,8 @@ export class JobsComponent implements OnInit {
         // return this.categoryList;
         
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -85,8 +88,8 @@ export class JobsComponent implements OnInit {
         
 
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }

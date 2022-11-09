@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Job } from '../_interfaces/Job';
+import { Job } from '../../_interfaces/Job';
 import { map, observable, Observable } from 'rxjs';
-import { JobParams } from '../_interfaces/jobParams';
-import { City } from '../_interfaces/City';
-import { State } from '../_interfaces/State';
-import { Category } from '../_interfaces/Category';
+import { JobParams } from '../../_interfaces/jobParams';
+import { City } from '../../_interfaces/City';
+import { State } from '../../_interfaces/State';
+import { Category } from '../../_interfaces/Category';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobsService {
-baseUrl="https://localhost:7067/api/Jobs";
   constructor(private http:HttpClient) { }
 getAllJobs(cityId?:number, categoryId?:number, stateId?:number, sortName?:string, search?:string){
   let params= new HttpParams();
@@ -26,14 +26,13 @@ getAllJobs(cityId?:number, categoryId?:number, stateId?:number, sortName?:string
   }
   if(sortName != null){
     params= params.append('sort', sortName);
-
   }
 
   if(search != null){
     params=params.append('search', search);
   }
 
-  return this.http.get<Job[]>(this.baseUrl, {observe: 'response', params}).pipe(
+  return this.http.get<Job[]>(environment.ApiUrl+"Jobs", {observe: 'response', params}).pipe(
     map(response=>{
       return response.body;
     })
@@ -41,24 +40,24 @@ getAllJobs(cityId?:number, categoryId?:number, stateId?:number, sortName?:string
 }
 
 getAllJobsById(id:number){
-  return this.http.get<Job>(this.baseUrl+"/"+id);
+  return this.http.get<Job>(environment.ApiUrl+"Jobs/"+id);
 }
 
 getAllCity(){
-  return this.http.get<City[]>(this.baseUrl+"/city");
+  return this.http.get<City[]>(environment.ApiUrl+"Jobs"+"/city");
 }
 
 getAllState(){
-  return this.http.get<State[]>(this.baseUrl+"/state");
+  return this.http.get<State[]>(environment.ApiUrl+"Jobs"+"/state");
 }
 getAllCategory(){
-  return this.http.get<Category[]>(this.baseUrl+"/category");
+  return this.http.get<Category[]>(environment.ApiUrl+"Jobs"+"/category");
 }
 postJobs(postJobRequest:Job):Observable<Job>{
-  return this.http.post<Job>(this.baseUrl,postJobRequest);
+  return this.http.post<Job>(environment.ApiUrl+"Jobs",postJobRequest);
 }
 editJobs(id:number, editedJobRequest:Job){
-  return this.http.put<Job>(this.baseUrl +"/"+id, editedJobRequest);
+  return this.http.put<Job>(environment.ApiUrl+"Jobs/"+id, editedJobRequest);
 }
 
 }

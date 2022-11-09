@@ -3,7 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, UrlSerializer } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
+import { AuthService } from '../services/auth-service/auth.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
 
 @Component({
@@ -19,13 +20,13 @@ export class RegisterComponent implements OnInit
   image!: any ;
   @ViewChild('registerForm') form!: NgForm;
   user: RegisterModel = {} as RegisterModel
-  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) 
+  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService,private auth:AuthService) 
   {
     this.user.workStatus = false;
   }
   checkotp(otp:string)
   {
-    this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
+    this.auth.verifyotp(otp).subscribe({
       next: (response: any) => {
         this.data="OTP Verified";
       console.log(this.data);
@@ -38,9 +39,7 @@ export class RegisterComponent implements OnInit
 }
 generateotp(email: string,fname:string) 
 {
-this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,  {
-  headers: new HttpHeaders({ "Content-Type": "application/json"})
-})
+this.auth.otpgeneration(email,fname)
 .subscribe({
   next: (response: any) => {
     this.data="OTP Generated";
@@ -70,9 +69,7 @@ onFileSelected(event:any)
   }
   register = ( form: NgForm) => {
     if (form.valid) {
-      this.http.post<any>("https://localhost:7067/api/auth/register", this.user, {
-        headers: new HttpHeaders({ "Content-Type": "application/json"})
-      })
+      this.auth.registeruser(this.user)
       .subscribe({
         next: (response: any) => {
           console.log(response);

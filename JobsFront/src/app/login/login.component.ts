@@ -4,6 +4,9 @@ import {Router} from '@angular/router'
 import { NgForm } from '@angular/forms';
 import { LoginModel } from '../_interfaces/login.model';
 import { AuthenticatedResponse } from '../_interfaces/authenticatedresponse.model';
+import { environment } from 'src/environments/environment';
+import { AuthService } from '../services/auth-service/auth.service';
+import { TokenService } from '../services/token-service/token.service';
 
 @Component({
   selector: 'app-login',
@@ -13,20 +16,17 @@ import { AuthenticatedResponse } from '../_interfaces/authenticatedresponse.mode
 export class LoginComponent implements OnInit {
   invalidLogin!: boolean;
   credentials: LoginModel = {userdata:'', password:''};
-  constructor(private router: Router,private http:HttpClient) {
+  constructor(private router: Router,private http:HttpClient,private auth:AuthService,private tokenservice:TokenService) {
    }
   ngOnInit(): void {
     
   }
   login = ( form: NgForm) => {
     if (form.valid) {
-      this.http.post<AuthenticatedResponse>("https://localhost:7067/api/auth/login", this.credentials, {
-        headers: new HttpHeaders({ "Content-Type": "application/json"})
-      })
+      this.auth.loginuser(this.credentials)
       .subscribe({
         next: (response: AuthenticatedResponse) => {
-          const token = response.token;
-          localStorage.setItem("jwt", token); 
+          this.tokenservice.addToken(response);
           this.invalidLogin = false; 
           this.router.navigate(["/"]);
         },

@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
+import { environment } from 'src/environments/environment';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 
 @Component({
   selector: 'app-forgotpwd',
@@ -22,7 +23,7 @@ export class ForgotpwdComponent implements OnInit {
 
 generateotp(email: string,fname:string) 
 {
-this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,  {
+this.http.post<any>(environment.ApiUrl+"Otp/sendemail/"+email+"/"+fname,  {
   headers: new HttpHeaders({ "Content-Type": "application/json"})
 })
 .subscribe({
@@ -37,7 +38,7 @@ this.http.post<any>("https://localhost:7067/api/Otp/sendemail/"+email+"/"+fname,
 }
 getuserbyusername (username:string)
   {
-    this.http.get<any>("https://localhost:7067/api/Auth/"+username).subscribe({
+    this.http.get<any>(environment.ApiUrl+"Auth/"+username).subscribe({
       next:  (response: any) => {
         this.user=response;
       console.log(this.user);
@@ -55,13 +56,13 @@ getuserbyusername (username:string)
 }
 
 update(password:string,otp:string) {
-    this.http.get<any>("https://localhost:7067/api/Otp/checkotp/"+otp).subscribe({
+    this.http.get<any>(environment.ApiUrl+"Otp/checkotp/"+otp).subscribe({
       next: (response: any) => {
         this.data="OTP Verified";
         console.log(response)
         console.log("status",this.data);        
         console.log(this.user);
-        this.http.put<any>("https://localhost:7067/api/Auth/updatepassword/"+this.user.userID, {...this.user,password:password}, {
+        this.http.put<any>(environment.ApiUrl+"Auth/updatepassword/"+this.user.userID, {...this.user,password:password}, {
           headers: new HttpHeaders({ "Content-Type": "application/json"})
         })
         .subscribe({

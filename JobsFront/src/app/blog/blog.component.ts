@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../_interfaces/Blog';
 import jwt_decode from 'jwt-decode';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { environment } from 'src/environments/environment';
+import { BlogsServiceService } from '../services/blog-service/blogs-service.service';
 
 @Component({
   selector: 'app-blog',
@@ -13,7 +16,7 @@ export class BlogComponent implements OnInit {
   error!: any;
   currentUser: any;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,private handlerservice:GlobalerrorhandlerService,private blogservice:BlogsServiceService) { 
     this.currentUser = jwt_decode(localStorage.getItem("jwt")!);
   }
 
@@ -21,17 +24,14 @@ export class BlogComponent implements OnInit {
   }
 
   deleteBlog = (id: any) => {
-    this.http.delete<Blog>(`https://localhost:7067/api/blogs/${id}`)
+    this.blogservice.deleteBlog(id)
     .subscribe({
       next: (response: Blog) => {
         console.log(response);
+        window.location.reload();
       },
       error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error = err.error.title;
-      else
-        this.error = err.error;
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }

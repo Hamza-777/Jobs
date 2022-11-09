@@ -1,5 +1,6 @@
     <div>
         <div class="container">
+         
         <form #editForm="ngForm" (ngSubmit)="editUser(editForm)">
           <h2 class="form-signin-heading">Update User Details</h2>
           <div class="text-success">{{data}}</div>
@@ -17,7 +18,7 @@
           </div>     
             <div hidden>
               <label for="userid" class="sr-only">UserID</label>
-                <input type="number" id="userid" name="userid " [(ngModel)]="user.userId" 
+                <input type="number" id="userid" name="userid " [(ngModel)]="user.userID" 
                   class="form-control" placeholder="userid" required>
               <label for="password" class="sr-only">Password</label>
                   <input type="text" id="Password" name="Password " [(ngModel)]="user.password" 
@@ -95,7 +96,8 @@
               class="form-control" placeholder="Description" required>
             <br/>
             </div>
-              <button type="button" class="btn  btn-lg btn-primary" type="submit" [disabled]="!editForm.valid">Update</button>
+            
+              <button type="button" class="btn  btn-lg btn-primary" type="submit" [disabled]="!editForm.valid" >Update</button>
         </form>
       </div>    
     </div>

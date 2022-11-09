@@ -50,10 +50,8 @@
         <input type="text" id="LinkedInProfileLink" name="LinkedInProfileLink" [(ngModel)]="user.linkedInProfile" 
           class="form-control" placeholder="LinkedInProfileLink">
         <br/>
-        <div class="form-group form-check">
-            Are You Experienced???
-            <input type="checkbox" class="form-check-input"  id="WorkStatus" name="WorkStatus" [(ngModel)]="user.workStatus" 
-            class="form-control" placeholder="Are You Experienced???">
+        <div class="form-group form-check" style="display: flex;">
+          Are You Experienced:<input type="checkbox"  id="WorkStatus" name="WorkStatus" [(ngModel)]="user.workStatus">
         </div>
         <br/>
         <div name="Experienced"  *ngIf="user.workStatus==true">
