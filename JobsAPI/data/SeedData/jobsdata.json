@@ -10,7 +10,8 @@
     "description": "Who we are: Acqueon's conversational engagement software lets customer-centric brands orchestrate campaigns and proactively engage with consumers using voice, messaging, and email channels. Acqueon leverages a rich data platform, statistical and predictive models, and intelligent workflows to let enterprises maximize the potential of every customer conversation. Acqueon is trusted by 200 clients across industries to increase sales, drive proactive service, improve collections, and develop loyal…",
     "redirect_url": "https://www.adzuna.in/land/ad/2940980533?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=4743F22780BA9223F053E232F36F5E08AE357820",
     "title": "Director Engineering",
-    "categoryid": 1
+    "categoryid": 1,
+    "userid": 1
   },
   {
     "created": "2022-03-03T05:05:20Z",
@@ -23,7 +24,9 @@
     "description": "About the role: We are currently building an exciting multi-category, digital first, direct to consumer, commerce business for couple of new brands in Food & Fashion category. The Engineering Team forms the backbone of our ecommerce business. We build and iterate over our core platform that handles orders, payments, delivery promises, order tracking & logistics integrations. We are looking for an Engineering Manager to lead its development across web, mobile and in-store devices. You will be re…",
     "redirect_url": "https://www.adzuna.in/land/ad/2177266353?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=1C40EA8F25B29C9AC0E5D7524FD27B445457906A",
     "title": "Engineering Manager-E Commerce",
-    "categoryid": 1
+    "categoryid": 1,
+    "userid": 1
+
   },
   {
     "created": "2022-03-15T05:08:49Z",
@@ -36,7 +39,8 @@
     "description": "Looking for someone with 6 years of exp and has worked on scalable systems and has good understanding of architecting systems with Redis, Elasticsearch and Kafka. We are looking for a Senior Java Developer with good product development experience to join our founding engineering team.  Hi We are Threado At Threado, we are building the future of community experience for businesses. Community-led growth is the most sustainable way to build businesses and we want to help drive this shift in the ye…",
     "redirect_url": "https://www.adzuna.in/land/ad/2971610014?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=E2B4F1A4A25B4F9AF1AA46B4F34AD26377B47220",
     "title": "Senior Backend Engineer",
-    "categoryid": 1
+    "categoryid": 1,
+    "userid": 1
   },
   {
     "created": "2022-01-05T04:26:42Z",
@@ -49,7 +53,8 @@
     "redirect_url": "https://www.adzuna.in/land/ad/2790561023?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=73A8DFC444D83C464FF67124B3B7ED9F7C9D191D",
     "description": "The candidate is expected to create and lead a team of engineers and drive dev efforts for MediBuddy and its various products. The candidate will be part of the Engineering leadership team (IIT/IIM grads) and will help strategise, execute product roadmap. Work closely with Product and business teams to strategize or design the features and product experiments. Lead a team of 5-7 Engineers [Mobile and or Backend] Responsible for engineering delivery in platform & product engineering pods at Medi…",
     "title": "Engineering Manager",
-    "categoryid": 4
+    "categoryid": 4,
+    "userid": 1
 
   },
   {
@@ -63,7 +68,8 @@
     "location": "Bangalore, Karnataka",
     "stateid": 1,
     "cityid": 1,
-    "salary_min": 2500000
+    "salary_min": 2500000,
+    "userid": 1
   },
   {
     "title": "Data Engineering Manager",
@@ -76,6 +82,7 @@
     "cityid": 1,
     "company": "Amagi Media Labs",
     "salary_max": 6000000,
+    "userid": 1,
     "created": "2022-01-21T04:29:35Z"
   },
   {
@@ -89,7 +96,8 @@
     "created": "2022-09-06T15:59:27Z",
     "location": "Chennai, Tamilnadu",
     "stateid": 3,
-    "cityid": 3
+    "cityid": 3,
+    "userid": 1
 
   },
   {
@@ -103,7 +111,8 @@
     "created": "2021-11-08T04:05:18Z",
     "company": "Vital",
     "salary_min": 4000000,
-    "title": "Engineering Manager"
+    "title": "Engineering Manager",
+    "userid": 1
   },
   {
     "redirect_url": "https://www.adzuna.in/land/ad/1475649175?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=0D4A7AAC3114CCD44FF5D6693B782279DF903240",
@@ -117,7 +126,8 @@
     "created": "2020-03-05T09:17:33Z",
     "company": "zyoin",
     "salary_max": 8000000,
-    "salary_min": 2000000
+    "salary_min": 2000000,
+    "userid": 1
   },
   {
     "title": "ROR & React Developer",
@@ -130,7 +140,8 @@
     "created": "2022-05-21T05:28:59Z",
     "location": "India",
     "stateid": 5,
-    "cityid": 5
+    "cityid": 5,
+    "userid": 1
   },
   {
     "created": "2022-03-22T05:11:07Z",
@@ -143,7 +154,8 @@
     "redirect_url": "https://www.adzuna.in/land/ad/2989122128?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=F187513BA7A4C1071B6CCEE196078020EC73A45F",
     "description": "Role – Senior Developer (Back End) Location - Bangalore Experience 5 Years Responsibilities Responsible for design & developing products involving Java, JEE, Springboot. Object-oriented analysis and design using common design patterns. Deep insight of Java and JEE internals such as memory management, transaction management, etc. Design and develop features and modules for mission-critical applications. Contribute in all phases of the development lifecycle. Ensure designs are in compliance with …",
     "title": "Senior Backend Developer",
-    "categoryid": 8
+    "categoryid": 8,
+    "userid": 1
   },
   {
     "location": "India",
@@ -156,7 +168,8 @@
     "categoryid": 1,
     "title": "Full Stack Engineer (ROR & ReactJS)",
     "stateid": 5,
-    "cityid": 5
+    "cityid": 5,
+    "userid": 1
   },
   {
 
@@ -169,6 +182,7 @@
     "cityid": 1,
     "title": "Head of Design",
     "categoryid": 5,
+    "userid": 1,
     "description": "Summary of Role Innovate to solve the world's most important challenges. We are looking for Advanced User Exp Designer with strong capabilities to design and own the product experience. The designer would be responsible for end to end interaction and visual design. Responsibilities Own the design execution while working closely with key stakeholders in design, engineering and business stakeholders to solve user needs and business goals Demonstrate mastery of the end-end UX process, including us…",
     "redirect_url": "https://www.adzuna.in/land/ad/2308519003?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=F1F4BD5DFD2923F875FDFF4F6D68036BBE75F7CA"
   },
@@ -182,6 +196,7 @@
     "cityid": 5,
     "categoryid": 7,
     "salary_max": 9900000,
+    "userid": 1,
     "description": "URGENT HIRING  Digital Marketing Executive. >We provide internship. >Which helps DM more in career growth. >Our company has fixed salary and attractive incentive along with internship. Responsibilities: Formulate strategies to increase organic reach Monitor company presence on social media Generating organic leads based. Social media marketing and optimization. Create graphic content for social media posts. Qualifications: Certified in digital marketing Graduate /undergraduate ARSH management p…",
     "redirect_url": "https://www.adzuna.in/land/ad/3551139216?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=C0D85FACB32E1EF7F2735350379AB38B32C3C21A"
 
@@ -197,7 +212,8 @@
     "categoryid": 6,
     "title": "CTO",
     "cityid": 5,
-    "stateid": 5
+    "stateid": 5,
+    "userid": 1
 
   },
   {
@@ -211,7 +227,8 @@
     "location": "Delhi, India",
     "salary_max": 6000000,
     "cityid": 6,
-    "stateid": 4
+    "stateid": 4,
+    "userid": 1
   },
   {
     "location": "Bangalore, Karnataka",
@@ -224,7 +241,8 @@
     "categoryid": 4,
     "title": "Senior/Principal Product Manager",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "redirect_url": "https://www.adzuna.in/land/ad/3138985416?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=38C34077FC636C1FA5EC98DD0336886A7318AF98",
@@ -237,7 +255,8 @@
     "location": "Bangalore, Karnataka",
     "salary_min": 4000000,
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "company": "Sureminds Solutions Pvt Ltd",
@@ -250,7 +269,8 @@
     "redirect_url": "https://www.adzuna.in/land/ad/2242315558?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=4E9C6121A9A3BAFB9D12F753DDE1EFA3CACA1F49",
     "categoryid": 4,
     "cityid": 2,
-    "stateid": 2
+    "stateid": 2,
+    "userid": 1
   },
   {
     "salary_min": 2000000,
@@ -263,7 +283,8 @@
     "redirect_url": "https://www.adzuna.in/land/ad/2516408670?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=DEF47F1991DA2046BCA56E06C0F0910A843EBBC6",
     "description": "Initial Responsibilities • Survey organization to acquire understanding of current practices, strengths, weaknesses • Identify productivity and quality metrics • Establish program to collect, analyse and report metrics • Survey market for developer and QA screening tools • Screen existing program resources to baseline capabilities • Assess current team against industry benchmarks • Identify improvement areas • Establish get well plan for each improvement area • Survey market for online training…",
     "cityid": 5,
-    "stateid": 5
+    "stateid": 5,
+    "userid": 1
   },
   {
     "categoryid": 1,
@@ -276,7 +297,8 @@
     "salary_max": 6000000,
     "company": "Multi Recruit",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
 
   },
   {
@@ -290,7 +312,8 @@
     "location": "Bangalore, Karnataka",
     "salary_min": 3500000,
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "description": "Job Purpose · Responsible for the implementation and operations of all technology infrastructures which includes data center, network and server services, telephony, service monitoring, user support/help desk, workstation management, servers, storage, and related software and hardware Key Accountabilities Strategic Activities · Develop the overarching network architecture to enable smooth functioning of all Air India systems across the nation · Design the overall infrastructure strategy for Air…",
@@ -303,7 +326,8 @@
     "created": "2022-09-20T07:01:49Z",
     "salary_min": 2000000,
     "cityid": 6,
-    "stateid": 4
+    "stateid": 4,
+    "userid": 1
   },
   {
     "redirect_url": "https://www.adzuna.in/land/ad/3468843215?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=E80A731DD36D784C2B22F51B2F2266D8F0507527",
@@ -316,7 +340,8 @@
     "company": "Jobdost",
     "salary_min": 4000000,
     "cityid": 5,
-    "stateid": 5
+    "stateid": 5,
+    "userid": 1
   },
   {
     "created": "2022-09-29T06:59:09Z",
@@ -329,7 +354,8 @@
     "title": "Backend Engineering Manager",
     "categoryid": 4,
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "location": "Bangalore, Karnataka",
@@ -342,7 +368,8 @@
     "categoryid": 1,
     "title": "Senior Software Engineer (SDE III)",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "redirect_url": "https://www.adzuna.in/land/ad/3269975154?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=DBDFC505DCE959789DBD02C51623E4BBF38C61B0",
@@ -355,7 +382,8 @@
     "location": "India",
     "salary_min": 3000000,
     "cityid": 5,
-    "stateid": 5
+    "stateid": 5,
+    "userid": 1
   },
   {
     "salary_min": 4000000,
@@ -368,6 +396,7 @@
     "redirect_url": "https://www.adzuna.in/land/ad/2836410654?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=6E0925A3380E0C0E9170810EF313AE2652FDE363",
     "description": "One Impression is one of the World’s largest influencer marketing platforms helping over 300 global brands ranging from enterprises such as Unilever, Nestle, Amazon to startups such as Meesho, Nykaa, CoinSwitch. We are active in over 12 countries including India, US, Australia, the Middle East, etc, and have a network of over 6.5 Mil  influencers across Instagram & YouTube. Our creator network is one of the largest ranging from top celebrities to nano creators in over 10 languages. We are quick…",
     "cityid": 5,
+    "userid": 1,
     "stateid": 5
   },
   {
@@ -381,7 +410,8 @@
     "description": "An Accel funded startup which is an audience-participative video content platform for talent shows and game shows in an async, bite sized format. It is a 3-sided platform featuring hosts, contestants and audience. • Popular hosts set up the talent hunts (across genres like comedy, dance, dating & fashion) • Contestants send in their video entries, and • Audiences ‘actively consume’ content by playing judge, predicting winners among other modes of engagement Expectations from the role: • Hands-o…",
     "redirect_url": "https://www.adzuna.in/land/ad/2412913039?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=6B3ED206A3C4E854A7E08D09D39C3CBEEBDEBBBE",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "salary_min": 4000000,
@@ -394,7 +424,8 @@
     "redirect_url": "https://www.adzuna.in/land/ad/3477544683?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=6B344DD51DAEB0E08E273548D3B3D2302AB11F0F",
     "description": "As a member of the founding engineering team at Kombai, you'd work directly with the CTO and CEO to build a global product for the frontend dev teams from scratch. Together, we'd have a crack at several hard, high-impact problems - often involving challenges across product, engineering, and research areas. Note : Unlike most organizations, the frontend developers at Kombai will not work primarily on the frontend of the product. Instead, they will work on developing the core product, which is fo…",
     "cityid": 5,
-    "stateid": 2
+    "stateid": 2,
+    "userid": 1
   },
   {
     "description": "Tripoto :Tripoto is a full stack platform for leisure travel. We are solving pain points of the entire consumer lifecycle by bringing content(UGC & PGC), community, and commerce together on a single platform. Our focus as a company is Product, Tech, Design; acquiring high-quality user-generated content and super-fast growth of our community around the world. Currently, we are working on building a holiday marketplace. User-generated content, Community & Social, messaging, search, Ai and persona…",
@@ -407,7 +438,8 @@
     "location": "Delhi,Haryana",
     "salary_min": 4000000,
     "cityid": 6,
-    "stateid": 4
+    "stateid": 4,
+    "userid": 1
   },
   {
 
@@ -421,7 +453,8 @@
     "redirect_url": "https://www.adzuna.in/land/ad/1408167648?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=7150CCE1E54BC9C2FCACBE56708C45C3B575EB8C",
     "description": "MyGate is a technology-forward solution for gated communities, now simplifying the daily lives of residents, managing committees and security personnel. Founded in 2016, MyGate is reimagining the outdated procedures at gated communities through use of technology. Its several innovative features augment security at the gate and enhance convenience within for over 600,000 homes in 10 Indian cities. Named one of India’s most innovative Company in 2018, MyGate was conceptualized, designed and execu…",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "redirect_url": "https://www.adzuna.in/land/ad/3314544432?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=D1F7226FE36A14B21BB224D4DB067DF1C4AE4111",
@@ -434,7 +467,8 @@
     "location": "India",
     "salary_min": 3000000,
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "categoryid": 9,
@@ -447,7 +481,8 @@
     "company": "Multi Recruit",
     "created": "2022-01-01T04:24:03Z",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "created": "2022-01-01T04:24:05Z",
@@ -460,7 +495,8 @@
     "title": "Content Strategist",
     "categoryid": 7,
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
     "location": "India",
@@ -473,7 +509,8 @@
     "categoryid": 1,
     "title": "Full Stack Engineer",
     "cityid": 5,
-    "stateid": 5
+    "stateid": 5,
+    "userid": 1
   },
   {
     "salary_min": 4500000,
@@ -485,6 +522,7 @@
     "stateid": 1,
     "title": "Sr. Manager Policy",
     "categoryid": 4,
+    "userid": 1,
     "redirect_url": "https://www.adzuna.in/land/ad/2809245047?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=2909C6DFD7BF2D98D1571E01F26CB834717D2BB1",
     "description": "The role of a Personal Loan Risk Head is to own, manage and communicate risk policies and processes. He/She shall provide hands-on development of risk models involving market, credit and operational risk, assure controls are operating effectively, and provide research and analytical support. Prospective candidates must have excellent quantitative and analytical skills, along with the ability to apply those skills across a variety of business processes. Key Expectations Designing and implementin…"
   },
@@ -498,6 +536,7 @@
     "created": "2021-10-14T06:18:40Z",
     "title": "Principal Software Engineer / SSE",
     "categoryid": 1,
+    "userid": 1,
     "description": "My Client's India is its largest studio outside USA with 400 people and growing rapidly. It manages some of the biggest global games in the Casual Gaming, Action Strategy, Match-3, Slots, and Invest Express genres. The game teams are responsible for the long term-vision of the game, its entire Game Design & Tuning, Product Roadmap, Features, Content & Creative decisions, Art work (2D, 3D, Animation), Development, QA/Testing, Analytics & Performance Tracking, User Acquisition & Live Operations. …",
     "redirect_url": "https://www.adzuna.in/land/ad/2542676782?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=31A574DAC532EB5ED144856D980F4F46AC59935D"
   },
@@ -511,6 +550,7 @@
     "description": "Own and hit/exceed annual sales targets within assigned territory and accounts Develop and execute strategic plan to achieve sales targets and expand our customer base Build and maintain strong, long -lasting customer relationships Partner with customers to understand their business needs and objectives Effectively communicate the value proposition through proposals and presentations Understand categoryid-specific landscapes and trends Reporting on forces that shift tactical budgets and strategic…",
     "categoryid": 7,
     "title": "Sales Head",
+    "userid": 1,
     "cityid": 1,
     "stateid": 1
   },
@@ -525,7 +565,8 @@
     "salary_max": 7000000,
     "salary_min": 3000000,
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
   },
   {
 
@@ -539,7 +580,8 @@
     "salary_max": 8000000,
     "company": "Staffio HR",
     "cityid": 1,
-    "stateid": 1
+    "stateid": 1,
+    "userid": 1
 
   },
   {
@@ -553,7 +595,8 @@
     "title": "Fullstack Developer",
     "salary_min": 3500000,
     "company": "SolutionTech HR",
-    "created": "2020-05-20T21:14:48Z"
+    "created": "2020-05-20T21:14:48Z",
+    "userid": 1
   },
   {
     "location": "Chennai Tamilnadu",
@@ -566,7 +609,8 @@
     "description": "Job Description What is the role? ‍ Expected to manage the product plan, engineering, and delivery of Plum Integration activities. Plum is a rewarding and incentive infrastructure for businesses. It's a unified integrated suite of products to handle various rewarding use cases for consumers, sales, channel partners, and employees. 31% of the total tech team is aligned towards this product and comprises 32 members within Plum Tech, Quality, Design, and Product management. The annual FY 2019-20 r…",
     "redirect_url": "https://www.adzuna.in/land/ad/3468844023?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=526EF27F7F0262108B39FDBE99DDBB97E19EF87F",
     "title": "Engineering Manager",
-    "categoryid": 4
+    "categoryid": 4,
+    "userid": 1
   },
 
   {
@@ -579,6 +623,7 @@
     "cityid": 6,
     "title": "Engineering Manager",
     "categoryid": 4,
+    "userid": 1,
     "redirect_url": "https://www.adzuna.in/land/ad/1155088591?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=4D4E9440869FD0A6C17A2A1AAD8997FE69874B6C",
     "description": "As an Engineering Manager, you will lead a team of engineers while working with leaders to create and implement the technology platform and product vision for RIVIGO. You will work with engineers and product teams to create roadmaps with an emphasis on execution. You will stay technical, leading engineers across the stack to bring end-to-end solutions to life, digging into complex but rewarding world of solving real problems. Qualifications: • Bachelors/Masters in Computer Science or a related …"
   },
@@ -593,6 +638,7 @@
     "company": "Seven N Half",
     "created": "2022-08-18T06:57:06Z",
     "salary_min": 3000000,
+    "userid": 1,
     "title": "Software Development Head"
   },
   {
@@ -604,6 +650,7 @@
     "location": "Chennai Tamilnadu",
     "stateid": 3,
     "cityid": 3,
+    "userid": 1,
     "created": "2022-05-31T06:11:35Z",
     "salary_max": 6000000,
     "company": "DirectShifts"
@@ -619,6 +666,7 @@
     "description": "What we are looking for DirectShifts is growing rapidly and looking for a full stack engineer in Manhattan, NYC. We are looking for incredibly tenacious engineers who are not only great engineers but who can bring unique value to our rapidly growing team. We are big fans of focusing mainly on two things: 1) talk to users and 2) build product. You will be responsible for implementing ideas and mocks for our app (web and mobile) which is used daily by healthcare professionals, internal users and …",
     "redirect_url": "https://www.adzuna.in/land/ad/3133135809?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=CBB7AEACB08BC477520C733D9C67DB06813E4FB5",
     "categoryid": 1,
+    "userid": 1,
     "title": "Full Stack Engineer"
   },
   {
@@ -630,6 +678,7 @@
     "company": "BiteSpeed",
     "created": "2022-06-26T06:20:48Z",
     "categoryid": 4,
+    "userid": 1,
     "title": "Tech Lead",
     "description": "About BiteSpeed Hey there We are a seed funded SaaS startup on a mission to help ecommerce brands embrace conversational commerce as the future of selling online. We're starting by building the tools for any ecommerce brand to be able to sell and engage with their customers on chat apps like Whatsapp, FB Messenger.  Read more about our mission and the story of commerce here  Within 2 years of launch, we have 1500 e-commerce brands across 50 countries using our product (pretty cool right?). Chec…",
     "redirect_url": "https://www.adzuna.in/land/ad/3262155116?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=8A960399BB4089A1EC5F8FEF2522714F0D4B9460"
@@ -645,6 +694,7 @@
     "location": "Bangalore Karnataka",
     "stateid": 1,
     "cityid": 1,
+    "userid": 1,
     "salary_min": 3000000
   },
   {
@@ -656,6 +706,7 @@
     "salary_max": 7000000,
     "created": "2022-07-01T06:24:52Z",
     "categoryid": 1,
+    "userid": 1,
     "title": "Founding Engineer - C++/Rust Backend",
     "description": "Looking for: - Strong experience with C++ and systems programming - Willing to work startup hours - Willing to have part of working day overlapped with us in USA Pacific Time. - Team player Good to have: - knowledge of distributed systems - worked on internals of databases in the past - knowledge of observability tools and systems Offering: - top tier compensation, comprised of stock and salary - top of the line equipment (computer, accessories, etc) - free access to unlimited technical books a…",
     "redirect_url": "https://www.adzuna.in/land/ad/3277686266?se=6qk5Zsha7RG26nEzsjd06w&utm_medium=api&utm_source=33783cca&v=F628EC67589AE2B933827E5278DB9C7B7A56A075"
