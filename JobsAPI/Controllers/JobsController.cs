@@ -27,7 +27,35 @@ namespace JobsAPI.Controllers
             var job= await _repo.GetJobs(jobParams);
             return Ok(job);
         }
+                jobsList = jobsList.Where(p => p.title.ToLower().Contains(jobParams.search.ToLower()));
+            if (jobParams.categoryId != null || jobParams.cityId != null || jobParams.stateId != null)
+            {
+                jobsList = FilterJobs(jobParams.categoryId, jobParams.cityId, jobParams.stateId, jobsList);
+            }
+            if (jobParams.sort != null)
+            {
+                jobsList = SortBySalary(jobParams.sort, jobsList);
+            }
+            Console.WriteLine( "count before: ");
+            Console.WriteLine(jobsList.Count());
+                jobsList = jobsList.Where(p => p.title.ToLower().Contains(jobParams.search.ToLower()));
+            jobsList = Pagination(jobParams, jobsList);
+            Console.WriteLine("count after: ");
+            Console.WriteLine(jobsList.Count());
+            if (jobParams.categoryId != null || jobParams.cityId != null || jobParams.stateId != null)
+            {
+                jobsList = FilterJobs(jobParams.categoryId, jobParams.cityId, jobParams.stateId, jobsList);
+            }
+            if (jobParams.sort != null)
+            {
+                jobsList = SortBySalary(jobParams.sort, jobsList);
+            }
+            Console.WriteLine( "count before: ");
+            Console.WriteLine(jobsList.Count());
 
+            jobsList = Pagination(jobParams, jobsList);
+            Console.WriteLine("count after: ");
+            Console.WriteLine(jobsList.Count());
 
 
         // GET: api/Jobs/5

@@ -1,28 +1,47 @@
-<h1>Home Page</h1>
-<br>
-<div *ngIf="isUserAuthenticated()" style="color:blue;">
-  <h2>
-    YOU ARE LOGGED IN
-  </h2>
-</div>
-<br>
-<ul>
-  
-  <li *ngIf="!isUserAuthenticated()"><a routerLink="/login">Login</a></li>
-  <li *ngIf="!isUserAuthenticated()"><a routerLink="/register">Register</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/createblogs" class="logout">Create Blog</a></li>
-  <li><a routerLink="/blogs" class="logout">Blogs</a></li>
-  <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Log out</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/updateuser">Update User</a></li>
-  <li *ngIf="isAdmin()"><a routerLink="/showusers">View All Users</a></li>
-  <li *ngIf="isAdmin()"><a routerLink="/registeradmin">Register Admin</a></li>
-  <li *ngIf="!isUserAuthenticated()"><a routerLink="/forgotpwd">Forgot Password</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/course">Courses</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/course-crud">Display Courses</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/course-crud/add">Add Course</a></li>
-  <li><a routerLink="/jobs">Display Jobs</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/createjobs">Create Jobs</a></li>
-  <li *ngIf="isUserAuthenticated()"><a routerLink="/editjobs/:id">Edit Jobs</a></li>
-
-
-</ul>
+<main class="container homepage">
+  <section class="service flex align-center justify-between">
+    <div class="about-service flex flex-col align-start">
+      <p class="h2">Search For Your Dream Job!!</p>
+      <p class="lead">
+        Apply for a job from among various great companies offering variety of
+        positions...
+      </p>
+      <a class="btn btn-outline" routerLink="/jobs">Apply Now</a>
+    </div>
+    <img
+      class="service-img"
+      src="https://modcanyon.com/wp-content/uploads/2022/09/What-Are-the-Highest-Paying-Jobs-A-Check-out-the-New-Economic-situation.jpg"
+      alt="job"
+    />
+  </section>
+  <section class="service flex align-center justify-between">
+    <img
+      class="service-img"
+      src="https://www.pngitem.com/pimgs/m/297-2978988_blogging-and-content-the-transparent-blog-png-png.png"
+      alt="job"
+    />
+    <div class="about-service flex flex-col align-start">
+      <p class="h2">Read Our Blogs!!</p>
+      <p class="lead">
+        Read and write blogs in your interested study, technology or field and
+        establish a flow of quality knowledge...
+      </p>
+      <a class="btn btn-solid" routerLink="/blogs">Explore Blogs</a>
+    </div>
+  </section>
+  <section class="service flex align-center justify-between">
+    <div class="about-service flex flex-col align-start">
+      <p class="h2">Checkout Our Courses!!</p>
+      <p class="lead">
+        Upskill yourself by taking courses from top instructors from across the
+        world and highly experienced in their fields...
+      </p>
+      <a class="btn btn-outline" routerLink="/courses">Checkout Courses</a>
+    </div>
+    <img
+      class="service-img"
+      src="https://pngroyale.com/wp-content/uploads/2022/04/E-Learning-PNG-Picture.png"
+      alt="job"
+    />
+  </section>
+</main>

@@ -14,24 +14,10 @@ namespace JobsAPI.Repositories
         {
             _context = context;
         }
-        public  async Task<SendResponse> GetJobs([FromQuery] JobParams jobParams)
+        public  async Task<SendResponse> GetJobs()
         {
-            IQueryable<Job> jobsList =  _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city);
-            
-            if (jobParams.search != null)
-            {
-                jobsList = jobsList.Where(p => p.title.ToLower().Contains(jobParams.search.ToLower()));
-            }
-            if (jobParams.categoryId != null || jobParams.cityId != null || jobParams.stateId != null)
-            {
-                jobsList = FilterJobs(jobParams.categoryId, jobParams.cityId, jobParams.stateId, jobsList);
-            }
-            if (jobParams.sort != null)
-            {
-                jobsList = SortBySalary(jobParams.sort, jobsList);
-            }
+            var jobsList =  await _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city).ToListAsync();
 
-            //jobsList = Pagination(jobParams, jobsList);
             if (jobsList.Count() > 0)
             {
                 return new SendResponse("jobs Found", StatusCodes.Status200OK,jobsList, "");
@@ -39,44 +25,6 @@ namespace JobsAPI.Repositories
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Cannot find any Jobs");
             
         }
-
-        //Pagination
-        private static IQueryable<Job> Pagination(JobParams jobParams, IQueryable<Job> jobsList)
-        {
-
-            // Pagination with pagenumber and pagesize
-            jobsList = jobsList.Skip((jobParams.pageNumber - 1) * jobParams.PageSize).Take(jobParams.PageSize);
-            return jobsList;
-        }
-
-        // Filter by city, state, role
-        private static IQueryable<Job> FilterJobs(int? catid, int? citid, int? staid, IQueryable<Job> jobsList)
-        {
-            jobsList = jobsList.Where(p => (!catid.HasValue || p.categoryid == catid) &&
-                            (!staid.HasValue || p.stateid == staid) &&
-                             (!citid.HasValue || p.cityid == citid));
-            return jobsList;
-        }
-
-        // sorting by salary 
-        private static IQueryable<Job> SortBySalary(string? sort, IQueryable<Job> jobsList)
-        {
-
-            switch (sort)
-            {
-                case "salaryAsc":
-                    jobsList = jobsList.OrderBy(p => p.salary_max);
-                    break;
-
-                case "salaryDsc":
-                    jobsList = jobsList.OrderByDescending(p => p.salary_max);
-                    break;
-            }
-
-
-            return jobsList;
-        }
-
         public async Task<SendResponse> GetJob(int id)
         {
             var job = await _context.Jobs.Include(p => p.category).
