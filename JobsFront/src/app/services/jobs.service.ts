@@ -61,4 +61,8 @@ editJobs(id:number, editedJobRequest:Job){
   return this.http.put<Job>(this.baseUrl +"/"+id, editedJobRequest);
 }
 
+deleteJobs(id:number){
+  return this.http.delete<Job>(this.baseUrl +"/"+ id);
+}
+
 }
