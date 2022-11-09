@@ -1,9 +1,11 @@
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course.model';
-import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesService } from 'src/app/services/courses-service/courses.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 
 @Component({
   selector: 'app-course',
@@ -26,10 +28,11 @@ export class CourseComponent implements OnInit {
   coursess=["Business Analysis",'Commercial Law','Human Resources','Accounts','Corporate','Tax Planning',"Machine Learning",'Web Development','Software Development'];
   courseCategories=['Technology','Business Management','Finance Management'];
   filteredItems = this.items;
+  error: any;
 
   
 
-  constructor(private coursesService:CoursesService,private route:ActivatedRoute, private courseService:CoursesService, private router:Router) { }
+  constructor(private coursesService:CoursesService,private route:ActivatedRoute, private courseService:CoursesService, private router:Router,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
 
@@ -43,15 +46,13 @@ export class CourseComponent implements OnInit {
         //console.log(this.courses[0]);
        
       },
-      error:(response)=>{
-        console.log(response);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
     
   }
   
-
- 
 
   Search(){
 

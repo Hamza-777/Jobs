@@ -4,7 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
-import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
+import { AuthService } from '../services/auth-service/auth.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
 
 @Component({
@@ -18,7 +19,7 @@ export class UpdateuserComponent implements OnInit {
   user: RegisterModel = {} as RegisterModel;
   currentUser: any;
   image: any;
-  constructor(private router: Router,private http: HttpClient,private handlerservice:GlobalerrorhandlerService) 
+  constructor(private router: Router,private http: HttpClient,private handlerservice:GlobalerrorhandlerService,private auth:AuthService) 
   {
 
   }
@@ -34,7 +35,7 @@ export class UpdateuserComponent implements OnInit {
   }
   getuserbyusername (username:string)
   {
-    this.http.get<any>("https://localhost:7067/api/Auth/"+username).subscribe({
+    this.auth.getuserbyusername(username).subscribe({
       next:  (response: any) => {
         this.user=response;
       console.log(this.user);
@@ -62,10 +63,9 @@ onFileSelected(event:any)
   })
 }
   editUser = ( form: NgForm) => {
+    console.log(form)
     if (form.valid) {
-      this.http.put<any>("https://localhost:7067/api/Auth/updateuser/"+this.user.userId , this.user, {
-        headers: new HttpHeaders({ "Content-Type": "application/json"})
-      })
+      this.auth.edituser(this.user)
       .subscribe({
         next: (response: RegisterModel) => {
           console.log(response);

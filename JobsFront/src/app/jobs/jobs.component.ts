@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { JobsService } from '../services/jobs.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { JobsService } from '../services/jobs-service/jobs.service';
 import { Category } from '../_interfaces/Category';
 import { City } from '../_interfaces/City';
 import { Job } from '../_interfaces/Job';
@@ -11,6 +13,7 @@ import { State } from '../_interfaces/State';
   styleUrls: ['./jobs.component.css'],
 })
 export class JobsComponent implements OnInit {
+  error: any;
   jobsList: Job[];
   filteredJobs: Job[];
   cityList: City[];
@@ -22,7 +25,10 @@ export class JobsComponent implements OnInit {
   searchQuery: string = '';
   sortOrder: string = 'default';
 
-  constructor(private jobservice: JobsService) {}
+  constructor(
+    private jobservice: JobsService,
+    private handlerservice: GlobalerrorhandlerService
+  ) {}
 
   ngOnInit(): void {
     this.getJobs();
@@ -37,8 +43,8 @@ export class JobsComponent implements OnInit {
         this.jobsList = jobsdata;
         this.filteredJobs = jobsdata;
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       },
     });
   }
@@ -51,8 +57,8 @@ export class JobsComponent implements OnInit {
           ...this.removeObjectWithId(cityData, 5),
         ];
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       },
     });
   }
@@ -62,8 +68,8 @@ export class JobsComponent implements OnInit {
       next: (categoryData) => {
         this.categoryList = [{ id: 0, name: 'All' }, ...categoryData];
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       },
     });
   }
@@ -76,8 +82,8 @@ export class JobsComponent implements OnInit {
           ...this.removeObjectWithId(stateData, 5),
         ];
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       },
     });
   }

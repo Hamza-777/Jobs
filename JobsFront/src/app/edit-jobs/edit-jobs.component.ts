@@ -1,8 +1,10 @@
 import { formatCurrency } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { JobsService } from '../services/jobs.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { JobsService } from '../services/jobs-service/jobs.service';
 import { Category } from '../_interfaces/Category';
 import { City } from '../_interfaces/City';
 import { Job } from '../_interfaces/Job';
@@ -18,8 +20,8 @@ export class EditJobsComponent implements OnInit {
   categoryList:Category[];
   cityList:City[];
   stateList:State[];
-
-  constructor(private route:ActivatedRoute, private jobservice:JobsService) { }
+  error!:any;
+  constructor(private route:ActivatedRoute, private jobservice:JobsService,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
     
@@ -36,8 +38,8 @@ this.route.paramMap.subscribe({
           this.newjob=response;
           console.log(response);
         },
-        error:(errResponse)=>{
-          console.log(errResponse);
+        error: (err: HttpErrorResponse) => {
+          this.error = this.handlerservice.handleError(err);
         }
       })
     }
@@ -71,8 +73,8 @@ if(form.valid){
       next:(response)=>{
         console.log(response);
       },
-      error:(errResponse)=>{
-        console.log(errResponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
 }
@@ -98,8 +100,8 @@ if(form.valid){
       next: (cityData) => {
         this.cityList = this.removeObjectWithId(cityData, 5);
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -110,8 +112,8 @@ if(form.valid){
     console.log("got data successfully");
 
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -122,8 +124,8 @@ if(form.valid){
         
 
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }

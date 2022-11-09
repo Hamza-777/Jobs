@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from 'src/app/models/course.model';
-import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesService } from 'src/app/services/courses-service/courses.service';
 
 
 @Component({
@@ -21,8 +23,8 @@ export class AddCourseComponent implements OnInit {
     courseImage:'',
     courseVideoURL:''
    };
-
-  constructor(private courseService:CoursesService,private router:Router) { }
+   error!:any;
+  constructor(private courseService:CoursesService,private router:Router,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +35,8 @@ export class AddCourseComponent implements OnInit {
       next:(course)=>{
         console.log(course);
         this.router.navigate(['course-crud']);
+      }, error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     });
     

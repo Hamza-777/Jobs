@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalerrorhandlerService } from '../globalerrorhandler.service';
+import { environment } from 'src/environments/environment';
+import { AdminService } from '../services/admin-service/admin.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { RegisterModel } from '../_interfaces/register.model';
 
 @Component({
@@ -11,7 +13,7 @@ import { RegisterModel } from '../_interfaces/register.model';
 })
 export class ShowusersComponent implements OnInit {
 
-  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService) {}
+  constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService,private adminservice:AdminService) {}
   users!:any;
   error!:any;
   data!:any;
@@ -20,7 +22,7 @@ export class ShowusersComponent implements OnInit {
   }
 
   getusers(){
-    this.http.get<any>("https://localhost:7067/api/Admin/getusers").subscribe({
+    this.adminservice.getusers().subscribe({
       next:(response:any)=>{
         this.users=response;
         console.log(this.users);
@@ -33,7 +35,7 @@ export class ShowusersComponent implements OnInit {
 
 
   deleteuser(id:number){
-    this.http.delete<any>("https://localhost:7067/api/Admin/deleteuser/"+id).subscribe({
+    this.adminservice.deleteuser(id).subscribe({
       next:(response:any)=>{
         this.data="Deleted Successfully!!!!!"
         console.log(this.data);

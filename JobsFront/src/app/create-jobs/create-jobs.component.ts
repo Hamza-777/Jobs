@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JobsService } from '../services/jobs.service';
+import { JobsService } from '../services/jobs-service/jobs.service';
 import { Job } from '../_interfaces/Job';
 import { JobsComponent } from '../jobs/jobs.component';
 import { Category } from '../_interfaces/Category';
@@ -7,6 +7,8 @@ import { City } from '../_interfaces/City';
 import { State } from '../_interfaces/State';
 import { NgForm } from '@angular/forms';
 import { formatCurrency } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 
 @Component({
   selector: 'app-create-jobs',
@@ -18,7 +20,8 @@ export class CreateJobsComponent implements OnInit {
  categoryList:Category[];
  cityList:City[];
  stateList:State[];
-  constructor(private jobservice: JobsService) {
+  error!: any;
+  constructor(private jobservice: JobsService,private handlerservice:GlobalerrorhandlerService) {
 this.newjob={
   title:'',
   description:'',
@@ -70,9 +73,8 @@ createJobs(form:NgForm){
     next:(response)=>{
       console.log(response);
     },
-    error:(errResponse)=>{
-      
-      console.log(errResponse);
+    error: (err: HttpErrorResponse) => {
+      this.error = this.handlerservice.handleError(err);
     }
     
   })
@@ -86,8 +88,8 @@ createJobs(form:NgForm){
         console.log("city");
         console.log(cityData);
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -100,8 +102,8 @@ createJobs(form:NgForm){
         // return this.categoryList;
         
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -112,8 +114,8 @@ createJobs(form:NgForm){
         
 
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
