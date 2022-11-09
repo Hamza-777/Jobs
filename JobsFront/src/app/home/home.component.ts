@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenService } from '../services/token-service/token.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +6,7 @@ import { TokenService } from '../services/token-service/token.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private tokenservice: TokenService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  logOut = () => {
-    this.tokenservice.deleteToken();
-  };
 }
