@@ -1,7 +1,14 @@
-button {
-    cursor: pointer;
+#blogContent {
+  height: 400px;
 }
 
-#blogContent {
-    height: 200px;
+.buttons {
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.btn-submit {
+  width: 100%;
+  font-size: 1.25rem;
 }
