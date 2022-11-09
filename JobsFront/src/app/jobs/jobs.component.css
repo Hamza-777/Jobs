@@ -29,4 +29,5 @@ select {
 
 .reset-btn {
   margin-inline: auto;
+  margin-block-end: 2rem;
 }

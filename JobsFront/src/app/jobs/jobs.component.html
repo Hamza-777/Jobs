@@ -46,16 +46,8 @@
   <button class="btn btn-solid reset-btn" (click)="resetFilters()">
     Reset Filters
   </button>
-</main>
 
-<h1>jobs component</h1>
-<div class="container" *ngFor="let item of filteredJobs">
-  <div class="card" style="width: 18rem">
-    <div class="card-body">
-      <h5 class="card-title">{{ item.title }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{ item.location }}</h6>
-      <p class="card-text">{{ item.salary_max }}</p>
-      <a [routerLink]="['/jobs', item.id]" class="card-link">View More</a>
-    </div>
-  </div>
-</div>
+  <section *ngFor="let job of filteredJobs">
+    <app-job [job]="job"></app-job>
+  </section>
+</main>
