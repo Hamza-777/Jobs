@@ -16,7 +16,6 @@ namespace JobsAPI.Models
         public string? Bio { get; set; }//applicant
         [Required,EmailAddress,StringLength(50)]
         public string EmailId { get; set; }
-        [Required]
         public string Password { get; set; }
 
         public string? Salt { get; set; }
