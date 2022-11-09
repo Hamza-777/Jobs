@@ -52,11 +52,11 @@ namespace JobsAPI.Repositories
         }
         public async Task<SendResponse> SendEmail(string toemail, string fullname)
         {
+
             Random rnd = new Random();
             Otp otp = new Otp(rnd.Next(100000, 999999).ToString());
             db.Otps.Add(otp);
             db.SaveChanges();
-            //user user = db.Users.Where(x => x.UserName == username).SingleOrDefault();
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(configuration["EmailConfiguration:From"]));
             email.To.Add(MailboxAddress.Parse(toemail));

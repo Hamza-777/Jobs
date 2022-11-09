@@ -7,15 +7,11 @@ namespace JobsAPI.Repositories
 {
     public class CourseRepo : ICourseRepo
     {
-
-
         private readonly userDbContext _context;
-
         public CourseRepo(userDbContext context)
         {
             _context = context;
         }
-
         public async Task<SendResponse> GetCourses()
         {
             var courses = await _context.Courses.ToListAsync();
