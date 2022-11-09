@@ -1,49 +1,60 @@
-<h2>Sort by salary</h2>
-<ul>
-  <li class="list-group-item" *ngFor="let option of sortOptions" [value]="option.value"
-    (click)="onSortSelected(option.value)">
-    {{option.name}}
-  </li>
-</ul>
-<button (click)="onResetSort()">Reset</button>
-
-
-<h2>Search by role</h2>
-<input type="text" [(ngModel)]="search" (input)="onSearch()" placeholder="Enter role">
-{{search}}
-
-<h2>Cities</h2>
-<ul>
-  <li class="list-group-item" *ngFor="let item of cityList" [class.active]="item.id === this.cityIdSelected"
-    [value]="item.id" (click)="onCitySelected(item.id)">
-    {{item.name}}
-  </li>
-</ul>
-
-<h2>State</h2>
-<ul>
-  <li class="list-group-item" *ngFor="let item of stateList" [class.active]="item.id === this.stateIdSelected"
-    [value]="item.id" (click)="onStateSelected(item.id)">
-    {{item.name}}
-  </li>
-</ul>
-
-<h2>Roles</h2>
-<ul>
-  <li class="list-group-item" *ngFor="let item of categoryList" [class.active]="item.id === this.categoryIdSelected"
-    [value]="item.id" (click)="onCategorySelected(item.id)">
-    {{item.name}}
-  </li>
-</ul>
-
+<main class="container flex align-center flex-col">
+  <section class="searchbar flex align-center">
+    <input
+      type="search"
+      [(ngModel)]="searchQuery"
+      placeholder="Search for jobs..."
+      (keyup)="filterJobs()"
+    />
+    <button class="btn btn-link">🍳</button>
+  </section>
+  <div class="filters flex align-center">
+    <p class="h4">Filter Options:</p>
+    <section class="flex align-center">
+      <p class="h5">Salary:</p>
+      <select [(ngModel)]="sortOrder" (change)="filterJobs()">
+        <option value="default">Default</option>
+        <option value="asc">Low To High</option>
+        <option value="desc">High To Low</option>
+      </select>
+    </section>
+    <section class="flex align-center">
+      <p class="h5">City:</p>
+      <select [(ngModel)]="cityIdSelected" (change)="filterJobs()">
+        <option *ngFor="let item of cityList" [value]="item.id">
+          {{ item.name }}
+        </option>
+      </select>
+    </section>
+    <section class="flex align-center">
+      <p class="h5">State:</p>
+      <select [(ngModel)]="stateIdSelected" (change)="filterJobs()">
+        <option *ngFor="let item of stateList" [value]="item.id">
+          {{ item.name }}
+        </option>
+      </select>
+    </section>
+    <section class="flex align-center">
+      <p class="h5">Role:</p>
+      <select [(ngModel)]="categoryIdSelected" (change)="filterJobs()">
+        <option *ngFor="let item of categoryList" [value]="item.id">
+          {{ item.name }}
+        </option>
+      </select>
+    </section>
+  </div>
+  <button class="btn btn-solid reset-btn" (click)="resetFilters()">
+    Reset Filters
+  </button>
+</main>
 
 <h1>jobs component</h1>
-<div class="container" *ngFor="let item of jobsList">
-  <div class="card" style="width: 18rem;">
+<div class="container" *ngFor="let item of filteredJobs">
+  <div class="card" style="width: 18rem">
     <div class="card-body">
-      <h5 class="card-title">{{item.title}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{item.location}}</h6>
-      <p class="card-text">{{item.salary_max}}</p>
+      <h5 class="card-title">{{ item.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ item.location }}</h6>
+      <p class="card-text">{{ item.salary_max }}</p>
       <a [routerLink]="['/jobs', item.id]" class="card-link">View More</a>
     </div>
   </div>
