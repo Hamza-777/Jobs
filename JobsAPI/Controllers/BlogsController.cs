@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobsAPI.Models;
+using JobsAPI.Repositories.IRepositories;
 
 namespace JobsAPI.Controllers
 {
@@ -13,95 +14,47 @@ namespace JobsAPI.Controllers
     [ApiController]
     public class BlogsController : ControllerBase
     {
-        private readonly userDbContext context;
+        private readonly IBlogsRepo _repo;
 
-        public BlogsController(userDbContext _context)
+        public BlogsController(IBlogsRepo repo)
         {
-            context = _context;
+            _repo = repo;
         }
 
         // GET: api/Blogs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Blog>>> GetBlogs()
+        public async Task<IActionResult> GetBlogs()
         {
-            return await context.Blogs.ToListAsync();
+            return Ok(await _repo.GetBlogs());
         }
 
         // GET: api/Blogs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Blog>> GetBlog(int id)
+        public async Task<IActionResult> GetBlog(int id)
         {
-            var blog = await context.Blogs.FindAsync(id);
-
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            return blog;
+            return Ok(await _repo.GetBlog(id));
         }
 
         // PUT: api/Blogs/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBlog(int id, Blog blog)
         {
-            if (id != blog.BlogId)
-            {
-                return BadRequest();
-            }
-
-            context.Entry(blog).State = EntityState.Modified;
-
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BlogExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(await _repo.PutBlog(id, blog));
         }
 
         // POST: api/Blogs
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Blog>> PostBlog(Blog blog)
+        public async Task<IActionResult> PostBlog(Blog blog)
         {
-            context.Blogs.Add(blog);
-            await context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBlog", new { id = blog.BlogId }, blog);
+            return Ok(_repo.PostBlog(blog));
         }
 
         // DELETE: api/Blogs/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlog(int id)
         {
-            var blog = await context.Blogs.FindAsync(id);
-            if (blog == null)
-            {
-                return NotFound();
-            }
+            return Ok(_repo.DeleteBlog(id));
 
-            context.Blogs.Remove(blog);
-            await context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool BlogExists(int id)
-        {
-            return context.Blogs.Any(e => e.BlogId == id);
         }
     }
 }

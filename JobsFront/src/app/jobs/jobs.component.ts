@@ -37,6 +37,7 @@ export class JobsComponent implements OnInit {
   }
 
   getJobs() {
+    debugger
     this.jobservice.getAllJobs(this.cityIdSelected,
       this.categoryIdSelected, this.stateIdSelected, this.sortSelected, this.search)
       .subscribe({
@@ -53,10 +54,10 @@ export class JobsComponent implements OnInit {
 
   getCities() {
     this.jobservice.getAllCity().subscribe({
-      next: (cityData) => {
-        this.cityList = [{id:0, name:'All'}, ...this.removeObjectWithId(cityData, 5)];
+      next: (response) => {
+        this.cityList = [{id:0, name:'All'}, ...this.removeObjectWithId(response, 5)];
         console.log("city");
-        console.log(cityData);
+        console.log(response);
       },
       error: (errReponse) => {
         console.log(errReponse);
@@ -64,7 +65,7 @@ export class JobsComponent implements OnInit {
     })
   }
   getCategory() {
-    debugger
+    
     this.jobservice.getAllCategory().subscribe({
       next: (categoryData) => {
         this.categoryList = [{id:0, name:'All'}, ...categoryData];
