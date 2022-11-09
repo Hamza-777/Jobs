@@ -1,5 +1,6 @@
 ﻿using JobsAPI.Hashing;
 using JobsAPI.Models;
+using JobsAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,81 +12,34 @@ namespace JobsAPI.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly userDbContext db;
-        private IConfiguration configuration;
-        private HashMethods hm;
-        public AdminController(IConfiguration iConfig, userDbContext _db, HashMethods _hm)
+        private readonly IAdminRepo _repo;
+        public AdminController(IAdminRepo repo)
         {
-            configuration = iConfig;
-            db = _db;
-            hm = _hm;
-
+            _repo = repo;
         }
 
         [HttpGet("getusers")]
-        public async Task<ActionResult<IEnumerable<user>>> GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            return await db.Users.ToListAsync();
+            return Ok(await _repo.GetUsers());
         }
 
         [HttpGet("getuserbyid/{id}")]
         public async Task<ActionResult<user>> GetUserById(int id)
         {
-            var person = await db.Users.FindAsync(id);
-
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return person;
-
+            return Ok(await _repo.GetUserById(id));
         }
 
         [HttpDelete("deleteuser/{id}")]
-        public async Task<ActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            var person = await db.Users.FindAsync(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-            db.Users.Remove(person);
-            await db.SaveChangesAsync();
-            return Ok();
-
+            return Ok(await _repo.DeleteUser(id));
         }
+
         [HttpPost("RegisterAdmin")]
-        public async Task<ActionResult> RegisterAdmin([FromBody] user user)
+        public async Task<IActionResult> RegisterAdmin([FromBody] user user)
         {
-            if (user == null)
-            {
-                return BadRequest("All fields are blank");
-            }
-            if (ModelState.IsValid)
-            {
-                if (db.Users.Any(x => x.UserName == user.UserName))
-                {
-                    return BadRequest("Username is already present");
-                }
-                else if (db.Users.Any(x => x.EmailId == user.EmailId))
-                {
-                    return BadRequest("EmailID is already present");
-                }
-                else if (db.Users.Any(x => x.MobileNumber == user.MobileNumber))
-                {
-                    return BadRequest("Mobile Number is already present");
-                }
-                else
-                {
-                    user.Salt = hm.GenerateSalt();
-                    user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
-                    user.Role = "Admin";
-                    db.Users.Add(user);
-                    await db.SaveChangesAsync();
-                }
-            }
-            return Ok();
+            return Ok(await _repo.RegisterAdmin(user));
         }
     }
 }

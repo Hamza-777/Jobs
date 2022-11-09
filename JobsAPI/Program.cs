@@ -2,6 +2,8 @@ using JobsAPI.Controllers;
 using JobsAPI.data;
 using JobsAPI.Hashing;
 using JobsAPI.Models;
+using JobsAPI.Repositories;
+using JobsAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,6 +19,15 @@ builder.Services.AddControllers();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<userDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Injecting repo layer 
+builder.Services.AddScoped<IJobsRepo, JobsRepo>();
+builder.Services.AddScoped<ICourseRepo, CourseRepo>();
+builder.Services.AddScoped<IBlogsRepo, BlogsRepo>();
+builder.Services.AddScoped<IAdminRepo, AdminRepo>();
+builder.Services.AddScoped<IAuthRepo, AuthRepo>();
+builder.Services.AddScoped<IOtpRepo, OtpRepo>();
+
+// JWT authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
