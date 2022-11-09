@@ -5,7 +5,7 @@ namespace JobsAPI.Repositories.IRepositories
 {
     public interface IJobsRepo
     {
-        Task<SendResponse> GetJobs(JobParams jobParams);
+        Task<SendResponse> GetJobs();
         Task<SendResponse> GetJob(int id);
         Task<SendResponse> GetAllCity();
         Task<SendResponse> GetAllState();

@@ -50,8 +50,16 @@ namespace JobsAPI.data
                     }
 
                     await context.SaveChangesAsync();
-
                 }
+
+                if (!context.Users.Any())
+                {
+                    var adminData = File.ReadAllText("./data/SeedData/adminlogin.json");
+                    var admindetails = JsonSerializer.Deserialize<user>(adminData);
+                    context.Users.Add(admindetails);
+                    await context.SaveChangesAsync();
+                }
+
                 if (!context.Jobs.Any())
                 {
                     var jobsData =
@@ -66,13 +74,7 @@ namespace JobsAPI.data
 
                 }
 
-                if (!context.Users.Any())
-                {
-                    var adminData = File.ReadAllText("./data/SeedData/adminlogin.json");
-                    var admindetails = JsonSerializer.Deserialize<user>(adminData);
-                    context.Users.Add(admindetails);
-                    await context.SaveChangesAsync();
-                }
+               
 
                 if (!context.Courses.Any())
                 {
