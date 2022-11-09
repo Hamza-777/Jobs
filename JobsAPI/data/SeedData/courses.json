@@ -1,0 +1,164 @@
+﻿[
+  {
+    "CourseName": "Business Analysis",
+    "CourseCategory": "Business Management",
+    "CourseDescription": "This course provides everything you need to get started in your career in business analysis. Our courses focus on how analysis is performed in the real world, and they're full of examples, case studies and lessons learned from actual Business Analysts on the job. This is a perfect first course in any business analysis curriculum.",
+    "CourseAuthor": "Sruthi",
+    "CourseAmount": 3999,
+    "CourseImage": "https://i.ibb.co/1QJ5L7d/resize-16673861281998857384businessanalysistraining.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=f9DzS6NdgwU&ab_channel=Simplilearn"
+  },
+  {
+    "CourseName": "Commercial Law",
+    "CourseCategory": "Business Management",
+    "CourseDescription": "Corporate and Commercial Law is a course that helps the students know more about legal studies with a specialization in commercial and corporate legal functioning. The subject focuses on how the laws are undertaken in business and how it is used.",
+    "CourseAuthor": "Shabeen Bandaranayake",
+    "CourseAmount": 4999,
+    "CourseImage": "https://i.ibb.co/XptJNqq/resize-16673863271730645522alisoncoursewareintro5185.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=VshrLOplmeY&list=PLA4MECyB7Bi2rPEgkb-JlJ4FTreCiPUXf&ab_channel=TheLawSimplified"
+  },
+  {
+    "CourseName": "Human Resources",
+    "CourseCategory": "Business Management",
+    "CourseDescription": "The course of Human Resource Management mainly focuses on administrative services, staff administration, and most importantly, on the hiring process. The course helps the students to study and get the knowledge and principles that are required to handle the human resources of the company.",
+    "CourseAuthor": "Negha",
+    "CourseAmount": 2999,
+    "CourseImage": "https://i.ibb.co/pz05P3k/resize-16673865381863124686-IMG20190124-WA0019.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=WpX3SbqyhmM&list=PLJumA3phskPG37wk7b8SFY9xu095TmFOW&ab_channel=EdupediaWorld"
+  },
+  {
+    "CourseName": "Accounts",
+    "CourseCategory": "Finance Management",
+    "CourseDescription": "This course will show you the very basics of accounting. You can complete it in about an hour. The course includes videos of the instructor at the whiteboard. You will complete simple quizzes to reinforce what you have learned. This course is intended for business owners, business students, managers or anyone who wants to understand basic accounting. It presents the information in an understandable format.",
+    "CourseAuthor": "Devika",
+    "CourseAmount": 3999,
+    "CourseImage": "https://i.ibb.co/PcT3Lm5/resize-1667383666559196710financeaccountingconceptbusinesswomanworkingdeskusingcalculatortocalculate.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=8gvsTN10_tA&list=PLLhSIFfDZcUXEs3UhIv5tMn6AAU1GNnPr&ab_channel=Devika%27sCommerce%26ManagementAcademy"
+  },
+  {
+    "CourseName": "Corporate",
+    "CourseCategory": "Finance Management",
+    "CourseDescription": "This course is designed to develop knowledge and skills in the understanding of the general legal framework, and of specific legal areas relating to business, recognizing the need to seek further specialist legal advice where necessary. This course will allow you to obtain knowledge that you can use with great examples on application of the various Acts with in depth explanations within each topic.",
+    "CourseAuthor": "Aswath Damodaran",
+    "CourseAmount": 3999,
+    "CourseImage": "https://i.ibb.co/WfRhDBn/resize-16673846641786551924resize16673841451606219469corporatetrainingintro.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=6oaw9U973s8&list=PLUkh9m2BorqnDenjSLZ2DHIXrdxoN4Bn_&ab_channel=AswathDamodaran"
+  },
+  {
+    "CourseName": "Tax Planning",
+    "CourseCategory": "Finance Management",
+    "CourseDescription": "Proper tax planning is perhaps the most important step to the promised land of financial freedom. The strategy is simple- the more income that you generate at a tax free or a lower tax rate means the more money you get to keep. If you reinvest this money, your money works for you, generating a stream of passive income ultimately accumulating wealth.There seems to be this misconception that the wealthy are cheating the system.",
+    "CourseAuthor": "Madhukar",
+    "CourseAmount": 2999,
+    "CourseImage": "https://i.ibb.co/4ZzNNwH/resize-1667384769209007672resize16673844131908232237-Tax-Preparation-Planning2-PEAKPlatforms-CO.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=xEIu__b9yeg&ab_channel=HiregangeAcademy"
+  },
+  {
+    "CourseName": "Machine Learning",
+    "CourseCategory": "Technology",
+    "CourseDescription": "This machine learning course will provide you the fundamentals of how companies like Google, Amazon, and even Udemy utilize machine learning and artificial intelligence (AI) to glean meaning and insights from massive data sets. Glassdoor and Indeed both report that the average salary for a data scientist is $120,000. This is the standard, not the exception.",
+    "CourseAuthor": "Andrew Ng",
+    "CourseAmount": 5999,
+    "CourseImage": "https://i.ibb.co/mrWnSWL/resize-1667385476255110925bestonlinemachinelearningcourses.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&ab_channel=StanfordOnline"
+  },
+  {
+    "CourseName": "Web Development",
+    "CourseCategory": "Technology",
+    "CourseDescription": "Welcome to Modern Frontend Web Development: Angular, Javascript JS course. Advanced modern web development with Angular, JavaScipt JS, Bootstrap, HTML CSS. This course will be your gateway to learn web design with blank HTML, CSS, and JavaScript files with a step-by-step approach.",
+    "CourseAuthor": "Hamza Rarani",
+    "CourseAmount": 3999,
+    "CourseImage": "https://i.ibb.co/Nx0FXhY/resize-16673856231948150651wd-1.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=Q33KBiDriJY&ab_channel=edureka%21"
+  },
+  {
+    "CourseName": "Software Development",
+    "CourseCategory": "Technology",
+    "CourseDescription": "Software Development From A to Z is an informative course that provides insights into the software development industry. It covers topics such as Object-Oriented Programming, UML, Agile, SCRUM, and Python. You’ll learn about all of these things in detail. Companies like Google and Apple, this course is definitely worth checking out!",
+    "CourseAuthor": "Rajib Mall",
+    "CourseAmount": 4999,
+    "CourseImage": "https://i.ibb.co/PG4q3Qx/resize-16673859321632348868-Master-Of-Computer-Applications.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=Ln_LP7c23WM&list=PLbRMhDVUMngf8oZR3DpKMvYhZKga90JVt&ab_channel=IITKharagpurJuly2018"
+  },
+  {
+    "CourseName": "AWS Amazon Web Service",
+    "CourseCategory": "Technology",
+    "CourseDescription": "The AWS Certified Developer Associate certification is one of the most challenging exams. It's great at assessing how well you understand not just AWS, but the new cloud paradigms such as Serverless, which makes this certification incredibly valuable to have and pass. Rest assured, I've passed it myself with a score of 984 out of 1000.",
+    "CourseAuthor": "Andrew Brown",
+    "CourseAmount": 6999,
+    "CourseImage": "https://i.ibb.co/CPN50kC/resize-1667891759943121255aws.png",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=SOTamWNgDKc&ab_channel=freeCodeCamp.org"
+  },
+  {
+    "CourseName": "Cyber Security",
+    "CourseCategory": "Technology",
+    "CourseDescription": "A beginner level comprehensive course that includes step-by-step explanations of core security concepts along with follow-up quizzes and hands on labs to ensure a solid learning for the course taker.Designed by a CyberSecurity expert with a PhD degree and premium Cybersecurity certifications, this course has been designed to make it extremely simple to learn complex Cyber Security concepts.",
+    "CourseAuthor": "Rajib Mall",
+    "CourseAmount": 5999,
+    "CourseImage": "https://i.ibb.co/WySYzvY/resize-16678982002054346747cybersecuritycourseigmguru1273766112xl.jpg",
+    "CourseVideoURL": "https://youtu.be/yr1Psapupsc"
+  },
+  {
+    "CourseName": "Blockchain",
+    "CourseCategory": "Technology",
+    "CourseDescription": "Welcome to the Ethereum Blockchain Developer Bootcamp With Solidity course. It is the only course you will need to become a skilled Ethereum blockchain developer.This course has over 50,000 students and 4,700 five-star reviews. That makes it one of the most highly-rated, popular, and up-to-date Ethereum blockchain development courses online.The course includes over 20 hours of video tutorials.",
+    "CourseAuthor": "Sandip Chakraborty",
+    "CourseAmount": 5999,
+    "CourseImage": "https://i.ibb.co/JjgrQLs/resize-166789835512479163491574684864php-P5llw-M.jpg",
+    "CourseVideoURL": "https://youtu.be/mzPoUjQC4WU"
+  },
+  {
+    "CourseName": "Digital Marketing",
+    "CourseCategory": "Business Management",
+    "CourseDescription": "Are you ready to learn about the world of Digital Marketing & Digital Advertising? Are you ready to learn about the hundreds of companies outside of Google and Facebook which control ads you see on your computer, phones, and tablets? Then you’re at the right place!",
+    "CourseAuthor": "Megh Singhal",
+    "CourseAmount": 2999,
+    "CourseImage": "https://i.ibb.co/StxgkbY/resize-166789878361741115shutterstock5248631861024x683.jpg",
+    "CourseVideoURL": "https://youtu.be/Xuq6_udbeH0"
+  },
+  {
+    "CourseName": "Entrepreneurship",
+    "CourseCategory": "Business Management",
+    "CourseDescription": "Students who complete this course will receive an official life coach CERTIFICATION from Transformation Academy. This course is also accredited by a internationally recognized the Continuing Professional Development Standards Agency (Provider No: 50134), and 20 CPD or CEU credits are available upon request.",
+    "CourseAuthor": "Bhaktavatsala Rao",
+    "CourseAmount": 1999,
+    "CourseImage": "https://i.ibb.co/jrpfXdG/resize-16678990622478608947ff0f2dcb75cca27caa6af63e5e3109e.jpg",
+    "CourseVideoURL": "https://youtu.be/Tzzfd6168jk"
+  },
+  {
+    "CourseName": "Sales executive",
+    "CourseCategory": "Business Management",
+    "CourseDescription": "Nobody is a natural born sales person. Anybody can learn to improve their sales skills, no matter their current level.You can learn to master all levels of sales skills including B2B sales, creating your own sales funnel, and devising a marketing strategy that works for your business.you will benefit from this course.",
+    "CourseAuthor": "Sangeeta Sahney",
+    "CourseAmount": 3999,
+    "CourseImage": "https://i.ibb.co/7pPN67Q/resize-1667899494622160063salesmarketing.jpg",
+    "CourseVideoURL": "https://youtu.be/MPZgEJMS97o"
+  },
+  {
+    "CourseName": "Game design",
+    "CourseCategory": "Design",
+    "CourseDescription": "If you are serious about becoming a game designer, then you already know that you need the most current and complete game design training possible. To succeed in this competitive industry it is essential to have an expert knowledge of the entire game development pipeline.",
+    "CourseAuthor": "Brackeys",
+    "CourseAmount": 4999,
+    "CourseImage": "https://i.ibb.co/wS8LHh6/resize-16679006151276732788-Best-Game-Designcoursetutorialclasscertificationtrainingonline.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=j48LtUkZRjU&list=PLPV2KyIb3jR5QFsefuO2RlAgWEz6EvVi6&ab_channel=Brackeys"
+  },
+  {
+    "CourseName": "3D and Animation",
+    "CourseCategory": "Design",
+    "CourseDescription": "This course is in the process of being completely remastered in Blender 3.2. Currently both the new and original content are in this course, once the remaster is complete students will be able to access the original 2.8 content in a separate archive course.",
+    "CourseAuthor": "Rushi Panchal",
+    "CourseAmount": 2999,
+    "CourseImage": "https://i.ibb.co/p1VcFpw/resize-1667900777976336439lg10.jpg",
+    "CourseVideoURL": "https://youtu.be/blJ9fnrL0w8"
+  },
+  {
+    "CourseName": "Interior Design",
+    "CourseCategory": "Design",
+    "CourseDescription": "This SketchUp 2013 training course from Infinite Skills teaches you how to model a home from scratch using this popular 3D modeling program. This tutorial is designed for the absolute beginner, meaning no prior experience with SketchUP or 3D modeling is required.",
+    "CourseAuthor": "Ula Burgiel",
+    "CourseAmount": 2999,
+    "CourseImage": "https://i.ibb.co/fFy1VBv/resize-1667900989970130213-Online-Interior-Design-Courses.jpg",
+    "CourseVideoURL": "https://www.youtube.com/watch?v=iFfBDY1e_yQ&ab_channel=UlaBurgiel"
+  }
+]

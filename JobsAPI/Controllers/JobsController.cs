@@ -21,27 +21,11 @@ namespace JobsAPI.Controllers
         }
         // GET: api/Jobs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Job>>> GetJobs([FromQuery] JobParams jobParams)
+        public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
         {
             IQueryable<Job> jobsList = _context.Jobs.Include(p => p.category).Include(p => p.state).Include(p => p.city);
-            if(jobParams.search != null)
-            {
-                jobsList = jobsList.Where(p => p.title.ToLower().Contains(jobParams.search.ToLower()));
-            }
-            if (jobParams.categoryId != null || jobParams.cityId != null || jobParams.stateId != null)
-            {
-                jobsList = FilterJobs(jobParams.categoryId, jobParams.cityId, jobParams.stateId, jobsList);
-            }
-            if (jobParams.sort != null)
-            {
-                jobsList = SortBySalary(jobParams.sort, jobsList);
-            }
-            Console.WriteLine( "count before: ");
-            Console.WriteLine(jobsList.Count());
 
-            jobsList = Pagination(jobParams, jobsList);
-            Console.WriteLine("count after: ");
-            Console.WriteLine(jobsList.Count());
+            //jobsList = Pagination(jobParams, jobsList);
 
             return await jobsList.ToListAsync();
         }

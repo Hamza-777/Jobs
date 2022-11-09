@@ -79,6 +79,19 @@ if(form.valid){
     })
 }
   }
+
+  deleteJob(id:number){
+    
+    this.jobservice.deleteJobs(id).subscribe({
+      next:(response)=>{
+        console.log(response);
+      },
+      error:(errResponse)=>{
+        console.log(errResponse);
+      }
+    })
+    // navigate to jobs page 
+  }
  
 
 

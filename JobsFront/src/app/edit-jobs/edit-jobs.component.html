@@ -57,3 +57,4 @@
 
     <button type="submit" class="btn btn-primary" [disabled]="(newjob.salary_min > newjob.salary_max) && !form.valid">Submit</button>
   </form>
+  <button (click)="deleteJob(newjob.id)">Delete</button>
