@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JobsService } from '../services/jobs.service';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { JobsService } from '../services/jobs-service/jobs.service';
 import { Job } from '../_interfaces/Job';
 
 @Component({
@@ -13,7 +14,7 @@ export class JobsDetailsComponent implements OnInit {
   jobDetails!: Job;
   error!: any;
 
-  constructor(private route:ActivatedRoute, private jobservice: JobsService) { }
+  constructor(private route:ActivatedRoute, private jobservice: JobsService,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
@@ -25,12 +26,8 @@ export class JobsDetailsComponent implements OnInit {
               this.jobDetails=response
             },
             error: (err: HttpErrorResponse) => {
-              console.log(err) ;
-              if(err.error.title!=null)
-                this.error=err.error.title;
-              else
-                this.error = err.error;
-              }
+              this.error = this.handlerservice.handleError(err);
+            }
           })
         }
 

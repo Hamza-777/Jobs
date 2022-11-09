@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from 'src/app/models/course.model';
-import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesService } from 'src/app/services/courses-service/courses.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -10,6 +12,7 @@ import { CoursesService } from 'src/app/services/courses.service';
 })
 export class EditCourseComponent implements OnInit {
   //id!:string
+  error!:any;
   courseDetails:Course ={
     courseId :0,
     courseName:'',
@@ -21,7 +24,7 @@ export class EditCourseComponent implements OnInit {
     courseVideoURL:''
 
   };
-  constructor(private route:ActivatedRoute, private courseService:CoursesService, private router:Router) { }
+  constructor(private route:ActivatedRoute, private courseService:CoursesService, private router:Router,private handlerservice:GlobalerrorhandlerService) { }
   
   ngOnInit(): void {
 
@@ -42,6 +45,8 @@ export class EditCourseComponent implements OnInit {
           });
 
         }
+      },error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
   }
@@ -52,6 +57,8 @@ export class EditCourseComponent implements OnInit {
       .subscribe({
         next:(response)=>{
           this.router.navigate(['course-crud']);
+        },error: (err: HttpErrorResponse) => {
+          this.error = this.handlerservice.handleError(err);
         }
       });
   }
@@ -61,6 +68,8 @@ export class EditCourseComponent implements OnInit {
     .subscribe({
       next:(response)=>{
         this.router.navigate(['course-crud']);
+      },error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     });
 

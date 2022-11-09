@@ -3,6 +3,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { NgForm } from '@angular/forms';
 import { Blog } from '../_interfaces/Blog';
 import jwt_decode from 'jwt-decode';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { environment } from 'src/environments/environment';
+import { BlogsServiceService } from '../services/blog-service/blogs-service.service';
 
 @Component({
   selector: 'app-create-blog',
@@ -17,7 +20,7 @@ export class CreateBlogComponent implements OnInit {
   currentUser: any;
   author: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private handlerservice:GlobalerrorhandlerService,private blogservice:BlogsServiceService) {
     this.blog = {
       blogTitle: '',
       blogDescription: '',
@@ -42,37 +45,27 @@ export class CreateBlogComponent implements OnInit {
   }
 
   getBlog = () => {
-    this.http.get<Blog>(`https://localhost:7067/api/blogs/${this.editId}`)
+    this.blogservice.getBlog(this.editId)
     .subscribe({
       next: (response: Blog) => {
         this.blog = response;
         console.log(response);
-      },
-      error: (err: HttpErrorResponse) => {
-      console.log(err) ;
-      if(err.error.title!=null)
-        this.error=err.error.title;
-      else
-        this.error = err.error;
+      }
+      ,error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       }
     })
 }
 
   createBlog = ( form: NgForm) => {
     if (form.valid) {
-      this.http.post<any>("https://localhost:7067/api/blogs", {...this.blog, userId: this.currentUser.UserID}, {
-        headers: new HttpHeaders({ "Content-Type": "application/json"})
-      })
+      this.blogservice.createBlog(this.blog)
       .subscribe({
         next: (response: any) => {
           console.log(response);
         },
         error: (err: HttpErrorResponse) => {
-        console.log(err) ;
-        if(err.error.title!=null)
-          this.error=err.error.title;
-        else
-          this.error = err.error;
+          this.error = this.handlerservice.handleError(err);
         }
       })
     }
@@ -80,7 +73,8 @@ export class CreateBlogComponent implements OnInit {
 
   editBlog = ( form: NgForm) => {
     if (form.valid) {
-      this.http.put<any>(`https://localhost:7067/api/blogs/${this.editId}`, {...this.blog, blogId: this.editId, userId: this.currentUser.UserID}, {
+      this.blogservice.editBlog(this.blog,this.editId,this.currentUser.UserID)
+      this.http.put<any>(environment.ApiUrl+`blogs/${this.editId}`, {...this.blog, blogId: this.editId, userId: this.currentUser.UserID}, {
         headers: new HttpHeaders({ "Content-Type": "application/json"})
       })
       .subscribe({
@@ -88,11 +82,7 @@ export class CreateBlogComponent implements OnInit {
           console.log(response);
         },
         error: (err: HttpErrorResponse) => {
-        console.log(err) ;
-        if(err.error.title!=null)
-          this.error=err.error.title;
-        else
-          this.error = err.error;
+          this.error = this.handlerservice.handleError(err);
         }
       })
     }

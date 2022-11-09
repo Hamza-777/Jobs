@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../_interfaces/Blog';
+import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { environment } from 'src/environments/environment';
+import { BlogsServiceService } from '../services/blog-service/blogs-service.service';
 
 @Component({
   selector: 'app-blogs',
@@ -11,7 +14,7 @@ export class BlogsComponent implements OnInit {
   blogs: Blog[];
   error!: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private handlerservice:GlobalerrorhandlerService,private blogservice:BlogsServiceService) {
     this.blogs = [];
    }
 
@@ -20,18 +23,14 @@ export class BlogsComponent implements OnInit {
   }
 
   getBlogs = () => {
-      this.http.get<Blog[]>("https://localhost:7067/api/blogs")
+      this.blogservice.getBlogs()
       .subscribe({
         next: (response: Blog[]) => {
           this.blogs = response;
           console.log(response);
         },
         error: (err: HttpErrorResponse) => {
-        console.log(err) ;
-        if(err.error.title!=null)
-          this.error=err.error.title;
-        else
-          this.error = err.error;
+          this.error = this.handlerservice.handleError(err);
         }
       })
   }
