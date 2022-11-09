@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { JobsService } from '../services/jobs-service/jobs.service';
-=======
-import { Component, OnInit } from '@angular/core';
-import { JobsService } from '../services/jobs.service';
->>>>>>> main
 import { Category } from '../_interfaces/Category';
 import { City } from '../_interfaces/City';
 import { Job } from '../_interfaces/Job';
@@ -18,34 +13,22 @@ import { State } from '../_interfaces/State';
   styleUrls: ['./jobs.component.css'],
 })
 export class JobsComponent implements OnInit {
+  error: any;
   jobsList: Job[];
   filteredJobs: Job[];
   cityList: City[];
   stateList: State[];
   categoryList: Category[];
-<<<<<<< HEAD
-  cityIdSelected: number;
-  stateIdSelected: number;
-  categoryIdSelected: number;
-  search:string;
-  sortSelected:string;
-  error!:any;
-  sortOptions=[
-    {name: "Salary: low to high", value:"salaryAsc"},
-    {name: "Salary: high to low", value:"salaryDsc"}
-  ]
-  // jobparam!: JobParams;
-
-  constructor(private jobservice: JobsService,private handlerservice:GlobalerrorhandlerService) { }
-=======
   cityIdSelected: number = 0;
   stateIdSelected: number = 0;
   categoryIdSelected: number = 0;
   searchQuery: string = '';
   sortOrder: string = 'default';
 
-  constructor(private jobservice: JobsService) {}
->>>>>>> main
+  constructor(
+    private jobservice: JobsService,
+    private handlerservice: GlobalerrorhandlerService
+  ) {}
 
   ngOnInit(): void {
     this.getJobs();
@@ -55,29 +38,15 @@ export class JobsComponent implements OnInit {
   }
 
   getJobs() {
-<<<<<<< HEAD
-    this.jobservice.getAllJobs(this.cityIdSelected,
-      this.categoryIdSelected, this.stateIdSelected, this.sortSelected, this.search)
-      .subscribe({
-        next: (jobsdata) => {
-          this.jobsList = jobsdata;
-          console.log(jobsdata);
-        },
-        error: (err: HttpErrorResponse) => {
-          this.error = this.handlerservice.handleError(err);
-        }
-      })
-=======
     this.jobservice.getAllJobs().subscribe({
       next: (jobsdata) => {
         this.jobsList = jobsdata;
         this.filteredJobs = jobsdata;
       },
-      error: (errReponse) => {
-        console.log(errReponse);
+      error: (err: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(err);
       },
     });
->>>>>>> main
   }
 
   getCities() {
@@ -88,17 +57,10 @@ export class JobsComponent implements OnInit {
           ...this.removeObjectWithId(cityData, 5),
         ];
       },
-<<<<<<< HEAD
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-      }
-    })
-=======
-      error: (errReponse) => {
-        console.log(errReponse);
       },
     });
->>>>>>> main
   }
 
   getCategory() {
@@ -106,17 +68,10 @@ export class JobsComponent implements OnInit {
       next: (categoryData) => {
         this.categoryList = [{ id: 0, name: 'All' }, ...categoryData];
       },
-<<<<<<< HEAD
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-      }
-    })
-=======
-      error: (errReponse) => {
-        console.log(errReponse);
       },
     });
->>>>>>> main
   }
 
   getStates() {
@@ -127,17 +82,10 @@ export class JobsComponent implements OnInit {
           ...this.removeObjectWithId(stateData, 5),
         ];
       },
-<<<<<<< HEAD
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-      }
-    })
-=======
-      error: (errReponse) => {
-        console.log(errReponse);
       },
     });
->>>>>>> main
   }
 
   filterJobs() {

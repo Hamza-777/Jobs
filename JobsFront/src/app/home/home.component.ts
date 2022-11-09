@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import jwt_decode from 'jwt-decode';
 import { TokenService } from '../services/token-service/token.service';
-=======
->>>>>>> main
 
 @Component({
   selector: 'app-home',
@@ -11,31 +7,11 @@ import { TokenService } from '../services/token-service/token.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-<<<<<<< HEAD
-  constructor(private http:HttpClient,public tokenservice:TokenService) { }
-  // token_authorize_test()
-  // {
-  //   //Get-JWT Token again
-  //   const token: string =localStorage.getItem("jwt")!;
-  //   console.log(token);
-  //   const tokeninfo:any = jwt_decode(token);
-  //   console.log(tokeninfo);
-  //   this.http.get("https://localhost:7067/WeatherForecast")
-  //   .subscribe({
-  //     next: (result: any) => console.log(result),
-  //     error: (err: HttpErrorResponse) => console.log(err)
-  // })
-  // }
-  ngOnInit(): void {
-    //this.token_authorize_test();
-}
+  constructor(private tokenservice: TokenService) {}
+
+  ngOnInit(): void {}
 
   logOut = () => {
     this.tokenservice.deleteToken();
-  }
-=======
-  constructor() {}
-
-  ngOnInit(): void {}
->>>>>>> main
+  };
 }
