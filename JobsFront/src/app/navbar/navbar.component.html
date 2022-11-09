@@ -4,14 +4,14 @@
   </div>
   <nav class="navbar-mid">
     <a
-      *ngIf="isUserAuthenticated()"
+      *ngIf="tokenservice.isUserAuthenticated()"
       routerLink="/createblogs"
       class="btn btn-link"
       >Create Blog</a
     >
     <a routerLink="/blogs" class="btn btn-link">Blogs</a>
     <a
-      *ngIf="isUserAuthenticated()"
+      *ngIf="tokenservice.isUserAuthenticated()"
       routerLink="/updateuser"
       class="btn btn-link"
       >Update User</a
@@ -19,7 +19,7 @@
     <a routerLink="/courses" class="btn btn-link">Courses</a>
     <a routerLink="/jobs" class="btn btn-link">Jobs</a>
     <a
-      *ngIf="isUserAuthenticated()"
+      *ngIf="tokenservice.isUserAuthenticated()"
       routerLink="/course-crud/add"
       class="btn btn-link"
       >Add Course</a
@@ -32,19 +32,19 @@
   </nav>
   <div class="navbar-end">
     <a
-      *ngIf="!isUserAuthenticated()"
+      *ngIf="!tokenservice.isUserAuthenticated()"
       class="btn btn-outline"
       routerLink="/login"
       >Login</a
     >
     <a
-      *ngIf="!isUserAuthenticated()"
+      *ngIf="!tokenservice.isUserAuthenticated()"
       class="btn btn-solid"
       routerLink="/register"
       >Register</a
     >
     <button
-      *ngIf="isUserAuthenticated()"
+      *ngIf="tokenservice.isUserAuthenticated()"
       class="btn btn-outline"
       (click)="logOut()"
     >

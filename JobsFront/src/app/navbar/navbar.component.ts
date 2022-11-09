@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { TokenService } from '../services/token-service/token.service';
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -8,7 +9,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public tokenservice: TokenService) {}
 
   ngOnInit(): void {
     this.token_authorize_test();
@@ -50,6 +51,6 @@ export class NavbarComponent implements OnInit {
   };
 
   logOut = () => {
-    localStorage.removeItem('jwt');
+    this.tokenservice.deleteToken();
   };
 }
