@@ -1,26 +1,29 @@
 <div class="navbar">
   <div class="navbar-start">
-    <h2 class="logo">JOBS</h2>
+    <a routerLink="/" class="h2">JOBS</a>
   </div>
   <nav class="navbar-mid">
-    <button *ngIf="isUserAuthenticated()" class="btn">
-      <a routerLink="/createblogs" class="btn-link">Create Blog</a>
-    </button>
-    <button class="btn">
-      <a routerLink="/blogs" class="btn-link">Blogs</a>
-    </button>
-    <button *ngIf="isUserAuthenticated()" class="btn">
-      <a routerLink="/updateuser" class="btn-link">Update User</a>
-    </button>
-    <button class="btn">
-      <a routerLink="/courses" class="btn-link">Courses</a>
-    </button>
-    <button class="btn">
-      <a routerLink="/jobs" class="btn-link">Jobs</a>
-    </button>
-    <button *ngIf="isUserAuthenticated()" class="btn">
-      <a routerLink="/course-crud/add" class="btn-link">Add Course</a>
-    </button>
+    <a
+      *ngIf="isUserAuthenticated()"
+      routerLink="/createblogs"
+      class="btn btn-link"
+      >Create Blog</a
+    >
+    <a routerLink="/blogs" class="btn btn-link">Blogs</a>
+    <a
+      *ngIf="isUserAuthenticated()"
+      routerLink="/updateuser"
+      class="btn btn-link"
+      >Update User</a
+    >
+    <a routerLink="/courses" class="btn btn-link">Courses</a>
+    <a routerLink="/jobs" class="btn btn-link">Jobs</a>
+    <a
+      *ngIf="isUserAuthenticated()"
+      routerLink="/course-crud/add"
+      class="btn btn-link"
+      >Add Course</a
+    >
     <!-- <button *ngIf="!isUserAuthenticated()" class="btn">
           <a routerLink="/forgotpwd" class="btn-link">Forgot Password</a>
         </button> -->

@@ -162,6 +162,7 @@
     </div>
     <div class="buttons flex align-center justify-center flex-col">
       <button
+        *ngIf="data == 'OTP Generated'"
         type="submit"
         class="btn btn-outline btn-submit"
         (click)="checkotp(otp)"

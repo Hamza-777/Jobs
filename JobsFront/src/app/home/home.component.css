@@ -1,0 +1,14 @@
+.service {
+  gap: 5rem;
+}
+
+.about-service {
+  gap: 1rem;
+}
+
+.service-img {
+  width: 30rem;
+  height: 25rem;
+  object-fit: cover;
+  border-radius: 5rem 0;
+}
