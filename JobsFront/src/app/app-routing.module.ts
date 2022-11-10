@@ -74,6 +74,9 @@ const routes: Routes = [
     path: 'course-crud/add',
     component: AddCourseComponent,
     canActivate: [AuthGuard],
+    data:{
+      role:'Admin'
+    }
   },
   {
     path: 'course-crud/edit/:courseId',
