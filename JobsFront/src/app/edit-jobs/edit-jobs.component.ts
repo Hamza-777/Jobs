@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { JobsService } from '../services/jobs-service/jobs.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 import { Category } from '../_interfaces/Category';
 import { City } from '../_interfaces/City';
 import { Job } from '../_interfaces/Job';
@@ -34,9 +35,13 @@ this.route.paramMap.subscribe({
     const id = params.get('id');
     if(id){
       this.jobservice.getAllJobsById(parseInt(id)).subscribe({
-        next:(response)=>{
-          this.newjob=response;
-          console.log(response);
+        next:(response:apiresponse)=>{
+          if (response.message == "") {
+            this.error = this.handlerservice.handleError(response.error);
+          } else {
+            this.newjob=response.data;
+            console.log(response);
+          }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
@@ -97,8 +102,13 @@ if(form.valid){
 
   getCities() {
     this.jobservice.getAllCity().subscribe({
-      next: (cityData) => {
-        this.cityList = this.removeObjectWithId(cityData, 5);
+      next: (response:apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.cityList = this.removeObjectWithId(response.data, 5);
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
@@ -107,10 +117,13 @@ if(form.valid){
   }
   getCategory() {
     this.jobservice.getAllCategory().subscribe({
-      next: (categoryData) => {
-        this.categoryList = categoryData;
-    console.log("got data successfully");
-
+      next: (response:apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.categoryList = response.data;
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
@@ -119,8 +132,14 @@ if(form.valid){
   }
   getStates() {
     this.jobservice.getAllState().subscribe({
-      next: (stateData) => {
-        this.stateList = this.removeObjectWithId(stateData, 5);
+      next: (response:apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.stateList = this.removeObjectWithId(response.data, 5);
+
+          console.log(response);
+        }
         
 
       },

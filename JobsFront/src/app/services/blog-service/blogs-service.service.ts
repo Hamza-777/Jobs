@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { GlobalerrorhandlerService } from '../error-service/globalerrorhandler.service';
 import jwt_decode from 'jwt-decode';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,15 +23,15 @@ export class BlogsServiceService {
     this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
   }
   getBlogs() {
-    return this.http.get<Blog[]>(environment.ApiUrl + 'blogs');
+    return this.http.get<apiresponse>(environment.ApiUrl + 'blogs');
   }
 
   getBlog(editId) {
-    return this.http.get<Blog>(environment.ApiUrl + `blogs/${editId}`);
+    return this.http.get<apiresponse>(environment.ApiUrl + `blogs/${editId}`);
   }
 
   createBlog(blog) {
-    return this.http.post<any>(
+    return this.http.post<apiresponse>(
       environment.ApiUrl + 'blogs',
       { ...blog, userId: this.currentUser.UserID },
       {
@@ -40,7 +41,7 @@ export class BlogsServiceService {
   }
 
   editBlog(editId, blog, userId) {
-    return this.http.put<any>(
+    return this.http.put<apiresponse>(
       environment.ApiUrl + `blogs/${editId}`,
       { ...blog, blogId: editId, userId: userId },
       {
@@ -50,7 +51,7 @@ export class BlogsServiceService {
   }
 
   deleteBlog(id) {
-    return this.http.delete<Blog>(environment.ApiUrl + `blogs/${id}`);
+    return this.http.delete<apiresponse>(environment.ApiUrl + `blogs/${id}`);
   }
 
   //   getBlogs = () => {

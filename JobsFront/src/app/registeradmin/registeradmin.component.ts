@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AdminService } from '../services/admin-service/admin.service';
 import { AuthService } from '../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 import { RegisterModel } from '../_interfaces/register.model';
 
 
@@ -28,10 +29,15 @@ export class RegisteradminComponent implements OnInit {
   checkotp(otp:string)
   {
     this.auth.verifyotp(otp).subscribe({
-      next: (response: any) => {
-        this.data="OTP Verified";
-      console.log(this.data);
-      this.register(this.form);
+      next: (response: apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.data=response.message;
+          this.register(this.form);
+          console.log(this.data);
+        }
+       
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
@@ -42,9 +48,13 @@ generateotp(email: string,fname:string)
 {
 this.auth.otpgeneration(email,fname)
 .subscribe({
-  next: (response: any) => {
-    this.data="OTP Generated";
-    console.log(this.data);
+  next: (response: apiresponse) => {
+    if (response.message == "") {
+      this.error = this.handlerservice.handleError(response.error);
+    } else {
+      this.data=response.message;
+      console.log(response);
+    }
   },
   error: (err: HttpErrorResponse) => {this.error = this.handlerservice.handleError(err);}
 })
@@ -72,9 +82,13 @@ this.auth.otpgeneration(email,fname)
     if (form.valid) {
       this.admin.adminregistration(this.user)
       .subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.router.navigate([""]);
+        next: (response: apiresponse) => {
+          if (response.message == "") {
+            this.error = this.handlerservice.handleError(response.error);
+          } else {
+            this.router.navigate([""]);
+            console.log(response);
+          }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);

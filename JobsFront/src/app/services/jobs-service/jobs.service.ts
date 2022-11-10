@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Job } from '../../_interfaces/Job';
 import { map, observable, Observable } from 'rxjs';
-import { JobParams } from '../../_interfaces/jobParams';
 import { City } from '../../_interfaces/City';
 import { State } from '../../_interfaces/State';
 import { Category } from '../../_interfaces/Category';
 import { environment } from 'src/environments/environment';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class JobsService {
   constructor(private http: HttpClient) {}
   getAllJobs() {
     return this.http
-      .get<Job[]>(environment.ApiUrl + 'Jobs', { observe: 'response' })
+      .get<apiresponse>(environment.ApiUrl + 'Jobs', { observe: 'response' })
       .pipe(
         map((response) => {
           return response.body;
@@ -25,30 +25,30 @@ export class JobsService {
   }
 
   getAllJobsById(id: number) {
-    return this.http.get<Job>(environment.ApiUrl + 'Jobs/' + id);
+    return this.http.get<apiresponse>(environment.ApiUrl + 'Jobs/' + id);
   }
 
   getAllCity() {
-    return this.http.get<City[]>(environment.ApiUrl + 'Jobs' + '/city');
+    return this.http.get<apiresponse>(environment.ApiUrl + 'Jobs' + '/city');
   }
 
   getAllState() {
-    return this.http.get<State[]>(environment.ApiUrl + 'Jobs' + '/state');
+    return this.http.get<apiresponse>(environment.ApiUrl + 'Jobs' + '/state');
   }
   getAllCategory() {
-    return this.http.get<Category[]>(environment.ApiUrl + 'Jobs' + '/category');
+    return this.http.get<apiresponse>(environment.ApiUrl + 'Jobs' + '/category');
   }
-  postJobs(postJobRequest: Job): Observable<Job> {
-    return this.http.post<Job>(environment.ApiUrl + 'Jobs', postJobRequest);
+  postJobs(postJobRequest: Job){
+    return this.http.post<apiresponse>(environment.ApiUrl + 'Jobs', postJobRequest);
   }
   editJobs(id: number, editedJobRequest: Job) {
-    return this.http.put<Job>(
+    return this.http.put<apiresponse>(
       environment.ApiUrl + 'Jobs/' + id,
       editedJobRequest
     );
   }
 
   deleteJobs(id: number) {
-    return this.http.delete<Job>(environment.ApiUrl + 'Jobs/' + id);
+    return this.http.delete<apiresponse>(environment.ApiUrl + 'Jobs/' + id);
   }
 }

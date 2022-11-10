@@ -1,6 +1,5 @@
 <div class="blog-container">
     <h3><a [routerLink]="['/blog', blog.blogId]">{{blog.blogTitle}}</a></h3>
-    <p>{{blog.blogDescription}}</p>
     <button *ngIf="currentUser.UserID==blog.userID" (click)="deleteBlog(blog.blogId)">Delete</button>
     <button *ngIf="currentUser.UserID==blog.userID"><a routerLink="/createblogs" (click)="storeId(blog.blogId)">Edit</a></button>
 </div>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from 'src/app/models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 
 
 @Component({
@@ -14,34 +15,30 @@ import { CoursesService } from 'src/app/services/courses-service/courses.service
 export class ListoutCoursesComponent implements OnInit {
 
   courses:Course[]=[];
-  error!:any;
+  error:any;
   
   constructor(private route:ActivatedRoute, private courseService:CoursesService, private router:Router,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe({
       next:(params)=>{
         const CategoryName = params.get("courseCategory");
-        //this.id = id!
-
         if(CategoryName){
           this.courseService.getCourseByCategory(CategoryName)
           .subscribe({
-            next:(course)=>{
-              this.courses=course;
-
-              console.log(course);
-
+            next:(response:apiresponse)=>{
+              if (response.message == "") {
+                this.error = this.handlerservice.handleError(response.error);
+              } else {
+                this.courses=response.data;
+                console.log(response);
+              }
             }
           });
-
         }
       },error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       }
     })
-
   }
-
 }

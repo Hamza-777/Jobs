@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AdminService } from '../services/admin-service/admin.service';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 import { RegisterModel } from '../_interfaces/register.model';
 
 @Component({
@@ -14,18 +15,22 @@ import { RegisterModel } from '../_interfaces/register.model';
 export class ShowusersComponent implements OnInit {
 
   constructor(private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService,private adminservice:AdminService) {}
-  users!:any;
-  error!:any;
-  data!:any;
+  users:any;
+  error:any;
+  data:any;
   ngOnInit(): void {
     this.getusers();
   }
 
   getusers(){
     this.adminservice.getusers().subscribe({
-      next:(response:any)=>{
-        this.users=response;
-        console.log(this.users);
+      next:(response:apiresponse)=>{
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.users=response.data;
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
@@ -36,17 +41,17 @@ export class ShowusersComponent implements OnInit {
 
   deleteuser(id:number){
     this.adminservice.deleteuser(id).subscribe({
-      next:(response:any)=>{
-        this.data="Deleted Successfully!!!!!"
-        console.log(this.data);
-        window.location.reload();
-        
+      next:(response:apiresponse)=>{
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          window.location.reload();
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
     }
     })
   }
-
-
 }

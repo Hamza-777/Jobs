@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobsAPI.Models;
 using JobsAPI.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobsAPI.Controllers
 {
@@ -66,23 +67,26 @@ namespace JobsAPI.Controllers
 
         // PUT: api/Jobs/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
-            return Ok(_repo.PutJob(id, job));
+            return Ok(await _repo.PutJob(id, job));
         }
 
         // POST: api/Jobs
         [HttpPost]
+        [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> PostJob([FromBody] Job job)
         {
-            return Ok(_repo.PostJob(job));
+            return Ok( await _repo.PostJob(job));
         }
 
         // DELETE: api/Jobs/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Recruiter")]
         public async Task<IActionResult> DeleteJob(int id)
         {
-            return Ok(_repo.DeleteJob(id));
+            return Ok(await _repo.DeleteJob(id));
         }
 
         

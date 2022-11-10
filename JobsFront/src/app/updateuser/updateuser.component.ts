@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 import { RegisterModel } from '../_interfaces/register.model';
 
 @Component({
@@ -36,16 +37,20 @@ export class UpdateuserComponent implements OnInit {
   getuserbyusername (username:string)
   {
     this.auth.getuserbyusername(username).subscribe({
-      next:  (response: any) => {
-        this.user=response;
-      console.log(this.user);
+      next:  (response: apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.user=response.data;
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       }
   })
-
 }
+
 onFileSelected(event:any)
 {
    console.log(event);
@@ -67,9 +72,13 @@ onFileSelected(event:any)
     if (form.valid) {
       this.auth.edituser(this.user)
       .subscribe({
-        next: (response: RegisterModel) => {
-          console.log(response);
-          this.router.navigate([""]);
+        next: (response: apiresponse) => {
+          if (response.message == "") {
+            this.error = this.handlerservice.handleError(response.error);
+          } else {
+            this.router.navigate([""]);
+            console.log(response);
+          }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);

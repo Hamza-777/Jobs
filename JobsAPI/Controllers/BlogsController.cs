@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobsAPI.Models;
 using JobsAPI.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobsAPI.Controllers
 {
@@ -46,14 +47,14 @@ namespace JobsAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostBlog(Blog blog)
         {
-            return Ok(_repo.PostBlog(blog));
+            return Ok(await _repo.PostBlog(blog));
         }
 
         // DELETE: api/Blogs/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlog(int id)
         {
-            return Ok(_repo.DeleteBlog(id));
+            return Ok(await _repo.DeleteBlog(id));
 
         }
     }

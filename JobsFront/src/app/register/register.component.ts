@@ -9,6 +9,7 @@ import { Router, UrlSerializer } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 import { RegisterModel } from '../_interfaces/register.model';
 
 @Component({
@@ -17,11 +18,11 @@ import { RegisterModel } from '../_interfaces/register.model';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  otp!: string;
-  data!: string;
-  error!: any;
-  image!: any;
-  confirmpassword!: string;
+  otp: string;
+  data: string;
+  error: any;
+  image: any;
+  confirmpassword: string;
 
   @ViewChild('registerForm') form!: NgForm;
   user: RegisterModel = {} as RegisterModel;
@@ -36,27 +37,37 @@ export class RegisterComponent implements OnInit {
   }
   checkotp(otp: string) {
     this.auth.verifyotp(otp).subscribe({
-      next: (response: any) => {
-        this.data = 'OTP Verified';
-        console.log(this.data);
+      next: (response: apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.data = response.message;
         this.register(this.form);
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       },
     });
   }
+
   generateotp(email: string, fname: string) {
     this.auth.otpgeneration(email, fname).subscribe({
-      next: (response: any) => {
-        this.data = 'OTP Generated';
-        console.log(this.data);
+      next: (response: apiresponse) => {
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.data = response.message;
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       },
     });
   }
+
   onFileSelected(event: any) {
     console.log(event);
     this.image = event.target.files[0];
@@ -78,9 +89,13 @@ export class RegisterComponent implements OnInit {
   register = (form: NgForm) => {
     if (form.valid) {
       this.auth.registeruser(this.user).subscribe({
-        next: (response: any) => {
-          console.log(response);
-          this.router.navigate(['/login']);
+        next: (response: apiresponse) => {
+          if (response.message == "") {
+            this.error = this.handlerservice.handleError(response.error);
+          } else {
+            this.router.navigate(['/login']);
+            console.log(response);
+          }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);

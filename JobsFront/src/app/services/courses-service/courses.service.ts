@@ -6,6 +6,7 @@ import { observable, Observable } from 'rxjs';
 import { AddCourseComponent } from '../../course-crud/add-course/add-course.component';
 import {GotoCourseComponent } from '../../course-user/goto-course/goto-course.component';
 import { ListoutCoursesComponent } from '../../course-user/listout-courses/listout-courses.component';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 
 
 @Injectable({
@@ -16,34 +17,34 @@ export class CoursesService {
   courseApiUrl:string=environment.ApiUrl;
   constructor(private http:HttpClient) { }
 
-  getAllCourses():Observable<Course[]>{
-    return this.http.get<Course[]>(environment.ApiUrl+'Courses');
+  getAllCourses(){
+    return this.http.get<apiresponse>(environment.ApiUrl+'Courses');
   }
 
-  addCourse(addCourseRequest:Course):Observable<Course>{
+  addCourse(addCourseRequest:Course):Observable<apiresponse>{
     addCourseRequest.courseId=0;
-    return this.http.post<Course>(environment.ApiUrl+'Courses',addCourseRequest);
+    return this.http.post<apiresponse>(environment.ApiUrl+'Courses',addCourseRequest);
   }
 
-  getCourse(courseId:number) : Observable<Course>{
-    return this.http.get<Course>(environment.ApiUrl+'Courses'+courseId);
+  getCourse(courseId:number) : Observable<apiresponse>{
+    return this.http.get<apiresponse>(environment.ApiUrl+'Courses/'+ courseId);
   }
 
-  getCourseByName(courseName:string) : Observable<Course>{
-    return this.http.get<Course>(environment.ApiUrl+'Courses/name?name='+courseName);
+  getCourseByName(courseName:string) : Observable<apiresponse>{
+    return this.http.get<apiresponse>(environment.ApiUrl+'Courses/name?name='+courseName);
   }
   
-  getCourseByCategory(courseCategory:string) : Observable<Course[]>{
-    return this.http.get<Course[]>(environment.ApiUrl+'Courses/CategoryName?CategoryName='+courseCategory);
+  getCourseByCategory(courseCategory:string) : Observable<apiresponse>{
+    return this.http.get<apiresponse>(environment.ApiUrl+'Courses/CategoryName?CategoryName='+courseCategory);
   }
 
   updateCourse(courseId:number,updateCourseRequest:Course):
-  Observable<Course>{
-    return this.http.put<Course>(environment.ApiUrl+'Courses/'+courseId,updateCourseRequest);
+  Observable<apiresponse>{
+    return this.http.put<apiresponse>(environment.ApiUrl+'Courses/'+courseId,updateCourseRequest);
   }
 
-  deleteCourse(courseId:number) : Observable<Course>{
-    return this.http.delete<Course>(environment.ApiUrl+'Courses/'+courseId);
+  deleteCourse(courseId:number) : Observable<apiresponse>{
+    return this.http.delete<apiresponse>(environment.ApiUrl+'Courses/'+courseId);
   }
 
 }
