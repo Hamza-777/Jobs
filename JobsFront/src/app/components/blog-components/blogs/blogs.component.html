@@ -3,7 +3,7 @@
     <input
       type="search"
       [(ngModel)]="searchQuery"
-      placeholder="Search for blogs by title..."
+      placeholder="Search by title / Search by tags ( start with #)"
       (keyup)="filterBlogs()"
     />
     <button class="btn btn-link" (click)="filterBlogs()">🍳</button>

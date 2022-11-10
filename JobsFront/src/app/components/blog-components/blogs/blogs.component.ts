@@ -43,10 +43,18 @@ export class BlogsComponent implements OnInit {
   };
 
   filterBlogs() {
-    this.filteredBlogs = this.blogs.filter((blog) =>
-      blog.blogTitle
-        .toLocaleLowerCase()
-        .includes(this.searchQuery.toLocaleLowerCase())
-    );
+    if (this.searchQuery[0] === '#') {
+      this.filteredBlogs = this.blogs.filter((blog) =>
+        blog.blogTags
+          .toLocaleLowerCase()
+          .includes(this.searchQuery.toLocaleLowerCase().substring(1))
+      );
+    } else {
+      this.filteredBlogs = this.blogs.filter((blog) =>
+        blog.blogTitle
+          .toLocaleLowerCase()
+          .includes(this.searchQuery.toLocaleLowerCase())
+      );
+    }
   }
 }
