@@ -1,0 +1,23 @@
+.searchbar {
+  width: fit-content;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10rem;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  margin-block-end: 2rem;
+  gap: 2rem;
+  margin-inline: auto;
+}
+
+.searchbar > input {
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.25rem;
+  width: 40rem;
+}
+
+.courses {
+  width: 100%;
+  gap: 2rem;
+}

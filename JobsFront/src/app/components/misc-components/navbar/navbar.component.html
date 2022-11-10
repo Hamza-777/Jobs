@@ -1,0 +1,45 @@
+<div class="navbar">
+  <div class="navbar-start">
+    <a routerLink="/" class="h2">JOBS</a>
+  </div>
+  <nav class="navbar-mid">
+    <a
+      *ngIf="tokenservice.isUserAuthenticated()"
+      routerLink="/createblogs"
+      class="btn btn-link"
+      >Create Blog</a
+    >
+    <a routerLink="/blogs" class="btn btn-link">Blogs</a>
+    <a routerLink="/courses" class="btn btn-link">Courses</a>
+    <a routerLink="/jobs" class="btn btn-link">Jobs</a>
+    <a
+      *ngIf="tokenservice.isUserAuthenticated()"
+      routerLink="/add-course"
+      class="btn btn-link"
+      >Add Course</a
+    >
+    <!-- <li *ngIf="isAdmin()"><a routerLink="/showusers">View All Users</a></li>
+          <li *ngIf="isAdmin()"><a routerLink="/registeradmin">Register Admin</a></li> -->
+  </nav>
+  <div class="navbar-end">
+    <a
+      *ngIf="!tokenservice.isUserAuthenticated()"
+      class="btn btn-outline"
+      routerLink="/login"
+      >Login</a
+    >
+    <a
+      *ngIf="!tokenservice.isUserAuthenticated()"
+      class="btn btn-solid"
+      routerLink="/register"
+      >Register</a
+    >
+    <button
+      *ngIf="tokenservice.isUserAuthenticated()"
+      class="btn btn-outline"
+      (click)="logOut()"
+    >
+      Log Out
+    </button>
+  </div>
+</div>
