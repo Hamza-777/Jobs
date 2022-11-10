@@ -26,6 +26,7 @@ export class ViewBlogComponent implements OnInit {
     this.id = 0;
     this.currentBlog = {
       blogId: 0,
+      coverImage: '',
       blogTitle: '',
       blogContent: '',
       blogTags: '',

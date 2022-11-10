@@ -31,6 +31,7 @@ export class CreateBlogComponent implements OnInit {
     private blogservice: BlogsServiceService
   ) {
     this.blog = {
+      coverImage: '',
       blogTitle: '',
       blogContent: '',
       blogTags: '',
@@ -59,7 +60,7 @@ export class CreateBlogComponent implements OnInit {
   getBlog = () => {
     this.blogservice.getBlog(this.editId).subscribe({
       next: (response: apiresponse) => {
-        if (response.message == "") {
+        if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
         } else {
           this.blog = response.data;
@@ -76,7 +77,7 @@ export class CreateBlogComponent implements OnInit {
     if (form.valid) {
       this.blogservice.createBlog(this.blog).subscribe({
         next: (response: apiresponse) => {
-          console.log("entered create");
+          console.log('entered create');
           console.log(response);
 
           // if (response.message == "") {
@@ -85,7 +86,6 @@ export class CreateBlogComponent implements OnInit {
           //   this.blog = response.data;
           //   console.log(response);
           // }
-
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
@@ -96,13 +96,11 @@ export class CreateBlogComponent implements OnInit {
 
   editBlog = (form: NgForm) => {
     if (form.valid) {
-      this.blogservice.editBlog(
-        this.editId,
-        this.blog,
-        this.currentUser.UserID
-      ).subscribe({
+      this.blogservice
+        .editBlog(this.editId, this.blog, this.currentUser.UserID)
+        .subscribe({
           next: (response: apiresponse) => {
-            if (response.message == "") {
+            if (response.message == '') {
               this.error = this.handlerservice.handleError(response.error);
             } else {
               console.log(response);
