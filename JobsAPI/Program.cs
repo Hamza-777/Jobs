@@ -12,9 +12,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Logging 
+builder.Logging.AddLog4Net();
 
-builder.Services.AddControllers();
+// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<userDbContext>(
