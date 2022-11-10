@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { environment } from 'src/environments/environment';
 import { BlogsServiceService } from '../services/blog-service/blogs-service.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 
 @Component({
   selector: 'app-blog',
@@ -12,12 +13,13 @@ import { BlogsServiceService } from '../services/blog-service/blogs-service.serv
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
-  @Input() blog!: Blog;
-  error!: any;
+  @Input() blog: Blog;
+  error: any;
   currentUser: any;
 
-  constructor(private http: HttpClient,private handlerservice:GlobalerrorhandlerService,private blogservice:BlogsServiceService) { 
-    this.currentUser = jwt_decode(localStorage.getItem("jwt")!);
+
+  constructor(private http: HttpClient, private handlerservice: GlobalerrorhandlerService, private blogservice: BlogsServiceService) {
+    this.currentUser = blogservice.currentUser;
   }
 
   ngOnInit(): void {
@@ -25,15 +27,20 @@ export class BlogComponent implements OnInit {
 
   deleteBlog = (id: any) => {
     this.blogservice.deleteBlog(id)
-    .subscribe({
-      next: (response: Blog) => {
-        console.log(response);
-        window.location.reload();
-      },
-      error: (err: HttpErrorResponse) => {
-        this.error = this.handlerservice.handleError(err);
-      }
-    })
+      .subscribe({
+        next: (response: apiresponse) => {
+          if (response.message == "") {
+            this.error = this.handlerservice.handleError(response.error);
+          } else {
+            console.log(response.message);
+            window.location.reload();
+          }
+        },
+        error: (err: HttpErrorResponse) => {
+          // errors not mentioned in apiresponse
+          this.error = this.handlerservice.handleError(err.error);
+        }
+      })
   }
 
   storeId = (id: any) => {

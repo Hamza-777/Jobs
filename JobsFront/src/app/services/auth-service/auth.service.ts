@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 import { AuthenticatedResponse } from 'src/app/_interfaces/authenticatedresponse.model';
 import { LoginModel } from 'src/app/_interfaces/login.model';
 import { environment } from 'src/environments/environment';
@@ -12,7 +13,7 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 loginuser(credentials: LoginModel){
-  return this.http.post<AuthenticatedResponse>(environment.ApiUrl+"auth/login", credentials, {
+  return this.http.post<apiresponse>(environment.ApiUrl+"auth/login", credentials, {
     headers: new HttpHeaders({ "Content-Type": "application/json"})
   })
 }

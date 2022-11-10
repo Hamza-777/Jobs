@@ -7,15 +7,17 @@ import { ErrorHandler, Injectable } from '@angular/core';
 export class GlobalerrorhandlerService {
   errormsg!:any
   constructor() { }
-  handleError(error_response: HttpErrorResponse): void 
+  handleError(error_response: any): void 
   {
-    this.errormsg=error_response.error;
-    console.log(this.errormsg);
-    if(error_response.error.title!=null) //API Validation gives title
-      this.errormsg = JSON.stringify(this.errormsg["errors"])
-      this.errormsg = this.errormsg.replace(/[{""}]|/g,"")
-      this.errormsg = this.errormsg.replace(",","<br>")
-      console.error("An error occured:",this.errormsg);
-      return this.errormsg;
+    console.log()
+    console.log(error_response);
+    // this.errormsg=error_response;
+    // console.log(this.errormsg);
+    // if(error_response.error.title!=null) //API Validation gives title
+    //   this.errormsg = JSON.stringify(this.errormsg["errors"])
+    //   this.errormsg = this.errormsg.replace(/[{""}]|/g,"")
+    //   this.errormsg = this.errormsg.replace(",","<br>")
+    //   console.error("An error occured:",this.errormsg);
+    //   return this.errormsg;
   }
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AdminService } from '../services/admin-service/admin.service';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 
 @Component({
   selector: 'app-showuserbyid',
@@ -12,9 +13,9 @@ import { GlobalerrorhandlerService } from '../services/error-service/globalerror
 })
 
 export class ShowuserbyidComponent implements OnInit {
-  id!:number;
-  user!:any;
-  error!:any;
+  id:number;
+  user:any;
+  error:any;
   constructor(private activatedrouter: ActivatedRoute,private router: Router,private http:HttpClient,private handlerservice:GlobalerrorhandlerService
     ,private adminservice:AdminService) {
     this.activatedrouter.paramMap.subscribe(params => { 
@@ -30,9 +31,13 @@ export class ShowuserbyidComponent implements OnInit {
   getuserbyid(){
     this.adminservice.getuserbyid(this.id)
     .subscribe({
-      next:(response:any)=>{
-        this.user=response;
-        console.log(this.user);
+      next:(response:apiresponse)=>{
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.user=response.data;
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);

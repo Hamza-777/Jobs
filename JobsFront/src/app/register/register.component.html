@@ -150,7 +150,7 @@
     >
       Verify Email
     </button>
-    <div class="form-group" *ngIf="data == 'OTP Generated'">
+    <div class="form-group" *ngIf="data == 'Otp sent Successfully to the email'">
       <input
         type="text"
         id="OTP"
@@ -162,7 +162,7 @@
     </div>
     <div class="buttons flex align-center justify-center flex-col">
       <button
-        *ngIf="data == 'OTP Generated'"
+        *ngIf="data == 'Otp sent Successfully to the email'"
         type="submit"
         class="btn btn-outline btn-submit"
         (click)="checkotp(otp)"

@@ -68,21 +68,21 @@ namespace JobsAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutJob(int id, Job job)
         {
-            return Ok(_repo.PutJob(id, job));
+            return Ok(await _repo.PutJob(id, job));
         }
 
         // POST: api/Jobs
         [HttpPost]
         public async Task<IActionResult> PostJob([FromBody] Job job)
         {
-            return Ok(_repo.PostJob(job));
+            return Ok( await _repo.PostJob(job));
         }
 
         // DELETE: api/Jobs/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJob(int id)
         {
-            return Ok(_repo.DeleteJob(id));
+            return Ok(await _repo.DeleteJob(id));
         }
 
         

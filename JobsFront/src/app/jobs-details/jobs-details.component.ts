@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { JobsService } from '../services/jobs-service/jobs.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 import { Job } from '../_interfaces/Job';
 
 @Component({
@@ -22,8 +23,15 @@ export class JobsDetailsComponent implements OnInit {
         const id= params.get('id');
         if(id){
           this.jobservice.getAllJobsById(parseInt(id)).subscribe({
-            next:(response)=>{
-              this.jobDetails=response
+            next:(response:apiresponse)=>{
+       
+              if (response.message == "") {
+                this.error = this.handlerservice.handleError(response.error);
+              } else {
+                this.jobDetails=response.data;
+                console.log(response);
+              }
+            
             },
             error: (err: HttpErrorResponse) => {
               this.error = this.handlerservice.handleError(err);

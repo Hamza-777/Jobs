@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from 'src/app/models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 
 
 @Component({
@@ -26,8 +27,6 @@ export class GotoCourseComponent implements OnInit {
 
   };
 
-  
-
   constructor(private route:ActivatedRoute, private courseService:CoursesService, private router:Router,private handlerservice:GlobalerrorhandlerService) { }
 
   ngOnInit(): void {
@@ -40,24 +39,21 @@ export class GotoCourseComponent implements OnInit {
         if(name){
           this.courseService.getCourseByName(name)
           .subscribe({
-            next:(response)=>{
-              this.courseDetails=response;
-
-              console.log(response);
-              console.log(this.courseDetails);
-
+            next:(response:apiresponse)=>{
+              if (response.message == "") {
+                this.error = this.handlerservice.handleError(response.error);
+              } else {
+                this.courseDetails=response.data;
+                console.log(response);
+              }
             }
           });
-
         }
       },error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       }
     })
-
-
   }
-
   }
 
 

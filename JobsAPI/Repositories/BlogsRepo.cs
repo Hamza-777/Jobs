@@ -13,6 +13,7 @@ namespace JobsAPI.Repositories
             _context = context;
         }
 
+       
         public async Task<SendResponse> GetBlogs()
         {
             var blogs = await _context.Blogs.ToListAsync();
@@ -73,7 +74,7 @@ namespace JobsAPI.Repositories
             }
             _context.Blogs.Add(blog);
             await _context.SaveChangesAsync();
-            return new SendResponse("Posted Blog", StatusCodes.Status201Created, null, "");
+            return new SendResponse("Posted Blog", StatusCodes.Status201Created, blog, "");
         }
         public async Task<SendResponse> DeleteBlog(int id)
         {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from 'src/app/models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 
 @Component({
   selector: 'app-course-list',
@@ -19,13 +20,13 @@ export class CourseListComponent implements OnInit {
     
     this.coursesService.getAllCourses()
     .subscribe({
-      next:(course)=>{
-
-       
-        this.courses=course;
-        
-        //console.log(this.courses[0]);
-       
+      next:(response:apiresponse)=>{
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.courses=response.data;
+          console.log(response);
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);

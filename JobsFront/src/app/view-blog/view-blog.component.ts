@@ -5,6 +5,7 @@ import { Blog } from '../_interfaces/Blog';
 import { GlobalerrorhandlerService } from '../services/error-service/globalerrorhandler.service';
 import { environment } from 'src/environments/environment';
 import { BlogsServiceService } from '../services/blog-service/blogs-service.service';
+import { apiresponse } from '../_interfaces/apiresponse';
 
 @Component({
   selector: 'app-view-blog',
@@ -26,11 +27,8 @@ export class ViewBlogComponent implements OnInit {
     this.currentBlog = {
       blogId: 0,
       blogTitle: '',
-      blogDescription: '',
       blogContent: '',
       blogTags: '',
-      blogCategory: '',
-      company: '',
       userID: 1,
     };
     this.activatedrouter.paramMap.subscribe((params) => {
@@ -44,8 +42,8 @@ export class ViewBlogComponent implements OnInit {
 
   getBlog = () => {
     this.blogservice.getBlog(this.id).subscribe({
-      next: (response: Blog) => {
-        this.currentBlog = response;
+      next: (response: apiresponse) => {
+        this.currentBlog = response.data;
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);

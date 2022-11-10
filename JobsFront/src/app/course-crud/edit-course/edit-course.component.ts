@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from 'src/app/models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 
 @Component({
   selector: 'app-edit-course',
@@ -36,11 +37,14 @@ export class EditCourseComponent implements OnInit {
         if(id){
           this.courseService.getCourse(parseInt(id))
           .subscribe({
-            next:(response)=>{
-              this.courseDetails=response;
-
+            next:(response:apiresponse)=>{
+              if (response.message == "") {
+                this.error = this.handlerservice.handleError(response.error);
+              } else {
+                this.courseDetails=response.data;
+                console.log(response);
+              }
               console.log(response);
-
             }
           });
 
@@ -55,8 +59,12 @@ export class EditCourseComponent implements OnInit {
     this.courseService.updateCourse(this.courseDetails.courseId,
       this.courseDetails)
       .subscribe({
-        next:(response)=>{
-          this.router.navigate(['course-crud']);
+        next:(response:apiresponse)=>{
+          if (response.message == "") {
+            this.error = this.handlerservice.handleError(response.error);
+          } else {
+            this.router.navigate(['course-crud']);
+          }
         },error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
         }
@@ -66,8 +74,14 @@ export class EditCourseComponent implements OnInit {
   deleteCourse(courseId:number){
     this.courseService.deleteCourse(courseId)
     .subscribe({
-      next:(response)=>{
-        this.router.navigate(['course-crud']);
+      next:(response:apiresponse)=>{
+        if (response.message == "") {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          this.router.navigate(['course-crud']);
+          console.log(response);
+        }
+
       },error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       }

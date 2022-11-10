@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { apiresponse } from 'src/app/_interfaces/apiresponse';
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
   constructor() { }
-  addToken(response)
+  addToken(response:any)
   {
-    const token = response.token;
+    const token = response;
     localStorage.setItem("jwt", token); 
 
   }

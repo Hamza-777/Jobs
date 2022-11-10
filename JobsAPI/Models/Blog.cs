@@ -15,6 +15,9 @@ namespace JobsAPI.Models
         [Required]
         public string BlogContent { get; set; }
 
+        [Required]
+        public string CoverImage { get; set; }
+
         public string? BlogTags { get; set; }
 
         // Foreign Key reference to user table
