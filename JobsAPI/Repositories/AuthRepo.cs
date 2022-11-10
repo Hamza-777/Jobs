@@ -131,7 +131,7 @@ namespace JobsAPI.Repositories
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Username not found");
             }
 
-            return new SendResponse("Found username", StatusCodes.Status200OK, null, "");
+            return new SendResponse("Found username", StatusCodes.Status200OK, person, "");
         }
 
         public async Task<SendResponse> UpdatePassword(int userid, user user)

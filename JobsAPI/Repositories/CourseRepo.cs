@@ -17,7 +17,7 @@ namespace JobsAPI.Repositories
             var courses = await _context.Courses.ToListAsync();
             if (courses.Count() > 0)
             {
-                return new SendResponse("Courses Found", StatusCodes.Status200OK, courses, "");
+                return new SendResponse("course Found", StatusCodes.Status200OK, courses, "");
 
             }
             return new SendResponse("", StatusCodes.Status404NotFound, null, "Cannot find Courses");
@@ -99,7 +99,7 @@ namespace JobsAPI.Repositories
             }
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
-            return new SendResponse("Deleted course successfully", StatusCodes.Status200OK, null, "");
+            return new SendResponse("Deleted course successfully", StatusCodes.Status200OK, course, "");
         }
         private bool CourseExists(int id)
         {

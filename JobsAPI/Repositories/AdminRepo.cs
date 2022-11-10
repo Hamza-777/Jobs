@@ -74,7 +74,7 @@ namespace JobsAPI.Repositories
                 user.Role = "Admin";
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
-                return new SendResponse("Registered Successfully ", StatusCodes.Status200OK, null, "");
+                return new SendResponse("Registered Successfully ", StatusCodes.Status200OK, user, "");
 
             }
         }
