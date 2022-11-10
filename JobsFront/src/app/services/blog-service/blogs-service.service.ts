@@ -4,12 +4,12 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Blog } from '../../_interfaces/Blog';
+import { Blog } from '../../models/Blog';
 import { NgForm } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { GlobalerrorhandlerService } from '../error-service/globalerrorhandler.service';
 import jwt_decode from 'jwt-decode';
-import { apiresponse } from 'src/app/_interfaces/apiresponse';
+import { apiresponse } from 'src/app/models/apiresponse';
 @Injectable({
   providedIn: 'root',
 })

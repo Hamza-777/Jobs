@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/user-components/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
-import { RegisterComponent } from './register/register.component';
-import { BlogsComponent } from './blogs/blogs.component';
-import { CreateBlogComponent } from './create-blog/create-blog.component';
-import { ViewBlogComponent } from './view-blog/view-blog.component';
-import { ForgotpwdComponent } from './forgotpwd/forgotpwd.component';
-import { UpdateuserComponent } from './updateuser/updateuser.component';
-import { ShowusersComponent } from './showusers/showusers.component';
-import { ShowuserbyidComponent } from './showuserbyid/showuserbyid.component';
-import { RegisteradminComponent } from './registeradmin/registeradmin.component';
-import { CourseComponent } from './course/course.component';
-import { AddCourseComponent } from './course-crud/add-course/add-course.component';
-import { EditCourseComponent } from './course-crud/edit-course/edit-course.component';
-import { CourseListComponent } from './course-crud/course-list/course-list.component';
-import { GotoCourseComponent } from './course-user/goto-course/goto-course.component';
-import { ListoutCoursesComponent } from './course-user/listout-courses/listout-courses.component';
-import { JobsComponent } from './jobs/jobs.component';
-import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
-import { CreateJobsComponent } from './create-jobs/create-jobs.component';
-import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
+import { RegisterComponent } from './components/user-components/register/register.component';
+import { BlogsComponent } from './components/blog-components/blogs/blogs.component';
+import { CreateBlogComponent } from './components/blog-components/create-blog/create-blog.component';
+import { ViewBlogComponent } from './components/blog-components/view-blog/view-blog.component';
+import { ForgotpwdComponent } from './components/user-components/forgotpwd/forgotpwd.component';
+import { UpdateuserComponent } from './components/user-components/updateuser/updateuser.component';
+import { ShowusersComponent } from './components/user-components/showusers/showusers.component';
+import { ShowuserbyidComponent } from './components/user-components/showuserbyid/showuserbyid.component';
+import { RegisteradminComponent } from './components/user-components/registeradmin/registeradmin.component';
+import { CourseComponent } from './components/course-components/course/course.component';
+import { AddCourseComponent } from './components/course-components/add-course/add-course.component';
+import { EditCourseComponent } from './components/course-components//edit-course/edit-course.component';
+import { CourseListComponent } from './components/course-components//course-list/course-list.component';
+import { GotoCourseComponent } from './components/course-components/goto-course/goto-course.component';
+import { ListoutCoursesComponent } from './components/course-components/listout-courses/listout-courses.component';
+import { JobsComponent } from './components/job-components/jobs/jobs.component';
+import { CreateJobsComponent } from './components/job-components/create-jobs/create-jobs.component';
+import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jobs.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -90,7 +89,6 @@ const routes: Routes = [
   },
 
   { path: 'jobs', component: JobsComponent },
-  { path: 'jobs/:id', component: JobsDetailsComponent },
   { path: 'createjobs', component: CreateJobsComponent },
   {
     path: 'editjobs/:id',
@@ -99,7 +97,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,pathMatch:'full'
+    component: NotFoundComponent,
+    pathMatch: 'full',
   },
 ];
 @NgModule({
