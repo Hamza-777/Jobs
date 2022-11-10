@@ -12,7 +12,7 @@ using System.Text.Json;
 
 namespace Test_JobsAPI
 {
-    public class Tests
+    public class CourseUnitTest
     {
 
         //Arrange
@@ -25,14 +25,7 @@ namespace Test_JobsAPI
         [SetUp]
         public void Setup()
         {
-            Courses = new List<Course>()
-            {
-                new Course{CourseId=12,CourseName = "Commercial Law",CourseCategory = "Business Management",CourseDescription = "Corporate and Commercial Law is a course that helps the students know more about legal studies with a specialization in commercial and corporate legal functioning. The subject focuses on how the laws are undertaken in business and how it is used.",CourseAuthor = "Shabeen Bandaranayake",CourseAmount = 4999,CourseImage = "https://i.ibb.co/XptJNqq/resize-16673863271730645522alisoncoursewareintro5185.jpg",CourseVideoURL = "https://www.youtube.com/watch?v=VshrLOplmeY&list=PLA4MECyB7Bi2rPEgkb-JlJ4FTreCiPUXf&ab_channel=TheLawSimplified"},
-                //new Product{Id=1,Name="Toy",Category="Stationery",Price=34 },
-                //new Product{Id=2,Name="Biscuits",Category="Stationery",Price=34 },
-                //new Product{Id=3,Name="Pencil",Category="Stationery",Price=34 },
-             };
-
+            Courses = new List<Course>();
             coursedata = Courses.AsQueryable();
             mockSet = new Mock<DbSet<Course>>();
             mockSet.As<IQueryable<Course>>().Setup(m => m.Provider).Returns(coursedata.Provider);
@@ -324,7 +317,7 @@ namespace Test_JobsAPI
             courseprovider.Setup(x => x.GetCourse(actual.CourseId)).Returns(Task.FromResult(new SendResponse("course Found", StatusCodes.Status200OK, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
             var res = obj.GetCourse(actual.CourseId);
-            Console.WriteLine(expectedResult);
+            //Console.WriteLine(expectedResult);
             //Console.WriteLine("Result:"+res.Result.ToJson().ToString());
 
             //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
@@ -362,7 +355,7 @@ namespace Test_JobsAPI
             actual.CourseAmount = 4999;
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
-
+            
             string expectedResult = "{\"Value\":{\"message\":\"course Found\",\"code\":200,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             courseprovider.Setup(x => x.GetCourse(actual.CourseId)).Returns(Task.FromResult(new SendResponse("course Found", StatusCodes.Status200OK, actual, "")));
@@ -380,7 +373,6 @@ namespace Test_JobsAPI
 
 
         }
-
 
     }
 }
