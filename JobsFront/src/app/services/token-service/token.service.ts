@@ -22,7 +22,7 @@ export class TokenService {
     return localStorage.getItem("jwt")!;
   }
   public isUserAuthenticated = (): boolean => {
-    const token: string =this.getToken();
+    const token: string=this.getToken();
     if(token){
     return true;
     }

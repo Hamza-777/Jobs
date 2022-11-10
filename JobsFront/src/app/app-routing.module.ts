@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
@@ -23,6 +22,8 @@ import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RoleadminGuard } from './guards/adminguard/roleadmin.guard';
+import { AuthGuard } from './guards/authguard/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -73,15 +74,13 @@ const routes: Routes = [
   {
     path: 'course-crud/add',
     component: AddCourseComponent,
-    canActivate: [AuthGuard],
-    data:{
-      role:'Admin'
-    }
+    canActivate: [RoleadminGuard],
+    
   },
   {
     path: 'course-crud/edit/:courseId',
     component: EditCourseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [RoleadminGuard],
   },
   {
     path: 'course-user/goto-course/:courseName',
