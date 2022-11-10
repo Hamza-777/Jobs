@@ -35,7 +35,6 @@ export class ForgotpwdComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.data = 'OTP Generated';
-          console.log(this.data);
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
@@ -46,10 +45,7 @@ export class ForgotpwdComponent implements OnInit {
     this.http.get<any>(environment.ApiUrl + 'Auth/' + username).subscribe({
       next: (response: any) => {
         this.user = response;
-        console.log(this.user);
         if (this.user != null) {
-          console.log(this.user.emailId);
-          console.log(this.user.fullName);
           this.generateotp(this.user.emailId, this.user.fullName);
         }
       },
@@ -63,9 +59,6 @@ export class ForgotpwdComponent implements OnInit {
     this.http.get<any>(environment.ApiUrl + 'Otp/checkotp/' + otp).subscribe({
       next: (response: any) => {
         this.data = 'OTP Verified';
-        console.log(response);
-        console.log('status', this.data);
-        console.log(this.user);
         this.http
           .put<any>(
             environment.ApiUrl + 'Auth/updatepassword/' + this.user.userID,
@@ -76,7 +69,6 @@ export class ForgotpwdComponent implements OnInit {
           )
           .subscribe({
             next: (response: any) => {
-              console.log(response);
               this.router.navigate(['/login']);
             },
             error: (err: HttpErrorResponse) => {

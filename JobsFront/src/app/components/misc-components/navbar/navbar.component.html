@@ -10,12 +10,6 @@
       >Create Blog</a
     >
     <a routerLink="/blogs" class="btn btn-link">Blogs</a>
-    <a
-      *ngIf="tokenservice.isUserAuthenticated()"
-      routerLink="/updateuser"
-      class="btn btn-link"
-      >Update User</a
-    >
     <a routerLink="/courses" class="btn btn-link">Courses</a>
     <a routerLink="/jobs" class="btn btn-link">Jobs</a>
     <a
@@ -24,9 +18,6 @@
       class="btn btn-link"
       >Add Course</a
     >
-    <!-- <button *ngIf="!isUserAuthenticated()" class="btn">
-          <a routerLink="/forgotpwd" class="btn-link">Forgot Password</a>
-        </button> -->
     <!-- <li *ngIf="isAdmin()"><a routerLink="/showusers">View All Users</a></li>
           <li *ngIf="isAdmin()"><a routerLink="/registeradmin">Register Admin</a></li> -->
   </nav>

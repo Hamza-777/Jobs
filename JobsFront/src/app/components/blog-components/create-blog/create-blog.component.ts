@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Blog } from '../../../models/Blog';
 import jwt_decode from 'jwt-decode';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { environment } from 'src/environments/environment';
 import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
 import { apiresponse } from '../../../models/apiresponse';
 
@@ -26,7 +21,6 @@ export class CreateBlogComponent implements OnInit {
   author: any;
 
   constructor(
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private blogservice: BlogsServiceService
   ) {
@@ -65,7 +59,6 @@ export class CreateBlogComponent implements OnInit {
           this.error = this.handlerservice.handleError(response.error);
         } else {
           this.blog = response.data;
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -78,15 +71,7 @@ export class CreateBlogComponent implements OnInit {
     if (form.valid) {
       this.blogservice.createBlog(this.blog).subscribe({
         next: (response: apiresponse) => {
-          console.log('entered create');
-          console.log(response);
-
-          // if (response.message == "") {
-          //   this.error = this.handlerservice.handleError(response.error);
-          // } else {
-          //   this.blog = response.data;
-          //   console.log(response);
-          // }
+          alert(response.message);
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
@@ -104,7 +89,7 @@ export class CreateBlogComponent implements OnInit {
             if (response.message == '') {
               this.error = this.handlerservice.handleError(response.error);
             } else {
-              console.log(response);
+              alert(response.message);
             }
           },
           error: (err: HttpErrorResponse) => {

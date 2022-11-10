@@ -1,11 +1,7 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, UrlSerializer } from '@angular/router';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
@@ -43,7 +39,6 @@ export class RegisterComponent implements OnInit {
         } else {
           this.data = response.message;
           this.register(this.form);
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -59,7 +54,6 @@ export class RegisterComponent implements OnInit {
           this.error = this.handlerservice.handleError(response.error);
         } else {
           this.data = response.message;
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -69,7 +63,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    console.log(event);
     this.image = event.target.files[0];
     const fd = new FormData();
     fd.append('image', this.image, this.image.name);
@@ -78,7 +71,6 @@ export class RegisterComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.user.photographLink = response['data']['display_url'];
-          console.log(this.user.photographLink);
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
@@ -94,7 +86,6 @@ export class RegisterComponent implements OnInit {
             this.error = this.handlerservice.handleError(response.error);
           } else {
             this.router.navigate(['/login']);
-            console.log(response);
           }
         },
         error: (err: HttpErrorResponse) => {

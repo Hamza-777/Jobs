@@ -12,7 +12,6 @@ import { apiresponse } from 'src/app/models/apiresponse';
   styleUrls: ['./edit-course.component.css'],
 })
 export class EditCourseComponent implements OnInit {
-  //id!:string
   error!: any;
   courseDetails: Course = {
     courseId: 0,
@@ -35,7 +34,6 @@ export class EditCourseComponent implements OnInit {
     this.route.paramMap.subscribe({
       next: (params) => {
         const id = params.get('courseId');
-        //this.id = id!
 
         if (id) {
           this.courseService.getCourse(parseInt(id)).subscribe({
@@ -44,9 +42,7 @@ export class EditCourseComponent implements OnInit {
                 this.error = this.handlerservice.handleError(response.error);
               } else {
                 this.courseDetails = response.data;
-                console.log(response);
               }
-              console.log(response);
             },
           });
         }
@@ -65,7 +61,7 @@ export class EditCourseComponent implements OnInit {
           if (response.message == '') {
             this.error = this.handlerservice.handleError(response.error);
           } else {
-            this.router.navigate(['course-crud']);
+            this.router.navigate(['courses']);
           }
         },
         error: (err: HttpErrorResponse) => {
@@ -80,7 +76,7 @@ export class EditCourseComponent implements OnInit {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
         } else {
-          this.router.navigate(['course-crud']);
+          this.router.navigate(['courses']);
           console.log(response);
         }
       },

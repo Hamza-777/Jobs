@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from '../../../models//course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
@@ -20,7 +20,6 @@ export class ListoutCoursesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private courseService: CoursesService,
-    private router: Router,
     private handlerservice: GlobalerrorhandlerService
   ) {}
 

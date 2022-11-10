@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../../../models/Blog';
-import jwt_decode from 'jwt-decode';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { environment } from 'src/environments/environment';
 import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
 import { apiresponse } from '../../../models/apiresponse';
 
@@ -18,7 +16,6 @@ export class BlogComponent implements OnInit {
   currentUser: any;
 
   constructor(
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private blogservice: BlogsServiceService
   ) {
@@ -33,12 +30,11 @@ export class BlogComponent implements OnInit {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
         } else {
-          console.log(response.message);
+          alert(response.message);
           window.location.reload();
         }
       },
       error: (err: HttpErrorResponse) => {
-        // errors not mentioned in apiresponse
         this.error = this.handlerservice.handleError(err.error);
       },
     });

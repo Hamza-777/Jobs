@@ -46,7 +46,6 @@ export class JobsComponent implements OnInit {
         } else {
           this.jobsList = response.data;
           this.filteredJobs = response.data;
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -65,7 +64,6 @@ export class JobsComponent implements OnInit {
             { id: 0, name: 'All' },
             ...this.removeObjectWithId(response.data, 5),
           ];
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -81,7 +79,6 @@ export class JobsComponent implements OnInit {
           this.error = this.handlerservice.handleError(response.error);
         } else {
           this.categoryList = [{ id: 0, name: 'All' }, ...response.data];
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -100,7 +97,6 @@ export class JobsComponent implements OnInit {
             { id: 0, name: 'All' },
             ...this.removeObjectWithId(response.data, 5),
           ];
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -149,7 +145,6 @@ export class JobsComponent implements OnInit {
     this.sortOrder = 'default';
   }
 
-  // remove element from list
   private removeObjectWithId(arr, id) {
     const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
     arr.splice(objWithIdIndex, 1);

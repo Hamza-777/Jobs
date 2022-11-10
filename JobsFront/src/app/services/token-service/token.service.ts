@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
-import { apiresponse } from 'src/app/models/apiresponse';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -36,7 +36,6 @@ export class TokenService {
     if (this.isUserAuthenticated()) {
       const token: string = this.getToken();
       const tokeninfo: any = jwt_decode(token);
-      console.log(tokeninfo);
       if (tokeninfo.Role == 'Admin') {
         return true;
       } else {

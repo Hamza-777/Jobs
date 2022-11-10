@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/user-components/login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/misc-components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './components/user-components/register/register.component';
 import { BlogsComponent } from './components/blog-components/blogs/blogs.component';
@@ -12,14 +12,13 @@ import { UpdateuserComponent } from './components/user-components/updateuser/upd
 import { ShowusersComponent } from './components/user-components/showusers/showusers.component';
 import { ShowuserbyidComponent } from './components/user-components/showuserbyid/showuserbyid.component';
 import { RegisteradminComponent } from './components/user-components/registeradmin/registeradmin.component';
-import { CourseComponent } from './components/course-components/course/course.component';
 import { AddCourseComponent } from './components/course-components/add-course/add-course.component';
 import { EditCourseComponent } from './components/course-components//edit-course/edit-course.component';
 import { ListoutCoursesComponent } from './components/course-components/listout-courses/listout-courses.component';
 import { JobsComponent } from './components/job-components/jobs/jobs.component';
 import { CreateJobsComponent } from './components/job-components/create-jobs/create-jobs.component';
 import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jobs.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './components/misc-components/not-found/not-found.component';
 import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
 
 const routes: Routes = [

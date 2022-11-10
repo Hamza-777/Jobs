@@ -5,7 +5,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user-components/login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/misc-components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './components/user-components/register/register.component';
@@ -27,9 +27,9 @@ import { ListoutCoursesComponent } from './components/course-components/listout-
 import { JobsComponent } from './components/job-components/jobs/jobs.component';
 import { CreateJobsComponent } from './components/job-components/create-jobs/create-jobs.component';
 import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jobs.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './components/misc-components/navbar/navbar.component';
 import { JobComponent } from './components/job-components/job/job.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './components/misc-components/not-found/not-found.component';
 import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 

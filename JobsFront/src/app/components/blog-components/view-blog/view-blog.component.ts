@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../../../models/Blog';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { environment } from 'src/environments/environment';
 import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
 import { apiresponse } from '../../../models/apiresponse';
 
@@ -20,7 +19,6 @@ export class ViewBlogComponent implements OnInit {
 
   constructor(
     private activatedrouter: ActivatedRoute,
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private blogservice: BlogsServiceService
   ) {
@@ -61,12 +59,11 @@ export class ViewBlogComponent implements OnInit {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
         } else {
-          console.log(response.message);
+          alert(response.message);
           window.location.reload();
         }
       },
       error: (err: HttpErrorResponse) => {
-        // errors not mentioned in apiresponse
         this.error = this.handlerservice.handleError(err.error);
       },
     });

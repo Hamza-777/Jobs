@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 import { Course } from '../../../models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
@@ -37,8 +37,8 @@ export class AddCourseComponent implements OnInit {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
         } else {
-          this.router.navigate(['course-crud']);
-          console.log(response);
+          this.router.navigate(['courses']);
+          alert(response.message);
         }
       },
       error: (err: HttpErrorResponse) => {

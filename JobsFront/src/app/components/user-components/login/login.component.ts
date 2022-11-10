@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { LoginModel } from '../../../models/login.model';
-import { AuthenticatedResponse } from '../../../models/authenticatedresponse.model';
-import { environment } from 'src/environments/environment';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { TokenService } from '../../../services/token-service/token.service';
 import { apiresponse } from '../../../models/apiresponse';
@@ -25,7 +19,6 @@ export class LoginComponent implements OnInit {
   error: any;
   constructor(
     private router: Router,
-    private http: HttpClient,
     private auth: AuthService,
     private tokenservice: TokenService,
     private handlerservice: GlobalerrorhandlerService
@@ -41,7 +34,6 @@ export class LoginComponent implements OnInit {
             this.tokenservice.addToken(response.data.token);
             this.invalidLogin = false;
             this.router.navigate(['/']);
-            console.log(response.data.token);
           }
         },
         error: (err: HttpErrorResponse) => (this.invalidLogin = true),

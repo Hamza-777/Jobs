@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { environment } from 'src/environments/environment';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
 import { apiresponse } from '../../../models/apiresponse';
 import { Course } from 'src/app/models/course.model';
@@ -19,7 +17,6 @@ export class ViewCourseComponent implements OnInit {
 
   constructor(
     private activatedrouter: ActivatedRoute,
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private courseService: CoursesService
   ) {}
@@ -42,9 +39,7 @@ export class ViewCourseComponent implements OnInit {
             .split('=')[1]
             .split('&')[0];
           this.currentCourse = response.data;
-          console.log(response);
         }
-        console.log(response);
       },
     });
   };
