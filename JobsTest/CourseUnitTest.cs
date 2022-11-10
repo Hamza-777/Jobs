@@ -51,9 +51,7 @@ namespace Test_JobsAPI
             expected.CourseAmount = 4999;
             expected.CourseImage = "imageURL";
             expected.CourseVideoURL = "VdoURL";
-
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            SendResponse sendResponse = new SendResponse("Posted course", StatusCodes.Status201Created, expected, "");
             Course actual = new Course();
             actual.CourseId = 12;
             actual.CourseName = "Python";
@@ -64,13 +62,11 @@ namespace Test_JobsAPI
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
 
-            string expectedResult = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             courseprovider.Setup(x => x.PostCourse(actual)).Returns(Task.FromResult(new SendResponse("Posted course", StatusCodes.Status201Created, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
             var res = obj.PostCourse(actual);
-
-
+            
             Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
             //Console.WriteLine(res.Result.ToJson().ToString());
             //Assert.AreEqual(expected, res.Result.ToJson().ToString());
@@ -84,7 +80,7 @@ namespace Test_JobsAPI
         public void AddCourse_ArgumentsNotMatching()
         {
             Course expected = new Course();
-            expected.CourseId = 11;
+            expected.CourseId = 12;
             expected.CourseName = "Python";
             expected.CourseCategory = "Software";
             expected.CourseDescription = "Easy learning Coding Language";
@@ -92,11 +88,9 @@ namespace Test_JobsAPI
             expected.CourseAmount = 4999;
             expected.CourseImage = "imageURL";
             expected.CourseVideoURL = "VdoURL";
-
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            SendResponse sendResponse = new SendResponse("Posted course", StatusCodes.Status201Created, expected, "");
             Course actual = new Course();
-            actual.CourseId = 12;
+            actual.CourseId = 13;
             actual.CourseName = "Python";
             actual.CourseCategory = "Software";
             actual.CourseDescription = "Easy learning Coding Language";
@@ -105,12 +99,10 @@ namespace Test_JobsAPI
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
 
-            string expectedResult = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             courseprovider.Setup(x => x.PostCourse(actual)).Returns(Task.FromResult(new SendResponse("Posted course", StatusCodes.Status201Created, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
             var res = obj.PostCourse(actual);
-
 
             //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
             //Console.WriteLine(res.Result.ToJson().ToString());
@@ -133,9 +125,7 @@ namespace Test_JobsAPI
             expected.CourseAmount = 4999;
             expected.CourseImage = "imageURL";
             expected.CourseVideoURL = "VdoURL";
-
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            SendResponse sendResponse = new SendResponse("Posted course", StatusCodes.Status201Created, expected, "");
             Course actual = new Course();
             actual.CourseId = 12;
             actual.CourseName = "Python";
@@ -146,13 +136,10 @@ namespace Test_JobsAPI
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
 
-            string expectedResult = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             courseprovider.Setup(x => x.PostCourse(actual)).Returns(Task.FromResult(new SendResponse("Posted course", StatusCodes.Status201Created, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
             var res = obj.PostCourse(actual);
-
-
             //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
             //Console.WriteLine(res.Result.ToJson().ToString());
             //Assert.AreEqual(expected, res.Result.ToJson().ToString());
@@ -257,7 +244,7 @@ namespace Test_JobsAPI
             expected.CourseAmount = 4999;
             expected.CourseImage = "imageURL";
             expected.CourseVideoURL = "VdoURL";
-
+            SendResponse sendResponse = new SendResponse("course Found", StatusCodes.Status200OK, expected, "");
             //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             Course actual = new Course();
@@ -270,7 +257,7 @@ namespace Test_JobsAPI
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
 
-            string expectedResult = "{\"Value\":{\"message\":\"course Found\",\"code\":200,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
+            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             courseprovider.Setup(x => x.GetCourse(actual.CourseId)).Returns(Task.FromResult(new SendResponse("course Found", StatusCodes.Status200OK, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
@@ -301,7 +288,7 @@ namespace Test_JobsAPI
             expected.CourseVideoURL = "VdoURL";
 
             //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
+            SendResponse sendResponse = new SendResponse("course Found", StatusCodes.Status200OK, expected, "");
             Course actual = new Course();
             actual.CourseId = 12;
             actual.CourseName = "Python";
@@ -312,7 +299,7 @@ namespace Test_JobsAPI
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
 
-            string expectedResult = "{\"Value\":{\"message\":\"course Found\",\"code\":200,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
+            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             courseprovider.Setup(x => x.GetCourse(actual.CourseId)).Returns(Task.FromResult(new SendResponse("course Found", StatusCodes.Status200OK, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
@@ -343,7 +330,7 @@ namespace Test_JobsAPI
             expected.CourseAmount = 4999;
             expected.CourseImage = "imageURL";
             expected.CourseVideoURL = "VdoURL";
-
+            SendResponse sendResponse = new SendResponse("course Found", StatusCodes.Status200OK, expected, "");
             //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             Course actual = new Course();
@@ -355,8 +342,8 @@ namespace Test_JobsAPI
             actual.CourseAmount = 4999;
             actual.CourseImage = "imageURL";
             actual.CourseVideoURL = "VdoURL";
-            
-            string expectedResult = "{\"Value\":{\"message\":\"course Found\",\"code\":200,\"data\":" + expected.ToJson().ToString() + ",\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
+
+            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             courseprovider.Setup(x => x.GetCourse(actual.CourseId)).Returns(Task.FromResult(new SendResponse("course Found", StatusCodes.Status200OK, actual, "")));
             CoursesController obj = new CoursesController(courseprovider.Object);
