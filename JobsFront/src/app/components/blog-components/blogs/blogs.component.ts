@@ -12,8 +12,10 @@ import { apiresponse } from '../../../models/apiresponse';
   styleUrls: ['./blogs.component.css'],
 })
 export class BlogsComponent implements OnInit {
+  filteredBlogs: Blog[];
   blogs: Blog[];
   error: any;
+  searchQuery: string = '';
 
   constructor(
     private http: HttpClient,
@@ -31,6 +33,7 @@ export class BlogsComponent implements OnInit {
     this.blogservice.getBlogs().subscribe({
       next: (response: apiresponse) => {
         this.blogs = response.data;
+        this.filteredBlogs = response.data;
         console.log(response);
       },
       error: (err: HttpErrorResponse) => {
@@ -38,4 +41,12 @@ export class BlogsComponent implements OnInit {
       },
     });
   };
+
+  filterBlogs() {
+    this.filteredBlogs = this.blogs.filter((blog) =>
+      blog.blogTitle
+        .toLocaleLowerCase()
+        .includes(this.searchQuery.toLocaleLowerCase())
+    );
+  }
 }

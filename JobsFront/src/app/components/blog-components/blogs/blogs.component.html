@@ -1,4 +1,15 @@
-<div *ngFor="let blog of blogs">
-    <app-blog [blog]="blog">
-    </app-blog>
-</div>
+<main class="container flex align-center flex-col">
+  <section class="searchbar flex align-center">
+    <input
+      type="search"
+      [(ngModel)]="searchQuery"
+      placeholder="Search for blogs by title..."
+      (keyup)="filterBlogs()"
+    />
+    <button class="btn btn-link" (click)="filterBlogs()">🍳</button>
+  </section>
+
+  <section class="blogs" *ngFor="let blog of filteredBlogs">
+    <app-blog [blog]="blog"> </app-blog>
+  </section>
+</main>

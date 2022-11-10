@@ -16,6 +16,7 @@ export class ViewBlogComponent implements OnInit {
   id: number;
   currentBlog: Blog;
   error!: any;
+  currentUser: any;
 
   constructor(
     private activatedrouter: ActivatedRoute,
@@ -26,7 +27,8 @@ export class ViewBlogComponent implements OnInit {
     this.id = 0;
     this.currentBlog = {
       blogId: 0,
-      coverImage: '',
+      coverImage:
+        'https://imaginarytechblog.com/wp-content/uploads/2022/06/150624-The_Current_state_of_blogging_1200x628-01.png',
       blogTitle: '',
       blogContent: '',
       blogTags: '',
@@ -35,6 +37,7 @@ export class ViewBlogComponent implements OnInit {
     this.activatedrouter.paramMap.subscribe((params) => {
       this.id = Number(params.get('blogId'));
     });
+    this.currentUser = blogservice.currentUser;
   }
 
   ngOnInit(): void {
@@ -50,5 +53,26 @@ export class ViewBlogComponent implements OnInit {
         this.error = this.handlerservice.handleError(err);
       },
     });
+  };
+
+  deleteBlog = (id: any) => {
+    this.blogservice.deleteBlog(id).subscribe({
+      next: (response: apiresponse) => {
+        if (response.message == '') {
+          this.error = this.handlerservice.handleError(response.error);
+        } else {
+          console.log(response.message);
+          window.location.reload();
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        // errors not mentioned in apiresponse
+        this.error = this.handlerservice.handleError(err.error);
+      },
+    });
+  };
+
+  storeId = (id: any) => {
+    localStorage.setItem('editId', id);
   };
 }

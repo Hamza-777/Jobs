@@ -31,7 +31,8 @@ export class CreateBlogComponent implements OnInit {
     private blogservice: BlogsServiceService
   ) {
     this.blog = {
-      coverImage: '',
+      coverImage:
+        'https://imaginarytechblog.com/wp-content/uploads/2022/06/150624-The_Current_state_of_blogging_1200x628-01.png',
       blogTitle: '',
       blogContent: '',
       blogTags: '',
