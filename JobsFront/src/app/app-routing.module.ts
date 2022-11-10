@@ -15,13 +15,12 @@ import { RegisteradminComponent } from './components/user-components/registeradm
 import { CourseComponent } from './components/course-components/course/course.component';
 import { AddCourseComponent } from './components/course-components/add-course/add-course.component';
 import { EditCourseComponent } from './components/course-components//edit-course/edit-course.component';
-import { CourseListComponent } from './components/course-components//course-list/course-list.component';
-import { GotoCourseComponent } from './components/course-components/goto-course/goto-course.component';
 import { ListoutCoursesComponent } from './components/course-components/listout-courses/listout-courses.component';
 import { JobsComponent } from './components/job-components/jobs/jobs.component';
 import { CreateJobsComponent } from './components/job-components/create-jobs/create-jobs.component';
 import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jobs.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -62,29 +61,21 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'courses',
-    component: CourseComponent,
+    path: 'course/:courseId',
+    component: ViewCourseComponent,
   },
   {
-    path: 'course-crud',
-    component: CourseListComponent,
-  },
-  {
-    path: 'course-crud/add',
+    path: 'add-course',
     component: AddCourseComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'course-crud/edit/:courseId',
+    path: 'edit-course/:courseId',
     component: EditCourseComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'course-user/goto-course/:courseName',
-    component: GotoCourseComponent,
-  },
-  {
-    path: 'course-user/listout-courses/:courseCategory',
+    path: 'courses',
     component: ListoutCoursesComponent,
   },
 

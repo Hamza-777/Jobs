@@ -12,7 +12,9 @@ import { apiresponse } from 'src/app/models/apiresponse';
   styleUrls: ['./listout-courses.component.css'],
 })
 export class ListoutCoursesComponent implements OnInit {
-  courses: Course[] = [];
+  courses: Course[];
+  filteredCourses: Course[];
+  searchQuery: string;
   error: any;
 
   constructor(
@@ -24,24 +26,29 @@ export class ListoutCoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
-      next: (params) => {
-        const CategoryName = params.get('courseCategory');
-        if (CategoryName) {
-          this.courseService.getCourseByCategory(CategoryName).subscribe({
-            next: (response: apiresponse) => {
-              if (response.message == '') {
-                this.error = this.handlerservice.handleError(response.error);
-              } else {
-                this.courses = response.data;
-                console.log(response);
-              }
-            },
-          });
-        }
+      next: () => {
+        this.courseService.getAllCourses().subscribe({
+          next: (response: apiresponse) => {
+            if (response.message == '') {
+              this.error = this.handlerservice.handleError(response.error);
+            } else {
+              this.courses = response.data;
+              this.filteredCourses = response.data;
+            }
+          },
+        });
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
       },
     });
+  }
+
+  filterCourses() {
+    this.filteredCourses = this.courses.filter((course) =>
+      course.courseName
+        .toLocaleLowerCase()
+        .includes(this.searchQuery.toLocaleLowerCase())
+    );
   }
 }

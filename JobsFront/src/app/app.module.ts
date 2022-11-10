@@ -22,9 +22,7 @@ import { ShowuserbyidComponent } from './components/user-components/showuserbyid
 import { RegisteradminComponent } from './components/user-components/registeradmin/registeradmin.component';
 import { CourseComponent } from './components/course-components/course/course.component';
 import { AddCourseComponent } from './components/course-components/add-course/add-course.component';
-import { CourseListComponent } from './components/course-components/course-list/course-list.component';
 import { EditCourseComponent } from './components/course-components/edit-course/edit-course.component';
-import { GotoCourseComponent } from './components/course-components/goto-course/goto-course.component';
 import { ListoutCoursesComponent } from './components/course-components/listout-courses/listout-courses.component';
 import { JobsComponent } from './components/job-components/jobs/jobs.component';
 import { CreateJobsComponent } from './components/job-components/create-jobs/create-jobs.component';
@@ -32,6 +30,8 @@ import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jo
 import { NavbarComponent } from './navbar/navbar.component';
 import { JobComponent } from './components/job-components/job/job.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -54,9 +54,7 @@ export function tokenGetter() {
     RegisteradminComponent,
     CourseComponent,
     AddCourseComponent,
-    CourseListComponent,
     EditCourseComponent,
-    GotoCourseComponent,
     ListoutCoursesComponent,
     JobsComponent,
     CreateJobsComponent,
@@ -64,12 +62,14 @@ export function tokenGetter() {
     NavbarComponent,
     JobComponent,
     NotFoundComponent,
+    ViewCourseComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    YouTubePlayerModule,
 
     JwtModule.forRoot({
       config: {
