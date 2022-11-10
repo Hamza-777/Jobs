@@ -24,7 +24,6 @@ namespace JobsAPI.Controllers
 
         // GET: api/Blogs
         [HttpGet]
-        [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> GetBlogs()
         {
             return Ok(await _repo.GetBlogs());

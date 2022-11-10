@@ -32,6 +32,7 @@ import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { JobComponent } from './job/job.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
@@ -64,6 +65,7 @@ export function tokenGetter() {
     EditJobsComponent,
     NavbarComponent,
     JobComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

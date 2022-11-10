@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using JobsAPI.Models;
 using System.Xml.Linq;
 using JobsAPI.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobsAPI.Controllers
 {
@@ -28,9 +29,9 @@ namespace JobsAPI.Controllers
         {
             return Ok(await _repo.GetCourses());
         }
+
         // GET: api/Courses/5
         [HttpGet("{id:int}")]
-        
         public async Task<IActionResult> GetCourse(int id)
         {
             return Ok(await _repo.GetCourse(id));
@@ -51,6 +52,7 @@ namespace JobsAPI.Controllers
 
         // PUT: api/Courses/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutCourse(int id, Course course)
         {
             return Ok(await _repo.PutCourse(id, course));
@@ -58,6 +60,7 @@ namespace JobsAPI.Controllers
 
         // POST: api/Courses
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PostCourse(Course course)
         {
             return Ok(await _repo.PostCourse(course));
@@ -65,6 +68,7 @@ namespace JobsAPI.Controllers
 
         // DELETE: api/Courses/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
             return Ok(await _repo.DeleteCourse(id));

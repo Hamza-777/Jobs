@@ -22,6 +22,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { JobsDetailsComponent } from './jobs-details/jobs-details.component';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { EditJobsComponent } from './edit-jobs/edit-jobs.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -95,6 +96,10 @@ const routes: Routes = [
     path: 'editjobs/:id',
     component: EditJobsComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,pathMatch:'full'
   },
 ];
 @NgModule({
