@@ -17,7 +17,7 @@ namespace JobsAPI.Controllers
     public class CoursesController : ControllerBase
     {
         private readonly ICourseRepo _repo;
-
+        public static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(CoursesController));
         public CoursesController(ICourseRepo repo)
         {
             _repo = repo;
@@ -27,6 +27,7 @@ namespace JobsAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCourses()
         {
+            _log4net.Info("Get courses of course controller revoked");
             return Ok(await _repo.GetCourses());
         }
 
@@ -34,18 +35,24 @@ namespace JobsAPI.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetCourse(int id)
         {
+            _log4net.Info("Get Course by id " + id + " of course controller revoked");
+
             return Ok(await _repo.GetCourse(id));
         }
 
         [HttpGet("name")]
         public async Task<ActionResult<Course>> GetCourseByName(string name)
         {
+            _log4net.Info("Get Course by name " + name + " of course controller revoked");
+
             return Ok(await _repo.GetCourseByName(name));
         }
 
         [HttpGet("CategoryName")]
         public async Task<IActionResult> GetCoursesByCategory([FromQuery]string CategoryName)
         {
+            _log4net.Info("Get Course by category " + CategoryName + " of course controller revoked");
+
             return Ok(await _repo.GetCoursesByCategory(CategoryName)); 
             
         }
@@ -55,6 +62,7 @@ namespace JobsAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutCourse(int id, Course course)
         {
+            _log4net.Info("Put Course by id " + id + " of course controller revoked");
             return Ok(await _repo.PutCourse(id, course));
         }
 
@@ -63,6 +71,7 @@ namespace JobsAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PostCourse(Course course)
         {
+            _log4net.Info("Post Course " + course.CourseId + " of course controller revoked");
             return Ok(await _repo.PostCourse(course));
         }
 
@@ -71,6 +80,7 @@ namespace JobsAPI.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
+            _log4net.Info("Delete Course of " + id + " of course controller revoked");
             return Ok(await _repo.DeleteCourse(id));
         }
     }

@@ -15,6 +15,7 @@ namespace JobsAPI.Repositories
     public class OtpRepo:IOtpRepo
     {
         private readonly userDbContext db;
+        public static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(OtpRepo));
 
         private IConfiguration configuration;
         public OtpRepo(IConfiguration iConfig, userDbContext _db)
@@ -27,6 +28,7 @@ namespace JobsAPI.Repositories
             List<Otp> invalidotps = db.Otps.Where(x => x.Timestamp.AddMinutes(2) < DateTime.Now).ToList();
             db.Otps.RemoveRange(invalidotps);
             await db.SaveChangesAsync();
+            _log4net.Info("Clear Otp revoked");
             return new SendResponse("Otp Cleared successfully", StatusCodes.Status205ResetContent, invalidotps.ToJson(), "");
         }
         public async Task<SendResponse> CheckOTP(string value)
@@ -39,15 +41,18 @@ namespace JobsAPI.Repositories
                 {
                     db.Otps.Remove(otp);
                     await db.SaveChangesAsync();
+                    _log4net.Info("Checkout otp revoked "+value);
                     return new SendResponse("Otp removed successfully", StatusCodes.Status205ResetContent, null, "");
                 }
                 else
                 {
                     db.Otps.Remove(otp);
                     await db.SaveChangesAsync();
+                    _log4net.Info("Otp expiration revoked " + value);
                     return new SendResponse("", StatusCodes.Status400BadRequest, null, "Otp Expired");
                 }
             }
+            _log4net.Error("Error checking otp");
             return new SendResponse("", StatusCodes.Status400BadRequest, null, "Otp Invalid");
         }
         public async Task<SendResponse> SendEmail(string toemail, string fullname)
@@ -68,6 +73,7 @@ namespace JobsAPI.Repositories
             smtp.Authenticate(configuration["EmailConfiguration:From"], configuration["EmailConfiguration:Password"]);
             smtp.Send(email);
             smtp.Disconnect(true);
+            _log4net.Info("Send mail revoked from " + toemail);
             return new SendResponse("Otp sent Successfully to the email", StatusCodes.Status200OK, null, "");
 
         }
