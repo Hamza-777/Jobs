@@ -12,8 +12,4 @@ export class JobComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  applied() {
-    alert('Applied Successfully');
-  }
 }
