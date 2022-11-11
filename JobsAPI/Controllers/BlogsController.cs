@@ -16,7 +16,7 @@ namespace JobsAPI.Controllers
     public class BlogsController : ControllerBase
     {
         private readonly IBlogsRepo _repo;
-        public static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(AdminRepo));
+        public static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(BlogsController));
         public BlogsController(IBlogsRepo repo)
         {
             _repo = repo;
