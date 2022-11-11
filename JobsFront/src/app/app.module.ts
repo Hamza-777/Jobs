@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user-components/login/login.component';
 import { HomeComponent } from './components/misc-components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/authguard/auth.guard';
 import { RegisterComponent } from './components/user-components/register/register.component';
 import { BlogComponent } from './components/blog-components/blog/blog.component';
 import { BlogsComponent } from './components/blog-components/blogs/blogs.component';

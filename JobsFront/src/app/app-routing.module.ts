@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/user-components/login/login.component';
 import { HomeComponent } from './components/misc-components/home/home.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/authguard/auth.guard';
 import { RegisterComponent } from './components/user-components/register/register.component';
 import { BlogsComponent } from './components/blog-components/blogs/blogs.component';
 import { CreateBlogComponent } from './components/blog-components/create-blog/create-blog.component';
@@ -20,6 +20,7 @@ import { CreateJobsComponent } from './components/job-components/create-jobs/cre
 import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jobs.component';
 import { NotFoundComponent } from './components/misc-components/not-found/not-found.component';
 import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
+import { RoleadminGuard } from './guards/adminguard/roleadmin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -66,15 +67,13 @@ const routes: Routes = [
   {
     path: 'add-course',
     component: AddCourseComponent,
-    canActivate: [AuthGuard],
-    data:{
-      role:'Admin'
-    }
+    canActivate: [RoleadminGuard],
+    
   },
   {
     path: 'edit-course/:courseId',
     component: EditCourseComponent,
-    canActivate: [AuthGuard],
+    canActivate: [RoleadminGuard],
   },
   {
     path: 'courses',
