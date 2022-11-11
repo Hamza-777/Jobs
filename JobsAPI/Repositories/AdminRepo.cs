@@ -47,7 +47,7 @@ namespace JobsAPI.Repositories
             }
             db.Users.Remove(person);
             await db.SaveChangesAsync();
-            return new SendResponse("Deleted user successfully", StatusCodes.Status200OK, null, "");
+            return new SendResponse("Deleted user successfully", StatusCodes.Status200OK, person, "");
         }
         public async Task<SendResponse> RegisterAdmin(user user)
         {
@@ -74,7 +74,7 @@ namespace JobsAPI.Repositories
                 user.Role = "Admin";
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
-                return new SendResponse("Registered Successfully ", StatusCodes.Status200OK, null, "");
+                return new SendResponse("Registered Successfully ", StatusCodes.Status200OK, user, "");
 
             }
         }

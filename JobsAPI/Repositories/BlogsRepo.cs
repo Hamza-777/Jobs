@@ -85,7 +85,7 @@ namespace JobsAPI.Repositories
             }
             _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
-            return new SendResponse("Deleted blog successfully", StatusCodes.Status200OK, null, "");
+            return new SendResponse("Deleted blog successfully", StatusCodes.Status200OK, blog, "");
         }
 
         private bool BlogExists(int id)

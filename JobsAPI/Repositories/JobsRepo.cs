@@ -87,7 +87,7 @@ namespace JobsAPI.Repositories
             try
             {
                 await _context.SaveChangesAsync();
-                return new SendResponse("Edited Job Successfully", StatusCodes.Status201Created, null, "");
+                return new SendResponse("Edited Job Successfully", StatusCodes.Status201Created, job, "");
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -126,7 +126,7 @@ namespace JobsAPI.Repositories
             
             _context.Jobs.Remove(job);
             await _context.SaveChangesAsync();
-            return new SendResponse("Deleted Job successfully", StatusCodes.Status200OK, null, "");
+            return new SendResponse("Deleted Job successfully", StatusCodes.Status200OK, job, "");
         }
 
         private bool JobExists(int id)
