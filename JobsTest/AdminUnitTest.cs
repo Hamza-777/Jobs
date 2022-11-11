@@ -62,7 +62,7 @@ namespace Test_JobsAPI
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
             SendResponse sendResponse = new SendResponse("Registered Successfully ", StatusCodes.Status201Created, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-            userprovider.Setup(x => x.RegisterAdmin(expected)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
+            userprovider.Setup(x => x.RegisterAdmin(actual)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
             AdminController obj = new AdminController(userprovider.Object);
             var res = obj.RegisterAdmin(expected);
             Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
@@ -91,7 +91,7 @@ namespace Test_JobsAPI
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
             SendResponse sendResponse = new SendResponse("Registered Successfully ", StatusCodes.Status201Created, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-            userprovider.Setup(x => x.RegisterAdmin(expected)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
+            userprovider.Setup(x => x.RegisterAdmin(actual)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
             AdminController obj = new AdminController(userprovider.Object);
             var res = obj.RegisterAdmin(expected);            
             Assert.AreNotEqual(expectedResult, res.Result.ToJson().ToString());
@@ -120,7 +120,7 @@ namespace Test_JobsAPI
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
             SendResponse sendResponse = new SendResponse("Registered Successfully ", StatusCodes.Status201Created, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-            userprovider.Setup(x => x.RegisterAdmin(expected)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
+            userprovider.Setup(x => x.RegisterAdmin(actual)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
             AdminController obj = new AdminController(userprovider.Object);
             var res = obj.RegisterAdmin(expected);
             Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());

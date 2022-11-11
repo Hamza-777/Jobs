@@ -66,7 +66,7 @@ namespace Test_JobsAPI
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
             SendResponse sendResponse = new SendResponse("Found username", StatusCodes.Status200OK, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-            userprovider.Setup(x => x.GetbyUsername(expected.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
+            userprovider.Setup(x => x.GetbyUsername(actual.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
             AuthController obj = new AuthController(userprovider.Object);
             var res = obj.GetbyUsername(expected.UserName);
             Assert.That(res, Is.InstanceOf<Task>());
@@ -100,7 +100,7 @@ namespace Test_JobsAPI
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
             SendResponse sendResponse = new SendResponse("Found username", StatusCodes.Status200OK, expected, "");
             string expectedResult = "{\"Result\":{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}}";
-            userprovider.Setup(x => x.GetbyUsername(expected.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
+            userprovider.Setup(x => x.GetbyUsername(actual.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
             AuthController obj = new AuthController(userprovider.Object);
             var res = obj.GetbyUsername(expected.UserName);           
             Assert.AreNotEqual(expectedResult, res.Result.ToJson().ToString());
@@ -135,7 +135,7 @@ namespace Test_JobsAPI
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
             SendResponse sendResponse = new SendResponse("Found username", StatusCodes.Status200OK, expected, "");
             string expectedResult = "{\"Result\":{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}}";
-            userprovider.Setup(x => x.GetbyUsername(expected.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
+            userprovider.Setup(x => x.GetbyUsername(actual.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
             AuthController obj = new AuthController(userprovider.Object);
             var res = obj.GetbyUsername(expected.UserName);
             Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
