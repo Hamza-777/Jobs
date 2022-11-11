@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../../../models/Blog';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
+import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
 
 @Component({
@@ -18,10 +18,8 @@ export class BlogsComponent implements OnInit {
 
   constructor(
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsServiceService
-  ) {
-    this.blogs = [];
-  }
+    private blogservice: BlogsService
+  ) {}
 
   ngOnInit(): void {
     this.getBlogs();
@@ -30,6 +28,7 @@ export class BlogsComponent implements OnInit {
   getBlogs = () => {
     this.blogservice.getBlogs().subscribe({
       next: (response: apiresponse) => {
+        console.log(response);
         this.blogs = response.data;
         this.filteredBlogs = response.data;
       },

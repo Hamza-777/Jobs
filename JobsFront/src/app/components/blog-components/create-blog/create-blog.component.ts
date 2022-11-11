@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Blog } from '../../../models/Blog';
 import jwt_decode from 'jwt-decode';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
+import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
 
 @Component({
@@ -22,7 +22,7 @@ export class CreateBlogComponent implements OnInit {
 
   constructor(
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsServiceService
+    private blogservice: BlogsService
   ) {
     this.blog = {
       coverImage:
@@ -69,14 +69,16 @@ export class CreateBlogComponent implements OnInit {
 
   createBlog = (form: NgForm) => {
     if (form.valid) {
-      this.blogservice.createBlog(this.blog).subscribe({
-        next: (response: apiresponse) => {
-          alert(response.message);
-        },
-        error: (err: HttpErrorResponse) => {
-          this.error = this.handlerservice.handleError(err);
-        },
-      });
+      this.blogservice
+        .createBlog(this.blog, this.currentUser.UserID)
+        .subscribe({
+          next: (response: apiresponse) => {
+            alert(response.message);
+          },
+          error: (err: HttpErrorResponse) => {
+            this.error = this.handlerservice.handleError(err);
+          },
+        });
     }
   };
 

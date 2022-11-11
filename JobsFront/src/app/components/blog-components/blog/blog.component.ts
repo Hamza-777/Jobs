@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../../../models/Blog';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
+import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-blog',
@@ -17,9 +18,9 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsServiceService
+    private blogservice: BlogsService
   ) {
-    this.currentUser = blogservice.currentUser;
+    this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
   }
 
   ngOnInit(): void {}
