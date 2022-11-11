@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { apiresponse } from 'src/app/models/apiresponse';
 import { environment } from 'src/environments/environment';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 
@@ -29,11 +30,11 @@ export class ForgotpwdComponent implements OnInit {
 
   generateotp(email: string, fname: string) {
     this.http
-      .post<any>(environment.ApiUrl + 'Otp/sendemail/' + email + '/' + fname, {
+      .post<apiresponse>(environment.ApiUrl + 'Otp/sendemail/' + email + '/' + fname, {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       })
       .subscribe({
-        next: (response: any) => {
+        next: (response: apiresponse) => {
           this.data = 'OTP Generated';
         },
         error: (err: HttpErrorResponse) => {
@@ -42,9 +43,9 @@ export class ForgotpwdComponent implements OnInit {
       });
   }
   getuserbyusername(username: string) {
-    this.http.get<any>(environment.ApiUrl + 'Auth/' + username).subscribe({
-      next: (response: any) => {
-        this.user = response;
+    this.http.get<apiresponse>(environment.ApiUrl + 'Auth/' + username).subscribe({
+      next: (response: apiresponse) => {
+        this.user = response.data;
         if (this.user != null) {
           this.generateotp(this.user.emailId, this.user.fullName);
         }
@@ -56,11 +57,11 @@ export class ForgotpwdComponent implements OnInit {
   }
 
   update(password: string, otp: string) {
-    this.http.get<any>(environment.ApiUrl + 'Otp/checkotp/' + otp).subscribe({
-      next: (response: any) => {
+    this.http.get<apiresponse>(environment.ApiUrl + 'Otp/checkotp/' + otp).subscribe({
+      next: (response: apiresponse) => {
         this.data = 'OTP Verified';
         this.http
-          .put<any>(
+          .put<apiresponse>(
             environment.ApiUrl + 'Auth/updatepassword/' + this.user.userID,
             { ...this.user, password: password },
             {
@@ -68,7 +69,7 @@ export class ForgotpwdComponent implements OnInit {
             }
           )
           .subscribe({
-            next: (response: any) => {
+            next: (response: apiresponse) => {
               this.router.navigate(['/login']);
             },
             error: (err: HttpErrorResponse) => {
