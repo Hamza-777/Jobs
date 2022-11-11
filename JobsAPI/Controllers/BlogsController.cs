@@ -16,7 +16,7 @@ namespace JobsAPI.Controllers
     public class BlogsController : ControllerBase
     {
         private readonly IBlogsRepo _repo;
-
+        public static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(AdminRepo));
         public BlogsController(IBlogsRepo repo)
         {
             _repo = repo;
@@ -26,6 +26,7 @@ namespace JobsAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBlogs()
         {
+            _log4net.Info("Get all blogs of blog controller revoked");
             return Ok(await _repo.GetBlogs());
         }
 
@@ -33,6 +34,7 @@ namespace JobsAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlog(int id)
         {
+            _log4net.Info("Get blog by id " +id+ " of blog controller revoked");
             return Ok(await _repo.GetBlog(id));
         }
 
@@ -40,6 +42,7 @@ namespace JobsAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBlog(int id, Blog blog)
         {
+            _log4net.Info("Put blog by id " + id + " of blog controller revoked");
             return Ok(await _repo.PutBlog(id, blog));
         }
 
@@ -47,6 +50,7 @@ namespace JobsAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostBlog(Blog blog)
         {
+            _log4net.Info("Post blog " + blog + " of blog controller revoked");
             return Ok(await _repo.PostBlog(blog));
         }
 
@@ -54,6 +58,7 @@ namespace JobsAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlog(int id)
         {
+            _log4net.Info("Delete blog by id " + id + " of blog controller revoked");
             return Ok(await _repo.DeleteBlog(id));
 
         }
