@@ -19,8 +19,12 @@ namespace JobsAPI.Repositories
             var courses = await _context.Courses.ToListAsync();
             if (courses.Count() > 0)
             {
+<<<<<<< HEAD
                 _log4net.Info("Get courses revoked");
                 return new SendResponse("Courses Found", StatusCodes.Status200OK, courses, "");
+=======
+                return new SendResponse("course Found", StatusCodes.Status200OK, courses, "");
+>>>>>>> main
 
             }
             _log4net.Error("Error getting courses");
@@ -118,9 +122,13 @@ namespace JobsAPI.Repositories
             }
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
+<<<<<<< HEAD
             _log4net.Error("Delete course revoked" + id);
 
             return new SendResponse("Deleted course successfully", StatusCodes.Status200OK, null, "");
+=======
+            return new SendResponse("Deleted course successfully", StatusCodes.Status200OK, course, "");
+>>>>>>> main
         }
         private bool CourseExists(int id)
         {

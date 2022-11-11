@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@angular/youtube-player": "^14.2.7",
     "@auth0/angular-jwt": "^5.1.0",
     "@types/marked": "^4.0.7",
     "ace-builds": "^1.12.5",

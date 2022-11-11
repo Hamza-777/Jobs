@@ -131,9 +131,13 @@ namespace JobsAPI.Repositories
                 user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
+<<<<<<< HEAD
                 _log4net.Info(user.UserID+" new user Registered");
 
                 return new SendResponse("Registered Successfully ", StatusCodes.Status201Created, null, "");
+=======
+                return new SendResponse("Registered Successfully ", StatusCodes.Status201Created, user, "");
+>>>>>>> main
             }
         }
         public async Task<SendResponse> GetbyUsername(string username)
@@ -145,8 +149,13 @@ namespace JobsAPI.Repositories
                 _log4net.Error("error finding "+username);
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Username not found");
             }
+<<<<<<< HEAD
             _log4net.Info("Get by  "+username+ " is revoked");
             return new SendResponse("Found username", StatusCodes.Status200OK, null, "");
+=======
+
+            return new SendResponse("Found username", StatusCodes.Status200OK, person, "");
+>>>>>>> main
         }
 
         public async Task<SendResponse> UpdatePassword(int userid, user user)

@@ -93,8 +93,12 @@ namespace JobsAPI.Repositories
             try
             {
                 await _context.SaveChangesAsync();
+<<<<<<< HEAD
                 _log4net.Info("Edit job by id"+ id+" revoked");
                 return new SendResponse("Edited Job Successfully", StatusCodes.Status201Created, null, "");
+=======
+                return new SendResponse("Edited Job Successfully", StatusCodes.Status201Created, job, "");
+>>>>>>> main
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -134,8 +138,12 @@ namespace JobsAPI.Repositories
             
             _context.Jobs.Remove(job);
             await _context.SaveChangesAsync();
+<<<<<<< HEAD
             _log4net.Info("Deleted job revoked" + id);
             return new SendResponse("Deleted Job successfully", StatusCodes.Status200OK, null, "");
+=======
+            return new SendResponse("Deleted Job successfully", StatusCodes.Status200OK, job, "");
+>>>>>>> main
         }
 
         private bool JobExists(int id)
