@@ -5,6 +5,7 @@ import { Blog } from '../../../models/Blog';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-view-blog',
@@ -35,7 +36,7 @@ export class ViewBlogComponent implements OnInit {
     this.activatedrouter.paramMap.subscribe((params) => {
       this.id = Number(params.get('blogId'));
     });
-    this.currentUser = blogservice.currentUser;
+    this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
   }
 
   ngOnInit(): void {

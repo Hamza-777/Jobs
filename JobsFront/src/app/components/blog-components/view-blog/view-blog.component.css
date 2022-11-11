@@ -17,8 +17,7 @@
 }
 
 .blog-body {
-  padding-inline: 1rem;
-  padding-block-end: 1rem;
+  padding: 1rem;
   gap: 1rem;
 }
 
@@ -34,6 +33,7 @@
 
 .blog-content {
   width: 100%;
+  padding: 1rem
 }
 
 .buttons {
