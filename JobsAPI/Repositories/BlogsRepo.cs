@@ -91,12 +91,11 @@ namespace JobsAPI.Repositories
             }
             _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
-<<<<<<< HEAD
+
             _log4net.Info("Delete blog revoked" + id);
-            return new SendResponse("Deleted blog successfully", StatusCodes.Status200OK, null, "");
-=======
+
             return new SendResponse("Deleted blog successfully", StatusCodes.Status200OK, blog, "");
->>>>>>> main
+
         }
 
         private bool BlogExists(int id)

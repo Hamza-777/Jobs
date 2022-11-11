@@ -53,12 +53,9 @@ namespace JobsAPI.Repositories
             }
             db.Users.Remove(person);
             await db.SaveChangesAsync();
-<<<<<<< HEAD
+
             _log4net.Info("Delete user by " + id + " is invoked");
-            return new SendResponse("Deleted user successfully", StatusCodes.Status200OK, null, "");
-=======
             return new SendResponse("Deleted user successfully", StatusCodes.Status200OK, person, "");
->>>>>>> main
         }
         public async Task<SendResponse> RegisterAdmin(user user)
         {
@@ -92,12 +89,9 @@ namespace JobsAPI.Repositories
                 user.Role = "Admin";
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
-<<<<<<< HEAD
-                _log4net.Info(user.UserID+ " Registered");
-                return new SendResponse("Registered Successfully ", StatusCodes.Status200OK, null, "");
-=======
+
+                _log4net.Info(user.UserID + " Registered");
                 return new SendResponse("Registered Successfully ", StatusCodes.Status200OK, user, "");
->>>>>>> main
 
             }
         }
