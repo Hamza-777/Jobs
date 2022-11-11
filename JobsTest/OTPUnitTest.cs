@@ -34,7 +34,6 @@ namespace Test_JobsAPI
             mockSet.As<IQueryable<Otp>>().Setup(m => m.GetEnumerator()).Returns(otpdata.GetEnumerator());
             var p = new DbContextOptions<userDbContext>();
             otpcontextmock = new Mock<userDbContext>(p);
-            //coursecontextmock.Setup(x => x.Courses).Returns(mockSet.Object);
             otpprovider = new Mock<IOtpRepo>();
 
         }
@@ -61,7 +60,6 @@ namespace Test_JobsAPI
             };
 
 
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             SendResponse sendResponse = new SendResponse("Otp Cleared successfully", StatusCodes.Status205ResetContent, expected.ToJson(), "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
@@ -70,10 +68,6 @@ namespace Test_JobsAPI
             OtpController obj = new OtpController(otpprovider.Object);
             var res = obj.ClearOTP();
             Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
-            //Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
         }
 
         [Test]
@@ -96,20 +90,12 @@ namespace Test_JobsAPI
             {
                 otp1
             };
-
-
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
             SendResponse sendResponse = new SendResponse("Otp Cleared successfully", StatusCodes.Status205ResetContent, expected.ToJson(), "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
 
             otpprovider.Setup(x => x.ClearOTP()).Returns(Task.FromResult(new SendResponse("Otp Cleared successfully", StatusCodes.Status205ResetContent, actual.ToJson(), "")));
             OtpController obj = new OtpController(otpprovider.Object);
             var res = obj.ClearOTP();
-            //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
             Assert.AreNotEqual(expectedResult, res.Result.ToJson().ToString());
 
 
@@ -135,23 +121,12 @@ namespace Test_JobsAPI
             {
                 otp2
             };
-
-
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
             SendResponse sendResponse = new SendResponse("Otp Cleared successfully", StatusCodes.Status205ResetContent, expected.ToJson(), "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
             otpprovider.Setup(x => x.ClearOTP()).Returns(Task.FromResult(new SendResponse("Otp Cleared successfully", StatusCodes.Status205ResetContent, actual.ToJson(), "")));
             OtpController obj = new OtpController(otpprovider.Object);
             var res = obj.ClearOTP();
-            //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
             Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
-
-
         }
 
 

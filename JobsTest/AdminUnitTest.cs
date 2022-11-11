@@ -14,7 +14,6 @@ namespace Test_JobsAPI
 {
     public class AdminUnitTest
     {
-
         //Arrange
         List<user> user = new List<user>();
         IQueryable<user> userdata;
@@ -35,7 +34,6 @@ namespace Test_JobsAPI
             mockSet.As<IQueryable<user>>().Setup(m => m.GetEnumerator()).Returns(userdata.GetEnumerator());
             var p = new DbContextOptions<userDbContext>();
             usercontextmock = new Mock<userDbContext>(p);
-            //coursecontextmock.Setup(x => x.Courses).Returns(mockSet.Object);
             userprovider = new Mock<IAdminRepo>();
             hm = new HashMethods();
 
@@ -53,7 +51,6 @@ namespace Test_JobsAPI
             expected.Role = "Admin";
             expected.Salt = hm.GenerateSalt();
             expected.Password  =  Convert.ToBase64String(hm.GetHash(expected.Password, expected.Salt));
-
             user actual = new user();
             actual.UserID = 1;
             actual.UserName = "name";
@@ -63,23 +60,17 @@ namespace Test_JobsAPI
             actual.Role = "Admin";
             actual.Salt = expected.Salt;
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             SendResponse sendResponse = new SendResponse("Registered Successfully ", StatusCodes.Status201Created, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             userprovider.Setup(x => x.RegisterAdmin(expected)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
             AdminController obj = new AdminController(userprovider.Object);
             var res = obj.RegisterAdmin(expected);
             Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
-            //Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
         }
 
         [Test]
         public void RegisterAdmin_ArgumentsNotMatching()
         {
-
             user expected = new user();
             expected.UserID = 1;
             expected.UserName = "name";
@@ -89,7 +80,6 @@ namespace Test_JobsAPI
             expected.Role = "Admin";
             expected.Salt = hm.GenerateSalt();
             expected.Password = Convert.ToBase64String(hm.GetHash(expected.Password, expected.Salt));
-
             user actual = new user();
             actual.UserID =  2;
             actual.UserName = "name";
@@ -99,24 +89,17 @@ namespace Test_JobsAPI
             actual.Role = "Admin";
             actual.Salt = expected.Salt;
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             SendResponse sendResponse = new SendResponse("Registered Successfully ", StatusCodes.Status201Created, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             userprovider.Setup(x => x.RegisterAdmin(expected)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
             AdminController obj = new AdminController(userprovider.Object);
             var res = obj.RegisterAdmin(expected);            
-            //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
             Assert.AreNotEqual(expectedResult, res.Result.ToJson().ToString());
-
-
         }
 
         [Test]
         public void RegisterAdmin_ArgumentsMatching()
         {
-
             user expected = new user();
             expected.UserID = 1;
             expected.UserName = "name";
@@ -126,7 +109,6 @@ namespace Test_JobsAPI
             expected.Role = "Admin";
             expected.Salt = hm.GenerateSalt();
             expected.Password = Convert.ToBase64String(hm.GetHash(expected.Password, expected.Salt));
-
             user actual = new user();
             actual.UserID = 1;
             actual.UserName = "name";
@@ -136,20 +118,12 @@ namespace Test_JobsAPI
             actual.Role = "Admin";
             actual.Salt = expected.Salt;
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             SendResponse sendResponse = new SendResponse("Registered Successfully ", StatusCodes.Status201Created, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             userprovider.Setup(x => x.RegisterAdmin(expected)).Returns(Task.FromResult(new SendResponse("Registered Successfully ", StatusCodes.Status201Created, actual, "")));
             AdminController obj = new AdminController(userprovider.Object);
             var res = obj.RegisterAdmin(expected);
-
-            //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
             Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
-
-
         }
     }
 

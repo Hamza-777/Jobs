@@ -13,8 +13,7 @@ using JobsAPI.Hashing;
 namespace Test_JobsAPI
 {
     public class AuthUnitTest
-    {
-
+    { 
         //Arrange
         List<user> user = new List<user>();
         IQueryable<user> userdata;
@@ -35,7 +34,6 @@ namespace Test_JobsAPI
             mockSet.As<IQueryable<user>>().Setup(m => m.GetEnumerator()).Returns(userdata.GetEnumerator());
             var p = new DbContextOptions<userDbContext>();
             usercontextmock = new Mock<userDbContext>(p);
-            //coursecontextmock.Setup(x => x.Courses).Returns(mockSet.Object);
             userprovider = new Mock<IAuthRepo>();
             hm = new HashMethods();
 
@@ -55,7 +53,6 @@ namespace Test_JobsAPI
             expected.RecruiterDescription = "Description";
             expected.Salt = hm.GenerateSalt();
             expected.Password  =  Convert.ToBase64String(hm.GetHash(expected.Password, expected.Salt));
-
             user actual = new user();
             actual.UserID = 1;
             actual.UserName = "name";
@@ -67,18 +64,12 @@ namespace Test_JobsAPI
             actual.RecruiterDescription = "Description";
             actual.Salt = expected.Salt;
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             SendResponse sendResponse = new SendResponse("Found username", StatusCodes.Status200OK, expected, "");
             string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
-
             userprovider.Setup(x => x.GetbyUsername(expected.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
             AuthController obj = new AuthController(userprovider.Object);
             var res = obj.GetbyUsername(expected.UserName);
             Assert.That(res, Is.InstanceOf<Task>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
-            //Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
         }
 
         [Test]
@@ -96,7 +87,6 @@ namespace Test_JobsAPI
             expected.RecruiterDescription = "Description";
             expected.Salt = hm.GenerateSalt();
             expected.Password = Convert.ToBase64String(hm.GetHash(expected.Password, expected.Salt));
-
             user actual = new user();
             actual.UserID = 2;
             actual.UserName = "name";
@@ -108,14 +98,11 @@ namespace Test_JobsAPI
             actual.RecruiterDescription = "Description";
             actual.Salt = expected.Salt;
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             SendResponse sendResponse = new SendResponse("Found username", StatusCodes.Status200OK, expected, "");
             string expectedResult = "{\"Result\":{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}}";
             userprovider.Setup(x => x.GetbyUsername(expected.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
             AuthController obj = new AuthController(userprovider.Object);
             var res = obj.GetbyUsername(expected.UserName);           
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
             Assert.AreNotEqual(expectedResult, res.Result.ToJson().ToString());
 
 
@@ -135,7 +122,6 @@ namespace Test_JobsAPI
             expected.RecruiterDescription = "Description";
             expected.Salt = hm.GenerateSalt();
             expected.Password = Convert.ToBase64String(hm.GetHash(expected.Password, expected.Salt));
-
             user actual = new user();
             actual.UserID = 1;
             actual.UserName = "name";
@@ -147,24 +133,14 @@ namespace Test_JobsAPI
             actual.RecruiterDescription = "Description";
             actual.Salt = expected.Salt;
             actual.Password = Convert.ToBase64String(hm.GetHash(actual.Password, actual.Salt));
-            //string expected = "{\"Value\":{\"message\":\"Posted course\",\"code\":201,\"data\":{\"CourseId\":12,\"CourseName\":\"Python\",\"CourseCategory\":\"Software\",\"CourseDescription\":\"Easy learning Coding Language\",\"CourseAuthor\":\"Hamza Rarani\",\"CourseAmount\":4999.0,\"CourseImage\":\"imageURL\",\"CourseVideoURL\":\"VdoURL\"},\"error\":\"\"},\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
             SendResponse sendResponse = new SendResponse("Found username", StatusCodes.Status200OK, expected, "");
             string expectedResult = "{\"Result\":{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}}";
-            
             userprovider.Setup(x => x.GetbyUsername(expected.UserName)).Returns(Task.FromResult(new SendResponse("Found username", StatusCodes.Status200OK, actual, "")));
             AuthController obj = new AuthController(userprovider.Object);
             var res = obj.GetbyUsername(expected.UserName);
-            //Assert.That(res, Is.InstanceOf<Task<IActionResult>>());
-            //Console.WriteLine(res.Result.ToJson().ToString());
-            //Assert.AreEqual(expected, res.Result.ToJson().ToString());
-            //Assert.AreEqual(obj.data,p);
             Assert.AreEqual(expectedResult, res.Result.ToJson().ToString());
-
-
         }
     }
-
-
 }
 
 
