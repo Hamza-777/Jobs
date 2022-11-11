@@ -68,7 +68,6 @@ const routes: Routes = [
     path: 'add-course',
     component: AddCourseComponent,
     canActivate: [RoleadminGuard],
-    
   },
   {
     path: 'edit-course/:courseId',

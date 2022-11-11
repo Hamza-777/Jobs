@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Blog } from '../../../models/Blog';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
-import { BlogsServiceService } from '../../../services/blog-service/blogs-service.service';
+import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
 
 @Component({
@@ -20,7 +20,7 @@ export class ViewBlogComponent implements OnInit {
   constructor(
     private activatedrouter: ActivatedRoute,
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsServiceService
+    private blogservice: BlogsService
   ) {
     this.id = 0;
     this.currentBlog = {
