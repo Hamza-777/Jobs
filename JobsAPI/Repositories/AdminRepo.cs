@@ -47,7 +47,7 @@ namespace JobsAPI.Repositories
             }
             db.Users.Remove(person);
             await db.SaveChangesAsync();
-            return new SendResponse("Deleted user successfully", StatusCodes.Status200OK, null, "");
+            return new SendResponse("Deleted user successfully", StatusCodes.Status200OK, person, "");
         }
         public async Task<SendResponse> RegisterAdmin(user user)
         {

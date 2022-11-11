@@ -119,7 +119,7 @@ namespace JobsAPI.Repositories
                 user.Password = Convert.ToBase64String(hm.GetHash(user.Password, user.Salt));
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
-                return new SendResponse("Registered Successfully ", StatusCodes.Status201Created, null, "");
+                return new SendResponse("Registered Successfully ", StatusCodes.Status201Created, user, "");
             }
         }
         public async Task<SendResponse> GetbyUsername(string username)
