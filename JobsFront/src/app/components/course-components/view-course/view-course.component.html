@@ -1,0 +1,18 @@
+<main class="container flex flex-col align-start">
+  <p class="h1">
+    {{ currentCourse.courseName }} by
+    <span style="font-weight: 600">{{ currentCourse.courseAuthor }}</span>
+  </p>
+  <div class="yt-video flex align-center justify-center">
+    <youtube-player
+      videoId="{{ currentCourse.courseVideoURL }}"
+      [width]="1200"
+      [height]="600"
+    >
+    </youtube-player>
+  </div>
+  <div class="about flex flex-col align-start">
+    <p class="h2">About this course:</p>
+    <p class="lead">{{ currentCourse.courseDescription }}</p>
+  </div>
+</main>

@@ -1,0 +1,37 @@
+<main class="container blog-page">
+  <section class="cover-img">
+    <img src="{{ currentBlog.coverImage }}" src="blog cover" />
+  </section>
+  <section class="blog-body flex flex-col align-start">
+    <p class="h1">{{ currentBlog.blogTitle }}</p>
+    <div class="tags flex align-center">
+      <p class="h4">Tags:</p>
+      <div
+        class="tag small"
+        *ngFor="let tag of currentBlog.blogTags.split(',')"
+      >
+        {{ "#" + tag }}
+      </div>
+    </div>
+    <div
+      class="blog-content"
+      [innerHtml]="currentBlog.blogContent | markdown"
+    ></div>
+  </section>
+  <div class="buttons flex align-center justify-between">
+    <button
+      class="btn btn-outline"
+      *ngIf="currentUser.UserID == currentBlog.userID"
+      (click)="deleteBlog(currentBlog.blogId)"
+    >
+      Delete
+    </button>
+    <a
+      class="btn btn-solid"
+      *ngIf="currentUser.UserID == currentBlog.userID"
+      routerLink="/createblogs"
+      (click)="storeId(currentBlog.blogId)"
+      >Edit</a
+    >
+  </div>
+</main>

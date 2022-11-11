@@ -1,0 +1,71 @@
+<section class="container" id="login-form">
+  <p class="h3" style="text-align: center">Edit Course</p>
+  <form class="form" #form="ngForm" (ngSubmit)="updateCourse()">
+    <div class="form-group">
+      <input
+        type="number"
+        id="courseId"
+        readonly
+        name="courseId"
+        [(ngModel)]="courseDetails.courseId"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        id="courseName"
+        name="courseName"
+        [(ngModel)]="courseDetails.courseName"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        id="courseCategory"
+        name="courseCategory"
+        [(ngModel)]="courseDetails.courseCategory"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        id="courseDescription"
+        name="courseDescription"
+        [(ngModel)]="courseDetails.courseDescription"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        id="courseAuthor"
+        name="courseAuthor"
+        [(ngModel)]="courseDetails.courseAuthor"
+      />
+    </div>
+    <!-- <div class="form-group">
+            <label for="courseAmount" class="form-label">Course Amount</label>
+            <input type="num id="courseAmount" 
+            name="courseAmount" [(ngModel)]="courseDetails.courseAmount">
+          </div> -->
+    <div class="form-group">
+      <input
+        type="text"
+        id="courseImage"
+        name="courseImage"
+        [(ngModel)]="courseDetails.courseImage"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        id="courseVideoURL"
+        name="courseVideoURL"
+        [(ngModel)]="courseDetails.courseVideoURL"
+      />
+    </div>
+    <button type="submit" class="btn btn-outline btn-submit">
+      Save Changes
+    </button>
+  </form>
+</section>
+<button (click)="deleteCourse(courseDetails.courseId)">Delete</button>
