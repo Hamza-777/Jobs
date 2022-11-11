@@ -1,0 +1,42 @@
+.blog-page {
+  border: 2px solid;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.cover-img {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+}
+
+.cover-img > img {
+  width: 100%;
+  height: 30rem;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.blog-body {
+  padding-inline: 1rem;
+  padding-block-end: 1rem;
+  gap: 1rem;
+}
+
+.tags {
+  gap: 1rem;
+}
+
+.tag {
+  border: 1px solid;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.blog-content {
+  width: 100%;
+}
+
+.buttons {
+  width: 100%;
+  padding: 1rem;
+}

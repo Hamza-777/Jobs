@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Job } from '../../_interfaces/Job';
-import { map, observable, Observable } from 'rxjs';
-import { City } from '../../_interfaces/City';
-import { State } from '../../_interfaces/State';
-import { Category } from '../../_interfaces/Category';
+import { HttpClient } from '@angular/common/http';
+import { Job } from '../../models/Job';
+import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { apiresponse } from 'src/app/_interfaces/apiresponse';
+import { apiresponse } from 'src/app/models/apiresponse';
 
 @Injectable({
   providedIn: 'root',
@@ -36,10 +33,15 @@ export class JobsService {
     return this.http.get<apiresponse>(environment.ApiUrl + 'Jobs' + '/state');
   }
   getAllCategory() {
-    return this.http.get<apiresponse>(environment.ApiUrl + 'Jobs' + '/category');
+    return this.http.get<apiresponse>(
+      environment.ApiUrl + 'Jobs' + '/category'
+    );
   }
-  postJobs(postJobRequest: Job){
-    return this.http.post<apiresponse>(environment.ApiUrl + 'Jobs', postJobRequest);
+  postJobs(postJobRequest: Job) {
+    return this.http.post<apiresponse>(
+      environment.ApiUrl + 'Jobs',
+      postJobRequest
+    );
   }
   editJobs(id: number, editedJobRequest: Job) {
     return this.http.put<apiresponse>(
