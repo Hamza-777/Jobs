@@ -17,7 +17,7 @@ import { NotificationService } from 'src/app/services/notification-service/notif
 export class LoginComponent implements OnInit {
   invalidLogin: boolean;
   credentials: LoginModel = { userdata: '', password: '' };
-  error: any;
+  error: any = null;
 
   constructor(
     private router: Router,
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.auth.loginuser(this.credentials).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
+            this.notify.showError(response.error);
           } else {
             this.tokenservice.addToken(response.data.token);
             this.invalidLogin = false;
