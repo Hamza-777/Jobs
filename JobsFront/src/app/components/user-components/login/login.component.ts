@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
         next: (response: apiresponse) => {
           if (response.message == '') {
             this.error = this.handlerservice.handleError(response.error);
-            this.notify.showError(response.error);
           } else {
             this.tokenservice.addToken(response.data.token);
             this.invalidLogin = false;
@@ -43,7 +42,10 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/']);
           }
         },
-        error: (err: HttpErrorResponse) => (this.invalidLogin = true),
+        error: (err: HttpErrorResponse) => {
+          this.invalidLogin = true;
+          this.error = this.handlerservice.handleError(err.error);
+        },
       });
     }
   };

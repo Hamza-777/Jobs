@@ -48,9 +48,4 @@
   </form>
 </section>
 
-<section *ngIf="this.error" class="loading">
-  <img
-    src="https://media4.giphy.com/media/0Dxuk20eU0bDYaxRR8/giphy.gif"
-    alt="server error"
-  />
-</section>
+<app-servererror *ngIf="this.error"></app-servererror>

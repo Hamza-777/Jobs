@@ -45,7 +45,6 @@ export class ForgotpwdComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
   }
@@ -90,7 +89,6 @@ export class ForgotpwdComponent implements OnInit {
               },
               error: (err: HttpErrorResponse) => {
                 this.error = this.handlerservice.handleError(err);
-                this.notify.showError(err.message);
               },
             });
         },

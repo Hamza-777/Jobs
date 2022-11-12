@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
     this.auth.verifyotp(otp).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
           this.notify.showError(response.error);
         } else {
           this.data = response.message;
@@ -50,7 +49,6 @@ export class RegisterComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-        this.notify.showError(err.message);
       },
     });
   }
@@ -59,7 +57,6 @@ export class RegisterComponent implements OnInit {
     this.auth.otpgeneration(email, fname).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
           this.notify.showError(response.error);
         } else {
           this.data = response.message;
@@ -68,7 +65,6 @@ export class RegisterComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-        this.notify.showError(err.message);
       },
     });
   }
@@ -94,7 +90,6 @@ export class RegisterComponent implements OnInit {
       this.auth.registeruser(this.user).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
             this.notify.showError(response.error);
           } else {
             this.router.navigate(['/login']);
@@ -103,7 +98,6 @@ export class RegisterComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
     }
