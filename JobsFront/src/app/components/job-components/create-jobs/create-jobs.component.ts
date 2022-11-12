@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { apiresponse } from '../../../models/apiresponse';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-jobs',
@@ -24,7 +25,8 @@ export class CreateJobsComponent implements OnInit {
   constructor(
     private jobservice: JobsService,
     private handlerservice: GlobalerrorhandlerService,
-    private notify: NotificationService
+    private notify: NotificationService,
+    private router: Router
   ) {
     this.newjob = {
       title: '',
@@ -70,6 +72,7 @@ export class CreateJobsComponent implements OnInit {
             this.error = this.handlerservice.handleError(response.error);
             this.notify.showError(response.error);
           } else {
+            this.router.navigate(['jobs']);
             this.notify.showSuccess(response.message);
           }
         },

@@ -7,6 +7,7 @@ import { GlobalerrorhandlerService } from '../../../services/error-service/globa
 import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-blog',
@@ -24,7 +25,8 @@ export class CreateBlogComponent implements OnInit {
   constructor(
     private handlerservice: GlobalerrorhandlerService,
     private blogservice: BlogsService,
-    private notify: NotificationService
+    private notify: NotificationService,
+    private router: Router
   ) {
     this.blog = {
       coverImage:
@@ -75,6 +77,7 @@ export class CreateBlogComponent implements OnInit {
         .createBlog(this.blog, this.currentUser.UserID)
         .subscribe({
           next: (response: apiresponse) => {
+            this.router.navigate(['blogs']);
             this.notify.showSuccess(response.message);
           },
           error: (err: HttpErrorResponse) => {
@@ -95,6 +98,7 @@ export class CreateBlogComponent implements OnInit {
               this.error = this.handlerservice.handleError(response.error);
               this.notify.showError(response.error);
             } else {
+              this.router.navigate(['blogs']);
               this.notify.showSuccess(response.message);
             }
           },

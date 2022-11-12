@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { TokenService } from '../../../services/token-service/token.service';
 import jwt_decode from 'jwt-decode';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +11,9 @@ import { NotificationService } from 'src/app/services/notification-service/notif
 })
 export class NavbarComponent implements OnInit {
   constructor(
-    private http: HttpClient,
     public tokenservice: TokenService,
-    private notify: NotificationService
+    private notify: NotificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit {
 
   logOut = () => {
     this.tokenservice.deleteToken();
+    this.router.navigate(['login']);
     this.notify.showSuccess('Logged Out Successfully!');
   };
 }

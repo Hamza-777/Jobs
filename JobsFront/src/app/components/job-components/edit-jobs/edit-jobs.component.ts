@@ -1,4 +1,3 @@
-import { formatCurrency } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -11,6 +10,7 @@ import { City } from '../../../models/City';
 import { Job } from '../../../models/Job';
 import { State } from '../../../models/State';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-jobs',
@@ -28,7 +28,8 @@ export class EditJobsComponent implements OnInit {
     private route: ActivatedRoute,
     private jobservice: JobsService,
     private handlerservice: GlobalerrorhandlerService,
-    private notify: NotificationService
+    private notify: NotificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -78,6 +79,7 @@ export class EditJobsComponent implements OnInit {
         this.stateList.find((x) => x.id == this.newjob.stateid).name;
       this.jobservice.editJobs(this.newjob.id, this.newjob).subscribe({
         next: (response) => {
+          this.router.navigate(['jobs']);
           this.notify.showSuccess(response.message);
         },
         error: (err: HttpErrorResponse) => {
@@ -91,6 +93,7 @@ export class EditJobsComponent implements OnInit {
   deleteJob(id: number) {
     this.jobservice.deleteJobs(id).subscribe({
       next: (response) => {
+        this.router.navigate(['jobs']);
         this.notify.showSuccess(response.message);
       },
       error: (errResponse: HttpErrorResponse) => {
