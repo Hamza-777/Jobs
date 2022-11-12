@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,6 +8,7 @@ import { AuthService } from '../../../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { apiresponse } from '../../../models/apiresponse';
 import { RegisterModel } from '../../../models/register.model';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-registeradmin',
@@ -25,49 +22,57 @@ export class RegisteradminComponent implements OnInit {
   @ViewChild('registeradminForm') form!: NgForm;
   user: RegisterModel = {} as RegisterModel;
   image: any;
+
   constructor(
     private router: Router,
     private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private auth: AuthService,
-    private admin: AdminService
+    private admin: AdminService,
+    private notify: NotificationService
   ) {
     this.user.role = 'Admin';
   }
+
   checkotp(otp: string) {
     this.auth.verifyotp(otp).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.data = response.message;
+          this.notify.showSuccess(response.message);
           this.register(this.form);
-          console.log(this.data);
         }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
+        this.notify.showError(err.message);
       },
     });
   }
+
   generateotp(email: string, fname: string) {
     this.auth.otpgeneration(email, fname).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.data = response.message;
-          console.log(response);
+          this.notify.showSuccess(response.message);
         }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
+        this.notify.showError(err.message);
       },
     });
   }
+
   ngOnInit(): void {}
   onFileSelected(event: any) {
-    console.log(event);
     this.image = event.target.files[0];
     const fd = new FormData();
     fd.append('image', this.image, this.image.name);
@@ -76,26 +81,29 @@ export class RegisteradminComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           this.user.photographLink = response['data']['display_url'];
-          console.log(this.user.photographLink);
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
+          this.notify.showError(err.message);
         },
       });
   }
+
   register = (form: NgForm) => {
     if (form.valid) {
       this.admin.adminregistration(this.user).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
             this.error = this.handlerservice.handleError(response.error);
+            this.notify.showError(response.error);
           } else {
             this.router.navigate(['']);
-            console.log(response);
+            this.notify.showSuccess(response.message);
           }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
+          this.notify.showError(err.message);
         },
       });
     }

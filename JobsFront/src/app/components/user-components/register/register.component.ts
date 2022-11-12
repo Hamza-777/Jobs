@@ -7,6 +7,7 @@ import { AuthService } from '../../../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { apiresponse } from '../../../models/apiresponse';
 import { RegisterModel } from '../../../models/register.model';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -19,30 +20,37 @@ export class RegisterComponent implements OnInit {
   error: any;
   image: any;
   confirmpassword: string;
-
   @ViewChild('registerForm') form!: NgForm;
   user: RegisterModel = {} as RegisterModel;
+
   constructor(
     private router: Router,
     private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
-    private auth: AuthService
+    private auth: AuthService,
+    private notify: NotificationService
   ) {
     this.user.workStatus = false;
     this.user.role = 'Applicant';
   }
+
+  ngOnInit(): void {}
+
   checkotp(otp: string) {
     this.auth.verifyotp(otp).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.data = response.message;
+          this.notify.showSuccess(response.message);
           this.register(this.form);
         }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
+        this.notify.showError(err.message);
       },
     });
   }
@@ -52,12 +60,15 @@ export class RegisterComponent implements OnInit {
       next: (response: apiresponse) => {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.data = response.message;
+          this.notify.showSuccess(response.message);
         }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
+        this.notify.showError(err.message);
       },
     });
   }
@@ -77,19 +88,22 @@ export class RegisterComponent implements OnInit {
         },
       });
   }
-  ngOnInit(): void {}
+
   register = (form: NgForm) => {
     if (form.valid) {
       this.auth.registeruser(this.user).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
             this.error = this.handlerservice.handleError(response.error);
+            this.notify.showError(response.error);
           } else {
             this.router.navigate(['/login']);
+            this.notify.showSuccess(response.message);
           }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
+          this.notify.showError(err.message);
         },
       });
     }
