@@ -9,7 +9,17 @@
     <button class="btn btn-link" (click)="filterCourses()">🍳</button>
   </section>
 
-  <section class="courses flex flex-row-wrap align-center justify-center">
+  <section *ngIf="!filteredCourses" class="loading">
+    <img
+      src="https://thumbs.gfycat.com/ClosedCommonGoose-size_restricted.gif"
+      alt="loading..."
+    />
+  </section>
+
+  <section
+    *ngIf="filteredCourses"
+    class="courses flex flex-row-wrap align-center justify-center"
+  >
     <app-course *ngFor="let course of filteredCourses" [course]="course">
     </app-course>
   </section>

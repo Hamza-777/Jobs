@@ -47,7 +47,14 @@
     Reset Filters
   </button>
 
-  <section *ngFor="let job of filteredJobs">
-    <app-job [job]="job"></app-job>
+  <section *ngIf="!filteredJobs" class="loading">
+    <img
+      src="https://thumbs.gfycat.com/ClosedCommonGoose-size_restricted.gif"
+      alt="loading..."
+    />
+  </section>
+
+  <section *ngIf="filteredJobs">
+    <app-job *ngFor="let job of filteredJobs" [job]="job"></app-job>
   </section>
 </main>

@@ -77,6 +77,7 @@ export function tokenGetter() {
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
+      progressBar: true,
     }),
 
     JwtModule.forRoot({

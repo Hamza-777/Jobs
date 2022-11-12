@@ -1,4 +1,11 @@
-<main class="container blog-page">
+<section *ngIf="!currentBlog" class="loading">
+  <img
+    src="https://thumbs.gfycat.com/ClosedCommonGoose-size_restricted.gif"
+    alt="loading..."
+  />
+</section>
+
+<main *ngIf="currentBlog" class="container blog-page">
   <section class="cover-img">
     <img src="{{ currentBlog.coverImage }}" src="blog cover" />
   </section>

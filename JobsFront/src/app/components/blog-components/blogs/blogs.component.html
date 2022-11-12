@@ -9,7 +9,14 @@
     <button class="btn btn-link" (click)="filterBlogs()">🍳</button>
   </section>
 
-  <section class="blogs" *ngFor="let blog of filteredBlogs">
-    <app-blog [blog]="blog"> </app-blog>
+  <section *ngIf="!filteredBlogs" class="loading">
+    <img
+      src="https://thumbs.gfycat.com/ClosedCommonGoose-size_restricted.gif"
+      alt="loading..."
+    />
+  </section>
+
+  <section *ngIf="filteredBlogs" class="blogs">
+    <app-blog *ngFor="let blog of filteredBlogs" [blog]="blog"> </app-blog>
   </section>
 </main>
