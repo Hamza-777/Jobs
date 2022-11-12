@@ -35,12 +35,21 @@ export class ViewCourseComponent implements OnInit {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
         } else {
-          response.data.courseVideoURL = response.data.courseVideoURL
-            .split('=')[1]
-            .split('&')[0];
+          response.data.courseVideoURL = this.getVideoId(
+            response.data.courseVideoURL
+          );
           this.currentCourse = response.data;
         }
       },
     });
   };
+
+  getVideoId(videoUrl: string): string {
+    let videoId =
+      videoUrl.split('.')[1][0] === 'b'
+        ? videoUrl.split('.')[1].split('/')[1]
+        : videoUrl.split('=')[1].split('&')[0];
+
+    return videoId;
+  }
 }
