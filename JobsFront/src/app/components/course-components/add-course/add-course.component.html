@@ -1,4 +1,4 @@
-<section class="container" id="login-form">
+<section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Create A Course</p>
   <form class="form" #form="ngForm" (ngSubmit)="addCourse()">
     <div class="form-group">
@@ -64,3 +64,5 @@
     <button type="submit" class="btn btn-outline btn-submit">Submit</button>
   </form>
 </section>
+
+<app-servererror *ngIf="this.error"></app-servererror>

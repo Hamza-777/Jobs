@@ -1,4 +1,4 @@
-<section class="container" id="login-form">
+<section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Edit Course</p>
   <form class="form" #form="ngForm" (ngSubmit)="updateCourse()">
     <div class="form-group">
@@ -61,11 +61,15 @@
     <button type="submit" class="btn btn-outline btn-submit">
       Save Changes
     </button>
+    <button
+      type="button"
+      *ngIf="tokenservice.isAdmin()"
+      (click)="deleteCourse(courseDetails.courseId)"
+      class="btn btn-solid btn-submit"
+    >
+      Delete
+    </button>
   </form>
 </section>
-<button
-  *ngIf="tokenservice.isAdmin()"
-  (click)="deleteCourse(courseDetails.courseId)"
->
-  Delete
-</button>
+
+<app-servererror *ngIf="this.error"></app-servererror>

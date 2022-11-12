@@ -1,4 +1,4 @@
-<main class="container flex align-center flex-col">
+<main *ngIf="!this.error" class="container flex align-center flex-col">
   <section class="searchbar flex align-center">
     <input
       type="search"
@@ -9,12 +9,7 @@
     <button class="btn btn-link" (click)="filterCourses()">🍳</button>
   </section>
 
-  <section *ngIf="!filteredCourses" class="loading">
-    <img
-      src="https://thumbs.gfycat.com/ClosedCommonGoose-size_restricted.gif"
-      alt="loading..."
-    />
-  </section>
+  <app-loading *ngIf="!filteredCourses"> </app-loading>
 
   <section
     *ngIf="filteredCourses"
@@ -24,3 +19,5 @@
     </app-course>
   </section>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

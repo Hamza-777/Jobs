@@ -34,6 +34,8 @@ import { ViewCourseComponent } from './components/course-components/view-course/
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LoadingComponent } from './components/misc-components/loading/loading.component';
+import { ServererrorComponent } from './components/misc-components/servererror/servererror.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -65,6 +67,8 @@ export function tokenGetter() {
     JobComponent,
     NotFoundComponent,
     ViewCourseComponent,
+    LoadingComponent,
+    ServererrorComponent,
   ],
   imports: [
     BrowserModule,

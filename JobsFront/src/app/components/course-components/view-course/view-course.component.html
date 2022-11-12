@@ -1,11 +1,9 @@
-<section *ngIf="!currentCourse" class="loading">
-  <img
-    src="https://thumbs.gfycat.com/ClosedCommonGoose-size_restricted.gif"
-    alt="loading..."
-  />
-</section>
+<app-loading *ngIf="!this.error && !currentCourse"> </app-loading>
 
-<main *ngIf="currentCourse" class="container flex flex-col align-start">
+<main
+  *ngIf="!this.error && currentCourse"
+  class="container flex flex-col align-start"
+>
   <p class="h1">
     {{ currentCourse.courseName }} by
     <span style="font-weight: 600">{{ currentCourse.courseAuthor }}</span>
@@ -36,3 +34,5 @@
     Delete Course
   </button>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

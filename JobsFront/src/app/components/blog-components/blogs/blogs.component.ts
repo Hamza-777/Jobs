@@ -13,7 +13,7 @@ import { apiresponse } from '../../../models/apiresponse';
 export class BlogsComponent implements OnInit {
   filteredBlogs: Blog[];
   blogs: Blog[];
-  error: any;
+  error: any = null;
   searchQuery: string = '';
 
   constructor(
@@ -28,7 +28,6 @@ export class BlogsComponent implements OnInit {
   getBlogs = () => {
     this.blogservice.getBlogs().subscribe({
       next: (response: apiresponse) => {
-        console.log(response);
         this.blogs = response.data;
         this.filteredBlogs = response.data;
       },

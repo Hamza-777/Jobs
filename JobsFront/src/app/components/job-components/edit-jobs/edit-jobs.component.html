@@ -1,4 +1,4 @@
-<section class="container" id="login-form">
+<section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Edit Job</p>
   <form class="form" #form="ngForm" (ngSubmit)="editJob(form)">
     <div class="form-group">
@@ -96,13 +96,15 @@
     >
       Submit
     </button>
+    <button
+      *ngIf="tokenservice.isRecruiter()"
+      type="button"
+      class="btn btn-solid btn-submit"
+      (click)="deleteJob(newjob.id)"
+    >
+      Delete
+    </button>
   </form>
-  <button
-    *ngIf="tokenservice.isRecruiter()"
-    type="button"
-    class="btn btn-solid btn-submit"
-    (click)="deleteJob(newjob.id)"
-  >
-    Delete
-  </button>
 </section>
+
+<app-servererror *ngIf="this.error"></app-servererror>

@@ -1,4 +1,4 @@
-<section class="container" id="loginform">
+<section *ngIf="!this.error" class="container" id="loginform">
   <p class="h3" style="text-align: center">Create A Job</p>
   <form class="form" #form="ngForm" (ngSubmit)="createJobs(form)">
     <div class="form-group">
@@ -93,7 +93,9 @@
       class="btn btn-outline btn-submit"
       [disabled]="newjob.salary_min > newjob.salary_max && !form.valid"
     >
-      Submit
+      Create
     </button>
   </form>
 </section>
+
+<app-servererror *ngIf="this.error"></app-servererror>
