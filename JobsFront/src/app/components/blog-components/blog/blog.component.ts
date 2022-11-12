@@ -5,6 +5,8 @@ import { GlobalerrorhandlerService } from '../../../services/error-service/globa
 import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
 import jwt_decode from 'jwt-decode';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog',
@@ -18,7 +20,9 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsService
+    private blogservice: BlogsService,
+    private notify: NotificationService,
+    private router: Router
   ) {
     this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
   }
@@ -30,13 +34,19 @@ export class BlogComponent implements OnInit {
       next: (response: apiresponse) => {
         if (response.message == '') {
           this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
-          alert(response.message);
-          window.location.reload();
+          this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+              this.router.navigate(['blogs']);
+            });
+          this.notify.showSuccess(response.message);
         }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err.error);
+        this.notify.showError(err.message);
       },
     });
   };
