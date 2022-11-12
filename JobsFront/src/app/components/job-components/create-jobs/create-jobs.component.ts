@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { apiresponse } from '../../../models/apiresponse';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-create-jobs',
@@ -19,9 +20,11 @@ export class CreateJobsComponent implements OnInit {
   cityList: City[];
   stateList: State[];
   error: any;
+
   constructor(
     private jobservice: JobsService,
-    private handlerservice: GlobalerrorhandlerService
+    private handlerservice: GlobalerrorhandlerService,
+    private notify: NotificationService
   ) {
     this.newjob = {
       title: '',
@@ -39,7 +42,6 @@ export class CreateJobsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.categoryList);
     this.getCities();
     this.getCategory();
     this.getStates();
@@ -66,12 +68,14 @@ export class CreateJobsComponent implements OnInit {
         next: (response: apiresponse) => {
           if (response.message == '') {
             this.error = this.handlerservice.handleError(response.error);
+            this.notify.showError(response.error);
           } else {
-            alert(response.message);
+            this.notify.showSuccess(response.message);
           }
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
+          this.notify.showError(err.message);
         },
       });
     }

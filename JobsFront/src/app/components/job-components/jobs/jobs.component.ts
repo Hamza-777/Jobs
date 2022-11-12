@@ -143,6 +143,7 @@ export class JobsComponent implements OnInit {
     this.categoryIdSelected = 0;
     this.searchQuery = '';
     this.sortOrder = 'default';
+    this.filteredJobs = this.jobsList;
   }
 
   private removeObjectWithId(arr, id) {
