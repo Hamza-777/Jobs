@@ -31,10 +31,13 @@ export class ListoutCoursesComponent implements OnInit {
             this.courses = response.data;
             this.filteredCourses = response.data;
           },
+          error: (err: HttpErrorResponse) => {
+            this.error = this.handlerservice.handleError(err.error);
+          },
         });
       },
       error: (err: HttpErrorResponse) => {
-        this.error = this.handlerservice.handleError(err);
+        this.error = this.handlerservice.handleError(err.error);
       },
     });
   }
