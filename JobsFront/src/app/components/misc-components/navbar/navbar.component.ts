@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../services/token-service/token.service';
-import jwt_decode from 'jwt-decode';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
 import { Router } from '@angular/router';
 

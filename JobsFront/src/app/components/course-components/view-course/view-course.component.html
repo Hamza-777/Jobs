@@ -22,4 +22,17 @@
     <p class="h2">About this course:</p>
     <p class="lead">{{ currentCourse.courseDescription }}</p>
   </div>
+  <a
+    *ngIf="tokenservice.isAdmin()"
+    class="btn btn-solid"
+    [routerLink]="['/edit-course/', currentCourse.courseId]"
+    >Edit Course</a
+  >
+  <button
+    *ngIf="tokenservice.isAdmin()"
+    class="btn btn-solid"
+    (click)="deleteCourse(currentCourse.courseId)"
+  >
+    Delete Course
+  </button>
 </main>
