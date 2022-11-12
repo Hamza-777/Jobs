@@ -32,6 +32,8 @@ import { JobComponent } from './components/job-components/job/job.component';
 import { NotFoundComponent } from './components/misc-components/not-found/not-found.component';
 import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -70,6 +72,12 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     YouTubePlayerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
 
     JwtModule.forRoot({
       config: {
