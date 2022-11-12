@@ -28,14 +28,14 @@
   <div class="buttons flex align-center justify-between">
     <button
       class="btn btn-outline"
-      *ngIf="currentUser.UserID == currentBlog.userID"
+      *ngIf="currentUser && currentUser.UserID == currentBlog.userID"
       (click)="deleteBlog(currentBlog.blogId)"
     >
       Delete
     </button>
     <a
       class="btn btn-solid"
-      *ngIf="currentUser.UserID == currentBlog.userID"
+      *ngIf="currentUser && currentUser.UserID == currentBlog.userID"
       routerLink="/createblogs"
       (click)="storeId(currentBlog.blogId)"
       >Edit</a

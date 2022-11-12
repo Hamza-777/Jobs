@@ -40,7 +40,9 @@ export class ViewBlogComponent implements OnInit {
     this.activatedrouter.paramMap.subscribe((params) => {
       this.id = Number(params.get('blogId'));
     });
-    this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
+    this.currentUser = localStorage.getItem('jwt')
+      ? jwt_decode(localStorage.getItem('jwt')!)
+      : null;
   }
 
   ngOnInit(): void {

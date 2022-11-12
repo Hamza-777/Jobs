@@ -24,7 +24,9 @@ export class BlogComponent implements OnInit {
     private notify: NotificationService,
     private router: Router
   ) {
-    this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
+    this.currentUser = localStorage.getItem('jwt')
+      ? jwt_decode(localStorage.getItem('jwt')!)
+      : null;
   }
 
   ngOnInit(): void {}
