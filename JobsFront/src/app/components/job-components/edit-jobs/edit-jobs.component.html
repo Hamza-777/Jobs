@@ -98,6 +98,7 @@
     </button>
   </form>
   <button
+    *ngIf="tokenservice.isRecruiter()"
     type="button"
     class="btn btn-solid btn-submit"
     (click)="deleteJob(newjob.id)"

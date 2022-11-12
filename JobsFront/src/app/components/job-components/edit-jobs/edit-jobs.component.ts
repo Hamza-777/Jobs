@@ -11,6 +11,7 @@ import { Job } from '../../../models/Job';
 import { State } from '../../../models/State';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token-service/token.service';
 
 @Component({
   selector: 'app-edit-jobs',
@@ -29,7 +30,8 @@ export class EditJobsComponent implements OnInit {
     private jobservice: JobsService,
     private handlerservice: GlobalerrorhandlerService,
     private notify: NotificationService,
-    private router: Router
+    private router: Router,
+    public tokenservice: TokenService
   ) {}
 
   ngOnInit(): void {
