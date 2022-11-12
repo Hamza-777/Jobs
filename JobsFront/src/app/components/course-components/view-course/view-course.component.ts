@@ -40,7 +40,7 @@ export class ViewCourseComponent implements OnInit {
     this.courseService.getCourse(this.id).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           response.data.courseVideoURL = this.getVideoId(
             response.data.courseVideoURL
@@ -64,7 +64,6 @@ export class ViewCourseComponent implements OnInit {
     this.courseService.deleteCourse(courseId).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
           this.notify.showError(response.error);
         } else {
           this.router.navigate(['courses']);
@@ -73,7 +72,6 @@ export class ViewCourseComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-        this.notify.showError(err.message);
       },
     });
   }

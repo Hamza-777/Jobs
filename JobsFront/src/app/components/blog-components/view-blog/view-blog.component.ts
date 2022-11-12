@@ -64,7 +64,6 @@ export class ViewBlogComponent implements OnInit {
     this.blogservice.deleteBlog(id).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
           this.notify.showError(response.message);
         } else {
           this.router.navigate(['blogs']);
@@ -73,7 +72,6 @@ export class ViewBlogComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err.error);
-        this.notify.showError(err.message);
       },
     });
   };

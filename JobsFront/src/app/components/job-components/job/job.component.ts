@@ -5,6 +5,7 @@ import { TokenService } from 'src/app/services/token-service/token.service';
 import { JobsService } from 'src/app/services/jobs-service/jobs.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { GlobalerrorhandlerService } from 'src/app/services/error-service/globalerrorhandler.service';
 
 @Component({
   selector: 'app-job',
@@ -13,12 +14,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class JobComponent implements OnInit {
   @Input() job!: Job;
+  error: any = null;
 
   constructor(
     private notify: NotificationService,
     public tokenservice: TokenService,
     private router: Router,
-    private jobservice: JobsService
+    private jobservice: JobsService,
+    private handlerservice: GlobalerrorhandlerService
   ) {}
 
   ngOnInit(): void {}
@@ -34,7 +37,7 @@ export class JobComponent implements OnInit {
         this.notify.showSuccess(response.message);
       },
       error: (errResponse: HttpErrorResponse) => {
-        this.notify.showError(errResponse.message);
+        this.error = this.handlerservice.handleError(errResponse.error);
       },
     });
   }

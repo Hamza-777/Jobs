@@ -46,7 +46,6 @@ export class EditJobsComponent implements OnInit {
           this.jobservice.getAllJobsById(parseInt(id)).subscribe({
             next: (response: apiresponse) => {
               if (response.message == '') {
-                this.error = this.handlerservice.handleError(response.error);
                 this.notify.showError(response.error);
               } else {
                 this.newjob = response.data;
@@ -54,7 +53,6 @@ export class EditJobsComponent implements OnInit {
             },
             error: (err: HttpErrorResponse) => {
               this.error = this.handlerservice.handleError(err);
-              this.notify.showError(err.message);
             },
           });
         }
@@ -86,7 +84,6 @@ export class EditJobsComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
     }
@@ -99,7 +96,7 @@ export class EditJobsComponent implements OnInit {
         this.notify.showSuccess(response.message);
       },
       error: (errResponse: HttpErrorResponse) => {
-        this.notify.showError(errResponse.message);
+        this.error = this.handlerservice.handleError(errResponse.error);
       },
     });
   }
@@ -108,7 +105,7 @@ export class EditJobsComponent implements OnInit {
     this.jobservice.getAllCity().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.cityList = this.removeObjectWithId(response.data, 5);
         }
@@ -123,7 +120,7 @@ export class EditJobsComponent implements OnInit {
     this.jobservice.getAllCategory().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.categoryList = response.data;
         }
@@ -138,7 +135,7 @@ export class EditJobsComponent implements OnInit {
     this.jobservice.getAllState().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.stateList = this.removeObjectWithId(response.data, 5);
         }

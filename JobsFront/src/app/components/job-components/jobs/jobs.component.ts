@@ -42,7 +42,7 @@ export class JobsComponent implements OnInit {
     this.jobservice.getAllJobs().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          console.log(response.error);
         } else {
           this.jobsList = response.data;
           this.filteredJobs = response.data;
@@ -58,7 +58,7 @@ export class JobsComponent implements OnInit {
     this.jobservice.getAllCity().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          console.log(response.error);
         } else {
           this.cityList = [
             { id: 0, name: 'All' },
@@ -76,7 +76,7 @@ export class JobsComponent implements OnInit {
     this.jobservice.getAllCategory().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          console.log(response.error);
         } else {
           this.categoryList = [{ id: 0, name: 'All' }, ...response.data];
         }
@@ -91,7 +91,7 @@ export class JobsComponent implements OnInit {
     this.jobservice.getAllState().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          console.log(response.error);
         } else {
           this.stateList = [
             { id: 0, name: 'All' },

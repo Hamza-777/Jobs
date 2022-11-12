@@ -43,7 +43,6 @@ export class EditCourseComponent implements OnInit {
           this.courseService.getCourse(parseInt(id)).subscribe({
             next: (response: apiresponse) => {
               if (response.message == '') {
-                this.error = this.handlerservice.handleError(response.error);
                 this.notify.showError(response.error);
               } else {
                 this.courseDetails = response.data;
@@ -54,7 +53,6 @@ export class EditCourseComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-        this.notify.showError(err.message);
       },
     });
   }
@@ -65,7 +63,6 @@ export class EditCourseComponent implements OnInit {
       .subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
             this.notify.showError(response.error);
           } else {
             this.router.navigate(['courses']);
@@ -74,7 +71,6 @@ export class EditCourseComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
   }
@@ -83,7 +79,6 @@ export class EditCourseComponent implements OnInit {
     this.courseService.deleteCourse(courseId).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
           this.notify.showError(response.error);
         } else {
           this.router.navigate(['courses']);
@@ -92,7 +87,6 @@ export class EditCourseComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-        this.notify.showError(err.message);
       },
     });
   }

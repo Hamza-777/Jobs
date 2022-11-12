@@ -60,7 +60,7 @@ export class CreateBlogComponent implements OnInit {
     this.blogservice.getBlog(this.editId).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.blog = response.data;
         }
@@ -82,7 +82,6 @@ export class CreateBlogComponent implements OnInit {
           },
           error: (err: HttpErrorResponse) => {
             this.error = this.handlerservice.handleError(err);
-            this.notify.showError(err.message);
           },
         });
     }
@@ -95,7 +94,6 @@ export class CreateBlogComponent implements OnInit {
         .subscribe({
           next: (response: apiresponse) => {
             if (response.message == '') {
-              this.error = this.handlerservice.handleError(response.error);
               this.notify.showError(response.error);
             } else {
               this.router.navigate(['blogs']);
@@ -104,7 +102,6 @@ export class CreateBlogComponent implements OnInit {
           },
           error: (err: HttpErrorResponse) => {
             this.error = this.handlerservice.handleError(err);
-            this.notify.showError(err.message);
           },
         });
     }

@@ -69,7 +69,6 @@ export class CreateJobsComponent implements OnInit {
       this.jobservice.postJobs(this.newjob).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
             this.notify.showError(response.error);
           } else {
             this.router.navigate(['jobs']);
@@ -78,7 +77,6 @@ export class CreateJobsComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
     }
@@ -88,7 +86,7 @@ export class CreateJobsComponent implements OnInit {
     this.jobservice.getAllCity().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.cityList = this.removeObjectWithId(response.data, 5);
         }
@@ -103,7 +101,7 @@ export class CreateJobsComponent implements OnInit {
     this.jobservice.getAllCategory().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.categoryList = response.data;
         }
@@ -118,7 +116,7 @@ export class CreateJobsComponent implements OnInit {
     this.jobservice.getAllState().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.stateList = this.removeObjectWithId(response.data, 5);
         }

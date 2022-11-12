@@ -37,7 +37,6 @@ export class AddCourseComponent implements OnInit {
     this.courseService.addCourse(this.addCourseRequest).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
           this.notify.showError(response.error);
         } else {
           this.router.navigate(['courses']);
@@ -46,7 +45,6 @@ export class AddCourseComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
-        this.notify.showError(err.message);
       },
     });
   }

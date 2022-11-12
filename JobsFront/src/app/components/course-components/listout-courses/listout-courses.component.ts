@@ -15,7 +15,7 @@ export class ListoutCoursesComponent implements OnInit {
   courses: Course[];
   filteredCourses: Course[];
   searchQuery: string;
-  error: any;
+  error: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,12 +28,8 @@ export class ListoutCoursesComponent implements OnInit {
       next: () => {
         this.courseService.getAllCourses().subscribe({
           next: (response: apiresponse) => {
-            if (response.message == '') {
-              this.error = this.handlerservice.handleError(response.error);
-            } else {
-              this.courses = response.data;
-              this.filteredCourses = response.data;
-            }
+            this.courses = response.data;
+            this.filteredCourses = response.data;
           },
         });
       },
