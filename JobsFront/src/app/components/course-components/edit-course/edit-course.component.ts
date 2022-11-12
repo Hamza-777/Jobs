@@ -6,6 +6,7 @@ import { Course } from '../../../models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
 import { apiresponse } from 'src/app/models/apiresponse';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { TokenService } from 'src/app/services/token-service/token.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -20,7 +21,6 @@ export class EditCourseComponent implements OnInit {
     courseCategory: '',
     courseDescription: '',
     courseAuthor: '',
-    courseAmount: 0,
     courseImage: '',
     courseVideoURL: '',
   };
@@ -30,7 +30,8 @@ export class EditCourseComponent implements OnInit {
     private courseService: CoursesService,
     private router: Router,
     private handlerservice: GlobalerrorhandlerService,
-    private notify: NotificationService
+    private notify: NotificationService,
+    public tokenservice: TokenService
   ) {}
 
   ngOnInit(): void {

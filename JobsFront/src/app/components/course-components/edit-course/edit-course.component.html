@@ -42,11 +42,6 @@
         [(ngModel)]="courseDetails.courseAuthor"
       />
     </div>
-    <!-- <div class="form-group">
-            <label for="courseAmount" class="form-label">Course Amount</label>
-            <input type="num id="courseAmount" 
-            name="courseAmount" [(ngModel)]="courseDetails.courseAmount">
-          </div> -->
     <div class="form-group">
       <input
         type="text"
@@ -68,4 +63,9 @@
     </button>
   </form>
 </section>
-<button (click)="deleteCourse(courseDetails.courseId)">Delete</button>
+<button
+  *ngIf="tokenservice.isAdmin()"
+  (click)="deleteCourse(courseDetails.courseId)"
+>
+  Delete
+</button>

@@ -1,10 +1,15 @@
 <div class="course-card">
-  <div class="course-img">
+  <a [routerLink]="['/course', course.courseId]" class="course-img">
     <img src="{{ course.courseImage }}" alt="course image" />
-  </div>
+  </a>
   <div class="course-body flex flex-col align-start">
     <p class="h5">
-      <a [routerLink]="['/course', course.courseId]">{{ course.courseName }}</a>
+      <a
+        [routerLink]="['/course', course.courseId]"
+        class="link"
+        style="font-weight: 600"
+        >{{ course.courseName }}</a
+      >
       by {{ course.courseAuthor }}
     </p>
     <p class="small">{{ course.courseDescription }}</p>

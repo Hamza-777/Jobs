@@ -172,6 +172,15 @@ textarea {
   font-weight: 600;
 }
 
+.link {
+  color: var(--blue-color);
+  transition: var(--default-transition);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 /* Badge */
 .badge {
   position: absolute;

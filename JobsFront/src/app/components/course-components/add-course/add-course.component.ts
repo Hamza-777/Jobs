@@ -19,7 +19,6 @@ export class AddCourseComponent implements OnInit {
     courseCategory: '',
     courseDescription: '',
     courseAuthor: '',
-    courseAmount: 0,
     courseImage: '',
     courseVideoURL: '',
   };
