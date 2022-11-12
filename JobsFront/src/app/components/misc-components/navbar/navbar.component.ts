@@ -18,28 +18,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  isUserAuthenticated = (): boolean => {
-    const token: string = localStorage.getItem('jwt')!;
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  isAdmin = (): boolean => {
-    if (this.isUserAuthenticated()) {
-      const token: string = localStorage.getItem('jwt')!;
-      const tokeninfo: any = jwt_decode(token);
-      if (tokeninfo.Role == 'Admin') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return false;
-  };
-
   logOut = () => {
     this.tokenservice.deleteToken();
     this.router.navigate(['login']);
