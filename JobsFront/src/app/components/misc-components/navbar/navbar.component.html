@@ -40,7 +40,7 @@
     >
     <a
       *ngIf="tokenservice.isUserAuthenticated()"
-      [routerLink]="['/showuserbyid/', currentUser.UserID]"
+      [routerLink]="['/showuserbyid/',this.currentUser.UserID]"
       class="link"
     >
       <img

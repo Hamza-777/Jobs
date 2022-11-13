@@ -38,6 +38,8 @@ namespace JobsAPI.Repositories
             _log4net.Error("Error finding users");
             return new SendResponse("", StatusCodes.Status404NotFound, null, "Cannot find any user");
         }
+
+        
         public async Task<SendResponse> GetUserById(int id)
         {
             var person = await db.Users.FindAsync(id);
