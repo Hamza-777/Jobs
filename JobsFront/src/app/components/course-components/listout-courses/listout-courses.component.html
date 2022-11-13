@@ -7,6 +7,16 @@
       (change)="filterCourses()"
     />
     <button class="btn btn-link" (click)="filterCourses()">🍳</button>
+    <section class="flex align-center">
+      <p class="h5">Category &rarr;</p>
+      <select [(ngModel)]="categorySelected" (change)="filterCourses()">
+        <option value="All">All</option>
+        <option value="Business Management">Business Management</option>
+        <option value="Finance Management">Finance Management</option>
+        <option value="Technology">Technology</option>
+        <option value="Design">Design</option>
+      </select>
+    </section>
   </section>
 
   <app-loading *ngIf="!filteredCourses"></app-loading>

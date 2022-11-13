@@ -14,7 +14,8 @@ import { apiresponse } from 'src/app/models/apiresponse';
 export class ListoutCoursesComponent implements OnInit {
   courses: Course[];
   filteredCourses: Course[];
-  searchQuery: string;
+  searchQuery: string = '';
+  categorySelected: string = 'All';
   error: any = null;
 
   constructor(
@@ -43,10 +44,16 @@ export class ListoutCoursesComponent implements OnInit {
   }
 
   filterCourses() {
-    this.filteredCourses = this.courses.filter((course) =>
-      course.courseName
-        .toLocaleLowerCase()
-        .includes(this.searchQuery.toLocaleLowerCase())
-    );
+    this.filteredCourses = this.courses
+      .filter((course) =>
+        course.courseName
+          .toLocaleLowerCase()
+          .includes(this.searchQuery.toLocaleLowerCase())
+      )
+      .filter((course) =>
+        this.categorySelected === 'All'
+          ? true
+          : course.courseCategory == this.categorySelected
+      );
   }
 }
