@@ -63,4 +63,10 @@
   </form>
 </section>
 
+{{ blog.blogContent }}
+
+{{ blog.blogContent | markdown }}
+
+<div [innerHtml]="blog.blogContent | markdown"></div>
+
 <app-servererror *ngIf="this.error"></app-servererror>

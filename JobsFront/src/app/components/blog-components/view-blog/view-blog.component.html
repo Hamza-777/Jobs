@@ -38,4 +38,8 @@
   </div>
 </main>
 
+{{ currentBlog.blogContent }}
+
+{{ currentBlog.blogContent | markdown }}
+
 <app-servererror *ngIf="this.error"></app-servererror>
