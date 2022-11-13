@@ -329,7 +329,7 @@ textarea {
 }
 
 .container {
-  max-width: 80rem;
+  max-width: 95vw;
   margin-inline: auto;
   margin-top: 3rem;
   margin-bottom: 2rem;
