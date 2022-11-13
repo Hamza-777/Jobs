@@ -1,61 +1,69 @@
 <section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Edit Course</p>
+  <p class="x-small red-text">* Fileds are mandatory</p>
   <form class="form" #form="ngForm" (ngSubmit)="updateCourse()">
-    <div class="form-group">
-      <input
-        type="number"
-        id="courseId"
-        readonly
-        name="courseId"
-        [(ngModel)]="courseDetails.courseId"
-      />
-    </div>
     <div class="form-group">
       <input
         type="text"
         id="courseName"
         name="courseName"
         [(ngModel)]="courseDetails.courseName"
+        placeholder="* Course Name"
+        required
       />
     </div>
+
     <div class="form-group">
       <input
         type="text"
         id="courseCategory"
         name="courseCategory"
         [(ngModel)]="courseDetails.courseCategory"
+        placeholder="Course Category"
       />
     </div>
+
     <div class="form-group">
       <input
         type="text"
         id="courseDescription"
         name="courseDescription"
         [(ngModel)]="courseDetails.courseDescription"
+        placeholder="* Course Description"
+        required
       />
     </div>
+
     <div class="form-group">
       <input
         type="text"
         id="courseAuthor"
         name="courseAuthor"
         [(ngModel)]="courseDetails.courseAuthor"
+        placeholder="* Course Author"
+        required
       />
     </div>
+
     <div class="form-group">
       <input
         type="text"
         id="courseImage"
         name="courseImage"
         [(ngModel)]="courseDetails.courseImage"
+        placeholder="* Course Cover Image Link"
+        required
       />
     </div>
+
     <div class="form-group">
       <input
         type="text"
         id="courseVideoURL"
         name="courseVideoURL"
         [(ngModel)]="courseDetails.courseVideoURL"
+        placeholder="* Course Video URL"
+        required
       />
     </div>
     <button type="submit" class="btn btn-outline btn-submit">

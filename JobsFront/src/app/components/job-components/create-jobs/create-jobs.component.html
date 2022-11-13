@@ -1,13 +1,15 @@
 <section *ngIf="!this.error" class="container" id="loginform">
   <p class="h3" style="text-align: center">Create A Job</p>
+  <p class="x-small red-text">* Fileds are mandatory</p>
   <form class="form" #form="ngForm" (ngSubmit)="createJobs(form)">
     <div class="form-group">
       <input
         name="title"
         type="text"
         id="title"
-        placeholder="Enter job Title"
+        placeholder="* Enter Job Title"
         [(ngModel)]="newjob.title"
+        required
       />
     </div>
     <div class="form-group">
@@ -15,8 +17,9 @@
         name="description"
         type="text"
         id="description"
-        placeholder="Enter job Description"
+        placeholder="* Enter job Description"
         [(ngModel)]="newjob.description"
+        required
       />
     </div>
     <div class="form-group">
@@ -24,7 +27,7 @@
         name="company"
         type="text"
         id="company"
-        placeholder="Enter Company Name"
+        placeholder="* Enter Company Name"
         [(ngModel)]="newjob.company"
         required
       />
@@ -34,7 +37,7 @@
         name="salary_min"
         type="number"
         id="salary_min"
-        placeholder="Minimum Salary"
+        placeholder="* Minimum Salary"
         [(ngModel)]="newjob.salary_min"
         required
       />
@@ -44,22 +47,18 @@
         name="salary_max"
         type="number"
         id="salary_max"
-        placeholder="Maximum Salary"
+        placeholder="* Maximum Salary"
         [(ngModel)]="newjob.salary_max"
         required
       />
     </div>
-    <div *ngIf="newjob.salary_min > newjob.salary_max" class="text-danger">
-      Salary max should be greater than min
-    </div>
-
     <div class="form-group">
       <select
         [(ngModel)]="newjob.categoryid"
         [ngModelOptions]="{ standalone: true }"
         required
       >
-        <option value="default">---Select---</option>
+        <option value="default">* ---Select---</option>
         <option *ngFor="let role of categoryList" [ngValue]="role.id">
           {{ role.name }}
         </option>
@@ -71,7 +70,7 @@
         [ngModelOptions]="{ standalone: true }"
         required
       >
-        <option value="default">---Select---</option>
+        <option value="default">* ---Select---</option>
         <option *ngFor="let city of cityList" [ngValue]="city.id">
           {{ city.name }}
         </option>
@@ -83,7 +82,7 @@
         name="redirect_url"
         type="text"
         id="redirect_url"
-        placeholder="Enter job URL"
+        placeholder="* Enter job URL"
         [(ngModel)]="newjob.redirect_url"
         required
       />

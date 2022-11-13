@@ -185,6 +185,10 @@ textarea {
   text-decoration: underline;
 }
 
+.red-text {
+  color: var(--red-color);
+}
+
 /* Badge */
 .badge {
   position: absolute;

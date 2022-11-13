@@ -1,13 +1,15 @@
 <section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Create A Course</p>
   <form class="form" #form="ngForm" (ngSubmit)="addCourse()">
+    <p class="x-small red-text">* Fileds are mandatory</p>
     <div class="form-group">
       <input
         type="text"
         id="courseName"
         name="courseName"
         [(ngModel)]="addCourseRequest.courseName"
-        placeholder="Course Name"
+        placeholder="* Course Name"
+        required
       />
     </div>
 
@@ -27,7 +29,8 @@
         id="courseDescription"
         name="courseDescription"
         [(ngModel)]="addCourseRequest.courseDescription"
-        placeholder="Course Description"
+        placeholder="* Course Description"
+        required
       />
     </div>
 
@@ -37,7 +40,8 @@
         id="courseAuthor"
         name="courseAuthor"
         [(ngModel)]="addCourseRequest.courseAuthor"
-        placeholder="Course Author"
+        placeholder="* Course Author"
+        required
       />
     </div>
 
@@ -47,7 +51,8 @@
         id="courseImage"
         name="courseImage"
         [(ngModel)]="addCourseRequest.courseImage"
-        placeholder="Course Cover Image Link"
+        placeholder="* Course Cover Image Link"
+        required
       />
     </div>
 
@@ -57,11 +62,18 @@
         id="courseVideoURL"
         name="courseVideoURL"
         [(ngModel)]="addCourseRequest.courseVideoURL"
-        placeholder="Course Video URL"
+        placeholder="* Course Video URL"
+        required
       />
     </div>
 
-    <button type="submit" class="btn btn-outline btn-submit">Submit</button>
+    <button
+      type="submit"
+      class="btn btn-outline btn-submit"
+      [disabled]="!form.valid"
+    >
+      Submit
+    </button>
   </form>
 </section>
 

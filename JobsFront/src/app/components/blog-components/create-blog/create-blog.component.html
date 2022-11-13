@@ -1,5 +1,6 @@
 <section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Create Blog</p>
+  <p class="x-small red-text">* Fileds are mandatory</p>
   <form
     class="form"
     #blogForm="ngForm"
@@ -11,7 +12,8 @@
         id="coverImage"
         [(ngModel)]="blog.coverImage"
         name="coverImage"
-        placeholder="Cover Image URL"
+        placeholder="* Cover Image URL"
+        required
       />
     </div>
     <div class="form-group">
@@ -20,7 +22,8 @@
         id="blogTitle"
         [(ngModel)]="blog.blogTitle"
         name="blogTitle"
-        placeholder="Blog Title"
+        placeholder="* Blog Title"
+        required
       />
     </div>
     <div class="form-group">
@@ -28,7 +31,8 @@
         id="blogContent"
         [(ngModel)]="blog.blogContent"
         name="blogContent"
-        placeholder="Blog Content"
+        placeholder="* Blog Content"
+        required
       ></textarea>
     </div>
     <div class="form-group">
