@@ -3,7 +3,6 @@ import { TokenService } from '../../../services/token-service/token.service';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
-import { ConnectableObservable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -19,10 +18,14 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  gotoprofile() {
     this.currentUser = localStorage.getItem('jwt')
       ? jwt_decode(localStorage.getItem('jwt')!)
       : null;
+
+    this.router.navigateByUrl(`/showuserbyid/${this.currentUser.UserID}`);
   }
 
   logOut = () => {
