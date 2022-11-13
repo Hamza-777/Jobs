@@ -11,8 +11,8 @@ import { apiresponse } from '../../../models/apiresponse';
   styleUrls: ['./blogs.component.css'],
 })
 export class BlogsComponent implements OnInit {
-  filteredBlogs: Blog[];
-  blogs: Blog[];
+  filteredBlogs: Blog[] = undefined;
+  blogs: Blog[] = null;
   error: any = null;
   searchQuery: string = '';
 

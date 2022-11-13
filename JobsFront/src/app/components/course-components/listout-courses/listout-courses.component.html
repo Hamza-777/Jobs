@@ -4,7 +4,7 @@
       type="search"
       [(ngModel)]="searchQuery"
       placeholder="Search by course name..."
-      (keyup)="filterCourses()"
+      (change)="filterCourses()"
     />
     <button class="btn btn-link" (click)="filterCourses()">🍳</button>
   </section>

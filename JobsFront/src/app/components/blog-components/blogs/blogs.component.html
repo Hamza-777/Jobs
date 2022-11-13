@@ -4,7 +4,7 @@
       type="search"
       [(ngModel)]="searchQuery"
       placeholder="Search by title / Search by tags ( start with #)"
-      (keyup)="filterBlogs()"
+      (change)="filterBlogs()"
     />
     <button class="btn btn-link" (click)="filterBlogs()">🍳</button>
   </section>
@@ -12,7 +12,7 @@
   <app-loading *ngIf="!filteredBlogs"> </app-loading>
 
   <section *ngIf="filteredBlogs" class="blogs">
-    <app-blog *ngFor="let blog of filteredBlogs" [blog]="blog"> </app-blog>
+    <app-blog *ngFor="let blog of filteredBlogs" [blog]="blog"></app-blog>
   </section>
 </main>
 

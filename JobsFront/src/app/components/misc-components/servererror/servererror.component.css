@@ -9,3 +9,11 @@
   height: auto;
   margin-inline: auto;
 }
+
+.h1 {
+  font-weight: 600;
+  letter-spacing: 1.2;
+  margin-top: -5rem;
+  color: #d2001a;
+  text-align: center;
+}
