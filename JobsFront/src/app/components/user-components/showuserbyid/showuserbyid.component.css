@@ -1,0 +1,14 @@
+.head {
+  gap: 2rem;
+}
+
+.head > aside > img {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.details {
+  gap: 1rem;
+}

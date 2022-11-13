@@ -1,5 +1,6 @@
-<section class="container" id="login-form">
+<section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">REGISTER</p>
+  <p class="x-small red-text">* Fileds are mandatory</p>
   <form class="form" #registerForm="ngForm">
     <div class="form-group">
       <input
@@ -7,7 +8,7 @@
         id="FullName"
         name="FullName "
         [(ngModel)]="user.fullName"
-        placeholder="FullName"
+        placeholder="* FullName"
         required
       />
     </div>
@@ -17,7 +18,7 @@
         id="UserName"
         name="UserName "
         [(ngModel)]="user.userName"
-        placeholder="UserName"
+        placeholder="* UserName"
         required
       />
     </div>
@@ -27,7 +28,7 @@
         id="EmailId"
         name="EmailId"
         [(ngModel)]="user.emailId"
-        placeholder="EmailId"
+        placeholder="* EmailId"
         required
       />
     </div>
@@ -37,7 +38,7 @@
         id="MobileNumber"
         name="MobileNumber"
         [(ngModel)]="user.mobileNumber"
-        placeholder="MobileNumber"
+        placeholder="* MobileNumber"
         required
       />
     </div>
@@ -48,7 +49,7 @@
         name="password"
         [(ngModel)]="user.password"
         class="form-control"
-        placeholder="Password"
+        placeholder="* Password"
         required
       />
     </div>
@@ -59,7 +60,7 @@
         name="confirmpassword"
         [(ngModel)]="confirmpassword"
         class="form-control"
-        placeholder="Confirm Password"
+        placeholder="* Confirm Password"
         required
       />
     </div>
@@ -85,7 +86,7 @@
           id="CurrentSalary"
           name="CurrentSalary"
           [(ngModel)]="user.currentSalary"
-          placeholder="Current Salary"
+          placeholder="* Current Salary"
           required
         />
       </div>
@@ -95,7 +96,7 @@
           id="ExpectedSalary"
           name="ExpectedSalary"
           [(ngModel)]="user.expectedSalary"
-          placeholder="Expected Salary"
+          placeholder="* Expected Salary"
           required
         />
       </div>
@@ -105,7 +106,7 @@
           id="CurrentLocation"
           name="CurrentLocation"
           [(ngModel)]="user.currentLocation"
-          placeholder="Current Location"
+          placeholder="* Current Location"
           required
         />
       </div>
@@ -115,7 +116,7 @@
           id="PreferredLocation"
           name="PreferredLocation"
           [(ngModel)]="user.preferredLocation"
-          placeholder="Preferred Location"
+          placeholder="* Preferred Location"
           required
         />
       </div>
@@ -127,7 +128,7 @@
           id="CompanyName"
           name="CompanyName"
           [(ngModel)]="user.companyName"
-          placeholder="Company Name"
+          placeholder="* Company Name"
           required
         />
       </div>
@@ -137,7 +138,7 @@
           id="RecruiterDescription"
           name="RecruiterDescription"
           [(ngModel)]="user.recruiterDescription"
-          placeholder="Description"
+          placeholder="* Description"
           required
         />
       </div>
@@ -170,7 +171,7 @@
         class="btn btn-outline btn-submit"
         (click)="checkotp(otp)"
       >
-        Enter OTP & Register
+        Verify OTP & Register
       </button>
       <button class="btn btn-link">
         Already have an account? <a to="/login">Login</a>
@@ -178,6 +179,8 @@
     </div>
   </form>
 </section>
+
+<app-servererror *ngIf="this.error"></app-servererror>
 
 <!-- <img
       [src]="user.photographLink"

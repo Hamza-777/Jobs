@@ -1,16 +1,33 @@
-<main class="container flex align-center flex-col">
+<main *ngIf="!this.error" class="container flex align-center flex-col">
   <section class="searchbar flex align-center">
     <input
       type="search"
       [(ngModel)]="searchQuery"
       placeholder="Search by course name..."
-      (keyup)="filterCourses()"
+      (change)="filterCourses()"
     />
     <button class="btn btn-link" (click)="filterCourses()">🍳</button>
+    <section class="flex align-center">
+      <p class="h5">Category &rarr;</p>
+      <select [(ngModel)]="categorySelected" (change)="filterCourses()">
+        <option value="All">All</option>
+        <option value="Business Management">Business Management</option>
+        <option value="Finance Management">Finance Management</option>
+        <option value="Technology">Technology</option>
+        <option value="Design">Design</option>
+      </select>
+    </section>
   </section>
 
-  <section class="courses flex flex-row-wrap align-center justify-center">
+  <app-loading *ngIf="!filteredCourses"></app-loading>
+
+  <section
+    *ngIf="filteredCourses"
+    class="courses flex flex-row-wrap align-center justify-center"
+  >
     <app-course *ngFor="let course of filteredCourses" [course]="course">
     </app-course>
   </section>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

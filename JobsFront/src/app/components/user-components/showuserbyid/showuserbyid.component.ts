@@ -1,10 +1,11 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../../services/admin-service/admin.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
 import { apiresponse } from '../../../models/apiresponse';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-showuserbyid',
@@ -15,20 +16,23 @@ export class ShowuserbyidComponent implements OnInit {
   id: number;
   user: any;
   error: any;
+  currentUser: any = null;
+
   constructor(
     private activatedrouter: ActivatedRoute,
-    private router: Router,
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
-    private adminservice: AdminService
+    private adminservice: AdminService,
+    private notify: NotificationService
   ) {
     this.activatedrouter.paramMap.subscribe((params) => {
       this.id = Number(params.get('id'));
-      console.log(this.id);
     });
   }
 
   ngOnInit(): void {
+    this.currentUser = localStorage.getItem('jwt')
+      ? jwt_decode(localStorage.getItem('jwt')!)
+      : null;
     this.getuserbyid();
   }
 
@@ -36,10 +40,9 @@ export class ShowuserbyidComponent implements OnInit {
     this.adminservice.getuserbyid(this.id).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.user = response.data;
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {

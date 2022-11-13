@@ -1,9 +1,41 @@
 <div class="job-card flex flex-col align-start">
   <aside class="flex align-start justify-between">
     <p class="h4">
-      {{ job.title }} @ <a href="{{ job.redirect_url }}">{{ job.company }}</a>
+      {{ job.title }} @
+      <a href="{{ job.redirect_url }}" class="link" style="font-weight: 600">{{
+        job.company
+      }}</a>
     </p>
-    <a href="{{ job.redirect_url }}" class="btn btn-solid">Apply</a>
+    <div class="buttons flex align-center justify-center">
+      <button
+        *ngIf="!tokenservice.isUserAuthenticated()"
+        (click)="donotRedirect()"
+        class="btn btn-solid"
+      >
+        Apply
+      </button>
+      <a
+        *ngIf="tokenservice.isApplicant()"
+        href="{{ job.redirect_url }}"
+        class="btn btn-solid"
+        >Apply</a
+      >
+      <a
+        *ngIf="tokenservice.isRecruiter()"
+        class="btn btn-solid"
+        [routerLink]="['/editjobs/', job.id]"
+      >
+        Edit
+      </a>
+      <button
+        *ngIf="tokenservice.isRecruiter() || tokenservice.isAdmin()"
+        type="button"
+        class="btn btn-solid"
+        (click)="deleteJob(job.id)"
+      >
+        Delete
+      </button>
+    </div>
   </aside>
   <p class="small">{{ job.description }}</p>
   <div class="small flex flex-col align-start job-misc">

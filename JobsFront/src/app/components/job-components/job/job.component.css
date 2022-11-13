@@ -13,3 +13,7 @@
 .job-misc {
   gap: 1rem;
 }
+
+.buttons {
+  gap: 0.5rem;
+}

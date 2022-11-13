@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { apiresponse } from '../../../models/apiresponse';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-jobs',
@@ -19,9 +21,12 @@ export class CreateJobsComponent implements OnInit {
   cityList: City[];
   stateList: State[];
   error: any;
+
   constructor(
     private jobservice: JobsService,
-    private handlerservice: GlobalerrorhandlerService
+    private handlerservice: GlobalerrorhandlerService,
+    private notify: NotificationService,
+    private router: Router
   ) {
     this.newjob = {
       title: '',
@@ -39,7 +44,6 @@ export class CreateJobsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.categoryList);
     this.getCities();
     this.getCategory();
     this.getStates();
@@ -65,9 +69,10 @@ export class CreateJobsComponent implements OnInit {
       this.jobservice.postJobs(this.newjob).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
+            this.notify.showError(response.error);
           } else {
-            alert(response.message);
+            this.router.navigate(['jobs']);
+            this.notify.showSuccess(response.message);
           }
         },
         error: (err: HttpErrorResponse) => {
@@ -81,7 +86,7 @@ export class CreateJobsComponent implements OnInit {
     this.jobservice.getAllCity().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.cityList = this.removeObjectWithId(response.data, 5);
         }
@@ -96,7 +101,7 @@ export class CreateJobsComponent implements OnInit {
     this.jobservice.getAllCategory().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.categoryList = response.data;
         }
@@ -111,7 +116,7 @@ export class CreateJobsComponent implements OnInit {
     this.jobservice.getAllState().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.stateList = this.removeObjectWithId(response.data, 5);
         }

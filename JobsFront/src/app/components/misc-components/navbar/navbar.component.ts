@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { TokenService } from '../../../services/token-service/token.service';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 
 @Component({
@@ -9,33 +10,23 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private http: HttpClient, public tokenservice: TokenService) {}
+  currentUser: any = null;
 
-  ngOnInit(): void {}
+  constructor(
+    public tokenservice: TokenService,
+    private notify: NotificationService,
+    private router: Router
+  ) {}
 
-  isUserAuthenticated = (): boolean => {
-    const token: string = localStorage.getItem('jwt')!;
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  isAdmin = (): boolean => {
-    if (this.isUserAuthenticated()) {
-      const token: string = localStorage.getItem('jwt')!;
-      const tokeninfo: any = jwt_decode(token);
-      if (tokeninfo.Role == 'Admin') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return false;
-  };
+  ngOnInit(): void {
+    this.currentUser = localStorage.getItem('jwt')
+      ? jwt_decode(localStorage.getItem('jwt')!)
+      : null;
+  }
 
   logOut = () => {
     this.tokenservice.deleteToken();
+    this.router.navigate(['login']);
+    this.notify.showSuccess('Logged Out Successfully!');
   };
 }

@@ -1,4 +1,3 @@
-import { formatCurrency } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -10,6 +9,9 @@ import { Category } from '../../../models/Category';
 import { City } from '../../../models/City';
 import { Job } from '../../../models/Job';
 import { State } from '../../../models/State';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token-service/token.service';
 
 @Component({
   selector: 'app-edit-jobs',
@@ -22,10 +24,14 @@ export class EditJobsComponent implements OnInit {
   cityList: City[];
   stateList: State[];
   error!: any;
+
   constructor(
     private route: ActivatedRoute,
     private jobservice: JobsService,
-    private handlerservice: GlobalerrorhandlerService
+    private handlerservice: GlobalerrorhandlerService,
+    private notify: NotificationService,
+    private router: Router,
+    public tokenservice: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +46,7 @@ export class EditJobsComponent implements OnInit {
           this.jobservice.getAllJobsById(parseInt(id)).subscribe({
             next: (response: apiresponse) => {
               if (response.message == '') {
-                this.error = this.handlerservice.handleError(response.error);
+                this.notify.showError(response.error);
               } else {
                 this.newjob = response.data;
               }
@@ -53,6 +59,7 @@ export class EditJobsComponent implements OnInit {
       },
     });
   }
+
   private getStatesFromCities(cityId: number) {
     if (cityId == 4) {
       this.newjob.stateid = this.stateList.find((x) => x.id == 2).id;
@@ -72,7 +79,8 @@ export class EditJobsComponent implements OnInit {
         this.stateList.find((x) => x.id == this.newjob.stateid).name;
       this.jobservice.editJobs(this.newjob.id, this.newjob).subscribe({
         next: (response) => {
-          alert(response.message);
+          this.router.navigate(['jobs']);
+          this.notify.showSuccess(response.message);
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
@@ -84,10 +92,11 @@ export class EditJobsComponent implements OnInit {
   deleteJob(id: number) {
     this.jobservice.deleteJobs(id).subscribe({
       next: (response) => {
-        alert(response.message);
+        this.router.navigate(['jobs']);
+        this.notify.showSuccess(response.message);
       },
-      error: (errResponse) => {
-        alert(errResponse);
+      error: (errResponse: HttpErrorResponse) => {
+        this.error = this.handlerservice.handleError(errResponse.error);
       },
     });
   }
@@ -96,7 +105,7 @@ export class EditJobsComponent implements OnInit {
     this.jobservice.getAllCity().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.cityList = this.removeObjectWithId(response.data, 5);
         }
@@ -106,11 +115,12 @@ export class EditJobsComponent implements OnInit {
       },
     });
   }
+
   getCategory() {
     this.jobservice.getAllCategory().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.categoryList = response.data;
         }
@@ -120,11 +130,12 @@ export class EditJobsComponent implements OnInit {
       },
     });
   }
+
   getStates() {
     this.jobservice.getAllState().subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.stateList = this.removeObjectWithId(response.data, 5);
         }

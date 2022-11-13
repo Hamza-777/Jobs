@@ -6,6 +6,8 @@ import jwt_decode from 'jwt-decode';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-blog',
@@ -22,7 +24,9 @@ export class CreateBlogComponent implements OnInit {
 
   constructor(
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsService
+    private blogservice: BlogsService,
+    private notify: NotificationService,
+    private router: Router
   ) {
     this.blog = {
       coverImage:
@@ -56,7 +60,7 @@ export class CreateBlogComponent implements OnInit {
     this.blogservice.getBlog(this.editId).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.blog = response.data;
         }
@@ -73,7 +77,8 @@ export class CreateBlogComponent implements OnInit {
         .createBlog(this.blog, this.currentUser.UserID)
         .subscribe({
           next: (response: apiresponse) => {
-            alert(response.message);
+            this.router.navigate(['blogs']);
+            this.notify.showSuccess(response.message);
           },
           error: (err: HttpErrorResponse) => {
             this.error = this.handlerservice.handleError(err);
@@ -89,9 +94,10 @@ export class CreateBlogComponent implements OnInit {
         .subscribe({
           next: (response: apiresponse) => {
             if (response.message == '') {
-              this.error = this.handlerservice.handleError(response.error);
+              this.notify.showError(response.error);
             } else {
-              alert(response.message);
+              this.router.navigate(['blogs']);
+              this.notify.showSuccess(response.message);
             }
           },
           error: (err: HttpErrorResponse) => {

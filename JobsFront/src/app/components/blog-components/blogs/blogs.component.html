@@ -1,15 +1,19 @@
-<main class="container flex align-center flex-col">
+<main *ngIf="!this.error" class="container flex align-center flex-col">
   <section class="searchbar flex align-center">
     <input
       type="search"
       [(ngModel)]="searchQuery"
       placeholder="Search by title / Search by tags ( start with #)"
-      (keyup)="filterBlogs()"
+      (change)="filterBlogs()"
     />
     <button class="btn btn-link" (click)="filterBlogs()">🍳</button>
   </section>
 
-  <section class="blogs" *ngFor="let blog of filteredBlogs">
-    <app-blog [blog]="blog"> </app-blog>
+  <app-loading *ngIf="!filteredBlogs"> </app-loading>
+
+  <section *ngIf="filteredBlogs" class="blogs">
+    <app-blog *ngFor="let blog of filteredBlogs" [blog]="blog"></app-blog>
   </section>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

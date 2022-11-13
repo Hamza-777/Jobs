@@ -69,6 +69,19 @@ select {
   cursor: pointer;
 }
 
+ul {
+  margin-left: 1rem;
+}
+
+blockquote {
+  border-left: 8px solid #444;
+  color: #444;
+  padding: 1em;
+  font-weight: 600;
+  letter-spacing: 1.2;
+  font-size: 1rem;
+}
+
 .profile-img {
   width: 3rem;
   height: 3rem;
@@ -132,6 +145,11 @@ textarea {
   background: transparent;
   font-size: 1rem;
   font-weight: 600;
+  text-align: center;
+}
+
+.btn-submit {
+  margin-block: 0.25rem;
 }
 
 .btn-outline {
@@ -170,6 +188,19 @@ textarea {
 .x-small {
   font-size: 0.725rem;
   font-weight: 600;
+}
+
+.link {
+  color: var(--blue-color);
+  transition: var(--default-transition);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.red-text {
+  color: var(--red-color);
 }
 
 /* Badge */
@@ -298,9 +329,9 @@ textarea {
 }
 
 .container {
-  max-width: 80rem;
+  max-width: 95vw;
   margin-inline: auto;
-  margin-top: 5rem;
+  margin-top: 3rem;
   margin-bottom: 2rem;
   padding: 0 2rem;
   overflow: hidden;
@@ -331,6 +362,16 @@ textarea {
   height: 1px;
   background: #ccc;
   margin: 1.5rem 0;
+}
+
+.loading,
+.loading > img {
+  width: 50vw;
+  margin-inline: auto;
+}
+
+.loading {
+  margin-top: 3rem;
 }
 
 /* Scrollbar */

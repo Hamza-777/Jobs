@@ -6,6 +6,8 @@ import { GlobalerrorhandlerService } from '../../../services/error-service/globa
 import { BlogsService } from '../../../services/blog-service/blogs.service';
 import { apiresponse } from '../../../models/apiresponse';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
 
 @Component({
   selector: 'app-view-blog',
@@ -21,7 +23,9 @@ export class ViewBlogComponent implements OnInit {
   constructor(
     private activatedrouter: ActivatedRoute,
     private handlerservice: GlobalerrorhandlerService,
-    private blogservice: BlogsService
+    private blogservice: BlogsService,
+    private notify: NotificationService,
+    private router: Router
   ) {
     this.id = 0;
     this.currentBlog = {
@@ -36,7 +40,9 @@ export class ViewBlogComponent implements OnInit {
     this.activatedrouter.paramMap.subscribe((params) => {
       this.id = Number(params.get('blogId'));
     });
-    this.currentUser = jwt_decode(localStorage.getItem('jwt')!);
+    this.currentUser = localStorage.getItem('jwt')
+      ? jwt_decode(localStorage.getItem('jwt')!)
+      : null;
   }
 
   ngOnInit(): void {
@@ -58,10 +64,10 @@ export class ViewBlogComponent implements OnInit {
     this.blogservice.deleteBlog(id).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.message);
         } else {
-          alert(response.message);
-          window.location.reload();
+          this.router.navigate(['blogs']);
+          this.notify.showSuccess(response.message);
         }
       },
       error: (err: HttpErrorResponse) => {

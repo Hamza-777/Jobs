@@ -2,6 +2,7 @@
 using JobsAPI.Models;
 using JobsAPI.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Web.Http.ModelBinding;
 
 namespace JobsAPI.Repositories
@@ -22,6 +23,13 @@ namespace JobsAPI.Repositories
         public async Task<SendResponse> GetUsers()
         {
             var users = await db.Users.ToListAsync();
+
+            for(var i = 0; i < users.Count; i++)
+            {
+                users[i].Password = "...";
+                users[i].Salt = "...";
+            }
+
             if (users.Count() > 0)
             {
                 _log4net.Info("Get Users is invoked");
@@ -39,6 +47,9 @@ namespace JobsAPI.Repositories
                 _log4net.Info("Get user by " + id + " is invoked");
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Cannot find any user");
             }
+
+            person.Password = "...";
+            person.Salt = "...";
             _log4net.Error("Error finding user "+ id);
             return new SendResponse("User Found", StatusCodes.Status200OK, person, "");
         }

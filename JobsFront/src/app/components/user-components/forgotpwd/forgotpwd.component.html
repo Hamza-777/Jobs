@@ -1,4 +1,4 @@
-<section class="container" id="login-form">
+<section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">Forgot Password</p>
   <form
     class="form"
@@ -47,3 +47,5 @@
     </div>
   </form>
 </section>
+
+<app-servererror *ngIf="this.error"></app-servererror>

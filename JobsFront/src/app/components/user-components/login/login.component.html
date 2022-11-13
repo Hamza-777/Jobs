@@ -1,4 +1,4 @@
-<section class="container" id="login-form">
+<section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">LOGIN</p>
   <form class="form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <div class="form-group">
@@ -40,6 +40,4 @@
   </form>
 </section>
 
-<div *ngIf="invalidLogin" class="alert alert-danger">
-  Invalid username or password.
-</div>
+<app-servererror *ngIf="this.error"></app-servererror>

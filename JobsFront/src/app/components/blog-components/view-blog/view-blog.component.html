@@ -1,10 +1,12 @@
-<main class="container blog-page">
+<app-loading *ngIf="!this.error && !currentBlog"> </app-loading>
+
+<main *ngIf="!this.error && currentBlog" class="container blog-page">
   <section class="cover-img">
     <img src="{{ currentBlog.coverImage }}" src="blog cover" />
   </section>
   <section class="blog-body flex flex-col align-start">
     <p class="h1">{{ currentBlog.blogTitle }}</p>
-    <div class="tags flex align-center">
+    <div *ngIf="currentBlog.blogTags" class="tags flex align-center">
       <p class="h4">Tags:</p>
       <div
         class="tag small"
@@ -14,24 +16,26 @@
       </div>
     </div>
     <div
-      class="blog-content"
+      class="blog-content flex flex-col"
       [innerHtml]="currentBlog.blogContent | markdown"
     ></div>
   </section>
   <div class="buttons flex align-center justify-between">
     <button
       class="btn btn-outline"
-      *ngIf="currentUser.UserID == currentBlog.userID"
+      *ngIf="currentUser && currentUser.UserID == currentBlog.userID"
       (click)="deleteBlog(currentBlog.blogId)"
     >
-      Delete
+      Delete Blog
     </button>
     <a
       class="btn btn-solid"
-      *ngIf="currentUser.UserID == currentBlog.userID"
+      *ngIf="currentUser && currentUser.UserID == currentBlog.userID"
       routerLink="/createblogs"
       (click)="storeId(currentBlog.blogId)"
-      >Edit</a
+      >Edit Blog</a
     >
   </div>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

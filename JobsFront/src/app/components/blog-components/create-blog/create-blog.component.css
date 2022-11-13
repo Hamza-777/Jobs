@@ -1,5 +1,15 @@
+.container {
+  gap: 2rem;
+}
+
+.form input,
+.form textarea {
+  border: 0;
+  background-color: #fafafa;
+}
+
 #blogContent {
-  height: 400px;
+  height: 500px;
 }
 
 .buttons {
@@ -11,4 +21,15 @@
 .btn-submit {
   width: 100%;
   font-size: 1.25rem;
+}
+
+.markdown-rules {
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.markdown-rules > img {
+  width: 75%;
+  object-fit: contain;
+  border-radius: 4px;
 }

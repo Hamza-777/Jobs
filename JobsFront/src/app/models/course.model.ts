@@ -4,7 +4,6 @@ export interface Course {
   courseCategory: string;
   courseDescription: string;
   courseAuthor: string;
-  courseAmount: number;
   courseImage: string;
   courseVideoURL: string;
 }

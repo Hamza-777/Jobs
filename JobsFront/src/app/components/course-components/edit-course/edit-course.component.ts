@@ -5,6 +5,8 @@ import { GlobalerrorhandlerService } from 'src/app/services/error-service/global
 import { Course } from '../../../models/course.model';
 import { CoursesService } from 'src/app/services/courses-service/courses.service';
 import { apiresponse } from 'src/app/models/apiresponse';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
+import { TokenService } from 'src/app/services/token-service/token.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -19,15 +21,17 @@ export class EditCourseComponent implements OnInit {
     courseCategory: '',
     courseDescription: '',
     courseAuthor: '',
-    courseAmount: 0,
     courseImage: '',
     courseVideoURL: '',
   };
+
   constructor(
     private route: ActivatedRoute,
     private courseService: CoursesService,
     private router: Router,
-    private handlerservice: GlobalerrorhandlerService
+    private handlerservice: GlobalerrorhandlerService,
+    private notify: NotificationService,
+    public tokenservice: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +43,7 @@ export class EditCourseComponent implements OnInit {
           this.courseService.getCourse(parseInt(id)).subscribe({
             next: (response: apiresponse) => {
               if (response.message == '') {
-                this.error = this.handlerservice.handleError(response.error);
+                this.notify.showError(response.error);
               } else {
                 this.courseDetails = response.data;
               }
@@ -59,9 +63,10 @@ export class EditCourseComponent implements OnInit {
       .subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
+            this.notify.showError(response.error);
           } else {
             this.router.navigate(['courses']);
+            this.notify.showSuccess(response.message);
           }
         },
         error: (err: HttpErrorResponse) => {
@@ -74,10 +79,10 @@ export class EditCourseComponent implements OnInit {
     this.courseService.deleteCourse(courseId).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.router.navigate(['courses']);
-          console.log(response);
+          this.notify.showSuccess(response.message);
         }
       },
       error: (err: HttpErrorResponse) => {

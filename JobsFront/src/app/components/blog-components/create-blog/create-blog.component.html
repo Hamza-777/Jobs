@@ -1,60 +1,73 @@
-<section class="container" id="login-form">
-  <p class="h3" style="text-align: center">Create Blog</p>
-  <form
-    class="form"
-    #blogForm="ngForm"
-    (ngSubmit)="editId ? editBlog(blogForm) : createBlog(blogForm)"
-  >
-    <div class="form-group">
-      <input
-        type="text"
-        id="coverImage"
-        [(ngModel)]="blog.coverImage"
-        name="coverImage"
-        placeholder="Cover Image URL"
-      />
-    </div>
-    <div class="form-group">
-      <input
-        type="text"
-        id="blogTitle"
-        [(ngModel)]="blog.blogTitle"
-        name="blogTitle"
-        placeholder="Blog Title"
-      />
-    </div>
-    <div class="form-group">
-      <textarea
-        id="blogContent"
-        [(ngModel)]="blog.blogContent"
-        name="blogContent"
-        placeholder="Blog Content"
-      ></textarea>
-    </div>
-    <div class="form-group">
-      <input
-        type="text"
-        id="blogTags"
-        [(ngModel)]="blog.blogTags"
-        name="blogTags"
-        placeholder="Relevant Tags"
-      />
-    </div>
-    <button
-      *ngIf="!editId"
-      class="btn btn-outline btn-submit"
-      type="submit"
-      [disabled]="!blogForm.valid"
+<main *ngIf="!this.error" class="container flex align-center">
+  <section id="login-form">
+    <p class="h3" style="text-align: center">Publish A Blog</p>
+    <p class="x-small red-text">* Fields are mandatory</p>
+    <form
+      class="form"
+      #blogForm="ngForm"
+      (ngSubmit)="editId ? editBlog(blogForm) : createBlog(blogForm)"
     >
-      Create Blog
-    </button>
-    <button
-      *ngIf="editId"
-      class="btn btn-outline btn-submit"
-      type="submit"
-      [disabled]="!blogForm.valid"
-    >
-      Edit Blog
-    </button>
-  </form>
-</section>
+      <div class="form-group">
+        <input
+          type="text"
+          id="coverImage"
+          [(ngModel)]="blog.coverImage"
+          name="coverImage"
+          placeholder="* Cover Image URL"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          id="blogTitle"
+          [(ngModel)]="blog.blogTitle"
+          name="blogTitle"
+          placeholder="* Blog Title"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          id="blogTags"
+          [(ngModel)]="blog.blogTags"
+          name="blogTags"
+          placeholder="* Relevant Tags (Separate by ,) Eg: new, blog, markdown"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          id="blogContent"
+          [(ngModel)]="blog.blogContent"
+          name="blogContent"
+          placeholder="* Blog Content"
+          required
+        ></textarea>
+      </div>
+      <button
+        *ngIf="!editId"
+        class="btn btn-outline btn-submit"
+        type="submit"
+        [disabled]="!blogForm.valid"
+      >
+        Publish
+      </button>
+      <button
+        *ngIf="editId"
+        class="btn btn-outline btn-submit"
+        type="submit"
+        [disabled]="!blogForm.valid"
+      >
+        Save
+      </button>
+    </form>
+  </section>
+  <aside class="markdown-rules flex flex-col align-start">
+    <p class="small">Editor Basics:</p>
+    <img src="../../../../assets/images/markdown.png" alt="markdown rules" />
+  </aside>
+</main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

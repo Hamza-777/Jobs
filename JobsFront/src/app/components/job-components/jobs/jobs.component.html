@@ -1,17 +1,17 @@
-<main class="container flex align-center flex-col">
+<main *ngIf="!this.error" class="container flex align-center flex-col">
   <section class="searchbar flex align-center">
     <input
       type="search"
       [(ngModel)]="searchQuery"
       placeholder="Search for jobs..."
-      (keyup)="filterJobs()"
+      (change)="filterJobs()"
     />
     <button class="btn btn-link" (click)="filterJobs()">🍳</button>
   </section>
-  <div class="filters flex align-center">
-    <p class="h4">Filter Options:</p>
+  <div class="filters flex align-center justify-around">
+    <p class="h4">Filter Options &rarr;</p>
     <section class="flex align-center">
-      <p class="h5">Salary:</p>
+      <p class="h5">Salary &rarr;</p>
       <select [(ngModel)]="sortOrder" (change)="filterJobs()">
         <option value="default">Default</option>
         <option value="asc">Low To High</option>
@@ -19,15 +19,15 @@
       </select>
     </section>
     <section class="flex align-center">
-      <p class="h5">City:</p>
+      <p class="h5">City &rarr;</p>
       <select [(ngModel)]="cityIdSelected" (change)="filterJobs()">
         <option *ngFor="let item of cityList" [value]="item.id">
-          {{ item.name }}
+          {{ item.name === "Banglore" ? "Bangalore" : item.name }}
         </option>
       </select>
     </section>
     <section class="flex align-center">
-      <p class="h5">State:</p>
+      <p class="h5">State &rarr;</p>
       <select [(ngModel)]="stateIdSelected" (change)="filterJobs()">
         <option *ngFor="let item of stateList" [value]="item.id">
           {{ item.name }}
@@ -35,7 +35,7 @@
       </select>
     </section>
     <section class="flex align-center">
-      <p class="h5">Role:</p>
+      <p class="h5">Role &rarr;</p>
       <select [(ngModel)]="categoryIdSelected" (change)="filterJobs()">
         <option *ngFor="let item of categoryList" [value]="item.id">
           {{ item.name }}
@@ -47,7 +47,11 @@
     Reset Filters
   </button>
 
-  <section *ngFor="let job of filteredJobs">
-    <app-job [job]="job"></app-job>
+  <app-loading *ngIf="!filteredJobs"> </app-loading>
+
+  <section *ngIf="filteredJobs">
+    <app-job *ngFor="let job of filteredJobs" [job]="job"></app-job>
   </section>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

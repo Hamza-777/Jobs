@@ -1,0 +1,19 @@
+.server-error {
+  width: fit-content;
+  margin-inline: auto;
+  margin-block: 3rem;
+}
+
+.server-error > img {
+  width: auto;
+  height: auto;
+  margin-inline: auto;
+}
+
+.h1 {
+  font-weight: 600;
+  letter-spacing: 1.2;
+  margin-top: -5rem;
+  color: #d2001a;
+  text-align: center;
+}

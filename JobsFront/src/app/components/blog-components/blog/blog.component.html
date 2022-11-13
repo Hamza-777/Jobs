@@ -4,7 +4,7 @@
   </div>
   <div class="blog-body flex flex-col align-start">
     <a class="h3" [routerLink]="['/blog', blog.blogId]">{{ blog.blogTitle }}</a>
-    <div class="tags flex align-center">
+    <div *ngIf="blog.blogTags" class="tags flex align-center">
       <p class="h4">Tags:</p>
       <div class="tag small" *ngFor="let tag of blog.blogTags.split(',')">
         {{ "#" + tag }}
@@ -13,14 +13,14 @@
     <div class="buttons flex align-center">
       <button
         class="btn btn-outline"
-        *ngIf="currentUser.UserID == blog.userID"
+        *ngIf="currentUser && currentUser.UserID == blog.userID"
         (click)="deleteBlog(blog.blogId)"
       >
         Delete
       </button>
       <a
         class="btn btn-solid"
-        *ngIf="currentUser.UserID == blog.userID"
+        *ngIf="currentUser && currentUser.UserID == blog.userID"
         routerLink="/createblogs"
         (click)="storeId(blog.blogId)"
         >Edit</a

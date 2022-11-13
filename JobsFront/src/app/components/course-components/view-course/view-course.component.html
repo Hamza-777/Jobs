@@ -1,4 +1,9 @@
-<main class="container flex flex-col align-start">
+<app-loading *ngIf="!this.error && !currentCourse"> </app-loading>
+
+<main
+  *ngIf="!this.error && currentCourse"
+  class="container flex flex-col align-start"
+>
   <p class="h1">
     {{ currentCourse.courseName }} by
     <span style="font-weight: 600">{{ currentCourse.courseAuthor }}</span>
@@ -15,4 +20,19 @@
     <p class="h2">About this course:</p>
     <p class="lead">{{ currentCourse.courseDescription }}</p>
   </div>
+  <a
+    *ngIf="tokenservice.isAdmin()"
+    class="btn btn-solid"
+    [routerLink]="['/edit-course/', currentCourse.courseId]"
+    >Edit Course</a
+  >
+  <button
+    *ngIf="tokenservice.isAdmin()"
+    class="btn btn-solid"
+    (click)="deleteCourse(currentCourse.courseId)"
+  >
+    Delete Course
+  </button>
 </main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

@@ -79,6 +79,7 @@ namespace JobsAPI.Repositories
                     new Claim("UserName",result.UserName?? ""),
                     new Claim("EmailId",result.EmailId?? ""),
                     new Claim("MobileNumber",result.MobileNumber.ToString()?? ""),
+                    new Claim("Avatar", result.PhotographLink.ToString()?? ""),
                     new Claim(ClaimTypes.Role,result.Role?? ""),
                     new Claim("Role",result.Role?? "")
 
@@ -148,6 +149,8 @@ namespace JobsAPI.Repositories
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Username not found");
             }
 
+            person.Password = "...";
+            person.Salt = "...";
             _log4net.Info("Get by  " + username + " is revoked");
 
             return new SendResponse("Found username", StatusCodes.Status200OK, person, "");

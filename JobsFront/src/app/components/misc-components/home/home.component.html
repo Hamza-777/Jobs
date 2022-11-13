@@ -1,4 +1,11 @@
 <main class="container homepage">
+  <p *ngIf="currentUser" class="h1" style="text-align: center">
+    Welcome Back,
+    <a [routerLink]="['/showuserbyid/', currentUser.UserID]" class="link">{{
+      currentUser.UserName
+    }}</a>
+    ❗❗
+  </p>
   <section class="service flex align-center justify-between">
     <div class="about-service flex flex-col align-start">
       <p class="h2">Search For Your Dream Job!!</p>
