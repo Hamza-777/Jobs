@@ -147,7 +147,12 @@
       type="button"
       class="btn btn-outline btn-submit"
       (click)="generateotp(user.emailId, user.fullName)"
-      [disabled]="!user.role || !user.fullName || !user.userName || !user.emailId || !user.mobileNumber
+      [disabled]="
+        !user.role ||
+        !user.fullName ||
+        !user.userName ||
+        !user.emailId ||
+        !user.mobileNumber
       "
     >
       Verify Email
@@ -167,16 +172,19 @@
     </div>
     <div class="buttons flex align-center justify-center flex-col">
       <button
-        *ngIf="data == 'Otp sent Successfully to the email' && (user.password==confirmpassword)"
+        *ngIf="
+          data == 'Otp sent Successfully to the email' &&
+          user.password == confirmpassword
+        "
         type="submit"
         class="btn btn-outline btn-submit"
         (click)="checkotp(otp)"
       >
         Verify OTP & Register
       </button>
-      <button class="btn btn-link">
-        Already have an account? <a routerLink="/login">Login</a>
-      </button>
+      <p class="lead">
+        Already have an account? <a routerLink="/login" class="link">Login</a>
+      </p>
     </div>
   </form>
 </section>

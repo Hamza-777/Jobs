@@ -54,19 +54,23 @@ export class RegisterComponent implements OnInit {
   }
 
   generateotp(email: string, fname: string) {
-    this.auth.otpgeneration(email, fname).subscribe({
-      next: (response: apiresponse) => {
-        if (response.message == '') {
-          this.notify.showError(response.error);
-        } else {
-          this.data = response.message;
-          this.notify.showSuccess(response.message);
-        }
-      },
-      error: (err: HttpErrorResponse) => {
-        this.error = this.handlerservice.handleError(err);
-      },
-    });
+    if (this.user.password !== this.confirmpassword) {
+      this.notify.showError('Passwords do not match!!');
+    } else {
+      this.auth.otpgeneration(email, fname).subscribe({
+        next: (response: apiresponse) => {
+          if (response.message == '') {
+            this.notify.showError(response.error);
+          } else {
+            this.data = response.message;
+            this.notify.showSuccess(response.message);
+          }
+        },
+        error: (err: HttpErrorResponse) => {
+          this.error = this.handlerservice.handleError(err);
+        },
+      });
+    }
   }
 
   onFileSelected(event: any) {
