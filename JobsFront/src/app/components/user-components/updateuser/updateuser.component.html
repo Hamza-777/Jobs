@@ -1,184 +1,135 @@
-<div>
-  <div class="container">
-    <form #editForm="ngForm" (ngSubmit)="editUser(editForm)">
-      <h2 class="form-signin-heading">Update User Details</h2>
-      <div class="text-success">{{ data }}</div>
-      <div class="text-danger">
-        <span [innerHTML]="error"></span>
-      </div>
-      <br />
-      <br />
-      <img
-        [src]="user.photographLink"
-        alt="{{ user.photographLink }}"
-        class="border border-dark"
-        width="150px"
-        height="150px"
-      />
-      <br />
-      <br />
-      <div class="image-upload">
-        Upload Photograph:
-        <input
-          name="imageUrl"
-          type="file"
-          accept="image/*"
-          (change)="onFileSelected($event)"
-        />
-      </div>
-      <label for="FullName" class="sr-only">FullName</label>
+<main *ngIf="!this.error" class="container" id="login-form">
+  <form class="form" #editForm="ngForm" (ngSubmit)="editUser(editForm)">
+    <p class="h3" style="text-align: center">PROFILE UPDATE</p>
+    <p class="x-small red-text">* Fileds are mandatory</p>
+    <div class="form-group">
       <input
         type="text"
         id="FullName"
         name="FullName "
         [(ngModel)]="user.fullName"
-        class="form-control"
-        placeholder="FullName"
+        placeholder="* FullName"
         required
       />
-      <br />
-      <label for="username" class="sr-only">UserName</label>
+    </div>
+    <div class="form-group">
       <input
         type="text"
         id="UserName"
         name="UserName "
         [(ngModel)]="user.userName"
-        class="form-control"
-        placeholder="UserName"
+        placeholder="* UserName"
         required
-        disabled
       />
-      <br />
-      <label for="EmailId" class="sr-only">EmailId</label>
+    </div>
+    <div class="form-group">
       <input
-        type="text"
+        type="email"
         id="EmailId"
         name="EmailId"
         [(ngModel)]="user.emailId"
-        class="form-control"
-        placeholder="EmailId"
+        placeholder="* EmailId"
         required
-        disabled
       />
-      <br />
-      <label for="MobileNumber" class="sr-only">MobileNumber</label>
+    </div>
+    <div class="form-group">
       <input
         type="text"
         id="MobileNumber"
         name="MobileNumber"
         [(ngModel)]="user.mobileNumber"
-        class="form-control"
-        placeholder="MobileNumber"
+        placeholder="* MobileNumber"
         required
       />
-      <br />
-      <br />
-      <div *ngIf="user.role == 'Admin' || user.role == ''"></div>
-      <div name="Applicant" *ngIf="user.role == 'Applicant'">
-        <label for="Bio" class="sr-only">Bio</label>
+    </div>
+    <div class="form-group">
+      <select [(ngModel)]="user.role" name="Role" class="form-control" disabled>
+        <option>Admin</option>
+        <option>Applicant</option>
+        <option>Recruiter</option>
+      </select>
+    </div>
+    <div class="grp" *ngIf="user.role === 'Applicant'">
+      <div class="form-group flex align-center justify-start exp">
+        <p class="h5">Are You Experienced???</p>
+        <input
+          type="checkbox"
+          id="WorkStatus"
+          name="WorkStatus"
+          [(ngModel)]="user.workStatus"
+        />
+      </div>
+      <div class="form-group" *ngIf="user.workStatus == true">
         <input
           type="text"
-          id="Bio"
-          name="Bio"
-          [(ngModel)]="user.bio"
-          class="form-control"
-          placeholder="Bio"
+          id="CurrentSalary"
+          name="CurrentSalary"
+          [(ngModel)]="user.currentSalary"
+          placeholder="* Current Salary"
           required
         />
-        <br />
-        <label for="LinkedInProfileLink" class="sr-only"
-          >LinkedInProfileLink</label
-        >
-        <input
-          type="text"
-          id="LinkedInProfileLink"
-          name="LinkedInProfileLink"
-          [(ngModel)]="user.linkedInProfile"
-          class="form-control"
-          placeholder="LinkedInProfileLink"
-        />
-        <br />
-        <br />
-        <div name="Experienced" *ngIf="user.workStatus">
-          <label for="CurrentSalary" class="sr-only">CurrentSalary</label>
-          <input
-            type="text"
-            id="CurrentSalary "
-            name="CurrentSalary "
-            [(ngModel)]="user.currentSalary"
-            class="form-control"
-            placeholder="CurrentSalary"
-            required
-          />
-          <br />
-        </div>
-        <label for="ExpectedSalary" class="sr-only">ExpectedSalary</label>
+      </div>
+      <div class="form-group">
         <input
           type="text"
           id="ExpectedSalary"
           name="ExpectedSalary"
           [(ngModel)]="user.expectedSalary"
-          class="form-control"
-          placeholder="ExpectedSalary"
+          placeholder="* Expected Salary"
           required
         />
-        <br />
-        <label for="CurrentLocation" class="sr-only">CurrentLocation</label>
+      </div>
+      <div class="form-group">
         <input
           type="text"
           id="CurrentLocation"
           name="CurrentLocation"
           [(ngModel)]="user.currentLocation"
-          class="form-control"
-          placeholder="CurrentLocation"
+          placeholder="* Current Location"
           required
         />
-        <br />
-        <label for="PreferredLocation" class="sr-only">PreferredLocation</label>
+      </div>
+      <div class="form-group">
         <input
           type="text"
           id="PreferredLocation"
           name="PreferredLocation"
           [(ngModel)]="user.preferredLocation"
-          class="form-control"
-          placeholder="PreferredLocation"
+          placeholder="* Preferred Location"
           required
         />
-        <br />
       </div>
-      <div name="Recruiter" *ngIf="user.role == 'Recruiter'">
-        <label for="CompanyName" class="sr-only">CompanyName</label>
+    </div>
+    <div class="grp" *ngIf="user.role == 'Recruiter'">
+      <div class="form-group">
         <input
           type="text"
           id="CompanyName"
           name="CompanyName"
           [(ngModel)]="user.companyName"
-          class="form-control"
-          placeholder="CompanyName"
+          placeholder="* Company Name"
           required
         />
-        <br />
-        <label for="RecruiterDescription" class="sr-only">Description</label>
+      </div>
+      <div class="form-group">
         <input
           type="text"
           id="RecruiterDescription"
           name="RecruiterDescription"
           [(ngModel)]="user.recruiterDescription"
-          class="form-control"
-          placeholder="Description"
+          placeholder="* Description"
           required
         />
-        <br />
       </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-outline btn-submit"
+      [disabled]="!editForm.valid"
+    >
+      Update Profile
+    </button>
+  </form>
+</main>
 
-      <button
-        type="button"
-        class="btn btn-lg btn-primary"
-        type="submit"
-        [disabled]="!editForm.valid"
-      >
-        Update
-      </button>
-    </form>
-  </div>
-</div>
+<app-servererror *ngIf="this.error"></app-servererror>

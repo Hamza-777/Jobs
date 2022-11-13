@@ -40,10 +40,9 @@ export class UpdateuserComponent implements OnInit {
     this.auth.getuserbyusername(username).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.user = response.data;
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -64,7 +63,6 @@ export class UpdateuserComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
   }
@@ -74,7 +72,6 @@ export class UpdateuserComponent implements OnInit {
       this.auth.edituser(this.user).subscribe({
         next: (response: apiresponse) => {
           if (response.message == '') {
-            this.error = this.handlerservice.handleError(response.error);
             this.notify.showError(response.error);
           } else {
             this.router.navigate(['']);
@@ -83,7 +80,6 @@ export class UpdateuserComponent implements OnInit {
         },
         error: (err: HttpErrorResponse) => {
           this.error = this.handlerservice.handleError(err);
-          this.notify.showError(err.message);
         },
       });
     }

@@ -15,7 +15,7 @@
         Apply
       </button>
       <a
-        *ngIf="tokenservice.isUserAuthenticated()"
+        *ngIf="tokenservice.isApplicant()"
         href="{{ job.redirect_url }}"
         class="btn btn-solid"
         >Apply</a

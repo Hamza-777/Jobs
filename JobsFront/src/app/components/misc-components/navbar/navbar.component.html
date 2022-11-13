@@ -39,7 +39,7 @@
       >Register</a
     >
     <a
-      *ngIf="currentUser"
+      *ngIf="tokenservice.isUserAuthenticated()"
       [routerLink]="['/showuserbyid/', currentUser.UserID]"
       class="link"
     >

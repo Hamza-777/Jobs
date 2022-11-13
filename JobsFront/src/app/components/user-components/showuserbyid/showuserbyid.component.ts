@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../../services/admin-service/admin.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
+import { NotificationService } from 'src/app/services/notification-service/notification.service';
 import { apiresponse } from '../../../models/apiresponse';
 import jwt_decode from 'jwt-decode';
 
@@ -20,11 +21,11 @@ export class ShowuserbyidComponent implements OnInit {
   constructor(
     private activatedrouter: ActivatedRoute,
     private handlerservice: GlobalerrorhandlerService,
-    private adminservice: AdminService
+    private adminservice: AdminService,
+    private notify: NotificationService
   ) {
     this.activatedrouter.paramMap.subscribe((params) => {
       this.id = Number(params.get('id'));
-      console.log(this.id);
     });
   }
 
@@ -39,10 +40,9 @@ export class ShowuserbyidComponent implements OnInit {
     this.adminservice.getuserbyid(this.id).subscribe({
       next: (response: apiresponse) => {
         if (response.message == '') {
-          this.error = this.handlerservice.handleError(response.error);
+          this.notify.showError(response.error);
         } else {
           this.user = response.data;
-          console.log(response);
         }
       },
       error: (err: HttpErrorResponse) => {
