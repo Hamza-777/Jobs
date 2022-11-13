@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../../services/admin-service/admin.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
 import { apiresponse } from '../../../models/apiresponse';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-showuserbyid',
@@ -15,10 +15,10 @@ export class ShowuserbyidComponent implements OnInit {
   id: number;
   user: any;
   error: any;
+  currentUser: any = null;
+
   constructor(
     private activatedrouter: ActivatedRoute,
-    private router: Router,
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private adminservice: AdminService
   ) {
@@ -29,6 +29,9 @@ export class ShowuserbyidComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUser = localStorage.getItem('jwt')
+      ? jwt_decode(localStorage.getItem('jwt')!)
+      : null;
     this.getuserbyid();
   }
 

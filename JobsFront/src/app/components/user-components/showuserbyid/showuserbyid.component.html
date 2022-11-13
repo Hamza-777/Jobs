@@ -1,123 +1,34 @@
-<div>
-
-    <h4>User Details</h4>
-    <hr />
-    <div *ngIf="user.photographLink">
-    <img [src] = "user.photographLink" alt = "Photograph" class= "border border-dark" width="150px" height = "150px">
-    </div>
-    <table class="table table-bordered">
-        <tr>
-        <th>
-            FullName
-        </th>
-        <td>
-            {{user.fullName}}
-        </td>
-        </tr>
-        <tr>
-        <th>
-            UserName
-        </th>
-        <td>
-            {{user.userName}}
-        </td>
-        </tr>
-        <tr>
-        <th *ngIf="user.bio">
-            Bio
-        </th>
-        <td *ngIf="user.bio">
-            {{user.bio}}
-        </td>
-        </tr>
-        <tr>
-        <th>
-           Emailid
-        </th>
-        <td>
-            {{user.emailId}}
-        </td>
-        </tr>
-        <tr>
-        <th>
-               Mobile Number
-        </th>
-        <td>
-            {{user.mobileNumber}}
-        </td>
-        <tr>
-        </tr>
-        <tr>
-        <th *ngIf="user.linkedInProfile">
-            LinkedInProfileLink
-        </th>
-        <td *ngIf="user.linkedInProfile">
-            {{user.linkedInProfile}}
-        </td>
-        </tr>
-        <tr>
-            <th *ngIf="user.role=='Applicant'">
-                WorkStatus
-            </th>
-            <td *ngIf="user.role=='Applicant'">
-                {{user.workStatus?'Experienced':'Fresher'}}
-            </td>
-            </tr>
-            <tr>
-                <th *ngIf="user.currentSalary">
-                    Current Salary
-                </th>
-                <td *ngIf="user.currentSalary">
-                    {{user.currentSalary}}
-                </td>
-                </tr>
-                <tr>
-                    <th *ngIf="user.expectedSalary">
-                       Expected Salary
-                    </th>
-                    <td *ngIf="user.expectedSalary">
-                        {{user.expectedSalary}}
-                    </td>
-                    </tr>
-                    <tr>
-                        <th *ngIf="user.currentLocation">
-                          CurrentLocation
-                        </th>
-                        <td *ngIf="user.currentLocation">
-                           {{user.currentLocation}}
-                        </td>
-                        </tr>
-                        <tr>
-                            <th *ngIf="user.preferredLocation">
-                                Preferred Location
-                            </th>
-                            <td *ngIf="user.preferredLocation">
-                                {{user.preferredLocation}}
-                            </td>
-                            </tr>
-                            <tr>
-                                <th *ngIf="user.companyName">
-                                    Company Name
-                                </th>
-                                <td *ngIf="user.companyName">
-                                    {{user.companyName}}
-                                </td>
-                                </tr>
-                                <tr>
-                                    <th *ngIf="user.recruiterDescription">
-                                        Recruiter Description
-                                    </th>
-                                    <td *ngIf="user.recruiterDescription">
-                                        {{user.recruiterDescription}}
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <th *ngIf="user.role">
-                                           Role
-                                        </th>
-                                        <td *ngIf="user.role">
-                                            {{user.role}}
-                                        </td>
-                                        </tr>
-    </table>
-</div>
+<main class="container">
+  <section class="head flex flex-col align-center">
+    <aside class="flex flex-col align-center" style="gap: 1rem">
+      <img
+        src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v937-aew-111_3.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=8ce2cd03f94f2baddcb332cfb50f78b9"
+        alt="avatar"
+      />
+      <p class="h1">
+        {{ user.role }}
+        <a
+          class="red-text"
+          routerLink="/updateuser"
+          *ngIf="currentUser.UserID == user.userID"
+          >🖌</a
+        >
+      </p>
+    </aside>
+    <aside class="details flex flex-col align-start">
+      <p class="lead">
+        <span style="font-weight: 600">User Name: </span> {{ user.userName }}
+      </p>
+      <p class="lead">
+        <span style="font-weight: 600">Full Name: </span> {{ user.fullName }}
+      </p>
+      <p class="lead">
+        <span style="font-weight: 600">Email Id: </span> {{ user.emailId }}
+      </p>
+      <p class="lead">
+        <span style="font-weight: 600">Mobile Number: </span>
+        {{ user.mobileNumber }}
+      </p>
+    </aside>
+  </section>
+</main>
