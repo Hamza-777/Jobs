@@ -6,7 +6,7 @@
   </section>
   <section class="blog-body flex flex-col align-start">
     <p class="h1">{{ currentBlog.blogTitle }}</p>
-    <div class="tags flex align-center">
+    <div *ngIf="currentBlog.blogTags" class="tags flex align-center">
       <p class="h4">Tags:</p>
       <div
         class="tag small"
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div
-      class="blog-content"
+      class="blog-content flex flex-col"
       [innerHtml]="currentBlog.blogContent | markdown"
     ></div>
   </section>
@@ -26,20 +26,16 @@
       *ngIf="currentUser && currentUser.UserID == currentBlog.userID"
       (click)="deleteBlog(currentBlog.blogId)"
     >
-      Delete
+      Delete Blog
     </button>
     <a
       class="btn btn-solid"
       *ngIf="currentUser && currentUser.UserID == currentBlog.userID"
       routerLink="/createblogs"
       (click)="storeId(currentBlog.blogId)"
-      >Edit</a
+      >Edit Blog</a
     >
   </div>
 </main>
-
-{{ currentBlog.blogContent }}
-
-{{ currentBlog.blogContent | markdown }}
 
 <app-servererror *ngIf="this.error"></app-servererror>

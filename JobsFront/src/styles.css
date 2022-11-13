@@ -69,6 +69,19 @@ select {
   cursor: pointer;
 }
 
+ul {
+  margin-left: 1rem;
+}
+
+blockquote {
+  border-left: 8px solid #444;
+  color: #444;
+  padding: 1em;
+  font-weight: 600;
+  letter-spacing: 1.2;
+  font-size: 1rem;
+}
+
 .profile-img {
   width: 3rem;
   height: 3rem;
@@ -132,6 +145,7 @@ textarea {
   background: transparent;
   font-size: 1rem;
   font-weight: 600;
+  text-align: center;
 }
 
 .btn-submit {
