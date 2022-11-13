@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobsAPI.Migrations
 {
     [DbContext(typeof(userDbContext))]
-    [Migration("20221110063413_rolesauthorize")]
-    partial class rolesauthorize
+    [Migration("20221113085219_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

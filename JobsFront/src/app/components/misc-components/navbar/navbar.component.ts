@@ -3,6 +3,7 @@ import { TokenService } from '../../../services/token-service/token.service';
 import { NotificationService } from 'src/app/services/notification-service/notification.service';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { ConnectableObservable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
