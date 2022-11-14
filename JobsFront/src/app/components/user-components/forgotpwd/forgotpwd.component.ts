@@ -57,6 +57,8 @@ export class ForgotpwdComponent implements OnInit {
           this.user = response.data;
           if (this.user != null) {
             this.generateotp(this.user.emailId, this.user.fullName);
+          } else {
+            this.notify.showError("No such user exists!")
           }
         },
         error: (err: HttpErrorResponse) => {
