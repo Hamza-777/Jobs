@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { apiresponse } from './models/apiresponse';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
     this.http.get<any>(environment.ApiUrl+'Otp/clearotp/').subscribe({
-      next: (response: any) => {
+      next: (response: apiresponse) => {
         console.log('OTPS cleared');
       },
     });
