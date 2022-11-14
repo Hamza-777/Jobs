@@ -147,9 +147,6 @@ namespace JobsAPI.Repositories
                 _log4net.Error("error finding "+username);
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Username not found");
             }
-
-            person.Password = "...";
-            person.Salt = "...";
             _log4net.Info("Get by  " + username + " is revoked");
 
             return new SendResponse("Found username", StatusCodes.Status200OK, person, "");

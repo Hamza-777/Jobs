@@ -50,8 +50,6 @@ namespace JobsAPI.Repositories
                 return new SendResponse("", StatusCodes.Status404NotFound, null, "Cannot find any user");
             }
 
-            person.Password = "...";
-            person.Salt = "...";
             _log4net.Error("Error finding user "+ id);
             return new SendResponse("User Found", StatusCodes.Status200OK, person, "");
         }

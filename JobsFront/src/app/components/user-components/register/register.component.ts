@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { GlobalerrorhandlerService } from '../../../services/error-service/globalerrorhandler.service';
@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private http: HttpClient,
     private handlerservice: GlobalerrorhandlerService,
     private auth: AuthService,
     private notify: NotificationService
@@ -33,7 +32,8 @@ export class RegisterComponent implements OnInit {
     this.user.role = 'Applicant';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   checkotp(otp: string) {
     this.auth.verifyotp(otp).subscribe({
