@@ -16,7 +16,7 @@
     "Password": "I/1bfzG5rpB195KbpNwRusP22rvqluVuPRAxAeztztU=",
     "Salt": "oSM2EkKFv2q7IBSIndYK9Q==",
     "MobileNumber": 8754654378,
-    "PhotographLink": "string",
+    "PhotographLink": "",
     "CompanyName": "Eurofins",
     "RecruiterDescription": "Connecting talent!!!",
     "Role": "Recruiter"
@@ -31,7 +31,7 @@
     "Password": "nf2LopgzFjZ0ravaLSnfisO9YkqJTD5SSuGQkKHzx+8=",
     "Salt": "K3upym7u48DJKzBSnsVpog==",
     "MobileNumber": 7687464534,
-    "PhotographLink": "string",
+    "PhotographLink": "",
     "LinkedInProfile": "www.linkedin.in/applicant",
     "WorkStatus": true,
     "CurrentSalary": 800000,

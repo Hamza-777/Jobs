@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'JobsFront';
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.http.get<any>(environment.ApiUrl+'/Otp/clearotp/').subscribe({
+    this.http.get<any>(environment.ApiUrl+'Otp/clearotp/').subscribe({
       next: (response: any) => {
         console.log('OTPS cleared');
       },
