@@ -1,10 +1,44 @@
-﻿{
-  "FullName": "admin",
-  "UserName": "admin",
-  "EmailId": "jobs.final.project@gmail.com",
-  "Password": "03mrD2Q3piRrjfkjSRAsNRhYCJAzZrXZ/JX2rstui2A=",
-  "MobileNumber": 1234567890,
-  "PhotographLink": "https://ibb.co/gj9V9L6",
-  "Role": "Admin",
-  "Salt": "fSSUAauHZR3mHW3uRT+3fA=="
-}
+﻿[
+  {
+    "FullName": "admin",
+    "UserName": "admin",
+    "EmailId": "jobs.final.project@gmail.com",
+    "Password": "03mrD2Q3piRrjfkjSRAsNRhYCJAzZrXZ/JX2rstui2A=",
+    "MobileNumber": 1234567890,
+    "PhotographLink": "https://ibb.co/gj9V9L6",
+    "Role": "Admin",
+    "Salt": "fSSUAauHZR3mHW3uRT+3fA=="
+  },
+  {
+    "FullName": "recruiter",
+    "UserName": "recruiter",
+    "EmailId": "lakkapragadatul@gmail.com",
+    "Password": "I/1bfzG5rpB195KbpNwRusP22rvqluVuPRAxAeztztU=",
+    "Salt": "oSM2EkKFv2q7IBSIndYK9Q==",
+    "MobileNumber": 8754654378,
+    "PhotographLink": "string",
+    "CompanyName": "Eurofins",
+    "RecruiterDescription": "Connecting talent!!!",
+    "Role": "Recruiter"
+  },
+
+  {
+
+    "FullName": "applicant",
+    "UserName": "applicant",
+    "Bio": "applicant's bio",
+    "EmailId": "harikheshav@gmail.com",
+    "Password": "nf2LopgzFjZ0ravaLSnfisO9YkqJTD5SSuGQkKHzx+8=",
+    "Salt": "K3upym7u48DJKzBSnsVpog==",
+    "MobileNumber": 7687464534,
+    "PhotographLink": "string",
+    "LinkedInProfile": "www.linkedin.in/applicant",
+    "WorkStatus": true,
+    "CurrentSalary": 800000,
+    "ExpectedSalary": 1500000,
+    "CurrentLocation": "chennai",
+    "PreferredLocation": "chennai",
+    "CompanyName": "Eurofins",
+    "Role": "Applicant"
+  }
+]
