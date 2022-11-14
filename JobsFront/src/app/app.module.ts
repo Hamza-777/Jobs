@@ -36,6 +36,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ServererrorComponent } from './components/misc-components/servererror/servererror.component';
+import { NoresultComponent } from './components/misc-components/noresult/noresult.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -69,6 +70,7 @@ export function tokenGetter() {
     ViewCourseComponent,
     LoadingComponent,
     ServererrorComponent,
+    NoresultComponent,
   ],
   imports: [
     BrowserModule,

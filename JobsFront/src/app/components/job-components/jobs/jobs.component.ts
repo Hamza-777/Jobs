@@ -25,6 +25,7 @@ export class JobsComponent implements OnInit {
   categoryIdSelected: number = 0;
   searchQuery: string = '';
   sortOrder: string = 'default';
+  status: string = 'loading';
 
   constructor(
     private jobservice: JobsService,
@@ -46,6 +47,12 @@ export class JobsComponent implements OnInit {
         } else {
           this.jobsList = response.data;
           this.filteredJobs = response.data;
+
+          if(this.filteredJobs) {
+            this.status = 'loaded';
+          } else {
+            this.status = 'empty';
+          }
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -114,6 +121,12 @@ export class JobsComponent implements OnInit {
     } else {
       this.filterJobsHelper();
       this.filteredJobs.sort((a, b) => b.salary_max - a.salary_max);
+    }
+
+    if(this.filteredJobs) {
+      this.status = 'loaded';
+    } else {
+      this.status = 'empty';
     }
   }
 

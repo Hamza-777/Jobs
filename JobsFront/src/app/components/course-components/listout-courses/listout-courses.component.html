@@ -19,10 +19,12 @@
     </section>
   </section>
 
-  <app-loading *ngIf="!filteredCourses"></app-loading>
+  <app-loading *ngIf="status === 'loading'"></app-loading>
+
+  <app-noresult *ngIf="status === 'empty'"></app-noresult>
 
   <section
-    *ngIf="filteredCourses"
+    *ngIf="status === 'loaded'"
     class="courses flex flex-row-wrap align-center justify-center"
   >
     <app-course *ngFor="let course of filteredCourses" [course]="course">

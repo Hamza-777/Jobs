@@ -17,6 +17,7 @@ export class ListoutCoursesComponent implements OnInit {
   searchQuery: string = '';
   categorySelected: string = 'All';
   error: any = null;
+  status: string = 'loading';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,12 @@ export class ListoutCoursesComponent implements OnInit {
           next: (response: apiresponse) => {
             this.courses = response.data;
             this.filteredCourses = response.data;
+
+            if(this.filteredCourses) {
+              this.status = 'loaded';
+            } else {
+              this.status = 'empty';
+            }
           },
           error: (err: HttpErrorResponse) => {
             this.error = this.handlerservice.handleError(err.error);
@@ -55,5 +62,11 @@ export class ListoutCoursesComponent implements OnInit {
           ? true
           : course.courseCategory == this.categorySelected
       );
+
+      if(this.filteredCourses) {
+        this.status = 'loaded';
+      } else {
+        this.status = 'empty';
+      }
   }
 }
