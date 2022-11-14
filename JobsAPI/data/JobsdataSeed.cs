@@ -55,8 +55,11 @@ namespace JobsAPI.data
                 if (!context.Users.Any())
                 {
                     var adminData = File.ReadAllText("./data/SeedData/adminlogin.json");
-                    var admindetails = JsonSerializer.Deserialize<user>(adminData);
-                    context.Users.Add(admindetails);
+                    var admindetails = JsonSerializer.Deserialize<List<user>>(adminData);
+                    foreach (var item in admindetails)
+                    {
+                        context.Users.Add(item);
+                    }
                     await context.SaveChangesAsync();
                 }
 

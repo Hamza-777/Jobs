@@ -39,7 +39,7 @@ namespace JobsAPI.Repositories
                 if (result == null)
                 {
                     _log4net.Error(user+ " Unauthorized");
-                    return new SendResponse("", StatusCodes.Status401Unauthorized, null, "Unauthorized");
+                    return new SendResponse("", StatusCodes.Status401Unauthorized, null, "Invalid username/ password");
                 }
                 if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
                 {
@@ -51,7 +51,7 @@ namespace JobsAPI.Repositories
                 result = await db.Users.Where(x => x.EmailId == user.UserData).SingleOrDefaultAsync();
                 if (result == null)
                 {_log4net.Error(user+ " Unauthorized");
-                    return new SendResponse("", StatusCodes.Status401Unauthorized, null, "Unauthorized");
+                    return new SendResponse("", StatusCodes.Status401Unauthorized, null, "Invalid username/ password");
                 }
                 if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
                 {
@@ -63,7 +63,7 @@ namespace JobsAPI.Repositories
                 result = await db.Users.Where(x => x.UserName == user.UserData).SingleOrDefaultAsync();
                 if (result == null)
                 {_log4net.Error(user+ " Unauthorized");
-                    return new SendResponse("", StatusCodes.Status401Unauthorized, null, "Unauthorized");
+                    return new SendResponse("", StatusCodes.Status401Unauthorized, null, "Invalid username/ password");
                 }
                 if (!hm.CompareHashedPasswords(user.Password, result.Password, result.Salt))
                 {
