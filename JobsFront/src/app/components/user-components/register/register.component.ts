@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   confirmpassword: string;
   @ViewChild('registerForm') form!: NgForm;
   user: RegisterModel = {} as RegisterModel;
+  validationstats: string = '';
 
   constructor(
     private router: Router,
@@ -89,4 +90,25 @@ export class RegisterComponent implements OnInit {
       });
     }
   };
+
+  validate() {
+    if(!'6789'.includes(this.user.mobileNumber[0])) {
+      this.validationstats = 'Mobile Number must begin with 6-9';
+    } else if(!this.checkchars()){
+      this.validationstats = 'Mobile Number must only consist of digits';
+    } else if(this.user.mobileNumber.toString().length != 10) {
+      this.validationstats = 'Mobile Number must be equal to 10 digits';
+    } else {
+      this.validationstats = '';
+    }
+  }
+
+  checkchars() {
+    for(let i = 0; i < this.user.mobileNumber.toString().length; i++) {
+      if(!'0123456789'.includes(this.user.mobileNumber[i])) {
+        return false
+      }
+    }
+    return true
+  }
 }

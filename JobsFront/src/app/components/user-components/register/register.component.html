@@ -39,9 +39,11 @@
         name="MobileNumber"
         [(ngModel)]="user.mobileNumber"
         placeholder="* MobileNumber"
+        (keyup)="validate()"
         required
       />
     </div>
+    <p class="small" style="color: var(--red-color);">{{validationstats}}</p>
     <div class="form-group">
       <input
         type="password"
