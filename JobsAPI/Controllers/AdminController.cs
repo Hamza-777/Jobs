@@ -11,7 +11,6 @@ namespace JobsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IAdminRepo _repo;
@@ -23,6 +22,7 @@ namespace JobsAPI.Controllers
         }
 
         [HttpGet("getusers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUsers()
         {
             _log4net.Info("Get users of admin controller invoked");
@@ -38,6 +38,7 @@ namespace JobsAPI.Controllers
         }
 
         [HttpDelete("deleteuser/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             _log4net.Info("Delete users " + id + " of admin controller invoked");
@@ -45,6 +46,7 @@ namespace JobsAPI.Controllers
         }
 
         [HttpPost("RegisterAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] user user)
         {
             _log4net.Info("Register Admin " + user.UserID+ " of admin controller invoked");

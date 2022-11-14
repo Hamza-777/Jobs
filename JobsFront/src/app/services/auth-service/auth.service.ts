@@ -44,7 +44,7 @@ export class AuthService {
 
   edituser(user) {
     return this.http.put<any>(
-      environment.ApiUrl + '/updateuser/' + user.userID,
+      environment.ApiUrl + 'Auth/updateuser/' + user.userID,
       user,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

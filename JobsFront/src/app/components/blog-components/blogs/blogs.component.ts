@@ -11,10 +11,11 @@ import { apiresponse } from '../../../models/apiresponse';
   styleUrls: ['./blogs.component.css'],
 })
 export class BlogsComponent implements OnInit {
-  filteredBlogs: Blog[] = undefined;
+  filteredBlogs: Blog[] = null;
   blogs: Blog[] = null;
   error: any = null;
   searchQuery: string = '';
+  status: string = 'loading';
 
   constructor(
     private handlerservice: GlobalerrorhandlerService,
@@ -30,6 +31,11 @@ export class BlogsComponent implements OnInit {
       next: (response: apiresponse) => {
         this.blogs = response.data;
         this.filteredBlogs = response.data;
+        if(this.filteredBlogs) {
+          this.status = 'loaded';
+        } else {
+          this.status = 'empty';
+        }
       },
       error: (err: HttpErrorResponse) => {
         this.error = this.handlerservice.handleError(err);
@@ -50,6 +56,12 @@ export class BlogsComponent implements OnInit {
           .toLocaleLowerCase()
           .includes(this.searchQuery.toLocaleLowerCase())
       );
+    }
+
+    if(this.filteredBlogs.length > 0) {
+      this.status = 'loaded';
+    } else {
+      this.status = 'empty';
     }
   }
 }

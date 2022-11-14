@@ -2,3 +2,14 @@
   width: 100%;
   font-size: 1.25rem;
 }
+
+.image-upload {
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 12rem;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 50%;
+}

@@ -1,6 +1,6 @@
 <section *ngIf="!this.error" class="container" id="login-form">
   <p class="h3" style="text-align: center">REGISTER</p>
-  <p class="x-small red-text">* Fileds are mandatory</p>
+  <p class="x-small red-text">* Fields are mandatory</p>
   <form class="form" #registerForm="ngForm">
     <div class="form-group">
       <input
@@ -147,7 +147,13 @@
       type="button"
       class="btn btn-outline btn-submit"
       (click)="generateotp(user.emailId, user.fullName)"
-      [disabled]="!user.role"
+      [disabled]="
+        !user.role ||
+        !user.fullName ||
+        !user.userName ||
+        !user.emailId ||
+        !user.mobileNumber
+      "
     >
       Verify Email
     </button>
@@ -166,37 +172,21 @@
     </div>
     <div class="buttons flex align-center justify-center flex-col">
       <button
-        *ngIf="data == 'Otp sent Successfully to the email'"
+        *ngIf="
+          data == 'Otp sent Successfully to the email' &&
+          user.password == confirmpassword
+        "
         type="submit"
         class="btn btn-outline btn-submit"
         (click)="checkotp(otp)"
       >
         Verify OTP & Register
       </button>
-      <button class="btn btn-link">
-        Already have an account? <a to="/login">Login</a>
-      </button>
+      <p class="lead">
+        Already have an account? <a routerLink="/login" class="link">Login</a>
+      </p>
     </div>
   </form>
 </section>
 
 <app-servererror *ngIf="this.error"></app-servererror>
-
-<!-- <img
-      [src]="user.photographLink"
-      alt="Photograph"
-      class="border border-dark"
-      width="150px"
-      height="150px"
-    />
-    <br />
-    <br />
-    <div class="image-upload">
-      Upload Photograph:
-      <input
-        name="imageUrl"
-        type="file"
-        accept="image/*"
-        (change)="onFileSelected($event)"
-      />
-    </div> -->

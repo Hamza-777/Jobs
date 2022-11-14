@@ -21,6 +21,7 @@ import { EditJobsComponent } from './components/job-components/edit-jobs/edit-jo
 import { NotFoundComponent } from './components/misc-components/not-found/not-found.component';
 import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
 import { RoleadminGuard } from './guards/adminguard/roleadmin.guard';
+import { RolerecruiterGuard } from './guards/recruiterguard/rolerecruiter.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,7 +49,7 @@ const routes: Routes = [
   {
     path: 'showusers',
     component: ShowusersComponent,
-    canActivate: [AuthGuard],
+    canActivate: [RoleadminGuard],
   },
   {
     path: 'showuserbyid/:id',
@@ -58,7 +59,7 @@ const routes: Routes = [
   {
     path: 'registeradmin',
     component: RegisteradminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [RoleadminGuard],
   },
   {
     path: 'course/:courseId',
@@ -80,11 +81,11 @@ const routes: Routes = [
   },
 
   { path: 'jobs', component: JobsComponent },
-  { path: 'createjobs', component: CreateJobsComponent },
+  { path: 'createjobs', component: CreateJobsComponent, canActivate: [RolerecruiterGuard] },
   {
     path: 'editjobs/:id',
     component: EditJobsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [RolerecruiterGuard],
   },
   {
     path: '**',

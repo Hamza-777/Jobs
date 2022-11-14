@@ -18,10 +18,14 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  gotoprofile() {
     this.currentUser = localStorage.getItem('jwt')
       ? jwt_decode(localStorage.getItem('jwt')!)
       : null;
+
+    this.router.navigateByUrl(`/showuserbyid/${this.currentUser.UserID}`);
   }
 
   logOut = () => {

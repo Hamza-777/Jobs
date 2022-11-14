@@ -1,0 +1,19 @@
+.no-res {
+    width: fit-content;
+    margin-inline: auto;
+    margin-block: 3rem;
+  }
+  
+  .no-res > img {
+    width: 50rem;
+    height: auto;
+    margin-inline: auto;
+  }
+  
+  .no-res-txt {
+    font-weight: 600;
+    letter-spacing: 1.2;
+    text-align: center;
+    margin-top: -2rem;
+  }
+  

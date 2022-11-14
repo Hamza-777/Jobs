@@ -4,11 +4,8 @@ using JobsAPI.Repositories;
 using JobsAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using NuGet.Protocol;
-using System.Collections.Generic;
-using System.Text.Json;
 
 namespace Test_JobsAPI
 {
@@ -17,23 +14,14 @@ namespace Test_JobsAPI
 
         //Arrange
         List<Job> Jobs = new List<Job>();
-        IQueryable<Job> jobdata;
-        Mock<DbSet<Job>> mockSet;
-        Mock<userDbContext> jobcontextmock;
+        
         Mock<IJobsRepo> jobprovider;
 
         [SetUp]
         public void Setup()
         {
 
-            jobdata = Jobs.AsQueryable();
-            mockSet = new Mock<DbSet<Job>>();
-            mockSet.As<IQueryable<Job>>().Setup(m => m.Provider).Returns(jobdata.Provider);
-            mockSet.As<IQueryable<Job>>().Setup(m => m.Expression).Returns(jobdata.Expression);
-            mockSet.As<IQueryable<Job>>().Setup(m => m.ElementType).Returns(jobdata.ElementType);
-            mockSet.As<IQueryable<Job>>().Setup(m => m.GetEnumerator()).Returns(jobdata.GetEnumerator());
-            var p = new DbContextOptions<userDbContext>();
-            jobcontextmock = new Mock<userDbContext>(p);
+            
             jobprovider = new Mock<IJobsRepo>();
 
         }
@@ -41,20 +29,8 @@ namespace Test_JobsAPI
         [Test]
         public void PutJob_TypeMatching()
         {
-            Job expected = new Job();
-            expected.Id = 1;
-            expected.description = "Development Job in Company";
-            expected.redirect_url = "url.com";
-            expected.salary_max = 100000;
-            expected.location = "Chennai";
-            expected.title = "Developer";
-            expected.salary_min = 50000;
-            expected.company = "Company";
-            expected.created = DateTime.Now.ToString();
-            expected.stateid = 1;
-            expected.cityid = 1;
-            expected.categoryid = 1;
-            SendResponse sendResponse = new SendResponse("Edited Job Successfully", StatusCodes.Status201Created, expected, "");
+            
+            
             Job actual = new Job();
             actual.Id = 1;
             actual.description = "Development Job in Company";
@@ -68,7 +44,7 @@ namespace Test_JobsAPI
             actual.stateid = 1;
             actual.cityid = 1;
             actual.categoryid = 1;
-            string expectedResult = "{\"Value\":" + sendResponse.ToJson().ToString() + ",\"Formatters\":[],\"ContentTypes\":[],\"StatusCode\":200}";
+            
             jobprovider.Setup(x => x.PutJob(actual.Id,actual)).Returns(Task.FromResult(new SendResponse("Edited Job Successfully", StatusCodes.Status201Created, null, "")));
             JobsController obj = new JobsController(jobprovider.Object);
             var res = obj.PutJob(actual.Id,actual);

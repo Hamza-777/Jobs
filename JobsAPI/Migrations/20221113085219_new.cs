@@ -117,11 +117,9 @@ namespace JobsAPI.Migrations
                     BlogId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BlogTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    BlogDescription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     BlogContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BlogCategory = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CoverImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BlogTags = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Company = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     UserID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

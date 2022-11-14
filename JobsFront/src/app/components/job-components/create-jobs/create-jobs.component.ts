@@ -32,14 +32,14 @@ export class CreateJobsComponent implements OnInit {
       title: '',
       description: '',
       redirect_url: '',
-      salary_max: 0,
-      salary_min: 0,
+      salary_max: '',
+      salary_min: '',
       company: '',
       location: '',
       created: Date().toString(),
-      categoryid: 0,
+      categoryid: 1,
       stateid: 0,
-      cityid: 0,
+      cityid: 1,
     };
   }
 

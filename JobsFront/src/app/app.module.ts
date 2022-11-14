@@ -31,11 +31,12 @@ import { NavbarComponent } from './components/misc-components/navbar/navbar.comp
 import { JobComponent } from './components/job-components/job/job.component';
 import { NotFoundComponent } from './components/misc-components/not-found/not-found.component';
 import { ViewCourseComponent } from './components/course-components/view-course/view-course.component';
+import { LoadingComponent } from './components/misc-components/loading/loading.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { LoadingComponent } from './components/misc-components/loading/loading.component';
 import { ServererrorComponent } from './components/misc-components/servererror/servererror.component';
+import { NoresultComponent } from './components/misc-components/noresult/noresult.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -69,6 +70,7 @@ export function tokenGetter() {
     ViewCourseComponent,
     LoadingComponent,
     ServererrorComponent,
+    NoresultComponent,
   ],
   imports: [
     BrowserModule,

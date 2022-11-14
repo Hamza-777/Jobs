@@ -24,6 +24,7 @@ namespace JobsAPI.Controllers
 
         // GET: api/Blogs
         [HttpGet]
+
         public async Task<IActionResult> GetBlogs()
         {
             _log4net.Info("Get all blogs of blog controller revoked");

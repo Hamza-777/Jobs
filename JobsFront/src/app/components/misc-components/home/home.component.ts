@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     this.currentUser = localStorage.getItem('jwt')
       ? jwt_decode(localStorage.getItem('jwt')!)
       : null;
-    console.log(this.currentUser);
+    console.log("in home comp: "+this.currentUser);
   }
 
   ngOnInit(): void {}

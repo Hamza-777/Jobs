@@ -4,7 +4,7 @@
       type="search"
       [(ngModel)]="searchQuery"
       placeholder="Search for jobs..."
-      (change)="filterJobs()"
+      (keyup)="filterJobs()"
     />
     <button class="btn btn-link" (click)="filterJobs()">🍳</button>
   </section>
@@ -47,9 +47,11 @@
     Reset Filters
   </button>
 
-  <app-loading *ngIf="!filteredJobs"> </app-loading>
+  <app-loading *ngIf="status === 'loading'"> </app-loading>
 
-  <section *ngIf="filteredJobs">
+  <app-noresult *ngIf="status === 'empty'"></app-noresult>
+
+  <section *ngIf="status === 'loaded'">
     <app-job *ngFor="let job of filteredJobs" [job]="job"></app-job>
   </section>
 </main>
