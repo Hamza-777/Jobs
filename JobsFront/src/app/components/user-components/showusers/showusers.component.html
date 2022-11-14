@@ -1,44 +1,36 @@
-<div>
-  <div class="text-success">{{ data }}</div>
-  <div class="text-danger">
-    <span [innerHTML]="error"></span>
-  </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <td>FullName</td>
-        <td>UserName</td>
-        <td>Email ID</td>
-        <td>Mobile Number</td>
-        <td>Role</td>
-        <td>View</td>
-        <td>Delete</td>
-      </tr>
-    </thead>
+<main *ngIf="!this.error" class="container flex align-center flex-col">
+  <section class="searchbar flex align-center">
+    <input
+      type="search"
+      [(ngModel)]="searchQuery"
+      placeholder="Search for users..."
+      (keyup)="filterUsers()"
+    />
+    <button class="btn btn-link" (click)="filterUsers()">🍳</button>
+  </section>
+    
+  <app-loading *ngIf="status === 'loading'"> </app-loading>
 
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.fullName }}</td>
-        <td>{{ user.userName }}</td>
-        <td>{{ user.emailId }}</td>
-        <td>{{ user.mobileNumber }}</td>
-        <td>{{ user.role }}</td>
-        <td>
-          <a
+  <app-noresult *ngIf="status === 'empty'"></app-noresult>
+
+  <section *ngIf="status === 'loaded'" style="width: 100%;">
+    <div *ngFor="let user of users" class="user-details flex align-center justify-between">
+      <p class="h2">{{user.userName}}</p>
+      <div class="buttons flex align-center">
+        <a
             [routerLink]="['/showuserbyid/', user.userID]"
-            class="view btn btn-primary"
+            class="btn btn-outline"
             >View</a
           >
-        </td>
-        <td>
           <button
-            class="delete btn btn-primary"
+            class="btn btn-solid"
             (click)="deleteuser(user.userID)"
           >
             Delete
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-servererror *ngIf="this.error"></app-servererror>

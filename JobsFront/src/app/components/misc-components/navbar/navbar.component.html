@@ -19,6 +19,12 @@
       >Add Course</a
     >
     <a
+    *ngIf="tokenservice.isAdmin()"
+    routerLink="/showusers"
+    class="btn btn-link"
+    >Show Users</a
+  >
+    <a
       *ngIf="tokenservice.isRecruiter()"
       routerLink="/createjobs"
       class="btn btn-link"

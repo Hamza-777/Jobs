@@ -33,7 +33,11 @@ export class JobComponent implements OnInit {
   deleteJob(id: number) {
     this.jobservice.deleteJobs(id).subscribe({
       next: (response) => {
-        this.router.navigate(['jobs']);
+        this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+              this.router.navigate(['jobs']);
+            });
         this.notify.showSuccess(response.message);
       },
       error: (errResponse: HttpErrorResponse) => {

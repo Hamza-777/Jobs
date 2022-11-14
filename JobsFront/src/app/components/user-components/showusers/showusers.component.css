@@ -1,0 +1,30 @@
+.searchbar {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10rem;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  margin-block-end: 2rem;
+  gap: 2rem;
+  margin-inline: auto;
+}
+
+.searchbar > input {
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.25rem;
+  flex: 1;
+}
+
+.user-details {
+    width: 100%;
+    padding: 2rem;
+    border: 2px solid;
+    border-radius: 4px;
+    margin-block: 0.75rem;
+}
+
+.buttons {
+    gap: 2rem;
+}

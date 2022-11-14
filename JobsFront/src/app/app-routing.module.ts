@@ -11,7 +11,6 @@ import { ForgotpwdComponent } from './components/user-components/forgotpwd/forgo
 import { UpdateuserComponent } from './components/user-components/updateuser/updateuser.component';
 import { ShowusersComponent } from './components/user-components/showusers/showusers.component';
 import { ShowuserbyidComponent } from './components/user-components/showuserbyid/showuserbyid.component';
-import { RegisteradminComponent } from './components/user-components/registeradmin/registeradmin.component';
 import { AddCourseComponent } from './components/course-components/add-course/add-course.component';
 import { EditCourseComponent } from './components/course-components//edit-course/edit-course.component';
 import { ListoutCoursesComponent } from './components/course-components/listout-courses/listout-courses.component';
@@ -55,11 +54,6 @@ const routes: Routes = [
     path: 'showuserbyid/:id',
     component: ShowuserbyidComponent,
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'registeradmin',
-    component: RegisteradminComponent,
-    canActivate: [RoleadminGuard],
   },
   {
     path: 'course/:courseId',

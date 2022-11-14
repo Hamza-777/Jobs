@@ -9,7 +9,6 @@ import { apiresponse } from 'src/app/models/apiresponse';
   providedIn: 'root',
 })
 export class JobsService {
-  baseUrl = 'https://localhost:7067/api/Jobs';
   constructor(private http: HttpClient) {}
   getAllJobs() {
     return this.http

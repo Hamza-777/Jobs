@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent {
   title = 'JobsFront';
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.http.get<any>('https://localhost:7067/api/Otp/clearotp/').subscribe({
+    this.http.get<any>(environment.ApiUrl+'/Otp/clearotp/').subscribe({
       next: (response: any) => {
         console.log('OTPS cleared');
       },
