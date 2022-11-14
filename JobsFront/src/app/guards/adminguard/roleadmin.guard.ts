@@ -18,7 +18,7 @@ export class RoleadminGuard implements CanActivate {
       if(Role['Role']=='Admin'){
         return true;
       }
-      this.router.navigateByUrl('/courses')
+      this.router.navigateByUrl('/page-not-found')
     return false;
   }
   
