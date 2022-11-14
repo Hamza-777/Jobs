@@ -12,8 +12,8 @@ import { apiresponse } from 'src/app/models/apiresponse';
   styleUrls: ['./listout-courses.component.css'],
 })
 export class ListoutCoursesComponent implements OnInit {
-  courses: Course[];
-  filteredCourses: Course[];
+  courses: Course[] = null;
+  filteredCourses: Course[] = null;
   searchQuery: string = '';
   categorySelected: string = 'All';
   error: any = null;
@@ -63,10 +63,10 @@ export class ListoutCoursesComponent implements OnInit {
           : course.courseCategory == this.categorySelected
       );
 
-      if(this.filteredCourses) {
-        this.status = 'loaded';
-      } else {
-        this.status = 'empty';
-      }
+    if(this.filteredCourses.length > 0) {
+      this.status = 'loaded';
+    } else {
+      this.status = 'empty';
+    }
   }
 }

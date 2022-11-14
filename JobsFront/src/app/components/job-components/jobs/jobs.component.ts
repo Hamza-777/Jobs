@@ -15,8 +15,8 @@ import { State } from '../../../models/State';
 })
 export class JobsComponent implements OnInit {
   error: any;
-  jobsList: Job[];
-  filteredJobs: Job[];
+  jobsList: Job[] = null;
+  filteredJobs: Job[] = null;
   cityList: City[];
   stateList: State[];
   categoryList: Category[];
@@ -123,7 +123,7 @@ export class JobsComponent implements OnInit {
       this.filteredJobs.sort((a, b) => b.salary_max - a.salary_max);
     }
 
-    if(this.filteredJobs) {
+    if(this.filteredJobs.length > 0) {
       this.status = 'loaded';
     } else {
       this.status = 'empty';

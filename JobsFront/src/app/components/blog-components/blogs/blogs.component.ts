@@ -11,8 +11,8 @@ import { apiresponse } from '../../../models/apiresponse';
   styleUrls: ['./blogs.component.css'],
 })
 export class BlogsComponent implements OnInit {
-  filteredBlogs: Blog[] = undefined;
-  blogs: Blog[] = undefined;
+  filteredBlogs: Blog[] = null;
+  blogs: Blog[] = null;
   error: any = null;
   searchQuery: string = '';
   status: string = 'loading';
@@ -58,7 +58,7 @@ export class BlogsComponent implements OnInit {
       );
     }
 
-    if(this.filteredBlogs) {
+    if(this.filteredBlogs.length > 0) {
       this.status = 'loaded';
     } else {
       this.status = 'empty';
